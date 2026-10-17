@@ -3,7 +3,7 @@
 python3 ~/biohack/inventory.py            # refresh everything (safe to re-run any time)
 python3 ~/biohack/inventory.py --offline  # skip Modal; re-index local files only
 """
-import json, os, sys, glob, hashlib, subprocess, collections, datetime
+import json, os, sys, glob, hashlib, subprocess, collections, datetime, time
 
 B = os.path.expanduser('~/biohack')
 R = os.path.expanduser('~/osteo-results')
@@ -81,6 +81,8 @@ def sync():
                 continue
             dst = f'{B}/{rel}/{os.path.relpath(f, src)}'
             a = os.stat(f)
+            if time.time() - a.st_mtime < 120:  # still being written (e.g. a Modal download in progress); next refresh gets it
+                continue
             if os.path.exists(dst) and os.path.getsize(dst) == a.st_size and int(os.stat(dst).st_mtime) >= int(a.st_mtime):
                 continue
             os.makedirs(os.path.dirname(dst), exist_ok=True)

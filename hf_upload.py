@@ -3,10 +3,11 @@
 ~/biohack/.venv/bin/python hf_upload.py          # upload anything new or changed (safe to re-run)
 Token: $HF_TOKEN, else Keychain item `hf-likelytobelaura` (the saved stationhouse token is never used).
 """
-import os, sys, glob, subprocess
+import os, sys, glob, json, subprocess
 from huggingface_hub import HfApi
 
-B = os.path.expanduser('~/biohack')
+H = os.path.expanduser('~')
+B = f'{H}/biohack'
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = 'likelytobelaura/osteo-glimmer-lora'
 # local adapter dir -> folder in the HF repo
@@ -25,9 +26,22 @@ def token():
     return t
 
 
+def complete(p):
+    # a safetensors header records where its last tensor ends; a file caught mid-copy is shorter than that
+    with open(p, 'rb') as f:
+        n = int.from_bytes(f.read(8), 'little')
+        meta = json.loads(f.read(n))
+    end = max(v['data_offsets'][1] for k, v in meta.items() if k != '__metadata__')
+    return os.path.getsize(p) == 8 + n + end
+
+
 def done(d):
-    # a run's adapter is complete once its weights and config are both on disk
-    return os.path.exists(f'{d}/adapter_model.safetensors') and os.path.exists(f'{d}/adapter_config.json')
+    # weights + config on disk, weights not truncated, and identical in size to the copy the LOMO job pulled
+    w = f'{d}/adapter_model.safetensors'
+    if not (os.path.exists(w) and os.path.exists(f'{d}/adapter_config.json')) or not complete(w):
+        return False
+    src = f'{H}/osteo-results/lomo/adapters/{os.path.basename(d)}/adapter_model.safetensors'
+    return not os.path.exists(src) or (complete(src) and os.path.getsize(src) == os.path.getsize(w))
 
 
 if __name__ == '__main__':
@@ -40,7 +54,7 @@ if __name__ == '__main__':
                     commit_message='Update model card')
     for d, name in ADAPTERS.items():
         if not done(d):
-            print(f'{name}: not finished, skipped'); continue
+            print(f'{name}: not finished or still copying, skipped'); continue
         api.upload_folder(folder_path=d, path_in_repo=name, repo_id=REPO, ignore_patterns=IGNORE,
                           commit_message=f'Add/update {name} adapter')
         print(f'{name}: uploaded')
