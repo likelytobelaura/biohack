@@ -35,7 +35,8 @@ masks only never-seen species, so nothing to carry).
 | **S3** transfer GBM | −0.124 | 0.082 | −0.107 | 0.265 |
 | Glimmer LoRA, type held out of training | 0.949 | 0.664 | running | running |
 | Glimmer zero-shot with own values | 0.970 | 0.487 | 0.130 | 0.472 |
-| Glimmer LoRA sid_full (all types) | 0.947 | 0.678 | 0.478 | 0.295 |
+| Glimmer LoRA all types, same 740-step schedule (matched reference) | 0.973 | 0.694 | 0.526 | 0.461 |
+| Glimmer LoRA sid_full (all types, stopped halfway) | 0.947 | 0.678 | 0.478 | 0.295 |
 | Classical, everything visible (val pick) | 0.971 | 0.749 | 0.416 | 0.680 |
 
 ## All types, best method per setting (Spearman ρ; accuracy for multiplex IF)
@@ -65,7 +66,9 @@ masks only never-seen species, so nothing to carry).
    reach 0.58 with a plain feature mean).
 2. **A sample's own values, without the type's other samples, are weak for classical methods** (S3: ρ 0.1–0.4, flow
    negative). The Glimmer LoRA trained without bulk RNA reaches 0.66 from the same information (the entity's own
-   values plus general training), and without flow reaches 0.95. So the LLM gets far more out of the entity's own
+   values plus general training; 86% of the all-data LoRA's gain over zero-shot), and without flow reaches 0.95.
+   Against the matched all-data LoRA, removing bulk RNA from training costs scRNA 0.17 and Xenium 0.12 (both
+   significant), the LLM-side echo of the classical gene link. So the LLM gets far more out of the entity's own
    values and the feature names than any classical model can.
 3. **With no data of the type at all, only gene-linked types can be predicted, and only as rankings:** bulk RNA from
    other types' gene levels ρ 0.53, Xenium 0.45, scRNA 0.42; Olink, DIA and CITE-seq barely (≤ 0.12). Untrained Glimmer

@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 15:54 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
+Generated 2026-10-17 15:59 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -57,18 +57,15 @@ LoRA r=32 (same settings as `sid_full`), 8×H200, a 740-step schedule run to com
 each is then evaluated on that type's masked targets only. `lomo740_all` is the matched reference trained on everything:
 the finished counterpart of `sid_full`, which saw the same half epoch but stopped mid-schedule.
 Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).
-Sweep app: `ap-RbhzQY74ThgT1PSDOZqGbu` (ephemeral (detached))
+Sweep app: not running.
 
 | run | trains on | eval targets | status | local outputs |
 |---|---|---:|---|---|
 | `lomo740_flow` | everything except Flow cytometry | 221 | done | `06_heldout_experiments/lomo740_flow/outputs/` |
-| `lomo740_rna` | everything except Bulk RNA-seq TPM | 2,000 | trained, eval pending | – |
-| `lomo740_tcr` | everything except TCR beta clones | 2,000 | trained, eval pending | – |
-| `lomo740_xenium` | everything except Xenium | 600 | trained, eval pending | – |
-| `lomo740_all` | all 11,824 rows | 24,634 | trained, eval pending | – |
-| `lomo740_flow_full` | everything except Flow cytometry (adapter of `lomo740_flow`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_flow_full/outputs/` |
-| `lomo740_rna_full` | everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_rna_full/outputs/` |
-| `lomo740_tcr_full` | everything except TCR beta clones (adapter of `lomo740_tcr`; eval on ALL prompts, off-target) | 24,634 | evaluating (11976/15964 prompts pulled) | `06_heldout_experiments/lomo740_tcr_full/outputs/` |
+| `lomo740_rna` | everything except Bulk RNA-seq TPM | 2,000 | unknown (offline) | – |
+| `lomo740_tcr` | everything except TCR beta clones | 2,000 | unknown (offline) | – |
+| `lomo740_xenium` | everything except Xenium | 600 | unknown (offline) | – |
+| `lomo740_all` | all 11,824 rows | 24,634 | unknown (offline) | – |
 
 Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
 `prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full
@@ -247,7 +244,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 | file | size | rows |
 |---|---:|---:|
-| `HOLDOUT.md` | 6.8K |  |
+| `HOLDOUT.md` | 7.1K |  |
 | `RESULTS.md` | 5.3K |  |
 | `card/README.txt` | 190B | 2 |
 | `card/TASK.md` | 1.6K |  |
@@ -358,7 +355,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 ## 10. Esperanto ET-SoC-1 (AI Foundry lab, aifoundry3 card 0)
 
-Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 15:54).
+Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (offline run: not pulled).
 The account only reaches aifoundry3 (aifoundry1/2 refuse it), so this is all of it. Not copied: dotfiles
 (`~/.claude`, `.claude.json` hold the lab Claude's login) and `~/et-soc1-prototyping`, an unmodified clone of
 https://github.com/yaroslavvb/et-soc1-prototyping at `f0a40879800d8d21955d061b92ad974570455595`. `osteo/` is the osteo card job (also in section 9).
