@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 15:44 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
+Generated 2026-10-17 15:54 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -57,7 +57,7 @@ LoRA r=32 (same settings as `sid_full`), 8×H200, a 740-step schedule run to com
 each is then evaluated on that type's masked targets only. `lomo740_all` is the matched reference trained on everything:
 the finished counterpart of `sid_full`, which saw the same half epoch but stopped mid-schedule.
 Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).
-Sweep app: `ap-VXVQjV62nrIXeXODE7T3Vb` (ephemeral (detached))
+Sweep app: `ap-RbhzQY74ThgT1PSDOZqGbu` (ephemeral (detached))
 
 | run | trains on | eval targets | status | local outputs |
 |---|---|---:|---|---|
@@ -68,6 +68,7 @@ Sweep app: `ap-VXVQjV62nrIXeXODE7T3Vb` (ephemeral (detached))
 | `lomo740_all` | all 11,824 rows | 24,634 | trained, eval pending | – |
 | `lomo740_flow_full` | everything except Flow cytometry (adapter of `lomo740_flow`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_flow_full/outputs/` |
 | `lomo740_rna_full` | everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_rna_full/outputs/` |
+| `lomo740_tcr_full` | everything except TCR beta clones (adapter of `lomo740_tcr`; eval on ALL prompts, off-target) | 24,634 | evaluating (11976/15964 prompts pulled) | `06_heldout_experiments/lomo740_tcr_full/outputs/` |
 
 Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
 `prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full
@@ -78,7 +79,10 @@ adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all
 Full-eval outputs as the LOMO job pulls them: `osteo_results_lomo/evals/` (incl. `lomo740h100_all`, the all-data reference
 re-run with H100 fallback; a later `lomo740_all` full eval would duplicate it).
 
-_No hold-out scores yet (`~/osteo-results/lomo/lomo_scores.json` not written; `preview_noflow_scores.json` is an early preview it supersedes)._
+| hold-out | metric | base | sid_full | all | holdout | transfer [95% CI] |
+|---|---|---:|---:|---:|---:|---|
+| Flow cytometry | Spearman ρ | 0.9699 | 0.9468 | 0.9727 | 0.9486 | -7.3994 [-109.5504, 66.8638] |
+| Bulk RNA-seq TPM | Spearman ρ | 0.4871 | 0.6779 | 0.6938 | 0.664 | 0.8557 [0.6701, 1.0237] |
 
 Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 
@@ -126,6 +130,7 @@ Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 | `adapters/lomo740_xenium/tokenizer_config.json` | 78.1K |  |
 | `adapters/lomo740_xenium/train_log.json` | 35.7K |  |
 | `adapters/lomo740_xenium/training_args.bin` | 5.6K |  |
+| `evals/all_full.jsonl` | 1.8M | 15,964 |
 | `evals/lomo740_flow_full/shard0.jsonl` | 127.8K | 998 |
 | `evals/lomo740_flow_full/shard1.jsonl` | 127.3K | 998 |
 | `evals/lomo740_flow_full/shard10.jsonl` | 112.5K | 998 |
@@ -159,7 +164,25 @@ Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 | `evals/lomo740_rna_full/shard7.jsonl` | 113.0K | 998 |
 | `evals/lomo740_rna_full/shard8.jsonl` | 112.0K | 998 |
 | `evals/lomo740_rna_full/shard9.jsonl` | 112.1K | 998 |
+| `evals/lomo740h100_all/shard0.jsonl` | 114.0K | 998 |
+| `evals/lomo740h100_all/shard1.jsonl` | 113.3K | 998 |
+| `evals/lomo740h100_all/shard10.jsonl` | 112.4K | 998 |
+| `evals/lomo740h100_all/shard11.jsonl` | 113.1K | 998 |
+| `evals/lomo740h100_all/shard12.jsonl` | 112.4K | 997 |
+| `evals/lomo740h100_all/shard13.jsonl` | 113.0K | 997 |
+| `evals/lomo740h100_all/shard14.jsonl` | 112.6K | 997 |
+| `evals/lomo740h100_all/shard15.jsonl` | 113.0K | 997 |
+| `evals/lomo740h100_all/shard2.jsonl` | 113.4K | 998 |
+| `evals/lomo740h100_all/shard3.jsonl` | 113.5K | 998 |
+| `evals/lomo740h100_all/shard4.jsonl` | 114.1K | 998 |
+| `evals/lomo740h100_all/shard5.jsonl` | 113.1K | 998 |
+| `evals/lomo740h100_all/shard6.jsonl` | 113.4K | 998 |
+| `evals/lomo740h100_all/shard7.jsonl` | 113.0K | 998 |
+| `evals/lomo740h100_all/shard8.jsonl` | 112.0K | 998 |
+| `evals/lomo740h100_all/shard9.jsonl` | 112.1K | 998 |
 | `evals/noflow_full.jsonl` | 1.9M | 15,964 |
+| `evals/norna_full.jsonl` | 1.8M | 15,964 |
+| `lomo_scores.json` | 966B |  |
 | `offtarget_scores.json` | 3.7K |  |
 | `preview_noflow_scores.json` | 6.3K |  |
 
@@ -224,7 +247,8 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 | file | size | rows |
 |---|---:|---:|
-| `RESULTS.md` | 4.4K |  |
+| `HOLDOUT.md` | 6.8K |  |
+| `RESULTS.md` | 5.3K |  |
 | `card/README.txt` | 190B | 2 |
 | `card/TASK.md` | 1.6K |  |
 | `card/cite_A.f32` | 13.2M |  |
@@ -278,6 +302,8 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `compare_classical.json` | 20.6K |  |
 | `cross.log` | 4.8K |  |
 | `cross_results.json` | 9.1K |  |
+| `holdout.log` | 4.0K |  |
+| `holdout_results.json` | 40.9K |  |
 | `preds/README.md` | 524B |  |
 | `preds/additive.jsonl` | 1.4M | 15,955 |
 | `preds/als_2_1.0.jsonl` | 1.4M | 15,955 |
@@ -307,6 +333,17 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `preds_cross/rna_within_plus_cross.jsonl` | 60.0K | 104 |
 | `preds_cross/scrna_within_plus_cross.jsonl` | 487.2K | 6,766 |
 | `preds_cross/xenium_within_plus_cross.jsonl` | 43.3K | 600 |
+| `preds_holdout/S1__gene_score.jsonl` | 972.7K | 13,788 |
+| `preds_holdout/S1__transfer_gbm.jsonl` | 967.2K | 13,788 |
+| `preds_holdout/S1__zero.jsonl` | 1023.4K | 15,955 |
+| `preds_holdout/S2__carry_forward.jsonl` | 71.8K | 226 |
+| `preds_holdout/S2__feat_mean.jsonl` | 1.1M | 15,955 |
+| `preds_holdout/S2__feat_median.jsonl` | 1.0M | 15,955 |
+| `preds_holdout/S2__gbm_link.jsonl` | 1.1M | 15,955 |
+| `preds_holdout/S2__nearest_date.jsonl` | 71.1K | 226 |
+| `preds_holdout/S3__entity_mean.jsonl` | 1.1M | 15,955 |
+| `preds_holdout/S3__entity_median.jsonl` | 1.1M | 15,955 |
+| `preds_holdout/S3__transfer_gbm.jsonl` | 1.1M | 15,955 |
 | `run.log` | 12.3K |  |
 | `run2.log` | 12.3K |  |
 | `scripts/build_tables.py` | 2.5K |  |
@@ -314,13 +351,14 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `scripts/compare.py` | 2.0K |  |
 | `scripts/cross.py` | 9.6K |  |
 | `scripts/export_cite.py` | 1.5K |  |
+| `scripts/holdout.py` | 11.9K |  |
 | `scripts/run_classical.py` | 11.7K |  |
 | `tables.pkl` | 50.1M |  |
 | `val_picks.json` | 316B |  |
 
 ## 10. Esperanto ET-SoC-1 (AI Foundry lab, aifoundry3 card 0)
 
-Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 15:44).
+Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 15:54).
 The account only reaches aifoundry3 (aifoundry1/2 refuse it), so this is all of it. Not copied: dotfiles
 (`~/.claude`, `.claude.json` hold the lab Claude's login) and `~/et-soc1-prototyping`, an unmodified clone of
 https://github.com/yaroslavvb/et-soc1-prototyping at `f0a40879800d8d21955d061b92ad974570455595`. `osteo/` is the osteo card job (also in section 9).
@@ -336,6 +374,29 @@ https://github.com/yaroslavvb/et-soc1-prototyping at `f0a40879800d8d21955d061b92
 | `runs/first-hour` | 11 | 103.6K | first-hour lab test |
 | `data` | 89 | 276.5M | datasets used on the card |
 | `lab-start.md` | 1 | 22.9K | the lab's START brief the lab Claude followed |
+
+## 11. Modal volume `osteo-data` (full backup)
+
+Everything on the volume, same layout, mirrored from `~/osteo-data-volume`. Text files are in git; weights,
+optimizer state and `tokenizer.json` are on HF (`hf_volume_backup.py` uploads each adapter folder once its copy
+matches the volume's file sizes, then checks every file on HF against it).
+
+| volume folder | files | size | backed up on |
+|---|---:|---:|---|
+| `adapters/lomo/lomo740_all` | 8 | 826.6M | HF (`lomo740_all/`) + text in git |
+| `adapters/lomo/lomo740_flow` | 8 | 826.6M | HF (`lomo740_flow/`) + text in git |
+| `adapters/lomo/lomo740_rna` | 8 | 826.6M | HF (`lomo740_rna/`) + text in git |
+| `adapters/lomo/lomo740_tcr` | 8 | 826.6M | HF (`lomo740_tcr/`) + text in git |
+| `adapters/lomo/lomo740_xenium` | 8 | 826.6M | HF (`lomo740_xenium/`) + text in git |
+| `adapters/lomo/smoke_all` | 8 | 826.5M | HF (`smoke_all/`) + text in git |
+| `adapters/sid_full` | 26 | 3.2G | HF (`sid_full/`) + text in git |
+| `adapters/smoke_resume8` | 26 | 3.2G | HF (`smoke_resume8/`) + text in git |
+| `adapters/smoke_sid` | 8 | 826.5M | HF (`smoke_sid/`) + text in git |
+| `outputs` | 4 | 17.4M | GitHub |
+| `outputs/compare` | 16 | 2.1M | GitHub |
+| `outputs/lomo` | 49 | 5.3M | GitHub |
+| `prompts` | 3 | 32.7M | GitHub |
+| `train` | 2 | 46.4M | GitHub |
 
 ## Not yet filed
 

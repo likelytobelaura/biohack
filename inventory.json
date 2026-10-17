@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 15:44",
+ "generated": "2026-10-17 15:54",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -297,15 +297,75 @@
    "adapter": "osteo-data:adapters/lomo/lomo740_rna_full",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna_full",
    "outputs_local_rows": 15964
+  },
+  {
+   "name": "lomo740_tcr_full",
+   "holdout": "tcr",
+   "off_target_eval": true,
+   "label": "TCR beta clones",
+   "trains_on": "everything except TCR beta clones (adapter of `lomo740_tcr`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "evaluating (11976/15964 prompts pulled)",
+   "adapter": "osteo-data:adapters/lomo/lomo740_tcr_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_tcr_full",
+   "outputs_local_rows": 11976
   }
  ],
- "lomo_scores": null,
+ "lomo_scores": {
+  "flow": {
+   "data_type": "Flow cytometry",
+   "key": "flow",
+   "targets": 221,
+   "prompts": 18,
+   "metric": "Spearman \u03c1",
+   "transfer": -7.3994,
+   "transfer_lo": -109.5504,
+   "transfer_hi": 66.8638,
+   "base": 0.9699,
+   "base_lo": 0.9541,
+   "base_hi": 0.9806,
+   "sid_full": 0.9468,
+   "sid_full_lo": 0.9188,
+   "sid_full_hi": 0.9676,
+   "all": 0.9727,
+   "all_lo": 0.9594,
+   "all_hi": 0.9818,
+   "holdout": 0.9486,
+   "holdout_lo": 0.9297,
+   "holdout_hi": 0.9648,
+   "answered_holdout": 1.0
+  },
+  "rna": {
+   "data_type": "Bulk RNA-seq TPM",
+   "key": "rna",
+   "targets": 2000,
+   "prompts": 104,
+   "metric": "Spearman \u03c1",
+   "transfer": 0.8557,
+   "transfer_lo": 0.6701,
+   "transfer_hi": 1.0237,
+   "base": 0.4871,
+   "base_lo": 0.4162,
+   "base_hi": 0.5567,
+   "sid_full": 0.6779,
+   "sid_full_lo": 0.6479,
+   "sid_full_hi": 0.704,
+   "all": 0.6938,
+   "all_lo": 0.6658,
+   "all_hi": 0.7189,
+   "holdout": 0.664,
+   "holdout_lo": 0.6289,
+   "holdout_hi": 0.7014,
+   "answered_holdout": 1.0
+  }
+ },
  "sweep_app": {
-  "app_id": "ap-VXVQjV62nrIXeXODE7T3Vb",
+  "app_id": "ap-RbhzQY74ThgT1PSDOZqGbu",
   "description": "osteo-lomo",
   "state": "ephemeral (detached)",
-  "tasks": "3",
-  "created_at": "2026-10-17 14:45:38-07:00",
+  "tasks": "9",
+  "created_at": "2026-10-17 15:02:09-07:00",
   "stopped_at": null
  },
  "mirrors": {
@@ -511,6 +571,11 @@
     "rows": null
    },
    {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/all_full.jsonl",
+    "bytes": 1851677,
+    "rows": 15964
+   },
+   {
     "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard0.jsonl",
     "bytes": 130846,
     "rows": 998
@@ -676,9 +741,99 @@
     "rows": 998
    },
    {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard0.jsonl",
+    "bytes": 116691,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard1.jsonl",
+    "bytes": 116034,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard10.jsonl",
+    "bytes": 115116,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard11.jsonl",
+    "bytes": 115857,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard12.jsonl",
+    "bytes": 115083,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard13.jsonl",
+    "bytes": 115683,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard14.jsonl",
+    "bytes": 115276,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard15.jsonl",
+    "bytes": 115732,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard2.jsonl",
+    "bytes": 116139,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard3.jsonl",
+    "bytes": 116180,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard4.jsonl",
+    "bytes": 116831,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard5.jsonl",
+    "bytes": 115831,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard6.jsonl",
+    "bytes": 116081,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard7.jsonl",
+    "bytes": 115692,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard8.jsonl",
+    "bytes": 114653,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard9.jsonl",
+    "bytes": 114798,
+    "rows": 998
+   },
+   {
     "path": "06_heldout_experiments/osteo_results_lomo/evals/noflow_full.jsonl",
     "bytes": 2008852,
     "rows": 15964
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/norna_full.jsonl",
+    "bytes": 1851947,
+    "rows": 15964
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/lomo_scores.json",
+    "bytes": 966,
+    "rows": null
    },
    {
     "path": "06_heldout_experiments/osteo_results_lomo/offtarget_scores.json",
@@ -820,10 +975,927 @@
     "rows": 5
    }
   ],
+  "11_modal_osteo_data": [
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_all/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_all/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_all/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_all/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_all/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_all/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_all/train_log.json",
+    "bytes": 36549,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_all/training_args.bin",
+    "bytes": 5713,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_flow/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_flow/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_flow/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_flow/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_flow/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_flow/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_flow/train_log.json",
+    "bytes": 36484,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_flow/training_args.bin",
+    "bytes": 5713,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_rna/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_rna/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_rna/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_rna/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_rna/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_rna/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_rna/train_log.json",
+    "bytes": 36487,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_rna/training_args.bin",
+    "bytes": 5713,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_tcr/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_tcr/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_tcr/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_tcr/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_tcr/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_tcr/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_tcr/train_log.json",
+    "bytes": 36536,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_tcr/training_args.bin",
+    "bytes": 5713,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_xenium/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_xenium/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_xenium/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_xenium/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_xenium/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_xenium/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_xenium/train_log.json",
+    "bytes": 36512,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/lomo740_xenium/training_args.bin",
+    "bytes": 5713,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/smoke_all/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/smoke_all/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/smoke_all/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/smoke_all/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/smoke_all/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/smoke_all/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/smoke_all/train_log.json",
+    "bytes": 1190,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/lomo/smoke_all/training_args.bin",
+    "bytes": 5713,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/README.md",
+    "bytes": 1421,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/optimizer.pt",
+    "bytes": 1677389027,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/rng_state_0.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/rng_state_1.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/rng_state_2.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/rng_state_3.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/rng_state_4.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/rng_state_5.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/rng_state_6.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/rng_state_7.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/scheduler.pt",
+    "bytes": 1465,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/trainer_state.json",
+    "bytes": 45345,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/checkpoint-739/training_args.bin",
+    "bytes": 5777,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/train_log.json",
+    "bytes": 36338,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/sid_full/training_args.bin",
+    "bytes": 5777,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/README.md",
+    "bytes": 1431,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/optimizer.pt",
+    "bytes": 1677389027,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/rng_state_0.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/rng_state_1.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/rng_state_2.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/rng_state_3.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/rng_state_4.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/rng_state_5.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/rng_state_6.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/rng_state_7.pth",
+    "bytes": 16389,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/scheduler.pt",
+    "bytes": 1465,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/trainer_state.json",
+    "bytes": 772,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/training_args.bin",
+    "bytes": 5777,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/train_log.json",
+    "bytes": 290,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_resume8/training_args.bin",
+    "bytes": 5777,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_sid/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_sid/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_sid/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_sid/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_sid/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_sid/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_sid/train_log.json",
+    "bytes": 516,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/adapters/smoke_sid/training_args.bin",
+    "bytes": 5777,
+    "rows": null
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/baseline_sid_full.jsonl",
+    "bytes": 2235123,
+    "rows": 15964
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/baseline_zeroshot.jsonl",
+    "bytes": 15658663,
+    "rows": 15964
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/baseline_zeroshot_retry.jsonl",
+    "bytes": 310055,
+    "rows": 54
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard0.jsonl",
+    "bytes": 140481,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard1.jsonl",
+    "bytes": 140032,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard10.jsonl",
+    "bytes": 139156,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard11.jsonl",
+    "bytes": 139874,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard12.jsonl",
+    "bytes": 139042,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard13.jsonl",
+    "bytes": 139648,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard14.jsonl",
+    "bytes": 139281,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard15.jsonl",
+    "bytes": 139612,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard2.jsonl",
+    "bytes": 140063,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard3.jsonl",
+    "bytes": 140183,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard4.jsonl",
+    "bytes": 140834,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard5.jsonl",
+    "bytes": 139756,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard6.jsonl",
+    "bytes": 140116,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard7.jsonl",
+    "bytes": 139649,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard8.jsonl",
+    "bytes": 138632,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/compare/ft_shard9.jsonl",
+    "bytes": 138800,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow/shard0.jsonl",
+    "bytes": 4615,
+    "rows": 18
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard0.jsonl",
+    "bytes": 130846,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard1.jsonl",
+    "bytes": 130346,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard10.jsonl",
+    "bytes": 115170,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard11.jsonl",
+    "bytes": 115951,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard12.jsonl",
+    "bytes": 115122,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard13.jsonl",
+    "bytes": 115721,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard14.jsonl",
+    "bytes": 129552,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard15.jsonl",
+    "bytes": 144166,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard2.jsonl",
+    "bytes": 116173,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard3.jsonl",
+    "bytes": 130480,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard4.jsonl",
+    "bytes": 116919,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard5.jsonl",
+    "bytes": 130034,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard6.jsonl",
+    "bytes": 144646,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard7.jsonl",
+    "bytes": 129979,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard8.jsonl",
+    "bytes": 114656,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard9.jsonl",
+    "bytes": 129091,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard0.jsonl",
+    "bytes": 116559,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard1.jsonl",
+    "bytes": 116071,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard10.jsonl",
+    "bytes": 115093,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard11.jsonl",
+    "bytes": 115939,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard12.jsonl",
+    "bytes": 115126,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard13.jsonl",
+    "bytes": 115656,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard14.jsonl",
+    "bytes": 115336,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard15.jsonl",
+    "bytes": 115748,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard2.jsonl",
+    "bytes": 116097,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard3.jsonl",
+    "bytes": 116271,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard4.jsonl",
+    "bytes": 116830,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard5.jsonl",
+    "bytes": 115792,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard6.jsonl",
+    "bytes": 116224,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard7.jsonl",
+    "bytes": 115745,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard8.jsonl",
+    "bytes": 114640,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard9.jsonl",
+    "bytes": 114820,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard0.jsonl",
+    "bytes": 116691,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard1.jsonl",
+    "bytes": 116034,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard10.jsonl",
+    "bytes": 115116,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard11.jsonl",
+    "bytes": 115857,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard12.jsonl",
+    "bytes": 115083,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard13.jsonl",
+    "bytes": 115683,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard14.jsonl",
+    "bytes": 115276,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard2.jsonl",
+    "bytes": 116139,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard3.jsonl",
+    "bytes": 116180,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard4.jsonl",
+    "bytes": 116831,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard5.jsonl",
+    "bytes": 115831,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard6.jsonl",
+    "bytes": 116081,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard7.jsonl",
+    "bytes": 115692,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard8.jsonl",
+    "bytes": 114653,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard9.jsonl",
+    "bytes": 114798,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/smoke_fusion/shard0.jsonl",
+    "bytes": 544,
+    "rows": 3
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/smoke_eval_sharded.jsonl",
+    "bytes": 4663,
+    "rows": 32
+   },
+   {
+    "path": "11_modal_osteo_data/prompts/base_retry.jsonl",
+    "bytes": 332774,
+    "rows": 54
+   },
+   {
+    "path": "11_modal_osteo_data/prompts/baseline.jsonl",
+    "bytes": 33858117,
+    "rows": 15964
+   },
+   {
+    "path": "11_modal_osteo_data/prompts/smoke_eval.jsonl",
+    "bytes": 73999,
+    "rows": 32
+   },
+   {
+    "path": "11_modal_osteo_data/train/sid_full.jsonl",
+    "bytes": 48162758,
+    "rows": 11824
+   },
+   {
+    "path": "11_modal_osteo_data/train/smoke_sid.jsonl",
+    "bytes": 442313,
+    "rows": 64
+   }
+  ],
   "09_classical_ml": [
    {
+    "path": "09_classical_ml/HOLDOUT.md",
+    "bytes": 6927,
+    "rows": null
+   },
+   {
     "path": "09_classical_ml/RESULTS.md",
-    "bytes": 4533,
+    "bytes": 5459,
     "rows": null
    },
    {
@@ -1092,6 +2164,16 @@
     "rows": null
    },
    {
+    "path": "09_classical_ml/holdout.log",
+    "bytes": 4079,
+    "rows": null
+   },
+   {
+    "path": "09_classical_ml/holdout_results.json",
+    "bytes": 41864,
+    "rows": null
+   },
+   {
     "path": "09_classical_ml/preds/README.md",
     "bytes": 524,
     "rows": null
@@ -1237,6 +2319,61 @@
     "rows": 600
    },
    {
+    "path": "09_classical_ml/preds_holdout/S1__gene_score.jsonl",
+    "bytes": 996014,
+    "rows": 13788
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S1__transfer_gbm.jsonl",
+    "bytes": 990400,
+    "rows": 13788
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S1__zero.jsonl",
+    "bytes": 1047921,
+    "rows": 15955
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S2__carry_forward.jsonl",
+    "bytes": 73547,
+    "rows": 226
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S2__feat_mean.jsonl",
+    "bytes": 1162583,
+    "rows": 15955
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S2__feat_median.jsonl",
+    "bytes": 1100950,
+    "rows": 15955
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S2__gbm_link.jsonl",
+    "bytes": 1176624,
+    "rows": 15955
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S2__nearest_date.jsonl",
+    "bytes": 72794,
+    "rows": 226
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S3__entity_mean.jsonl",
+    "bytes": 1180316,
+    "rows": 15955
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S3__entity_median.jsonl",
+    "bytes": 1123661,
+    "rows": 15955
+   },
+   {
+    "path": "09_classical_ml/preds_holdout/S3__transfer_gbm.jsonl",
+    "bytes": 1191113,
+    "rows": 15955
+   },
+   {
     "path": "09_classical_ml/run.log",
     "bytes": 12601,
     "rows": null
@@ -1272,6 +2409,11 @@
     "rows": null
    },
    {
+    "path": "09_classical_ml/scripts/holdout.py",
+    "bytes": 12146,
+    "rows": null
+   },
+   {
     "path": "09_classical_ml/scripts/run_classical.py",
     "bytes": 11941,
     "rows": null
@@ -1290,18 +2432,37 @@
  },
  "unfiled": [],
  "copied_this_run": [
-  "08_other_baselines/muse_spark/run_1.2.log",
-  "08_other_baselines/muse_spark/spark_scores.json",
-  "08_other_baselines/muse_spark/guard.log",
-  "08_other_baselines/muse_spark/cost.txt",
-  "08_other_baselines/muse_spark/muse-spark-1.2-contributor.jsonl",
-  "08_other_baselines/nim_noctx/baseline_lomo_flow.jsonl",
-  "08_other_baselines/nim_noctx/baseline_lomo_tcr.jsonl",
-  "08_other_baselines/nim_noctx/run.log",
-  "08_other_baselines/nim_noctx/out_noctx.jsonl",
-  "08_other_baselines/nim_noctx/out_noctx_scores.json",
-  "08_other_baselines/nim_noctx/baseline_lomo_rna.jsonl",
-  "08_other_baselines/nim_noctx/baseline_lomo_xenium.jsonl"
+  "06_heldout_experiments/osteo_results_lomo/lomo_scores.json",
+  "06_heldout_experiments/osteo_results_lomo/evals/all_full.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/norna_full.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard1.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard3.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard7.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard5.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard2.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard0.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard4.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard6.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard13.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard8.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard11.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard15.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard9.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard10.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard12.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard14.jsonl",
+  "11_modal_osteo_data/adapters/smoke_resume8/adapter_model.safetensors",
+  "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/adapter_model.safetensors",
+  "11_modal_osteo_data/adapters/smoke_resume8/checkpoint-4/tokenizer.json",
+  "11_modal_osteo_data/adapters/smoke_sid/adapter_model.safetensors",
+  "11_modal_osteo_data/adapters/smoke_sid/tokenizer.json",
+  "11_modal_osteo_data/adapters/smoke_sid/README.md",
+  "11_modal_osteo_data/train/smoke_sid.jsonl",
+  "11_modal_osteo_data/prompts/baseline.jsonl",
+  "11_modal_osteo_data/outputs/baseline_zeroshot.jsonl",
+  "09_classical_ml/HOLDOUT.md",
+  "09_classical_ml/RESULTS.md",
+  "scripts/score_compare.py"
  ],
- "esperanto_pull": "last pulled 2026-10-17 15:44"
+ "esperanto_pull": "last pulled 2026-10-17 15:54"
 }

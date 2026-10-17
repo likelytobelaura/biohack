@@ -80,6 +80,8 @@ def score(pred_file, truth):
 
 
 if __name__ == '__main__':
+    import os
+    OUT = os.environ.get('OUT', '/Users/laurabocek/osteo-results')
     files = dict(a.split('=', 1) for a in sys.argv[1:])
     truth = [json.loads(l) for l in open(D + '/truth.jsonl')]
     res = {m: score(f, truth) for m, f in files.items()}
@@ -100,7 +102,7 @@ if __name__ == '__main__':
         for lab, p in res[m][1].items():
             for tv, pv in random.sample(p, min(400, len(p))):
                 pts.append({'model': m, 'data_type': LABELS[lab], 'truth': tv, 'pred': pv})
-    json.dump(rows, open('/Users/laurabocek/osteo-results/compare_scores.json', 'w'), indent=1)
-    json.dump(pts, open('/Users/laurabocek/osteo-results/compare_points.json', 'w'))
+    json.dump(rows, open(f'{OUT}/compare_scores.json', 'w'), indent=1)
+    json.dump(pts, open(f'{OUT}/compare_points.json', 'w'))
     for r in rows:
         print(f"{r['data_type']:20s} {r['metric']:11s} " + '  '.join(f"{m}={r[f'{m}_primary']}" for m in names) + f"  Δ={r.get('delta')}")

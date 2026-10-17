@@ -1,0 +1,29 @@
+scrna: done (6800 targets) coverage {'gene_score': 0.5007352941176471, 'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 1.0}
+cite: done (6000 targets) coverage {'gene_score': 0.24516666666666667, 'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 0.9665}
+rna: done (2000 targets) coverage {'gene_score': 0.269, 'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 1.0}
+tcr: done (2000 targets) coverage {'carry_forward': 0.705, 'nearest_date': 0.943, 'entity_own': 1.0}
+dia: done (2000 targets) coverage {'gene_score': 0.9145, 'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 1.0}
+mif: done (2000 targets) coverage {'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 1.0}
+olink: done (2000 targets) coverage {'gene_score': 0.8325, 'carry_forward': 0.8895, 'nearest_date': 1.0, 'entity_own': 1.0}
+xenium: done (600 targets) coverage {'gene_score': 0.7066666666666667, 'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 0.9533333333333334}
+somatic: done (501 targets) coverage {'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 1.0}
+mpa: done (364 targets) coverage {'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 1.0}
+flow: done (221 targets) coverage {'carry_forward': 0.9230769230769231, 'nearest_date': 1.0, 'entity_own': 1.0}
+fusion: done (21 targets) coverage {'carry_forward': 0.0, 'nearest_date': 0.0, 'entity_own': 1.0}
+/Users/laurabocek/osteo-classical/scripts/holdout.py:242: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  out[f"rho_{k}"] = float(spearmanr(p[mk], y[mk]).statistic) if ok else None
+
+type              S1.zero  S1.gene_score S1.transfer_gb   S2.feat_mean S2.feat_median S2.carry_forwa S2.nearest_dat    S2.gbm_link S3.entity_mean S3.entity_medi S3.transfer_gb
+scrna                   –          0.417         -0.142         -0.101         -0.105              –              –          0.666          0.132          0.130          0.120
+cite                    –          0.086          0.089          0.604          0.607              –              –          0.591          0.410          0.383          0.421
+rna                     –          0.534         -0.004          0.737          0.749              –              –          0.742          0.153          0.161          0.082
+tcr                     –              –              –         -0.207          0.116         -0.037          0.001          0.519          0.010          0.188         -0.107
+dia                     –          0.120          0.076          0.853          0.853              –              –          0.891          0.116          0.103          0.025
+mif                 0.892              –              –          0.916          0.916              –              –          0.916          0.889          0.889          0.498
+olink                   –          0.045          0.010          0.595          0.580          0.542          0.611          0.698          0.185          0.199          0.092
+xenium                  –          0.450          0.128          0.618          0.583              –              –          0.603          0.345          0.307          0.265
+somatic                 –              –              –          0.642          0.660              –              –          0.552          0.225          0.225          0.086
+mpa                     –              –              –              –              –              –              –              –          0.296          0.285          0.268
+flow                    –              –              –          0.947          0.949          0.913          0.949          0.951         -0.127         -0.091         -0.124
+fusion                  –              –              –          0.469          0.469              –              –          0.376          0.571          0.571          0.571
+.venv/bin/python -I scripts/holdout.py  232.76s user 242.45s system 677% cpu 1:10.14 total

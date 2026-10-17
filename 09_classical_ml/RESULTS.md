@@ -61,3 +61,13 @@ show no change; Olink/MetaPhlAn→CITE about +0.02, MetaPhlAn/Olink/flow→scRNA
 **Takeaway:** other data types carry real information through shared genes, mainly for scRNA: bulk RNA and
 proteomics tell you a gene's typical level, and bulk RNA even flags which never-observed scRNA genes a cell expresses.
 Blood-draw-level links between flow, Olink, TCR and the microbiome add nothing detectable at this sample size.
+
+## Hold-out settings (`scripts/holdout.py`, `HOLDOUT.md`, `holdout_results.json`, `preds_holdout/`)
+
+Classical counterparts of the Glimmer hold-outs, on all 12 numeric types: **S1** nothing of the type anywhere (other types
+only; matches context-free Glimmer), **S2** a new sample (the type's other samples, none of the entity's own values),
+**S3** the type unseen in training, only the entity's own values (matches the leave-one-type-out LoRA).
+Headline: other samples of the same type carry almost everything (S2 ≈ full data; scRNA 0.67, TCR 0.52, DIA 0.89 beat the
+original pick); the entity's own values alone are weak classically (S3 0.1–0.4) where the hold-out LoRA reaches 0.66 on
+bulk RNA and 0.95 on flow; with no data of the type, only gene-linked types rank at all (bulk RNA 0.53, Xenium 0.45,
+scRNA 0.42); carry-forward from the previous draw is worse than the mean of all draws. Full tables in `HOLDOUT.md`.

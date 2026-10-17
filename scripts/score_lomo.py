@@ -1,4 +1,5 @@
-"""Score the leave-one-data-type-out runs: python score_lomo.py <lomo outputs dir> holdout1 holdout2 ..."""
+"""Score the leave-one-data-type-out runs: python score_lomo.py ~/osteo-results/lomo/evals flow rna tcr xenium
+Reads each hold-out's full-set eval (lomo740_<h>_full/) and the all-data reference (lomo740h100_all/)."""
 import json, sys, random, collections, glob
 from score_compare import parse, num, spear, LABELS, CAT, BIN
 from common import D
@@ -32,11 +33,11 @@ if __name__ == '__main__':
         t = json.loads(l); truth[t['mod']].append(t)
     models = {'base': preds([f'{R}/baseline_zeroshot_merged.jsonl']),
               'sid_full': preds([f'{R}/finetuned_sid_full_eval.jsonl']),
-              'all': preds(glob.glob(f'{out_root}/lomo740_all/shard*.jsonl'))}
+              'all': preds(glob.glob(f'{out_root}/lomo740h100_all/shard*.jsonl'))}
     rows = []
     random.seed(0)
     for h in holdouts:
-        models['holdout'] = preds(glob.glob(f'{out_root}/lomo740_{h}/shard*.jsonl'))
+        models['holdout'] = preds(glob.glob(f'{out_root}/lomo740_{h}_full/shard*.jsonl'))
         ts = truth[h]
         by_prompt = collections.defaultdict(list)
         for t in ts:
