@@ -3,7 +3,7 @@
 python3 ~/biohack/inventory.py            # refresh everything (safe to re-run any time)
 python3 ~/biohack/inventory.py --offline  # skip Modal; re-index local files only
 """
-import json, os, sys, glob, hashlib, subprocess, collections, datetime
+import json, os, sys, glob, hashlib, subprocess, collections, datetime, time
 
 B = os.path.expanduser('~/biohack')
 R = os.path.expanduser('~/osteo-results')
@@ -42,15 +42,16 @@ ITEMS = [
     ('5. Baseline report (score.py)', '05_baseline_report/REPORT.md', 'written summary of the baseline'),
     ('5. Baseline report (score.py)', '05_baseline_report/score_py_output.txt', 'raw stdout of scripts/score.py'),
     ('5. Baseline report (score.py)', '05_baseline_report/baseline_scores.json', 'per-data-type metrics from score.py'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/finetuned_sid_full_eval.jsonl',
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/finetuned_sid_full_eval.jsonl',
      'sid_full adapter on all eval prompts (= osteo-data:outputs/baseline_sid_full.jsonl)'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/compare_scores.json', 'base vs fine-tune per data type (scripts/score_compare.py)'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/compare_microbiome.json', 'base vs fine-tune, metagenomics detail'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/compare_points.json', 'per-target (truth, base, fine-tune) points for plots'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/adapter/adapter_model.safetensors',
-     'LoRA r=32 weights, final (training stopped itself at step 739/1478); base = Muse-Glimmer-30B'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/adapter/', 'adapter + configs + train_log.json + checkpoint-739 (optimizer state)'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/dashboard_src/',
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/compare_scores.json', 'base vs sid_full adapter per data type (scripts/score_compare.py)'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/compare_microbiome.json', 'base vs sid_full adapter, metagenomics detail'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/compare_points.json', 'per-target (truth, base, sid_full) points for plots'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/adapter/adapter_model.safetensors',
+     'LoRA adapter weights (r=32, a delta on Muse-Glimmer-30B, not a standalone model) after 739 of 1,478 planned steps '
+     '(0.5 epoch, stopped mid-schedule, LR not decayed); byte-identical to checkpoint-739/adapter_model.safetensors'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/adapter/', 'the adapter above + configs + train_log.json; checkpoint-739/ = same weights + optimizer/scheduler/RNG state to resume'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/dashboard_src/',
      'source + data of https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J'),
 ]
 
@@ -60,12 +61,13 @@ H = os.path.expanduser('~')
 SYNC = [
     (f'{H}/osteo-results/lomo', '06_heldout_experiments/osteo_results_lomo', 'hold-out adapters/evals the LOMO job (6c5c300f) pulls locally'),
     (f'{H}/osteo-results/spark', '08_other_baselines/muse_spark', 'Muse Spark 1.2 / 1.3 (api.meta.ai, contributor) on golden.jsonl prompts; job 7d63451c'),
-    (f'{H}/osteo-nim', '08_other_baselines/nim_noctx', 'NVIDIA NIM, prompts with the known values stripped (826 prompts); job c76b4182'),
+    (f'{H}/osteo-nim', '08_other_baselines/nim_noctx', 'NVIDIA NIM, prompts with the known values stripped (826 prompts) + NIM hold-out baselines; job c76b4182'),
+    (f'{H}/osteo-classical', '09_classical_ml', 'classical imputation sweep (kNN etc.) + ET-SoC-1 card work (aifoundry3 card 0; card results copied back to card/from_aifoundry3/); job c76b4182'),
     (f'{H}/osteo-results/scripts', 'scripts', 'project scripts'),
 ]
-SKIP = ('.nvkey', '__pycache__', '.DS_Store', '.pyc')
+SKIP = ('.nvkey', '__pycache__', '.DS_Store', '.pyc', '/.venv/', '.scoring')
 # everything under these roots must be either mirrored or deliberately skipped; anything else is reported as unfiled
-WATCH = [f'{H}/osteo-results', f'{H}/osteo-nim', f'{H}/osteo-golden']
+WATCH = [f'{H}/osteo-results', f'{H}/osteo-nim', f'{H}/osteo-golden', f'{H}/osteo-classical']
 FILED_ELSEWHERE = {'eval_prompts.jsonl', 'baseline_truth.jsonl', 'validated_files.json', 'baseline_zeroshot.jsonl',
                    'baseline_zeroshot_retry.jsonl', 'baseline_zeroshot_merged.jsonl', 'baseline_scores.json',
                    'finetuned_sid_full_eval.jsonl', 'compare_scores.json', 'compare_microbiome.json', 'compare_points.json',
@@ -80,6 +82,8 @@ def sync():
                 continue
             dst = f'{B}/{rel}/{os.path.relpath(f, src)}'
             a = os.stat(f)
+            if time.time() - a.st_mtime < 120:  # still being written (e.g. a Modal download in progress); next refresh gets it
+                continue
             if os.path.exists(dst) and os.path.getsize(dst) == a.st_size and int(os.stat(dst).st_mtime) >= int(a.st_mtime):
                 continue
             os.makedirs(os.path.dirname(dst), exist_ok=True)
@@ -274,8 +278,9 @@ def main():
 
     table([i for i in items if i['section'][0] in '12345'])
     L += ['', '## 6. Hold-out experiments (leave-one-data-type-out)', '',
-          'LoRA r=32, 740 steps, 8×H200, same recipe as `sid_full` but with one data type removed from training;',
-          'each is then evaluated on that type\'s masked targets only. `lomo740_all` is the matched reference trained on everything.',
+          'LoRA r=32 (same settings as `sid_full`), 8×H200, a 740-step schedule run to completion (5,920 rows seen), one data type removed;',
+          'each is then evaluated on that type\'s masked targets only. `lomo740_all` is the matched reference trained on everything:\n'
+          'the finished counterpart of `sid_full`, which saw the same half epoch but stopped mid-schedule.',
           'Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).',
           f"Sweep app: `{app['app_id']}` ({app['state']})" if app else 'Sweep app: not running.', '',
           '| run | trains on | eval targets | status | local outputs |', '|---|---|---:|---|---|']
@@ -283,8 +288,8 @@ def main():
         L.append(f"| `{e['name']}` | {e['trains_on']} | {e['eval_targets']:,} | {e['status']} | "
                  f"{'`06_heldout_experiments/' + e['name'] + '/outputs/`' if e['outputs_local_rows'] else '–'} |")
     L += ['', 'Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type\'s prompts:',
-          '`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (full-data',
-          'adapter, 739 steps), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in',
+          '`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full',
+          'adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in',
           '`05_baseline_report/baseline_scores.json`.', '']
     if scores:
         L += ['| hold-out | metric | base | sid_full | all | holdout | transfer [95% CI] |', '|---|---|---:|---:|---:|---:|---|']
@@ -297,14 +302,14 @@ def main():
     L.append('Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):')
     mirror('06_heldout_experiments/osteo_results_lomo')
     table([i for i in items if i['section'][0] == '7'])
-    L.extend(['', '## 8. Other baselines', '',
+    L.extend(['', '## 8. Other baselines  ·  9. Classical ML + ET-SoC-1', '',
               'Mirrored from the jobs running them; partial files are re-copied on every refresh until the runs finish.'])
     for src, rel, d in SYNC:
-        if rel.startswith('08_'):
-            L.extend(['', f'**{rel.split("/")[1]}**: {d}. Source `{src.replace(H, "~")}` (API key file excluded).'])
+        if rel.startswith(('08_', '09_')):
+            L.extend(['', f'**{rel.split("/")[-1]}**: {d}. Source `{src.replace(H, "~")}` (API key and .venv excluded).'])
             mirror(rel)
     L.extend(['', '## Not yet filed', ''])
-    L.extend([f'- `{f}` (copied to `_incoming/`)' for f in loose] or ['_Nothing: every file under ~/osteo-results, ~/osteo-nim and ~/osteo-golden is mirrored here._'])
+    L.extend([f'- `{f}` (copied to `_incoming/`)' for f in loose] or ['_Nothing: every file under ' + ', '.join(w.replace(H, '~') for w in WATCH) + ' is mirrored here._'])
     L += ['', '## Links', '',
           '- Comparison dashboard: https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J (source in `07_finetune_sid_full/dashboard_src/`)',
           '- Working copies the original scripts still read: `~/.claude/jobs/6c5c300f/tmp/osteo/` (temporary; this folder is the durable copy).', '']
