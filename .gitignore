@@ -20,3 +20,5 @@ __pycache__/
 .claude/
 *.f32
 *.scoring
+10_esperanto_et_soc1/aifoundry3/data/
+10_esperanto_et_soc1/aifoundry3/runs/mnist/*/run.log

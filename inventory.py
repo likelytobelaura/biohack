@@ -65,6 +65,30 @@ SYNC = [
     (f'{H}/osteo-classical', '09_classical_ml', 'classical imputation sweep (kNN etc.) + ET-SoC-1 card work (aifoundry3 card 0; card results copied back to card/from_aifoundry3/); job c76b4182'),
     (f'{H}/osteo-results/scripts', 'scripts', 'project scripts'),
 ]
+# Laura's AI Foundry lab account (Tailscale SSH); pulled whole, minus dotfiles and the public repo clone
+LAB = 'likelytobelaura@aifoundry3'
+ET = f'{B}/10_esperanto_et_soc1/aifoundry3'
+ETREF = 'f0a40879800d8d21955d061b92ad974570455595'
+ESPERANTO = [('osteo', 'osteo card job: S = A·Aᵀ on card 0 (kernel `aat/`, build, sim logs, `runs/`, `cite_S_card.f32`, NOTES.md, DONE)'),
+             ('work/mnist-et', 'MNIST trained end to end on the card (difficulty 1 passed, 111 ms/call); NOTES.md'),
+             ('work/hello', 'first card program'), ('work/ref', 'reference files'),
+             ('runs/mnist', 'raw simulator logs of the MNIST runs (kept deliberately: the only raw run records)'),
+             ('runs/hello', 'hello run'), ('runs/first-hour', 'first-hour lab test'),
+             ('data', 'datasets used on the card'), ('lab-start.md', 'the lab\'s START brief the lab Claude followed')]
+
+
+def pull_lab():
+    os.makedirs(ET, exist_ok=True)
+    src = [f'{LAB}:{p}' for p in ('osteo', 'work', 'runs', 'data', 'lab-start.md')]
+    try:
+        r = subprocess.run(['rsync', '-a', '-e', 'ssh -o BatchMode=yes -o ConnectTimeout=10', *src, ET + '/'],
+                           capture_output=True, text=True, timeout=900)
+    except subprocess.TimeoutExpired:
+        return 'rsync timed out; previous copy kept'
+    return f"last pulled {datetime.datetime.now():%Y-%m-%d %H:%M}" if r.returncode == 0 else \
+        f'aifoundry3 unreachable ({r.stderr.strip().splitlines()[-1][:80] if r.stderr.strip() else r.returncode}); previous copy kept'
+
+
 SKIP = ('.nvkey', '__pycache__', '.DS_Store', '.pyc', '/.venv/', '.scoring')
 # everything under these roots must be either mirrored or deliberately skipped; anything else is reported as unfiled
 WATCH = [f'{H}/osteo-results', f'{H}/osteo-nim', f'{H}/osteo-golden', f'{H}/osteo-classical']
@@ -243,6 +267,7 @@ def heldout(offline):
 def main():
     offline = '--offline' in sys.argv
     copied = sync()
+    lab = 'offline run: not pulled' if offline else pull_lab()
     cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
     items = [dict(section=s, desc=d, **describe(p, cache)) for s, p, d in ITEMS]
     json.dump(cache, open(CACHE, 'w'))
@@ -255,7 +280,7 @@ def main():
         if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src):
             os.makedirs(os.path.dirname(dst), exist_ok=True); subprocess.run(['cp', '-cp', src, dst])
     json.dump({'generated': now, 'items': items, 'heldout': exps, 'lomo_scores': scores, 'sweep_app': app,
-               'mirrors': mirrors, 'unfiled': loose, 'copied_this_run': copied}, open(f'{B}/inventory.json', 'w'), indent=1)
+               'mirrors': mirrors, 'unfiled': loose, 'copied_this_run': copied, 'esperanto_pull': lab}, open(f'{B}/inventory.json', 'w'), indent=1)
 
     L = [f'# Biohack data inventory (osteosarcoma imputation)', '',
          f'Generated {now} by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.', '',
@@ -314,6 +339,16 @@ def main():
         if rel.startswith(('08_', '09_')):
             L.extend(['', f'**{rel.split("/")[-1]}**: {d}. Source `{src.replace(H, "~")}` (API key and .venv excluded).'])
             mirror(rel)
+    L.extend(['', '## 10. Esperanto ET-SoC-1 (AI Foundry lab, aifoundry3 card 0)', '',
+              f'Everything Laura\'s lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh ({lab}).',
+              'The account only reaches aifoundry3 (aifoundry1/2 refuse it), so this is all of it. Not copied: dotfiles',
+              '(`~/.claude`, `.claude.json` hold the lab Claude\'s login) and `~/et-soc1-prototyping`, an unmodified clone of',
+              f'https://github.com/yaroslavvb/et-soc1-prototyping at `{ETREF}`. `osteo/` is the osteo card job (also in section 9).', '',
+              '| folder | files | size | what |', '|---|---:|---:|---|'])
+    for name, what in ESPERANTO:
+        fs = [f for f in glob.glob(f'{ET}/{name}/**', recursive=True) if os.path.isfile(f)] if os.path.isdir(f'{ET}/{name}') else \
+             ([f'{ET}/{name}'] if os.path.exists(f'{ET}/{name}') else [])
+        L.append(f"| `{name}` | {len(fs):,} | {human(sum(os.path.getsize(f) for f in fs)) if fs else '–'} | {what} |")
     L.extend(['', '## Not yet filed', ''])
     L.extend([f'- `{f}` (copied to `_incoming/`)' for f in loose] or ['_Nothing: every file under ' + ', '.join(w.replace(H, '~') for w in WATCH) + ' is mirrored here._'])
     L += ['', '## Links', '',
