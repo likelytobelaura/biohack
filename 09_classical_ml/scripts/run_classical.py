@@ -210,6 +210,9 @@ def main():
     def as_jsonable(v):
         return v if isinstance(v, str) else float(v)
     for name, pm in all_preds.items():
+        if all(v == "" for v in pm.values()):          # abstained everywhere: no file, so it can't pass for a method
+            print(f"skipped {name}: no predictions (abstained on every target)")
+            continue
         byp = collections.defaultdict(dict)
         for (pid, i), v in pm.items(): byp[pid][str(i)] = as_jsonable(v)
         with open(f"{OUT}/preds/{name}.jsonl", "w") as f:
