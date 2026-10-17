@@ -200,9 +200,12 @@ def heldout(offline):
             subprocess.run(['rm', '-rf', tmp])
         local_shards = sorted(glob.glob(f'{d}/outputs/shard*.jsonl'))
         n_out = sum(rows(f) for f in local_shards)
-        ts = truth.get(h, []) if h != 'all' else [t for v in truth.values() for t in v]
+        # lomo740_<type>_full = the <type> hold-out adapter re-evaluated on every prompt, to measure off-target effects
+        off = h.endswith('_full')
+        base = h[:-len('_full')] if off else h
+        ts = truth.get(h, []) if h != 'all' and not off else [t for v in truth.values() for t in v]
         pids = {t['prompt_id'] for t in ts}
-        if h != 'all':
+        if h != 'all' and not off:
             b = f'{d}/baselines'; os.makedirs(b, exist_ok=True)
             with open(f'{b}/truth_{h}.jsonl', 'w') as g:
                 g.writelines(json.dumps(t) + '\n' for t in ts)
@@ -224,8 +227,9 @@ def heldout(offline):
             status = 'training'
         else:
             status = 'queued' if app else ('not on Modal' if not offline else 'unknown (offline)')
-        exps.append({'name': name, 'holdout': h, 'label': LABELS.get(h, h),
-                     'trains_on': 'all 11,824 rows' if h == 'all' else f'everything except {LABELS.get(h, h)}',
+        exps.append({'name': name, 'holdout': base, 'off_target_eval': off, 'label': LABELS.get(base, base),
+                     'trains_on': 'all 11,824 rows' if h == 'all' else f'everything except {LABELS.get(base, base)}'
+                                  + (' (adapter of `lomo740_' + base + '`; eval on ALL prompts, off-target)' if off else ''),
                      'eval_targets': len(ts), 'eval_prompts': len(pids), 'status': status,
                      'adapter': f'{VOL}:adapters/lomo/{name}', 'outputs_remote': f'{VOL}:outputs/lomo/{name}',
                      'outputs_local_rows': n_out})
@@ -290,7 +294,9 @@ def main():
     L += ['', 'Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type\'s prompts:',
           '`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full',
           'adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in',
-          '`05_baseline_report/baseline_scores.json`.', '']
+          '`05_baseline_report/baseline_scores.json`.',
+          '`lomo740_<type>_full` runs re-evaluate a hold-out adapter on every prompt; their per-type change vs `lomo740_all`',
+          '(off-target effect of dropping that type) is in `osteo_results_lomo/offtarget_scores.json` (`scripts/score_offtarget.py`).', '']
     if scores:
         L += ['| hold-out | metric | base | sid_full | all | holdout | transfer [95% CI] |', '|---|---|---:|---:|---:|---:|---|']
         for s in scores.values():
