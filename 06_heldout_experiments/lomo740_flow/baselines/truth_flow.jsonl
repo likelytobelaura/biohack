@@ -1,0 +1,221 @@
+{"prompt_id": "p5f537a24876545ae", "i": 1, "item": "CD4 T cells (% of T cells)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 64.2}
+{"prompt_id": "p5f537a24876545ae", "i": 2, "item": "CD45RA-CCR7- (% of CD8 T cells)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 27.6}
+{"prompt_id": "p5f537a24876545ae", "i": 3, "item": "TIGIT-CD39+ (% of CD4)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 14.3}
+{"prompt_id": "p5f537a24876545ae", "i": 4, "item": "CD28- (% of CD8 T cells)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 15.8}
+{"prompt_id": "p5f537a24876545ae", "i": 5, "item": "CD56+ NK cells (% of CD45+)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 8.91}
+{"prompt_id": "p5f537a24876545ae", "i": 6, "item": "Granulocytes (% of CD45)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 1.8}
+{"prompt_id": "p5f537a24876545ae", "i": 7, "item": "HLA-DR+CD16+ (% of granulocytes)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 2.84}
+{"prompt_id": "p5f537a24876545ae", "i": 8, "item": "IgD-CD27- (% of B cells)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 10.6}
+{"prompt_id": "p5f537a24876545ae", "i": 9, "item": "CD45RA+CCR7+ (% of CD8 T cells)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 38.5}
+{"prompt_id": "p5f537a24876545ae", "i": 10, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 3.16}
+{"prompt_id": "p5f537a24876545ae", "i": 11, "item": "MFI of anti-IgG4 on CCR7-anti-IgG4+ CD8 T cells", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 4041}
+{"prompt_id": "p5f537a24876545ae", "i": 12, "item": "Plasmablasts (% of B cells)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 0.62}
+{"prompt_id": "p5f537a24876545ae", "i": 13, "item": "HLA-DR+CD38+ (% of CD4 T cells)", "entity": "pbmc_2024-07-15", "mod": "flow", "truth": 5.64}
+{"prompt_id": "p81e6be0578dff635", "i": 1, "item": "HLA-DR+CD38+ (% of CD4 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 5.73}
+{"prompt_id": "p81e6be0578dff635", "i": 2, "item": "Plasmablasts (% of B cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 1.23}
+{"prompt_id": "p81e6be0578dff635", "i": 3, "item": "Total anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 46.83}
+{"prompt_id": "p81e6be0578dff635", "i": 4, "item": "IgD+CD27+ (% of B cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 4.27}
+{"prompt_id": "p81e6be0578dff635", "i": 5, "item": "CCR7- anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 32.4}
+{"prompt_id": "p81e6be0578dff635", "i": 6, "item": "CD45RA-CCR7- (% of CD8 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 39.8}
+{"prompt_id": "p81e6be0578dff635", "i": 7, "item": "CD28+ (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 99.6}
+{"prompt_id": "p81e6be0578dff635", "i": 8, "item": "CCR7+anti-IgG4- (% of CD8 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 23.7}
+{"prompt_id": "p81e6be0578dff635", "i": 9, "item": "IgD- total (% of B cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 20.61}
+{"prompt_id": "p81e6be0578dff635", "i": 10, "item": "CD39- (% of CD8 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 85.4}
+{"prompt_id": "p81e6be0578dff635", "i": 11, "item": "Non-classical monocytes (% of APCs/monocytes)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 9.18}
+{"prompt_id": "p81e6be0578dff635", "i": 12, "item": "CD39+ (% of CD8 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 14.6}
+{"prompt_id": "p81e6be0578dff635", "i": 13, "item": "CCR7+anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 2.55}
+{"prompt_id": "p81e6be0578dff635", "i": 14, "item": "CD28- (% of CCR7-anti-IgG4+ CD8 T cells)", "entity": "pbmc_2024-10-09", "mod": "flow", "truth": 21}
+{"prompt_id": "pac174ed97612c160", "i": 1, "item": "CD56dim (% of NK cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 97.8}
+{"prompt_id": "pac174ed97612c160", "i": 2, "item": "CD28- (% of CD4 T cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 0.46}
+{"prompt_id": "pac174ed97612c160", "i": 3, "item": "CD45RA- CCR7+ (% of CD4 T cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 9.2}
+{"prompt_id": "pac174ed97612c160", "i": 4, "item": "HLA-DR-CD16+ (% of granulocytes)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 98.4}
+{"prompt_id": "pac174ed97612c160", "i": 5, "item": "Granulocytes (% of CD45)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 9.81}
+{"prompt_id": "pac174ed97612c160", "i": 6, "item": "CD8 T cells (% of T cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 32.4}
+{"prompt_id": "pac174ed97612c160", "i": 7, "item": "CCR7- anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 38.5}
+{"prompt_id": "pac174ed97612c160", "i": 8, "item": "Plasmablasts (% of B cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 0.14}
+{"prompt_id": "pac174ed97612c160", "i": 9, "item": "MAIT cells (% of T cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 2.77}
+{"prompt_id": "pac174ed97612c160", "i": 10, "item": "CD28+ (% of CD8 T cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 74.2}
+{"prompt_id": "pac174ed97612c160", "i": 11, "item": "Total anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 40.92}
+{"prompt_id": "pac174ed97612c160", "i": 12, "item": "CD39+ (% of CD8 T cells)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 13.2}
+{"prompt_id": "pac174ed97612c160", "i": 13, "item": "CD56+ NK cells (% of CD45+)", "entity": "pbmc_2024-12-11", "mod": "flow", "truth": 3.29}
+{"prompt_id": "p0940c5a57f3dc492", "i": 1, "item": "CD8 T cells (% of T cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 43.8}
+{"prompt_id": "p0940c5a57f3dc492", "i": 2, "item": "TIGIT-CD39- (% of CD4)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 77.5}
+{"prompt_id": "p0940c5a57f3dc492", "i": 3, "item": "CD28+ (% of CD4 T cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 98.1}
+{"prompt_id": "p0940c5a57f3dc492", "i": 4, "item": "T cells (% of CD45)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 26.7}
+{"prompt_id": "p0940c5a57f3dc492", "i": 5, "item": "CCR7+anti-IgG4- (% of CD8 T cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 15.9}
+{"prompt_id": "p0940c5a57f3dc492", "i": 6, "item": "CD56bright (% of NK cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 2.81}
+{"prompt_id": "p0940c5a57f3dc492", "i": 7, "item": "TCRgd+ (% of T cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 6.6}
+{"prompt_id": "p0940c5a57f3dc492", "i": 8, "item": "Total anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 64.98}
+{"prompt_id": "p0940c5a57f3dc492", "i": 9, "item": "HLA-DR+CD38+ (% of CD8 T cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 7.37}
+{"prompt_id": "p0940c5a57f3dc492", "i": 10, "item": "Classical monocytes (% of APCs/monocytes)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 93.1}
+{"prompt_id": "p0940c5a57f3dc492", "i": 11, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 1.19}
+{"prompt_id": "p0940c5a57f3dc492", "i": 12, "item": "IgD-CD27- (% of B cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 17}
+{"prompt_id": "p0940c5a57f3dc492", "i": 13, "item": "Days since last dostarlimab infusion", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 17}
+{"prompt_id": "p0940c5a57f3dc492", "i": 14, "item": "CD28+ (% of CD8 T cells)", "entity": "pbmc_2025-01-20", "mod": "flow", "truth": 60.5}
+{"prompt_id": "p12143bdbe3d81e52", "i": 1, "item": "CD3-CD19-non-NKnon-granulocytes (% of CD45)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 17.5}
+{"prompt_id": "p12143bdbe3d81e52", "i": 2, "item": "Days since last dostarlimab infusion", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 17}
+{"prompt_id": "p12143bdbe3d81e52", "i": 3, "item": "CD28- (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 15}
+{"prompt_id": "p12143bdbe3d81e52", "i": 4, "item": "HLA-DR-CD16- (% of granulocytes)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 0.22}
+{"prompt_id": "p12143bdbe3d81e52", "i": 5, "item": "HLA-DR+CD38+ (% of CD4 T cells)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 4.64}
+{"prompt_id": "p12143bdbe3d81e52", "i": 6, "item": "IgD+CD27+ (% of B cells)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 1.53}
+{"prompt_id": "p12143bdbe3d81e52", "i": 7, "item": "CD28+ (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 85}
+{"prompt_id": "p12143bdbe3d81e52", "i": 8, "item": "TIGIT+CD39+ (% of CD4)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 6.73}
+{"prompt_id": "p12143bdbe3d81e52", "i": 9, "item": "MFI of anti-IgG4 on CCR7-anti-IgG4+ CD8 T cells", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 5626}
+{"prompt_id": "p12143bdbe3d81e52", "i": 10, "item": "CD4 T cells (% of T cells)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 61.9}
+{"prompt_id": "p12143bdbe3d81e52", "i": 11, "item": "HLA-DR-CD16+ (% of granulocytes)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 93.7}
+{"prompt_id": "p12143bdbe3d81e52", "i": 12, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 2.54}
+{"prompt_id": "p12143bdbe3d81e52", "i": 13, "item": "CD45RA-CCR7- (% of CD4 T cells)", "entity": "pbmc_2025-03-10", "mod": "flow", "truth": 67.6}
+{"prompt_id": "p00e9afb98be250cf", "i": 1, "item": "IgD+CD27- (% of B cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 76.9}
+{"prompt_id": "p00e9afb98be250cf", "i": 2, "item": "CD8 T cells (% of T cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 31}
+{"prompt_id": "p00e9afb98be250cf", "i": 3, "item": "CD28+ (% of CD4 T cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 90}
+{"prompt_id": "p00e9afb98be250cf", "i": 4, "item": "HLA-DR-CD16- (% of granulocytes)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 0.12}
+{"prompt_id": "p00e9afb98be250cf", "i": 5, "item": "CD28+ (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 75.7}
+{"prompt_id": "p00e9afb98be250cf", "i": 6, "item": "CCR7-anti-IgG4- (% of CD4 T cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 32.2}
+{"prompt_id": "p00e9afb98be250cf", "i": 7, "item": "CD28+ (% of CD8 T cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 78.4}
+{"prompt_id": "p00e9afb98be250cf", "i": 8, "item": "TCRgd+ (% of T cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 7.96}
+{"prompt_id": "p00e9afb98be250cf", "i": 9, "item": "CD39- (% of CD8 T cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 90.6}
+{"prompt_id": "p00e9afb98be250cf", "i": 10, "item": "Plasmablasts (% of B cells)", "entity": "pbmc_2025-04-09", "mod": "flow", "truth": 0.7}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 1, "item": "CCR7-anti-IgG4- (% of CD4 T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 39.8}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 2, "item": "CD8 T cells (% of T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 31.8}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 3, "item": "HLA-DR+CD16+ (% of granulocytes)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 0.99}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 4, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 2.58}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 5, "item": "B cells (% of CD45)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 3.86}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 6, "item": "Plasmablasts (% of B cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 0.53}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 7, "item": "CD56dim (% of NK cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 97.1}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 8, "item": "CD28+ (% of CCR7-anti-IgG4+ CD8 T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 62.9}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 9, "item": "TCRgd+ (% of T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 7.16}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 10, "item": "T cells (% of CD45)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 43.1}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 11, "item": "CD28- (% of CCR7-anti-IgG4+ CD8 T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 37.1}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 12, "item": "HLA-DR+CD38+ (% of CD4 T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 3.62}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 13, "item": "CD39+ (% of CD8 T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 10}
+{"prompt_id": "pd1d9bf59bf14bbb4", "i": 14, "item": "CD45RA-CCR7- (% of CD8 T cells)", "entity": "pbmc_2025-05-06", "mod": "flow", "truth": 36}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 1, "item": "APCs/monocytes (% of CD45+)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 31.6}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 2, "item": "CD45RA+CCR7- (% of CD4 T cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 8.42}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 3, "item": "Days since last dostarlimab infusion", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 63}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 4, "item": "CD28- (% of CD4 T cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 8.35}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 5, "item": "IgD-CD27- (% of B cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 13.3}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 6, "item": "CCR7-anti-IgG4- (% of CD4 T cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 41.8}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 7, "item": "CD45RA+CCR7+ (% of CD4 T cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 22.4}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 8, "item": "CCR7-anti-IgG4- (% of CD8 T cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 37.5}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 9, "item": "MFI of anti-IgG4 on CCR7-anti-IgG4+ CD8 T cells", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 5224}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 10, "item": "IgD- total (% of B cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 17.880000000000003}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 11, "item": "CCR7+anti-IgG4- (% of CD8 T cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 28.6}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 12, "item": "CD45RA- CCR7+ (% of CD4 T cells)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 10.4}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 13, "item": "TIGIT-CD39- (% of CD4)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 73.2}
+{"prompt_id": "p30ae6b8756d64fdb", "i": 14, "item": "Classical monocytes (% of APCs/monocytes)", "entity": "pbmc_2025-05-15", "mod": "flow", "truth": 95.8}
+{"prompt_id": "p9159dc4d0401cf21", "i": 1, "item": "B cells (% of CD45)", "entity": "pbmc_2025-05-27", "mod": "flow", "truth": 2.37}
+{"prompt_id": "p9159dc4d0401cf21", "i": 2, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2025-05-27", "mod": "flow", "truth": 1.46}
+{"prompt_id": "pc81b9e443a01cb99", "i": 1, "item": "CD28- (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 5.43}
+{"prompt_id": "pc81b9e443a01cb99", "i": 2, "item": "CD28- (% of CCR7-anti-IgG4+ CD8 T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 23.9}
+{"prompt_id": "pc81b9e443a01cb99", "i": 3, "item": "CD28- (% of CD8 T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 15.7}
+{"prompt_id": "pc81b9e443a01cb99", "i": 4, "item": "CD39- (% of CD8 T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 76}
+{"prompt_id": "pc81b9e443a01cb99", "i": 5, "item": "IgD- total (% of B cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 11.38}
+{"prompt_id": "pc81b9e443a01cb99", "i": 6, "item": "Total anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 53.54}
+{"prompt_id": "pc81b9e443a01cb99", "i": 7, "item": "TCRgd+ (% of T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 4.15}
+{"prompt_id": "pc81b9e443a01cb99", "i": 8, "item": "Plasmablasts (% of B cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 2.25}
+{"prompt_id": "pc81b9e443a01cb99", "i": 9, "item": "HLA-DR+CD38+ (% of CD8 T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 19}
+{"prompt_id": "pc81b9e443a01cb99", "i": 10, "item": "IgD+CD27- (% of B cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 86.2}
+{"prompt_id": "pc81b9e443a01cb99", "i": 11, "item": "CCR7-anti-IgG4- (% of CD4 T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 28.7}
+{"prompt_id": "pc81b9e443a01cb99", "i": 12, "item": "CD45RA-CCR7- (% of CD8 T cells)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 52.1}
+{"prompt_id": "pc81b9e443a01cb99", "i": 13, "item": "Classical monocytes (% of APCs/monocytes)", "entity": "pbmc_2025-06-24", "mod": "flow", "truth": 77}
+{"prompt_id": "p6b880779b2315207", "i": 1, "item": "CD56dim (% of NK cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 97}
+{"prompt_id": "p6b880779b2315207", "i": 2, "item": "CCR7-anti-IgG4- (% of CD4 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 32}
+{"prompt_id": "p6b880779b2315207", "i": 3, "item": "Total anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 34.230000000000004}
+{"prompt_id": "p6b880779b2315207", "i": 4, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 3.3}
+{"prompt_id": "p6b880779b2315207", "i": 5, "item": "CD8 T cells (% of T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 27.8}
+{"prompt_id": "p6b880779b2315207", "i": 6, "item": "CCR7-anti-IgG4- (% of CD8 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 30.9}
+{"prompt_id": "p6b880779b2315207", "i": 7, "item": "IgD+CD27- (% of B cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 87.2}
+{"prompt_id": "p6b880779b2315207", "i": 8, "item": "CD28- (% of CD4 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 4.35}
+{"prompt_id": "p6b880779b2315207", "i": 9, "item": "CCR7+anti-IgG4- (% of CD4 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 31.7}
+{"prompt_id": "p6b880779b2315207", "i": 10, "item": "HLA-DR-CD16- (% of granulocytes)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 1.43}
+{"prompt_id": "p6b880779b2315207", "i": 11, "item": "CD4 T cells (% of T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 67.4}
+{"prompt_id": "p6b880779b2315207", "i": 12, "item": "CD28+ (% of CD8 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 75.4}
+{"prompt_id": "p6b880779b2315207", "i": 13, "item": "HLA-DR+CD38+ (% of CD8 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 6.17}
+{"prompt_id": "p6b880779b2315207", "i": 14, "item": "HLA-DR+CD38+ (% of CD4 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 3.43}
+{"prompt_id": "p6b880779b2315207", "i": 15, "item": "CD28+ (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2025-07-22", "mod": "flow", "truth": 89.4}
+{"prompt_id": "p912883dd1965b911", "i": 1, "item": "CD28- (% of CCR7-anti-IgG4+ CD8 T cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 33.6}
+{"prompt_id": "p912883dd1965b911", "i": 2, "item": "CCR7- anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 53.4}
+{"prompt_id": "p912883dd1965b911", "i": 3, "item": "CD8 T cells (% of T cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 27.3}
+{"prompt_id": "p912883dd1965b911", "i": 4, "item": "Total anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 57.11}
+{"prompt_id": "p912883dd1965b911", "i": 5, "item": "Classical monocytes (% of APCs/monocytes)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 94.1}
+{"prompt_id": "p912883dd1965b911", "i": 6, "item": "CD45RA+CCR7- (% of CD8 T cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 30.9}
+{"prompt_id": "p912883dd1965b911", "i": 7, "item": "CCR7+anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 3.71}
+{"prompt_id": "p912883dd1965b911", "i": 8, "item": "CCR7+anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 2.13}
+{"prompt_id": "p912883dd1965b911", "i": 9, "item": "Granulocytes (% of CD45)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 7.13}
+{"prompt_id": "p912883dd1965b911", "i": 10, "item": "IgD-CD27- (% of B cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 13}
+{"prompt_id": "p912883dd1965b911", "i": 11, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2025-08-20", "mod": "flow", "truth": 2.62}
+{"prompt_id": "paa3299ba47b0a518", "i": 1, "item": "Non-classical monocytes (% of APCs/monocytes)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 20.7}
+{"prompt_id": "paa3299ba47b0a518", "i": 2, "item": "CD45RA+CCR7+ (% of CD8 T cells)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 29.5}
+{"prompt_id": "paa3299ba47b0a518", "i": 3, "item": "CD56+ NK cells (% of CD45+)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 4.64}
+{"prompt_id": "paa3299ba47b0a518", "i": 4, "item": "CD8 T cells (% of T cells)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 30.7}
+{"prompt_id": "paa3299ba47b0a518", "i": 5, "item": "HLA-DR-CD16- (% of granulocytes)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 0}
+{"prompt_id": "paa3299ba47b0a518", "i": 6, "item": "IgD+CD27- (% of B cells)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 86.1}
+{"prompt_id": "paa3299ba47b0a518", "i": 7, "item": "CD28+ (% of CCR7-anti-IgG4+ CD8 T cells)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 63.6}
+{"prompt_id": "paa3299ba47b0a518", "i": 8, "item": "CD28+ (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 76.4}
+{"prompt_id": "paa3299ba47b0a518", "i": 9, "item": "Plasmablasts (% of B cells)", "entity": "pbmc_2025-09-18", "mod": "flow", "truth": 0.12}
+{"prompt_id": "p5f62eb18c614eec0", "i": 1, "item": "TIGIT+CD39- (% of CD4)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 5.61}
+{"prompt_id": "p5f62eb18c614eec0", "i": 2, "item": "CD39+ (% of CD8 T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 14.2}
+{"prompt_id": "p5f62eb18c614eec0", "i": 3, "item": "B cells (% of CD45)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 7.15}
+{"prompt_id": "p5f62eb18c614eec0", "i": 4, "item": "CD45RA+CCR7- (% of CD8 T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 27.8}
+{"prompt_id": "p5f62eb18c614eec0", "i": 5, "item": "IgD+CD27- (% of B cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 88.7}
+{"prompt_id": "p5f62eb18c614eec0", "i": 6, "item": "HLA-DR+CD16+ (% of granulocytes)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 1.05}
+{"prompt_id": "p5f62eb18c614eec0", "i": 7, "item": "CCR7+anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 4.47}
+{"prompt_id": "p5f62eb18c614eec0", "i": 8, "item": "TIGIT-CD39+ (% of CD4)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 15.7}
+{"prompt_id": "p5f62eb18c614eec0", "i": 9, "item": "CD45RA-CCR7- (% of CD4 T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 52.1}
+{"prompt_id": "p5f62eb18c614eec0", "i": 10, "item": "CD56bright (% of NK cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 3.06}
+{"prompt_id": "p5f62eb18c614eec0", "i": 11, "item": "CD8 T cells (% of T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 34}
+{"prompt_id": "p5f62eb18c614eec0", "i": 12, "item": "HLA-DR+CD38+ (% of CD4 T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 2.24}
+{"prompt_id": "p5f62eb18c614eec0", "i": 13, "item": "IgD-CD27- (% of B cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 7.45}
+{"prompt_id": "p5f62eb18c614eec0", "i": 14, "item": "CD28+ (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 78.5}
+{"prompt_id": "p5f62eb18c614eec0", "i": 15, "item": "MAIT cells (% of T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 6.25}
+{"prompt_id": "p5f62eb18c614eec0", "i": 16, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2025-11-05", "mod": "flow", "truth": 3.55}
+{"prompt_id": "p66709316a8de1608", "i": 1, "item": "IgD-CD27+ (% of B cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 1.57}
+{"prompt_id": "p66709316a8de1608", "i": 2, "item": "HLA-DR-CD16+ (% of granulocytes)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 35.4}
+{"prompt_id": "p66709316a8de1608", "i": 3, "item": "CD28- (% of CD8 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 10.8}
+{"prompt_id": "p66709316a8de1608", "i": 4, "item": "TCRgd+ (% of T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 5.41}
+{"prompt_id": "p66709316a8de1608", "i": 5, "item": "CCR7+anti-IgG4- (% of CD8 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 39.4}
+{"prompt_id": "p66709316a8de1608", "i": 6, "item": "CD28+ (% of CD8 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 89.2}
+{"prompt_id": "p66709316a8de1608", "i": 7, "item": "CCR7+anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 4.26}
+{"prompt_id": "p66709316a8de1608", "i": 8, "item": "CD28- (% of CD4 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 5.95}
+{"prompt_id": "p66709316a8de1608", "i": 9, "item": "HLA-DR+CD38+ (% of CD8 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 1.07}
+{"prompt_id": "p66709316a8de1608", "i": 10, "item": "CCR7+anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 4.39}
+{"prompt_id": "p66709316a8de1608", "i": 11, "item": "CD45RA-CCR7- (% of CD8 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 28}
+{"prompt_id": "p66709316a8de1608", "i": 12, "item": "MAIT cells (% of T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 5.66}
+{"prompt_id": "p66709316a8de1608", "i": 13, "item": "CD39+ (% of CD8 T cells)", "entity": "pbmc_2025-12-29", "mod": "flow", "truth": 14.7}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 1, "item": "CD28- (% of CD4 T cells)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 6.75}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 2, "item": "Classical monocytes (% of APCs/monocytes)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 97.9}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 3, "item": "CCR7-anti-IgG4- (% of CD8 T cells)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 28.9}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 4, "item": "HLA-DR+CD38+ (% of CD8 T cells)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 0.96}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 5, "item": "IgD- total (% of B cells)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 18.630000000000003}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 6, "item": "CCR7- anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 19.9}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 7, "item": "HLA-DR-CD16- (% of granulocytes)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 13.4}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 8, "item": "CD56+ NK cells (% of CD45+)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 7.12}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 9, "item": "CD4 T cells (% of T cells)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 67.1}
+{"prompt_id": "pcf3548a2d9e2d775", "i": 10, "item": "Total anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2026-01-23", "mod": "flow", "truth": 30.42}
+{"prompt_id": "pac79da285366476d", "i": 1, "item": "TIGIT-CD39- (% of CD4)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 56.7}
+{"prompt_id": "pac79da285366476d", "i": 2, "item": "CD39- (% of CD8 T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 78.6}
+{"prompt_id": "pac79da285366476d", "i": 3, "item": "MAIT cells (% of T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 5.4}
+{"prompt_id": "pac79da285366476d", "i": 4, "item": "CD45RA+CCR7+ (% of CD4 T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 21.4}
+{"prompt_id": "pac79da285366476d", "i": 5, "item": "CD56bright (% of NK cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 7.2}
+{"prompt_id": "pac79da285366476d", "i": 6, "item": "IgD+CD27+ (% of B cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 3.38}
+{"prompt_id": "pac79da285366476d", "i": 7, "item": "CCR7- anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 45.9}
+{"prompt_id": "pac79da285366476d", "i": 8, "item": "CCR7+anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 9.74}
+{"prompt_id": "pac79da285366476d", "i": 9, "item": "CCR7- anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 55.6}
+{"prompt_id": "pac79da285366476d", "i": 10, "item": "HLA-DR+CD38+ (% of CD4 T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 2.95}
+{"prompt_id": "pac79da285366476d", "i": 11, "item": "TIGIT+CD39- (% of CD4)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 10}
+{"prompt_id": "pac79da285366476d", "i": 12, "item": "CD39+ (% of CD8 T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 21.4}
+{"prompt_id": "pac79da285366476d", "i": 13, "item": "Total anti-IgG4+ (% of CD8 T cells)", "entity": "pbmc_2026-02-13", "mod": "flow", "truth": 60.14}
+{"prompt_id": "p44debf4e8323340d", "i": 1, "item": "B cells (% of CD45)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 6.49}
+{"prompt_id": "p44debf4e8323340d", "i": 2, "item": "CD28+ (% of CD4 T cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 91.2}
+{"prompt_id": "p44debf4e8323340d", "i": 3, "item": "MAIT cells (% of T cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 5.34}
+{"prompt_id": "p44debf4e8323340d", "i": 4, "item": "IgD- total (% of B cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 8.55}
+{"prompt_id": "p44debf4e8323340d", "i": 5, "item": "CD45RA- CCR7+ (% of CD8 T cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 3.75}
+{"prompt_id": "p44debf4e8323340d", "i": 6, "item": "CD56dim (% of NK cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 95.5}
+{"prompt_id": "p44debf4e8323340d", "i": 7, "item": "IgD-CD27+ (% of B cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 3.13}
+{"prompt_id": "p44debf4e8323340d", "i": 8, "item": "Plasmablasts (% of B cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 0.21}
+{"prompt_id": "p44debf4e8323340d", "i": 9, "item": "Classical monocytes (% of APCs/monocytes)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 92.1}
+{"prompt_id": "p44debf4e8323340d", "i": 10, "item": "HLA-DR+CD16+ (% of granulocytes)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 0.69}
+{"prompt_id": "p44debf4e8323340d", "i": 11, "item": "CCR7+anti-IgG4+ (% of CD4 T cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 13.7}
+{"prompt_id": "p44debf4e8323340d", "i": 12, "item": "CD28- (% of IgG4+CCR7- CD4 T cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 16.8}
+{"prompt_id": "p44debf4e8323340d", "i": 13, "item": "CD28- (% of CD4 T cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 8.84}
+{"prompt_id": "p44debf4e8323340d", "i": 14, "item": "CCR7-anti-IgG4- (% of CD4 T cells)", "entity": "pbmc_2026-02-23", "mod": "flow", "truth": 15.7}
