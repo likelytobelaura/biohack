@@ -16,3 +16,5 @@ __pycache__/
 07_finetune_sid_full/adapter/**/tokenizer.json
 07_finetune_sid_full/adapter/tokenizer.json
 **/tokenizer.json
+.venv/
+.claude/

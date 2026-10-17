@@ -8,6 +8,10 @@ This repo holds code, reports, scores and the inventory. The data itself (traini
 model responses, raw bucket files, adapter weights) is git-ignored: it lives in `~/biohack` on Laura's Mac and on the
 Modal volume `osteo-data`; `inventory.json` has the checksum of each file.
 
+**Model weights:** every LoRA adapter (full-data fine-tune + each hold-out run) is on Hugging Face, private:
+[huggingface.co/likelytobelaura/osteo-glimmer-lora](https://huggingface.co/likelytobelaura/osteo-glimmer-lora),
+one folder per run (`sid_full/`, `lomo740_<type>/`). Upload new ones with `~/biohack/.venv/bin/python hf_upload.py`.
+
 | folder | contents |
 |---|---|
 | `01_sid_full_dataset/` | SFT training set (11,824 rows) + raw bucket files |
