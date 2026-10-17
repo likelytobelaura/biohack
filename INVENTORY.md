@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 16:14 by `inventory.py` (a watcher re-runs it and pushes to GitHub every 10 min while runs are going).
+Generated 2026-10-17 16:15 by `inventory.py` (a watcher re-runs it and pushes to GitHub every 10 min while runs are going).
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -296,7 +296,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 | file | size | rows |
 |---|---:|---:|
-| `HOLDOUT.md` | 7.6K |  |
+| `HOLDOUT.md` | 7.9K |  |
 | `RESULTS.md` | 5.3K |  |
 | `card/README.txt` | 190B | 2 |
 | `card/TASK.md` | 1.6K |  |
@@ -407,7 +407,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 ## 10. Esperanto ET-SoC-1 (AI Foundry lab, aifoundry3 card 0)
 
-Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 16:14).
+Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 16:15).
 The account only reaches aifoundry3 (aifoundry1/2 refuse it), so this is all of it. Not copied: dotfiles
 (`~/.claude`, `.claude.json` hold the lab Claude's login) and `~/et-soc1-prototyping`, an unmodified clone of
 https://github.com/yaroslavvb/et-soc1-prototyping at `f0a40879800d8d21955d061b92ad974570455595`. `osteo/` is the osteo card job (also in section 9).
