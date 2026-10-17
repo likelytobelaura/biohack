@@ -1,0 +1,15 @@
+{
+ "cite": "als_32_10.0",
+ "dia": "knn_feature_25",
+ "flow": "als_32_1.0",
+ "fusion": "als_2_1.0",
+ "hla": "knn_entity_vote",
+ "mif": "col_median",
+ "mpa": "knn_entity_5",
+ "olink": "als_2_1.0",
+ "rna": "col_median",
+ "scrna": "gbm_stack",
+ "somatic": "als_32_1.0",
+ "tcr": "gbm_stack",
+ "xenium": "knn_feature_25"
+}

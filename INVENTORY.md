@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 13:54 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
+Generated 2026-10-17 14:54 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -53,22 +53,25 @@ Eval = a 20% random mask: 24,634 targets in 15,964 prompts, 13 data types.
 
 ## 6. Hold-out experiments (leave-one-data-type-out)
 
-LoRA r=32, 740 steps, 8×H200, same recipe as `sid_full` but with one data type removed from training;
-each is then evaluated on that type's masked targets only. `lomo740_all` is the matched reference trained on everything.
+LoRA r=32 (same settings as `sid_full`), 8×H200, a 740-step schedule run to completion (5,920 rows seen), one data type removed;
+each is then evaluated on that type's masked targets only. `lomo740_all` is the matched reference trained on everything:
+the finished counterpart of `sid_full`, which saw the same half epoch but stopped mid-schedule.
 Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).
 Sweep app: `ap-AIzYiRcj5xsmQdDteujfMa` (ephemeral (detached))
 
 | run | trains on | eval targets | status | local outputs |
 |---|---|---:|---|---|
-| `lomo740_flow` | everything except Flow cytometry | 221 | trained, eval pending | – |
-| `lomo740_rna` | everything except Bulk RNA-seq TPM | 2,000 | queued | – |
-| `lomo740_tcr` | everything except TCR beta clones | 2,000 | queued | – |
+| `lomo740_flow` | everything except Flow cytometry | 221 | done | `06_heldout_experiments/lomo740_flow/outputs/` |
+| `lomo740_rna` | everything except Bulk RNA-seq TPM | 2,000 | trained, eval pending | – |
+| `lomo740_tcr` | everything except TCR beta clones | 2,000 | training | – |
 | `lomo740_xenium` | everything except Xenium | 600 | queued | – |
-| `lomo740_all` | all 11,824 rows | 24,634 | training | – |
+| `lomo740_all` | all 11,824 rows | 24,634 | trained, eval pending | – |
+| `lomo740_flow_full` | everything except flow_full | 0 | done | `06_heldout_experiments/lomo740_flow_full/outputs/` |
+| `lomo740_rna_full` | everything except rna_full | 0 | done | `06_heldout_experiments/lomo740_rna_full/outputs/` |
 
 Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
-`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (full-data
-adapter, 739 steps), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in
+`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full
+adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in
 `05_baseline_report/baseline_scores.json`.
 
 _No hold-out scores yet (`~/osteo-results/lomo_scores.json` not written)._
@@ -79,6 +82,14 @@ Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 
 | file | size | rows |
 |---|---:|---:|
+| `adapters/lomo740_all/README.md` | 5.1K |  |
+| `adapters/lomo740_all/adapter_config.json` | 1.1K |  |
+| `adapters/lomo740_all/adapter_model.safetensors` | 799.6M |  |
+| `adapters/lomo740_all/chat_template.jinja` | 9.8K |  |
+| `adapters/lomo740_all/tokenizer.json` | 26.8M |  |
+| `adapters/lomo740_all/tokenizer_config.json` | 78.1K |  |
+| `adapters/lomo740_all/train_log.json` | 35.7K |  |
+| `adapters/lomo740_all/training_args.bin` | 5.6K |  |
 | `adapters/lomo740_flow/README.md` | 5.1K |  |
 | `adapters/lomo740_flow/adapter_config.json` | 1.1K |  |
 | `adapters/lomo740_flow/adapter_model.safetensors` | 799.6M |  |
@@ -87,53 +98,131 @@ Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 | `adapters/lomo740_flow/tokenizer_config.json` | 78.1K |  |
 | `adapters/lomo740_flow/train_log.json` | 35.6K |  |
 | `adapters/lomo740_flow/training_args.bin` | 5.6K |  |
+| `adapters/lomo740_rna/README.md` | 5.1K |  |
+| `adapters/lomo740_rna/adapter_config.json` | 1.1K |  |
+| `adapters/lomo740_rna/adapter_model.safetensors` | 799.6M |  |
+| `adapters/lomo740_rna/chat_template.jinja` | 9.8K |  |
+| `adapters/lomo740_rna/tokenizer.json` | 26.8M |  |
+| `adapters/lomo740_rna/tokenizer_config.json` | 78.1K |  |
+| `adapters/lomo740_rna/train_log.json` | 35.6K |  |
+| `adapters/lomo740_rna/training_args.bin` | 5.6K |  |
+| `evals/lomo740_flow_full/shard0.jsonl` | 127.8K | 998 |
+| `evals/lomo740_flow_full/shard1.jsonl` | 127.3K | 998 |
+| `evals/lomo740_flow_full/shard10.jsonl` | 112.5K | 998 |
+| `evals/lomo740_flow_full/shard11.jsonl` | 113.2K | 998 |
+| `evals/lomo740_flow_full/shard12.jsonl` | 112.4K | 997 |
+| `evals/lomo740_flow_full/shard13.jsonl` | 113.0K | 997 |
+| `evals/lomo740_flow_full/shard14.jsonl` | 126.5K | 997 |
+| `evals/lomo740_flow_full/shard15.jsonl` | 140.8K | 997 |
+| `evals/lomo740_flow_full/shard2.jsonl` | 113.5K | 998 |
+| `evals/lomo740_flow_full/shard3.jsonl` | 127.4K | 998 |
+| `evals/lomo740_flow_full/shard4.jsonl` | 114.2K | 998 |
+| `evals/lomo740_flow_full/shard5.jsonl` | 127.0K | 998 |
+| `evals/lomo740_flow_full/shard6.jsonl` | 141.3K | 998 |
+| `evals/lomo740_flow_full/shard7.jsonl` | 126.9K | 998 |
+| `evals/lomo740_flow_full/shard8.jsonl` | 112.0K | 998 |
+| `evals/lomo740_flow_full/shard9.jsonl` | 126.1K | 998 |
+| `evals/lomo740_flow_own/shard0.jsonl` | 4.5K | 18 |
+| `offtarget_scores.json` | 3.7K |  |
 
-## 7. Full-data fine-tune (sid_full)
+## 7. sid_full: LoRA on all data, stopped at 50%
 
 | file | size | rows | sha256 | what |
 |---|---:|---:|---|---|
 | `07_finetune_sid_full/finetuned_sid_full_eval.jsonl` | 2.1M | 15,964 | 27b093030ba7 | sid_full adapter on all eval prompts (= osteo-data:outputs/baseline_sid_full.jsonl) |
-| `07_finetune_sid_full/compare_scores.json` | 4.5K |  | 6437f4f1e06b | base vs fine-tune per data type (scripts/score_compare.py) |
-| `07_finetune_sid_full/compare_microbiome.json` | 947B |  | 9ead825fa138 | base vs fine-tune, metagenomics detail |
-| `07_finetune_sid_full/compare_points.json` | 654.5K |  | 1e24c7524248 | per-target (truth, base, fine-tune) points for plots |
-| `07_finetune_sid_full/adapter/adapter_model.safetensors` | 799.6M |  | 37a55aad7c84 | LoRA r=32 weights, final (training stopped itself at step 739/1478); base = Muse-Glimmer-30B |
-| `07_finetune_sid_full/adapter/` | 3.2G (26 files) |  |  | adapter + configs + train_log.json + checkpoint-739 (optimizer state) |
+| `07_finetune_sid_full/compare_scores.json` | 4.5K |  | 6437f4f1e06b | base vs sid_full adapter per data type (scripts/score_compare.py) |
+| `07_finetune_sid_full/compare_microbiome.json` | 947B |  | 9ead825fa138 | base vs sid_full adapter, metagenomics detail |
+| `07_finetune_sid_full/compare_points.json` | 654.5K |  | 1e24c7524248 | per-target (truth, base, sid_full) points for plots |
+| `07_finetune_sid_full/adapter/adapter_model.safetensors` | 799.6M |  | 37a55aad7c84 | LoRA adapter weights (r=32, a delta on Muse-Glimmer-30B, not a standalone model) after 739 of 1,478 planned steps (0.5 epoch, stopped mid-schedule, LR not decayed); byte-identical to checkpoint-739/adapter_model.safetensors |
+| `07_finetune_sid_full/adapter/` | 3.2G (26 files) |  |  | the adapter above + configs + train_log.json; checkpoint-739/ = same weights + optimizer/scheduler/RNG state to resume |
 | `07_finetune_sid_full/dashboard_src/` | 712.1K (5 files) |  |  | source + data of https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J |
 
-## 8. Other baselines
+## 8. Other baselines  ·  9. Classical ML + ET-SoC-1
 
 Mirrored from the jobs running them; partial files are re-copied on every refresh until the runs finish.
 
-**muse_spark**: Muse Spark 1.2 / 1.3 (api.meta.ai, contributor) on golden.jsonl prompts; job 7d63451c. Source `~/osteo-results/spark` (API key file excluded).
+**muse_spark**: Muse Spark 1.2 / 1.3 (api.meta.ai, contributor) on golden.jsonl prompts; job 7d63451c. Source `~/osteo-results/spark` (API key and .venv excluded).
 
 `08_other_baselines/muse_spark/`
 
 | file | size | rows |
 |---|---:|---:|
-| `muse-spark-1.2-contributor.jsonl` | 949.6K | 3,101 |
-| `muse-spark-1.3-contributor.jsonl` | 939.1K | 3,048 |
-| `run_1.2.log` | 645B |  |
-| `run_1.3.log` | 646B |  |
+| `cost.txt` | 44B | 1 |
+| `guard.log` | 0B |  |
+| `muse-spark-1.2-contributor.jsonl` | 2.7M | 9,953 |
+| `muse-spark-1.3-contributor.jsonl` | 2.7M | 9,863 |
+| `run_1.2.log` | 1.9K |  |
+| `run_1.3.log` | 1.9K |  |
 | `spark_scores.json` | 2.8K |  |
 
-**nim_noctx**: NVIDIA NIM, prompts with the known values stripped (826 prompts); job c76b4182. Source `~/osteo-nim` (API key file excluded).
+**nim_noctx**: NVIDIA NIM, prompts with the known values stripped (826 prompts) + NIM hold-out baselines; job c76b4182. Source `~/osteo-nim` (API key and .venv excluded).
 
 `08_other_baselines/nim_noctx/`
 
 | file | size | rows |
 |---|---:|---:|
-| `out_noctx.jsonl` | 14.6K | 13 |
+| `baseline_lomo_flow.jsonl` | 14.3M | 15,964 |
+| `baseline_lomo_rna.jsonl` | 14.2M | 15,964 |
+| `baseline_lomo_tcr.jsonl` | 14.2M | 15,964 |
+| `baseline_lomo_xenium.jsonl` | 14.0M | 15,767 |
+| `out_noctx.jsonl` | 631.1K | 643 |
+| `out_noctx.jsonl.scoring` | 80.4K |  |
+| `out_noctx_scores.json` | 1.9K |  |
 | `prompts_noctx.jsonl` | 640.6K | 826 |
-| `run.log` | 31B |  |
+| `prompts_noctx_ordered.jsonl` | 640.6K | 826 |
+| `run.log` | 906B |  |
+| `scripts/build_lomo_baselines.py` | 1.6K |  |
 | `scripts/build_prompts.py` | 1.3K |  |
+| `scripts/modal_noctx.py` | 1.9K |  |
 | `scripts/run_nim.py` | 2.6K |  |
 | `scripts/score_noctx.py` | 1.6K |  |
 | `smoke.jsonl` | 5.1K | 5 |
 | `smoke_out.jsonl` | 5.7K | 5 |
 
+**09_classical_ml**: classical imputation sweep (kNN etc.) + ET-SoC-1 card work (aifoundry3 card 0; card results copied back to card/from_aifoundry3/); job c76b4182. Source `~/osteo-classical` (API key and .venv excluded).
+
+`09_classical_ml/`
+
+| file | size | rows |
+|---|---:|---:|
+| `card/README.txt` | 190B | 2 |
+| `card/TASK.md` | 1.6K |  |
+| `card/cite_A.f32` | 13.2M |  |
+| `card/cite_S_ref.f32` | 285.8M |  |
+| `compare_classical.json` | 19.4K |  |
+| `preds/additive.jsonl` | 1.4M | 15,955 |
+| `preds/als_2_1.0.jsonl` | 1.4M | 15,955 |
+| `preds/als_2_10.0.jsonl` | 1.4M | 15,955 |
+| `preds/als_32_1.0.jsonl` | 1.4M | 15,955 |
+| `preds/als_32_10.0.jsonl` | 1.4M | 15,955 |
+| `preds/als_8_1.0.jsonl` | 1.4M | 15,955 |
+| `preds/als_8_10.0.jsonl` | 1.4M | 15,955 |
+| `preds/best_by_val.jsonl` | 1.3M | 15,964 |
+| `preds/col_mean.jsonl` | 1.3M | 15,955 |
+| `preds/col_median.jsonl` | 1.2M | 15,955 |
+| `preds/col_mode.jsonl` | 2.1K | 9 |
+| `preds/gbm_stack.jsonl` | 1.4M | 15,955 |
+| `preds/knn_entity_10.jsonl` | 1.3M | 15,955 |
+| `preds/knn_entity_25.jsonl` | 1.3M | 15,955 |
+| `preds/knn_entity_5.jsonl` | 1.3M | 15,955 |
+| `preds/knn_entity_50.jsonl` | 1.3M | 15,955 |
+| `preds/knn_entity_vote.jsonl` | 2.1K | 9 |
+| `preds/knn_feature_10.jsonl` | 1.3M | 15,955 |
+| `preds/knn_feature_25.jsonl` | 1.3M | 15,955 |
+| `preds/knn_feature_5.jsonl` | 1.3M | 15,955 |
+| `preds/knn_feature_50.jsonl` | 1.3M | 15,955 |
+| `preds/row_mean.jsonl` | 1.3M | 15,955 |
+| `run.log` | 12.3K |  |
+| `scripts/build_tables.py` | 2.5K |  |
+| `scripts/compare.py` | 1.9K |  |
+| `scripts/export_cite.py` | 1.5K |  |
+| `scripts/run_classical.py` | 10.8K |  |
+| `tables.pkl` | 50.1M |  |
+| `val_picks.json` | 316B |  |
+
 ## Not yet filed
 
-_Nothing: every file under ~/osteo-results, ~/osteo-nim and ~/osteo-golden is mirrored here._
+_Nothing: every file under ~/osteo-results, ~/osteo-nim, ~/osteo-golden, ~/osteo-classical is mirrored here._
 
 ## Links
 

@@ -80,7 +80,7 @@ def train(holdout: str, max_steps: int, tag: str):
 EVAL_SHARD = 1000
 
 
-@app.function(image=vllm_image, gpu="H200", volumes={"/hf": hf, "/data": data}, timeout=2 * 3600)
+@app.function(image=vllm_image, gpu=["H200", "H100"], volumes={"/hf": hf, "/data": data}, timeout=2 * 3600)
 def eval_shard(adapter: str, holdout: str, shard: int, nshards: int, out_dir: str):
     import json, os
     from vllm import LLM, SamplingParams
