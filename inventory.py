@@ -98,6 +98,24 @@ FILED_ELSEWHERE = {'eval_prompts.jsonl', 'baseline_truth.jsonl', 'validated_file
                    'golden.jsonl', 'labels.csv', 'build_golden.py', 'README.md', 'lomo_scores.json'}
 
 
+# mirrors whose deletions are carried over (the source's owner removes bad files there); others only ever add
+PRUNE = {'09_classical_ml'}
+
+
+def prune(src, rel):
+    # drop mirrored files whose source is gone; skip entirely if the source looks missing or mostly wiped
+    dst_root = f'{B}/{rel}'
+    have = [f for f in glob.glob(f'{dst_root}/**', recursive=True) if os.path.isfile(f)]
+    gone = [f for f in have if not os.path.exists(f'{src}/{os.path.relpath(f, dst_root)}')]
+    if not os.path.isdir(src) or not os.listdir(src) or len(gone) > len(have) / 4:
+        if gone:
+            print(f'prune {rel}: {len(gone)} of {len(have)} files missing at {src}; not deleting', file=sys.stderr)
+        return []
+    for f in gone:
+        os.remove(f)
+    return [f'deleted {os.path.relpath(f, B)}' for f in gone]
+
+
 def sync():
     copied = []
     for src, rel, _ in SYNC:
@@ -113,6 +131,8 @@ def sync():
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             subprocess.run(['cp', '-cp', f, dst], check=True)
             copied.append(f'{rel}/{os.path.relpath(f, src)}')
+        if rel in PRUNE:
+            copied += prune(src, rel)
     for f in ('finetuned_sid_full_eval.jsonl', 'compare_scores.json', 'compare_microbiome.json', 'compare_points.json'):
         if os.path.exists(f'{R}/{f}') and os.path.getmtime(f'{R}/{f}') > os.path.getmtime(f'{B}/07_finetune_sid_full/{f}'):
             subprocess.run(['cp', '-cp', f'{R}/{f}', f'{B}/07_finetune_sid_full/{f}'], check=True); copied.append(f)
