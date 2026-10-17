@@ -56,8 +56,12 @@ class Mat:
 
     def base(self, e, f):
         i, j = self.ei.get(e), self.fi.get(f)
-        cm = self.colmean[j] if j is not None else self.mu
-        return i, j, cm
+        return i, j, self.fallback(i, j)
+
+    def fallback(self, i, j):
+        """Column mean; for a never-seen feature, the entity's own level (mu + entity effect)."""
+        if j is not None: return self.colmean[j]
+        return self.mu + (self.be[i] if i is not None else 0.0)
 
 
 def knn_entity(M, q, k):
@@ -78,7 +82,7 @@ def knn_feature(M, q, k):
     out = []
     for e, f in q:
         i, j, cm = M.base(e, f)
-        if i is None or j is None: out.append(cm if j is not None else M.rowmean[i] if i is not None else M.mu); continue
+        if i is None or j is None: out.append(cm); continue
         row = M.Zr[i]; cols = row.indices; vals = row.data
         m = cols != j; cols, vals = cols[m], vals[m]
         if len(cols) == 0: out.append(cm); continue
@@ -109,7 +113,7 @@ def als(M, rank, lam, iters=12, seed=0):
 def predict(M, q, method, cache):
     name, *p = method
     if name == "col_mean":   return np.array([M.base(e, f)[2] for e, f in q])
-    if name == "col_median": return np.array([M.colmed[M.fi[f]] if f in M.fi else M.mu for e, f in q])
+    if name == "col_median": return np.array([M.colmed[M.fi[f]] if f in M.fi else M.fallback(M.ei.get(e), None) for e, f in q])
     if name == "row_mean":   return np.array([M.rowmean[M.ei[e]] if e in M.ei else M.mu for e, f in q])
     if name == "additive":
         return np.array([M.mu + (M.be[M.ei[e]] if e in M.ei else 0) + (M.bf[M.fi[f]] if f in M.fi else 0) for e, f in q])
@@ -172,6 +176,11 @@ def categorical_type(mod, tgts):
     preds = {"col_mode": [], "knn_entity_vote": []}
     for t in tgts:
         vals = byf.get(t["item"], [])
+        if not vals:                                    # feature never observed: use the gene's other copy
+            gene, _, copy = t["item"].rpartition("_")
+            sib = f"{gene}_{'2' if copy == '1' else '1'}"
+            own = bye.get(t["entity"], {}).get(sib)
+            vals = [own] if own else byf.get(sib, [])
         preds["col_mode"].append(collections.Counter(vals).most_common(1)[0][0] if vals else "")
         # vote of the entities that agree most with this one on shared features
         me = bye.get(t["entity"], {}); best = []
@@ -180,7 +189,7 @@ def categorical_type(mod, tgts):
             sh = [f for f in me if f in fv]; agree = sum(me[f] == fv[f] for f in sh) / max(len(sh), 1)
             best.append((agree, fv[t["item"]]))
         best.sort(key=lambda x: -x[0])
-        preds["knn_entity_vote"].append(collections.Counter(v for _, v in best[:3]).most_common(1)[0][0] if best else "")
+        preds["knn_entity_vote"].append(collections.Counter(v for _, v in best[:3]).most_common(1)[0][0] if best else preds["col_mode"][-1])
     return preds, {}
 
 

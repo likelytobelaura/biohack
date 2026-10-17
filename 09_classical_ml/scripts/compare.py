@@ -17,7 +17,7 @@ for lab in LABELS:
     row = {"key": lab, "data_type": LABELS[lab], "metric": res["glimmer_base"][lab]["metric"],
            "targets": res["glimmer_base"][lab]["targets"], "val_pick": vsel.get(lab)}
     for m in runs:
-        if lab in res[m]:
+        if lab in res[m] and not (m == "glimmer_noctx" and lab not in ("flow", "rna", "tcr", "xenium")):
             row[m] = None if res[m][lab]["primary"] is None else round(res[m][lab]["primary"], 4)
             row[m + "_answered"] = round(res[m][lab]["answered"], 3)
     rows.append(row)

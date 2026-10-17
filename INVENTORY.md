@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 14:54 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
+Generated 2026-10-17 14:56 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -66,13 +66,15 @@ Sweep app: `ap-AIzYiRcj5xsmQdDteujfMa` (ephemeral (detached))
 | `lomo740_tcr` | everything except TCR beta clones | 2,000 | training | – |
 | `lomo740_xenium` | everything except Xenium | 600 | queued | – |
 | `lomo740_all` | all 11,824 rows | 24,634 | trained, eval pending | – |
-| `lomo740_flow_full` | everything except flow_full | 0 | done | `06_heldout_experiments/lomo740_flow_full/outputs/` |
-| `lomo740_rna_full` | everything except rna_full | 0 | done | `06_heldout_experiments/lomo740_rna_full/outputs/` |
+| `lomo740_flow_full` | everything except Flow cytometry (adapter of `lomo740_flow`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_flow_full/outputs/` |
+| `lomo740_rna_full` | everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target) | 24,634 | evaluating (1996/15964 prompts pulled) | `06_heldout_experiments/lomo740_rna_full/outputs/` |
 
 Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
 `prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full
 adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in
 `05_baseline_report/baseline_scores.json`.
+`lomo740_<type>_full` runs re-evaluate a hold-out adapter on every prompt; their per-type change vs `lomo740_all`
+(off-target effect of dropping that type) is in `osteo_results_lomo/offtarget_scores.json` (`scripts/score_offtarget.py`).
 
 _No hold-out scores yet (`~/osteo-results/lomo_scores.json` not written)._
 
@@ -189,6 +191,52 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `card/TASK.md` | 1.6K |  |
 | `card/cite_A.f32` | 13.2M |  |
 | `card/cite_S_ref.f32` | 285.8M |  |
+| `card/from_aifoundry3/DONE` | 855B |  |
+| `card/from_aifoundry3/NOTES.md` | 2.5K |  |
+| `card/from_aifoundry3/README.txt` | 190B | 2 |
+| `card/from_aifoundry3/TASK.md` | 1.6K |  |
+| `card/from_aifoundry3/aat/CMakeLists.txt` | 1.2K | 30 |
+| `card/from_aifoundry3/aat/aat_args.h` | 617B |  |
+| `card/from_aifoundry3/aat/build.log` | 3.2K |  |
+| `card/from_aifoundry3/aat/build/Makefile` | 4.9K |  |
+| `card/from_aifoundry3/aat/build/host/Constants.h` | 730B |  |
+| `card/from_aifoundry3/aat/build/host/Makefile` | 5.7K |  |
+| `card/from_aifoundry3/aat/build/host/aat_host` | 3.4M |  |
+| `card/from_aifoundry3/aat/build/kernel/Makefile` | 6.5K |  |
+| `card/from_aifoundry3/aat/build/kernel/aat.bin` | 674B |  |
+| `card/from_aifoundry3/aat/build/kernel/aat.elf` | 8.0K |  |
+| `card/from_aifoundry3/aat/build/kernel/aat.elf.ltrans0.ltrans.su` | 72B |  |
+| `card/from_aifoundry3/aat/build/kernel/aat.lst` | 12.0K |  |
+| `card/from_aifoundry3/aat/build/kernel/aat.map` | 6.0K |  |
+| `card/from_aifoundry3/aat/check.py` | 959B |  |
+| `card/from_aifoundry3/aat/host/CMakeLists.txt` | 1.4K | 22 |
+| `card/from_aifoundry3/aat/host/Constants.h.in` | 470B |  |
+| `card/from_aifoundry3/aat/host/main.cpp` | 10.4K |  |
+| `card/from_aifoundry3/aat/kernel/CMakeLists.txt` | 681B | 16 |
+| `card/from_aifoundry3/aat/kernel/aat.c` | 2.2K |  |
+| `card/from_aifoundry3/aat/kernel/crt.S` | 760B |  |
+| `card/from_aifoundry3/aat/kernel/sections.ld` | 1.7K |  |
+| `card/from_aifoundry3/aat/sim/A64.f32` | 100.0K |  |
+| `card/from_aifoundry3/aat/sim/S64.f32` | 16.0K |  |
+| `card/from_aifoundry3/aat/sim/pu_uart0_tx.log` | 127B |  |
+| `card/from_aifoundry3/aat/sim/pu_uart1_tx.log` | 1B |  |
+| `card/from_aifoundry3/aat/sim/sim.out` | 5.7M |  |
+| `card/from_aifoundry3/aat/sim/spio_uart0_tx.log` | 952B |  |
+| `card/from_aifoundry3/aat/sim/spio_uart1_tx.log` | 1B |  |
+| `card/from_aifoundry3/aat/sim/sysemu.log` | 5.8K |  |
+| `card/from_aifoundry3/cite_A.f32` | 13.2M |  |
+| `card/from_aifoundry3/cite_S_card.f32` | 285.8M |  |
+| `card/from_aifoundry3/runs/card-2048/A2048.f32` | 3.1M |  |
+| `card/from_aifoundry3/runs/card-2048/S2048.f32` | 16.0M |  |
+| `card/from_aifoundry3/runs/card-2048/check.txt` | 230B | 7 |
+| `card/from_aifoundry3/runs/card-2048/manifest.txt` | 670B | 11 |
+| `card/from_aifoundry3/runs/card-2048/out.txt` | 4.1K | 55 |
+| `card/from_aifoundry3/runs/card-2048/when.txt` | 32B | 1 |
+| `card/from_aifoundry3/runs/card-full/check.txt` | 231B | 7 |
+| `card/from_aifoundry3/runs/card-full/manifest.txt` | 670B | 11 |
+| `card/from_aifoundry3/runs/card-full/out.txt` | 4.1K | 55 |
+| `card/from_aifoundry3/runs/card-full/sha256.txt` | 110B | 1 |
+| `card/from_aifoundry3/runs/card-full/when.txt` | 32B | 1 |
 | `compare_classical.json` | 19.4K |  |
 | `preds/additive.jsonl` | 1.4M | 15,955 |
 | `preds/als_2_1.0.jsonl` | 1.4M | 15,955 |
@@ -214,9 +262,9 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `preds/row_mean.jsonl` | 1.3M | 15,955 |
 | `run.log` | 12.3K |  |
 | `scripts/build_tables.py` | 2.5K |  |
-| `scripts/compare.py` | 1.9K |  |
+| `scripts/compare.py` | 2.0K |  |
 | `scripts/export_cite.py` | 1.5K |  |
-| `scripts/run_classical.py` | 10.8K |  |
+| `scripts/run_classical.py` | 11.3K |  |
 | `tables.pkl` | 50.1M |  |
 | `val_picks.json` | 316B |  |
 

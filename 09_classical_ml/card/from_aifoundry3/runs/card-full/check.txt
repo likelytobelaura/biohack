@@ -1,0 +1,7 @@
+m=8656 k=400 entries=74926336
+non-finite entries 0
+max abs error 4.048e-07 at (7970, 7970)
+mean abs error 1.312e-08
+entries off by more than 1e-4: 0
+symmetry: max |S - S^T| 0.000e+00
+ref diag range 0.0000..1.0000, |ref| max 1.0000
