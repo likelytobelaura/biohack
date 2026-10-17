@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 15:59",
+ "generated": "2026-10-17 16:05",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -218,7 +218,8 @@
    "status": "done",
    "adapter": "osteo-data:adapters/lomo/lomo740_flow",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_flow",
-   "outputs_local_rows": 18
+   "outputs_local_rows": 18,
+   "outputs_path": "06_heldout_experiments/lomo740_flow/outputs"
   },
   {
    "name": "lomo740_rna",
@@ -228,10 +229,11 @@
    "trains_on": "everything except Bulk RNA-seq TPM",
    "eval_targets": 2000,
    "eval_prompts": 104,
-   "status": "unknown (offline)",
+   "status": "trained; evaluated in `lomo740_rna_full` (all prompts)",
    "adapter": "osteo-data:adapters/lomo/lomo740_rna",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna",
-   "outputs_local_rows": 0
+   "outputs_local_rows": 0,
+   "outputs_path": null
   },
   {
    "name": "lomo740_tcr",
@@ -241,10 +243,11 @@
    "trains_on": "everything except TCR beta clones",
    "eval_targets": 2000,
    "eval_prompts": 104,
-   "status": "unknown (offline)",
+   "status": "trained; evaluated in `lomo740_tcr_full` (all prompts)",
    "adapter": "osteo-data:adapters/lomo/lomo740_tcr",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_tcr",
-   "outputs_local_rows": 0
+   "outputs_local_rows": 0,
+   "outputs_path": null
   },
   {
    "name": "lomo740_xenium",
@@ -254,10 +257,11 @@
    "trains_on": "everything except Xenium",
    "eval_targets": 600,
    "eval_prompts": 600,
-   "status": "unknown (offline)",
+   "status": "trained; evaluated in `lomo740_xenium_full` (all prompts)",
    "adapter": "osteo-data:adapters/lomo/lomo740_xenium",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_xenium",
-   "outputs_local_rows": 0
+   "outputs_local_rows": 0,
+   "outputs_path": null
   },
   {
    "name": "lomo740_all",
@@ -267,10 +271,81 @@
    "trains_on": "all 11,824 rows",
    "eval_targets": 24634,
    "eval_prompts": 15964,
-   "status": "unknown (offline)",
+   "status": "trained; evaluated in `lomo740h100_all` (all prompts)",
    "adapter": "osteo-data:adapters/lomo/lomo740_all",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_all",
-   "outputs_local_rows": 0
+   "outputs_local_rows": 0,
+   "outputs_path": null
+  },
+  {
+   "name": "lomo740_flow_full",
+   "holdout": "flow",
+   "off_target_eval": true,
+   "label": "Flow cytometry",
+   "trains_on": "everything except Flow cytometry (adapter of `lomo740_flow`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "done",
+   "adapter": "osteo-data:adapters/lomo/lomo740_flow_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_flow_full",
+   "outputs_local_rows": 15964,
+   "outputs_path": "06_heldout_experiments/lomo740_flow_full/outputs"
+  },
+  {
+   "name": "lomo740_rna_full",
+   "holdout": "rna",
+   "off_target_eval": true,
+   "label": "Bulk RNA-seq TPM",
+   "trains_on": "everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "done",
+   "adapter": "osteo-data:adapters/lomo/lomo740_rna_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna_full",
+   "outputs_local_rows": 15964,
+   "outputs_path": "06_heldout_experiments/lomo740_rna_full/outputs"
+  },
+  {
+   "name": "lomo740_tcr_full",
+   "holdout": "tcr",
+   "off_target_eval": true,
+   "label": "TCR beta clones",
+   "trains_on": "everything except TCR beta clones (adapter of `lomo740_tcr`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "done",
+   "adapter": "osteo-data:adapters/lomo/lomo740_tcr_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_tcr_full",
+   "outputs_local_rows": 15964,
+   "outputs_path": "06_heldout_experiments/lomo740_tcr_full/outputs"
+  },
+  {
+   "name": "lomo740_xenium_full",
+   "holdout": "xenium",
+   "off_target_eval": true,
+   "label": "Xenium",
+   "trains_on": "everything except Xenium (adapter of `lomo740_xenium`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "evaluating (8,981/15,964 prompts so far)",
+   "adapter": "osteo-data:adapters/lomo/lomo740_xenium_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_xenium_full",
+   "outputs_local_rows": 8981,
+   "outputs_path": "06_heldout_experiments/lomo740_xenium_full/outputs"
+  },
+  {
+   "name": "lomo740h100_all",
+   "holdout": "all",
+   "off_target_eval": false,
+   "label": "All data (reference)",
+   "trains_on": "all 11,824 rows (eval of `lomo740_all` re-run with H100 fallback)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "done",
+   "adapter": "osteo-data:adapters/lomo/lomo740h100_all",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740h100_all",
+   "outputs_local_rows": 15964,
+   "outputs_path": "06_heldout_experiments/lomo740h100_all/outputs"
   }
  ],
  "lomo_scores": {
@@ -321,7 +396,14 @@
    "answered_holdout": 1.0
   }
  },
- "sweep_app": null,
+ "sweep_app": {
+  "app_id": "ap-ckatv2kq0BdPRVcYK3PhmC",
+  "description": "osteo-lomo",
+  "state": "ephemeral (detached)",
+  "tasks": "11",
+  "created_at": "2026-10-17 15:28:19-07:00",
+  "stopped_at": null
+ },
  "mirrors": {
   "06_heldout_experiments/osteo_results_lomo": [
    {
@@ -692,6 +774,86 @@
    {
     "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard9.jsonl",
     "bytes": 114820,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard0.jsonl",
+    "bytes": 116461,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard1.jsonl",
+    "bytes": 115895,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard10.jsonl",
+    "bytes": 115013,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard11.jsonl",
+    "bytes": 115731,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard12.jsonl",
+    "bytes": 114961,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard13.jsonl",
+    "bytes": 115575,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard14.jsonl",
+    "bytes": 115163,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard15.jsonl",
+    "bytes": 115567,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard2.jsonl",
+    "bytes": 115974,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard3.jsonl",
+    "bytes": 116085,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard4.jsonl",
+    "bytes": 116672,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard5.jsonl",
+    "bytes": 115676,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard6.jsonl",
+    "bytes": 116033,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard7.jsonl",
+    "bytes": 115479,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard8.jsonl",
+    "bytes": 114534,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard9.jsonl",
+    "bytes": 114704,
     "rows": 998
    },
    {
@@ -2385,8 +2547,6 @@
   ]
  },
  "unfiled": [],
- "copied_this_run": [
-  "09_classical_ml/HOLDOUT.md"
- ],
- "esperanto_pull": "offline run: not pulled"
+ "copied_this_run": [],
+ "esperanto_pull": "last pulled 2026-10-17 16:04"
 }

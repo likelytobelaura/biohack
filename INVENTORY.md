@@ -1,10 +1,18 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 15:59 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
+Generated 2026-10-17 16:05 by `inventory.py` (a watcher re-runs it and pushes to GitHub every 10 min while runs are going).
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
 Eval = a 20% random mask: 24,634 targets in 15,964 prompts, 13 data types.
+
+**Where it lives.** GitHub (this repo): code, reports, scores, every model answer file, the per-hold-out prompt and
+gold-label slices, and a full text copy of the Modal volume in `11_modal_osteo_data/` (incl. the training set
+`train/sid_full.jsonl` and the eval prompts `prompts/baseline.jsonl`). HF
+([likelytobelaura/osteo-glimmer-lora](https://huggingface.co/likelytobelaura/osteo-glimmer-lora)): every adapter's
+weights, optimizer state and tokenizer. Local only (sizes and sha256 below): the full gold labels (`02_golden_labels/`),
+raw bucket files (`01_sid_full_dataset/source/`), card result matrices (`*.f32`), raw ET-SoC-1 simulator logs and datasets.
+Folders 01 and 03 hold the same training set and prompts as section 11 (git-ignored there, committed in 11).
 
 
 ## 1. Sid's full dataset
@@ -57,15 +65,20 @@ LoRA r=32 (same settings as `sid_full`), 8×H200, a 740-step schedule run to com
 each is then evaluated on that type's masked targets only. `lomo740_all` is the matched reference trained on everything:
 the finished counterpart of `sid_full`, which saw the same half epoch but stopped mid-schedule.
 Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).
-Sweep app: not running.
+Sweep app: `ap-ckatv2kq0BdPRVcYK3PhmC` (ephemeral (detached))
 
 | run | trains on | eval targets | status | local outputs |
 |---|---|---:|---|---|
 | `lomo740_flow` | everything except Flow cytometry | 221 | done | `06_heldout_experiments/lomo740_flow/outputs/` |
-| `lomo740_rna` | everything except Bulk RNA-seq TPM | 2,000 | unknown (offline) | – |
-| `lomo740_tcr` | everything except TCR beta clones | 2,000 | unknown (offline) | – |
-| `lomo740_xenium` | everything except Xenium | 600 | unknown (offline) | – |
-| `lomo740_all` | all 11,824 rows | 24,634 | unknown (offline) | – |
+| `lomo740_rna` | everything except Bulk RNA-seq TPM | 2,000 | trained; evaluated in `lomo740_rna_full` (all prompts) | – |
+| `lomo740_tcr` | everything except TCR beta clones | 2,000 | trained; evaluated in `lomo740_tcr_full` (all prompts) | – |
+| `lomo740_xenium` | everything except Xenium | 600 | trained; evaluated in `lomo740_xenium_full` (all prompts) | – |
+| `lomo740_all` | all 11,824 rows | 24,634 | trained; evaluated in `lomo740h100_all` (all prompts) | – |
+| `lomo740_flow_full` | everything except Flow cytometry (adapter of `lomo740_flow`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_flow_full/outputs/` |
+| `lomo740_rna_full` | everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_rna_full/outputs/` |
+| `lomo740_tcr_full` | everything except TCR beta clones (adapter of `lomo740_tcr`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_tcr_full/outputs/` |
+| `lomo740_xenium_full` | everything except Xenium (adapter of `lomo740_xenium`; eval on ALL prompts, off-target) | 24,634 | evaluating (8,981/15,964 prompts so far) | `06_heldout_experiments/lomo740_xenium_full/outputs/` |
+| `lomo740h100_all` | all 11,824 rows (eval of `lomo740_all` re-run with H100 fallback) | 24,634 | done | `06_heldout_experiments/lomo740h100_all/outputs/` |
 
 Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
 `prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full
@@ -161,6 +174,22 @@ Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 | `evals/lomo740_rna_full/shard7.jsonl` | 113.0K | 998 |
 | `evals/lomo740_rna_full/shard8.jsonl` | 112.0K | 998 |
 | `evals/lomo740_rna_full/shard9.jsonl` | 112.1K | 998 |
+| `evals/lomo740_tcr_full/shard0.jsonl` | 113.7K | 998 |
+| `evals/lomo740_tcr_full/shard1.jsonl` | 113.2K | 998 |
+| `evals/lomo740_tcr_full/shard10.jsonl` | 112.3K | 998 |
+| `evals/lomo740_tcr_full/shard11.jsonl` | 113.0K | 998 |
+| `evals/lomo740_tcr_full/shard12.jsonl` | 112.3K | 997 |
+| `evals/lomo740_tcr_full/shard13.jsonl` | 112.9K | 997 |
+| `evals/lomo740_tcr_full/shard14.jsonl` | 112.5K | 997 |
+| `evals/lomo740_tcr_full/shard15.jsonl` | 112.9K | 997 |
+| `evals/lomo740_tcr_full/shard2.jsonl` | 113.3K | 998 |
+| `evals/lomo740_tcr_full/shard3.jsonl` | 113.4K | 998 |
+| `evals/lomo740_tcr_full/shard4.jsonl` | 113.9K | 998 |
+| `evals/lomo740_tcr_full/shard5.jsonl` | 113.0K | 998 |
+| `evals/lomo740_tcr_full/shard6.jsonl` | 113.3K | 998 |
+| `evals/lomo740_tcr_full/shard7.jsonl` | 112.8K | 998 |
+| `evals/lomo740_tcr_full/shard8.jsonl` | 111.8K | 998 |
+| `evals/lomo740_tcr_full/shard9.jsonl` | 112.0K | 998 |
 | `evals/lomo740h100_all/shard0.jsonl` | 114.0K | 998 |
 | `evals/lomo740h100_all/shard1.jsonl` | 113.3K | 998 |
 | `evals/lomo740h100_all/shard10.jsonl` | 112.4K | 998 |
@@ -355,7 +384,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 ## 10. Esperanto ET-SoC-1 (AI Foundry lab, aifoundry3 card 0)
 
-Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (offline run: not pulled).
+Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 16:04).
 The account only reaches aifoundry3 (aifoundry1/2 refuse it), so this is all of it. Not copied: dotfiles
 (`~/.claude`, `.claude.json` hold the lab Claude's login) and `~/et-soc1-prototyping`, an unmodified clone of
 https://github.com/yaroslavvb/et-soc1-prototyping at `f0a40879800d8d21955d061b92ad974570455595`. `osteo/` is the osteo card job (also in section 9).
