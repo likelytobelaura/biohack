@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 16:15",
+ "generated": "2026-10-17 16:16",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -2856,8 +2856,6 @@
   ]
  },
  "unfiled": [],
- "copied_this_run": [
-  "09_classical_ml/HOLDOUT.md"
- ],
+ "copied_this_run": [],
  "esperanto_pull": "last pulled 2026-10-17 16:15"
 }

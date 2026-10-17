@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 16:15 by `inventory.py` (a watcher re-runs it and pushes to GitHub every 10 min while runs are going).
+Generated 2026-10-17 16:16 by `inventory.py` (a watcher re-runs it and pushes to GitHub every 10 min while runs are going).
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
