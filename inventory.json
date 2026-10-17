@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 15:13",
+ "generated": "2026-10-17 15:16",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -293,10 +293,10 @@
    "trains_on": "everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target)",
    "eval_targets": 24634,
    "eval_prompts": 15964,
-   "status": "evaluating (12973/15964 prompts pulled)",
+   "status": "evaluating (14967/15964 prompts pulled)",
    "adapter": "osteo-data:adapters/lomo/lomo740_rna_full",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna_full",
-   "outputs_local_rows": 12973
+   "outputs_local_rows": 14967
   }
  ],
  "lomo_scores": null,
@@ -1164,8 +1164,6 @@
   ]
  },
  "unfiled": [],
- "copied_this_run": [
-  "08_other_baselines/muse_spark/run_1.2.log"
- ],
- "esperanto_pull": "last pulled 2026-10-17 15:13"
+ "copied_this_run": [],
+ "esperanto_pull": "last pulled 2026-10-17 15:16"
 }
