@@ -230,10 +230,14 @@ def heldout(offline):
             remote.setdefault(n, {})['shards'] = len(vol_ls(f'outputs/lomo/{n}'))
         apps = json.loads(modal('app', 'list', '--json') or '[]')
         app = next((a for a in apps if a['description'] == 'osteo-lomo' and a['stopped_at'] is None), None)
-    keys = list(dict.fromkeys(PLANNED + [n.split('_', 1)[1] for n in remote if n.startswith('lomo740_')]))
+    # the local copy of the whole volume (section 11) is the source of truth for status; Modal only adds what's newer
+    VM = f'{B}/11_modal_osteo_data'
+    local = {os.path.basename(p) for p in glob.glob(f'{VM}/outputs/lomo/lomo740*') + glob.glob(f'{VM}/adapters/lomo/lomo740*')}
+    names = list(dict.fromkeys([f'lomo740_{h}' for h in PLANNED] + sorted(n for n in set(remote) | local if n.startswith('lomo740'))))
     exps = []
-    for h in keys:
-        name = f'lomo740_{h}'
+    for name in names:
+        # lomo740h100_all = the all-data reference's full eval, re-launched with H100 fallback
+        h = 'all_h100' if name == 'lomo740h100_all' else name.split('_', 1)[1]
         d = f'{EXP}/{name}'
         r = remote.get(name, {})
         os.makedirs(d, exist_ok=True)
@@ -243,14 +247,15 @@ def heldout(offline):
             if modal('volume', 'get', VOL, f'outputs/lomo/{name}', tmp + '/') is not None:
                 subprocess.run(['rm', '-rf', f'{d}/outputs']); os.rename(f'{tmp}/{name}', f'{d}/outputs')
             subprocess.run(['rm', '-rf', tmp])
-        local_shards = sorted(glob.glob(f'{d}/outputs/shard*.jsonl'))
-        n_out = sum(rows(f) for f in local_shards)
+        n_out = max(sum(rows(f) for f in glob.glob(f'{d}/outputs/shard*.jsonl')),
+                    sum(rows(f) for f in glob.glob(f'{VM}/outputs/lomo/{name}/shard*.jsonl')))
         # lomo740_<type>_full = the <type> hold-out adapter re-evaluated on every prompt, to measure off-target effects
         off = h.endswith('_full')
-        base = h[:-len('_full')] if off else h
-        ts = truth.get(h, []) if h != 'all' and not off else [t for v in truth.values() for t in v]
+        base = h[:-len('_full')] if off else 'all' if h == 'all_h100' else h
+        everything = h in ('all', 'all_h100') or off
+        ts = [t for v in truth.values() for t in v] if everything else truth.get(h, [])
         pids = {t['prompt_id'] for t in ts}
-        if h != 'all' and not off:
+        if not everything:
             b = f'{d}/baselines'; os.makedirs(b, exist_ok=True)
             with open(f'{b}/truth_{h}.jsonl', 'w') as g:
                 g.writelines(json.dumps(t) + '\n' for t in ts)
@@ -262,22 +267,28 @@ def heldout(offline):
                 with open(f'{b}/all_reference_{h}.jsonl', 'w') as g:
                     for f in subset_all:
                         g.writelines(l for l in open(f) if json.loads(l)['prompt_id'] in pids)
+        trained = bool(r.get('adapter_files')) or os.path.exists(f'{VM}/adapters/lomo/{name}/adapter_model.safetensors')
+        full = 'lomo740h100_all' if h == 'all' else f'lomo740_{h}_full'
+        out_dir = next((p for p in (f'{d}/outputs', f'{VM}/outputs/lomo/{name}') if glob.glob(f'{p}/shard*.jsonl')), None)
         if n_out and n_out >= len(pids):
             status = 'done'
         elif n_out:
-            status = f'evaluating ({n_out}/{len(pids)} prompts pulled)'
-        elif r.get('adapter_files'):
+            status = f'evaluating ({n_out:,}/{len(pids):,} prompts so far)'
+        elif trained and (full in names):
+            status = f'trained; evaluated in `{full}` (all prompts)'
+        elif trained:
             status = 'trained, eval pending'
         elif name in remote:
             status = 'training'
         else:
-            status = 'queued' if app else ('not on Modal' if not offline else 'unknown (offline)')
+            status = 'queued' if app else 'not on the volume'
         exps.append({'name': name, 'holdout': base, 'off_target_eval': off, 'label': LABELS.get(base, base),
-                     'trains_on': 'all 11,824 rows' if h == 'all' else f'everything except {LABELS.get(base, base)}'
+                     'trains_on': ('all 11,824 rows' + (' (eval of `lomo740_all` re-run with H100 fallback)' if h == 'all_h100' else ''))
+                                  if base == 'all' else f'everything except {LABELS.get(base, base)}'
                                   + (' (adapter of `lomo740_' + base + '`; eval on ALL prompts, off-target)' if off else ''),
                      'eval_targets': len(ts), 'eval_prompts': len(pids), 'status': status,
                      'adapter': f'{VOL}:adapters/lomo/{name}', 'outputs_remote': f'{VOL}:outputs/lomo/{name}',
-                     'outputs_local_rows': n_out})
+                     'outputs_local_rows': n_out, 'outputs_path': out_dir and os.path.relpath(out_dir, B)})
     scores = None
     # score_lomo.py writes into lomo/ since 2026-10-17 15:10; older runs wrote to the osteo-results root
     src = next((p for p in (f'{R}/lomo/lomo_scores.json', f'{R}/lomo_scores.json') if os.path.exists(p)), None)
@@ -306,10 +317,17 @@ def main():
                'mirrors': mirrors, 'unfiled': loose, 'copied_this_run': copied, 'esperanto_pull': lab}, open(f'{B}/inventory.json', 'w'), indent=1)
 
     L = [f'# Biohack data inventory (osteosarcoma imputation)', '',
-         f'Generated {now} by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.', '',
+         f'Generated {now} by `inventory.py` (a watcher re-runs it and pushes to GitHub every 10 min while runs are going).', '',
          'Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij\'s public',
          'osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).',
-         'Eval = a 20% random mask: 24,634 targets in 15,964 prompts, 13 data types.', '']
+         'Eval = a 20% random mask: 24,634 targets in 15,964 prompts, 13 data types.', '',
+         '**Where it lives.** GitHub (this repo): code, reports, scores, every model answer file, the per-hold-out prompt and',
+         'gold-label slices, and a full text copy of the Modal volume in `11_modal_osteo_data/` (incl. the training set',
+         '`train/sid_full.jsonl` and the eval prompts `prompts/baseline.jsonl`). HF',
+         '([likelytobelaura/osteo-glimmer-lora](https://huggingface.co/likelytobelaura/osteo-glimmer-lora)): every adapter\'s',
+         'weights, optimizer state and tokenizer. Local only (sizes and sha256 below): the full gold labels (`02_golden_labels/`),',
+         'raw bucket files (`01_sid_full_dataset/source/`), card result matrices (`*.f32`), raw ET-SoC-1 simulator logs and datasets.',
+         'Folders 01 and 03 hold the same training set and prompts as section 11 (git-ignored there, committed in 11).', '']
     def table(its):
       sec = None
       for it in its:
@@ -338,7 +356,7 @@ def main():
           '| run | trains on | eval targets | status | local outputs |', '|---|---|---:|---|---|']
     for e in exps:
         L.append(f"| `{e['name']}` | {e['trains_on']} | {e['eval_targets']:,} | {e['status']} | "
-                 f"{'`06_heldout_experiments/' + e['name'] + '/outputs/`' if e['outputs_local_rows'] else '–'} |")
+                 f"{'`' + e['outputs_path'] + '/`' if e['outputs_path'] else '–'} |")
     L += ['', 'Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type\'s prompts:',
           '`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full',
           'adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in',
