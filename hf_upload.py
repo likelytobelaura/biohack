@@ -13,9 +13,9 @@ REPO = 'likelytobelaura/osteo-glimmer-lora'
 # local adapter dir -> folder in the HF repo
 ADAPTERS = {f'{B}/07_finetune_sid_full/adapter': 'sid_full'}
 ADAPTERS.update({d: os.path.basename(d) for d in sorted(glob.glob(f'{B}/06_heldout_experiments/osteo_results_lomo/adapters/lomo740_*'))})
-# tokenizer.json is the base model's own (27 MB), not part of the adapter; the per-adapter README.md is PEFT
-# boilerplate whose base_model is a local path, which the Hub rejects (the repo-level model card covers it)
-IGNORE = ['tokenizer.json', '**/tokenizer.json', 'README.md', '**/README.md', '.DS_Store']
+# the per-adapter README.md is PEFT boilerplate whose base_model is a local path, which the Hub rejects (the
+# repo-level model card covers it; the file itself is in git). tokenizer.json is uploaded since 2026-10-17.
+IGNORE = ['README.md', '**/README.md', '.DS_Store']
 
 
 def token():

@@ -23,6 +23,9 @@
 !08_other_baselines/nim_noctx/baseline_*.jsonl
 !08_other_baselines/nim_noctx/smoke_out.jsonl
 !09_classical_ml/preds*/*.jsonl
+# full backup of the Modal volume osteo-data (Laura, 2026-10-17): every text file, incl. the training set and prompts;
+# weights, optimizer state and tokenizer.json are on HF instead
+!11_modal_osteo_data/**/*.jsonl
 *.safetensors
 *.pt
 *.pth

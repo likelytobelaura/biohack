@@ -62,6 +62,7 @@ SYNC = [
     (f'{H}/osteo-results/lomo', '06_heldout_experiments/osteo_results_lomo', 'hold-out adapters/evals the LOMO job (6c5c300f) pulls locally'),
     (f'{H}/osteo-results/spark', '08_other_baselines/muse_spark', 'Muse Spark 1.2 / 1.3 (api.meta.ai, contributor) on golden.jsonl prompts; job 7d63451c'),
     (f'{H}/osteo-nim', '08_other_baselines/nim_noctx', 'NVIDIA NIM, prompts with the known values stripped (826 prompts) + NIM hold-out baselines; job c76b4182'),
+    (f'{H}/osteo-data-volume', '11_modal_osteo_data', 'full copy of the Modal volume osteo-data, same layout (mirrored locally by the LOMO job)'),
     (f'{H}/osteo-classical', '09_classical_ml', 'classical imputation sweep (kNN etc.) + ET-SoC-1 card work (aifoundry3 card 0; card results copied back to card/from_aifoundry3/); job c76b4182'),
     (f'{H}/osteo-results/scripts', 'scripts', 'project scripts'),
 ]
@@ -374,6 +375,19 @@ def main():
         fs = [f for f in glob.glob(f'{ET}/{name}/**', recursive=True) if os.path.isfile(f)] if os.path.isdir(f'{ET}/{name}') else \
              ([f'{ET}/{name}'] if os.path.exists(f'{ET}/{name}') else [])
         L.append(f"| `{name}` | {len(fs):,} | {human(sum(os.path.getsize(f) for f in fs)) if fs else '–'} | {what} |")
+    V = f'{B}/11_modal_osteo_data'
+    L.extend(['', '## 11. Modal volume `osteo-data` (full backup)', '',
+              'Everything on the volume, same layout, mirrored from `~/osteo-data-volume`. Text files are in git; weights,',
+              'optimizer state and `tokenizer.json` are on HF (`hf_volume_backup.py` uploads each adapter folder once its copy',
+              'matches the volume\'s file sizes, then checks every file on HF against it).', '',
+              '| volume folder | files | size | backed up on |', '|---|---:|---:|---|'])
+    groups = collections.defaultdict(list)
+    for f in mirrors.get('11_modal_osteo_data', []):
+        p = f['path'].split('/')[1:]
+        groups['/'.join(p[:3] if p[0] == 'adapters' and p[1] == 'lomo' else p[:2] if p[0] in ('adapters', 'outputs') and len(p) > 2 else p[:1])].append(f)
+    for g, fs in sorted(groups.items()):
+        where = 'HF (`' + g.split('/')[-1] + '/`) + text in git' if g.startswith('adapters/') else 'GitHub'
+        L.append(f"| `{g}` | {len(fs)} | {human(sum(f['bytes'] for f in fs))} | {where} |")
     L.extend(['', '## Not yet filed', ''])
     L.extend([f'- `{f}` (copied to `_incoming/`)' for f in loose] or ['_Nothing: every file under ' + ', '.join(w.replace(H, '~') for w in WATCH) + ' is mirrored here._'])
     L += ['', '## Links', '',

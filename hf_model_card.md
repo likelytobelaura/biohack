@@ -26,6 +26,9 @@ but `build_golden.py`, `recon.py` and the prompt builders there regenerate them.
 | `lomo740_<type>/` | everything except one data type | leave-one-data-type-out runs, 740 steps; evaluated on the held-out type only |
 | `lomo740_all/` | all rows, 740-step schedule run to completion | reference for the hold-out runs; the finished counterpart of `sid_full` (same half epoch of data) |
 
+| `smoke_sid/`, `smoke_resume8/`, `smoke_all/` | tiny subsets | pipeline smoke tests (20-step / resume checks), not for use; kept as the full backup of the Modal volume |
+
+Every folder includes the tokenizer it was trained with (`tokenizer.json` is Muse-Glimmer-30B's, unchanged).
 Hold-out folders appear as each run finishes. Per-run status and scores: `INVENTORY.md` §6 in the GitHub repo.
 
 ## Recipe
