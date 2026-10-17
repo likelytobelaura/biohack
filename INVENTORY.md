@@ -77,7 +77,7 @@ Sweep app: `ap-ckatv2kq0BdPRVcYK3PhmC` (ephemeral (detached))
 | `lomo740_flow_full` | everything except Flow cytometry (adapter of `lomo740_flow`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_flow_full/outputs/` |
 | `lomo740_rna_full` | everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_rna_full/outputs/` |
 | `lomo740_tcr_full` | everything except TCR beta clones (adapter of `lomo740_tcr`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_tcr_full/outputs/` |
-| `lomo740_xenium_full` | everything except Xenium (adapter of `lomo740_xenium`; eval on ALL prompts, off-target) | 24,634 | evaluating (8,981/15,964 prompts so far) | `06_heldout_experiments/lomo740_xenium_full/outputs/` |
+| `lomo740_xenium_full` | everything except Xenium (adapter of `lomo740_xenium`; eval on ALL prompts, off-target) | 24,634 | evaluating (10,976/15,964 prompts so far) | `06_heldout_experiments/lomo740_xenium_full/outputs/` |
 | `lomo740h100_all` | all 11,824 rows (eval of `lomo740_all` re-run with H100 fallback) | 24,634 | done | `06_heldout_experiments/lomo740h100_all/outputs/` |
 
 Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
@@ -384,7 +384,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 ## 10. Esperanto ET-SoC-1 (AI Foundry lab, aifoundry3 card 0)
 
-Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 16:04).
+Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 16:05).
 The account only reaches aifoundry3 (aifoundry1/2 refuse it), so this is all of it. Not copied: dotfiles
 (`~/.claude`, `.claude.json` hold the lab Claude's login) and `~/et-soc1-prototyping`, an unmodified clone of
 https://github.com/yaroslavvb/et-soc1-prototyping at `f0a40879800d8d21955d061b92ad974570455595`. `osteo/` is the osteo card job (also in section 9).
