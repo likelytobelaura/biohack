@@ -7,13 +7,16 @@
 01_sid_full_dataset/source/manifest.txt
 01_sid_full_dataset/source/keys.txt
 # ...except model answers, which are committed (Laura, 2026-10-17). Training set, gold labels and prompts stay local:
-# prompts_*/truth_* slices and the NIM prompt files are model inputs, not answers. Weights go to HF only.
+# the NIM prompt files are model inputs, not answers. Weights go to HF only.
 !04_baseline_responses/*.jsonl
 !07_finetune_sid_full/finetuned_sid_full_eval.jsonl
 !06_heldout_experiments/*/outputs/*.jsonl
 !06_heldout_experiments/*/baselines/base_zeroshot_*.jsonl
 !06_heldout_experiments/*/baselines/sid_full_finetune_*.jsonl
 !06_heldout_experiments/*/baselines/all_reference_*.jsonl
+# per-hold-out prompt and gold-label slices are committed too (Laura, 2026-10-17); the full 02/03 sets are not
+!06_heldout_experiments/*/baselines/prompts_*.jsonl
+!06_heldout_experiments/*/baselines/truth_*.jsonl
 !06_heldout_experiments/osteo_results_lomo/evals/**/*.jsonl
 !08_other_baselines/muse_spark/*.jsonl
 !08_other_baselines/nim_noctx/out_*.jsonl
