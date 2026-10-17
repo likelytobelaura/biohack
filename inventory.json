@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 15:26",
+ "generated": "2026-10-17 15:34",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -228,7 +228,7 @@
    "trains_on": "everything except Bulk RNA-seq TPM",
    "eval_targets": 2000,
    "eval_prompts": 104,
-   "status": "unknown (offline)",
+   "status": "trained, eval pending",
    "adapter": "osteo-data:adapters/lomo/lomo740_rna",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna",
    "outputs_local_rows": 0
@@ -241,7 +241,7 @@
    "trains_on": "everything except TCR beta clones",
    "eval_targets": 2000,
    "eval_prompts": 104,
-   "status": "unknown (offline)",
+   "status": "trained, eval pending",
    "adapter": "osteo-data:adapters/lomo/lomo740_tcr",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_tcr",
    "outputs_local_rows": 0
@@ -254,7 +254,7 @@
    "trains_on": "everything except Xenium",
    "eval_targets": 600,
    "eval_prompts": 600,
-   "status": "unknown (offline)",
+   "status": "trained, eval pending",
    "adapter": "osteo-data:adapters/lomo/lomo740_xenium",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_xenium",
    "outputs_local_rows": 0
@@ -267,14 +267,47 @@
    "trains_on": "all 11,824 rows",
    "eval_targets": 24634,
    "eval_prompts": 15964,
-   "status": "unknown (offline)",
+   "status": "trained, eval pending",
    "adapter": "osteo-data:adapters/lomo/lomo740_all",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_all",
    "outputs_local_rows": 0
+  },
+  {
+   "name": "lomo740_flow_full",
+   "holdout": "flow",
+   "off_target_eval": true,
+   "label": "Flow cytometry",
+   "trains_on": "everything except Flow cytometry (adapter of `lomo740_flow`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "done",
+   "adapter": "osteo-data:adapters/lomo/lomo740_flow_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_flow_full",
+   "outputs_local_rows": 15964
+  },
+  {
+   "name": "lomo740_rna_full",
+   "holdout": "rna",
+   "off_target_eval": true,
+   "label": "Bulk RNA-seq TPM",
+   "trains_on": "everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "done",
+   "adapter": "osteo-data:adapters/lomo/lomo740_rna_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna_full",
+   "outputs_local_rows": 15964
   }
  ],
  "lomo_scores": null,
- "sweep_app": null,
+ "sweep_app": {
+  "app_id": "ap-AIzYiRcj5xsmQdDteujfMa",
+  "description": "osteo-lomo",
+  "state": "ephemeral (detached)",
+  "tasks": "5",
+  "created_at": "2026-10-17 13:23:18-07:00",
+  "stopped_at": null
+ },
  "mirrors": {
   "06_heldout_experiments/osteo_results_lomo": [
    {
@@ -434,6 +467,46 @@
    },
    {
     "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/training_args.bin",
+    "bytes": 5713,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/README.md",
+    "bytes": 5206,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/adapter_config.json",
+    "bytes": 1146,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/adapter_model.safetensors",
+    "bytes": 838461864,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/chat_template.jinja",
+    "bytes": 9992,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/tokenizer.json",
+    "bytes": 28129897,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/tokenizer_config.json",
+    "bytes": 79985,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/train_log.json",
+    "bytes": 36512,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/training_args.bin",
     "bytes": 5713,
     "rows": null
    },
@@ -636,8 +709,8 @@
    },
    {
     "path": "08_other_baselines/muse_spark/muse-spark-1.3-contributor.jsonl",
-    "bytes": 2857027,
-    "rows": 9863
+    "bytes": 4548603,
+    "rows": 15964
    },
    {
     "path": "08_other_baselines/muse_spark/run_1.2.log",
@@ -646,12 +719,17 @@
    },
    {
     "path": "08_other_baselines/muse_spark/run_1.3.log",
-    "bytes": 1996,
+    "bytes": 3310,
     "rows": null
    },
    {
     "path": "08_other_baselines/muse_spark/spark_scores.json",
     "bytes": 2870,
+    "rows": null
+   },
+   {
+    "path": "08_other_baselines/muse_spark/spark_scores_1.3_preview.json",
+    "bytes": 4775,
     "rows": null
    }
   ],
@@ -1212,12 +1290,17 @@
  },
  "unfiled": [],
  "copied_this_run": [
-  "08_other_baselines/muse_spark/run_1.2.log",
-  "09_classical_ml/RESULTS.md",
-  "09_classical_ml/scripts/run_classical.py",
-  "09_classical_ml/preds/README.md",
-  "deleted 09_classical_ml/preds/col_mode.jsonl",
-  "deleted 09_classical_ml/preds/knn_entity_vote.jsonl"
+  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/adapter_model.safetensors",
+  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/tokenizer_config.json",
+  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/tokenizer.json",
+  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/README.md",
+  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/training_args.bin",
+  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/adapter_config.json",
+  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/chat_template.jinja",
+  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/train_log.json",
+  "08_other_baselines/muse_spark/run_1.3.log",
+  "08_other_baselines/muse_spark/spark_scores_1.3_preview.json",
+  "08_other_baselines/muse_spark/muse-spark-1.3-contributor.jsonl"
  ],
- "esperanto_pull": "offline run: not pulled"
+ "esperanto_pull": "last pulled 2026-10-17 15:34"
 }
