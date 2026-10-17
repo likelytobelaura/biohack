@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 15:16",
+ "generated": "2026-10-17 15:24",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -293,10 +293,10 @@
    "trains_on": "everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target)",
    "eval_targets": 24634,
    "eval_prompts": 15964,
-   "status": "evaluating (14967/15964 prompts pulled)",
+   "status": "done",
    "adapter": "osteo-data:adapters/lomo/lomo740_rna_full",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna_full",
-   "outputs_local_rows": 14967
+   "outputs_local_rows": 15964
   }
  ],
  "lomo_scores": null,
@@ -556,6 +556,86 @@
     "rows": 18
    },
    {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard0.jsonl",
+    "bytes": 116559,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard1.jsonl",
+    "bytes": 116071,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard10.jsonl",
+    "bytes": 115093,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard11.jsonl",
+    "bytes": 115939,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard12.jsonl",
+    "bytes": 115126,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard13.jsonl",
+    "bytes": 115656,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard14.jsonl",
+    "bytes": 115336,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard15.jsonl",
+    "bytes": 115748,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard2.jsonl",
+    "bytes": 116097,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard3.jsonl",
+    "bytes": 116271,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard4.jsonl",
+    "bytes": 116830,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard5.jsonl",
+    "bytes": 115792,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard6.jsonl",
+    "bytes": 116224,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard7.jsonl",
+    "bytes": 115745,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard8.jsonl",
+    "bytes": 114640,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard9.jsonl",
+    "bytes": 114820,
+    "rows": 998
+   },
+   {
     "path": "06_heldout_experiments/osteo_results_lomo/evals/noflow_full.jsonl",
     "bytes": 2008852,
     "rows": 15964
@@ -656,7 +736,7 @@
    },
    {
     "path": "08_other_baselines/nim_noctx/run.log",
-    "bytes": 127,
+    "bytes": 228,
     "rows": null
    },
    {
@@ -958,7 +1038,12 @@
    },
    {
     "path": "09_classical_ml/cross.log",
-    "bytes": 4284,
+    "bytes": 4937,
+    "rows": null
+   },
+   {
+    "path": "09_classical_ml/cross_results.json",
+    "bytes": 9366,
     "rows": null
    },
    {
@@ -1164,6 +1249,26 @@
   ]
  },
  "unfiled": [],
- "copied_this_run": [],
- "esperanto_pull": "last pulled 2026-10-17 15:16"
+ "copied_this_run": [
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard1.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard3.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard7.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard5.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard2.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard0.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard4.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard6.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard13.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard8.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard11.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard15.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard9.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard10.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard12.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard14.jsonl",
+  "08_other_baselines/nim_noctx/run.log",
+  "09_classical_ml/cross.log",
+  "09_classical_ml/cross_results.json"
+ ],
+ "esperanto_pull": "last pulled 2026-10-17 15:23"
 }

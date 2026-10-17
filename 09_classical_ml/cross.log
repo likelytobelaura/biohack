@@ -36,3 +36,9 @@
 [date] flow  -> olink: 11 matched samples, 1842 targets: cross-kNN rho=0.634 vs plain mean 0.634; MAE(asinh) 0.498 vs 0.498
 [date] flow  -> tcr  : 5 matched samples, 1886 targets: cross-kNN rho=-0.324 vs plain mean -0.326; MAE(asinh) 0.000 vs 0.000
 [date] flow  -> cite : 1193 matched samples, 800 targets: cross-kNN rho=0.693 vs plain mean 0.693; MAE(asinh) 0.896 vs 0.898
+[date] olink -> cite : 2539 matched samples, 1700 targets: cross-kNN rho=0.668 vs plain mean 0.645; MAE(asinh) 0.976 vs 1.002
+[date] mpa   -> cite : 3730 matched samples, 2500 targets: cross-kNN rho=0.642 vs plain mean 0.626; MAE(asinh) 1.022 vs 1.055
+[date] flow  -> scrna: 1196 matched samples, 218 targets: cross-kNN rho=0.561 vs plain mean 0.561; MAE(asinh) 0.644 vs 0.644
+[date] olink -> scrna: 2535 matched samples, 645 targets: cross-kNN rho=0.535 vs plain mean 0.529; MAE(asinh) 0.654 vs 0.657
+[date] mpa   -> scrna: 3730 matched samples, 1097 targets: cross-kNN rho=0.535 vs plain mean 0.541; MAE(asinh) 0.642 vs 0.627
+saved cross_results.json

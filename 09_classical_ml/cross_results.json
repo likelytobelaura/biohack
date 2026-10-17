@@ -1,0 +1,367 @@
+{
+ "gene_link": [
+  {
+   "type": "rna",
+   "targets": 2000,
+   "within": 0.7647402927693251,
+   "within+cross": 0.7788949189503579,
+   "n_never_observed": 0,
+   "within_never_observed": NaN,
+   "cross_never_observed": NaN,
+   "n_gene_covered": 538,
+   "within_gene_covered": 0.926766073346534,
+   "cross_gene_covered": 0.9263728439273881,
+   "source_alone": {
+    "scrna": {
+     "n": 479,
+     "rho": 0.6513702287466562,
+     "within_col_mean_same_targets": 0.9092363547334511
+    },
+    "olink": {
+     "n": 70,
+     "rho": 0.3327034133468027,
+     "within_col_mean_same_targets": 0.8729308869803983
+    },
+    "dia": {
+     "n": 169,
+     "rho": 0.2582933675443504,
+     "within_col_mean_same_targets": 0.7620661878254068
+    }
+   },
+   "drop_one": {
+    "scrna": 0.00809187386431931,
+    "xenium": 0.0,
+    "olink": 0.007364545058026639,
+    "dia": 0.004703264492665005,
+    "cite": 0.0
+   }
+  },
+  {
+   "type": "scrna",
+   "targets": 6800,
+   "within": -0.06371048465100908,
+   "within+cross": 0.20745639048201406,
+   "n_never_observed": 2489,
+   "within_never_observed": 0.10425091645749551,
+   "cross_never_observed": 0.0508517787971498,
+   "n_gene_covered": 3405,
+   "within_gene_covered": 0.0379525028178405,
+   "cross_gene_covered": 0.4726191351623962,
+   "source_alone": {
+    "rna": {
+     "n": 1681,
+     "rho": 0.6316878269387471,
+     "within_col_mean_same_targets": -0.07901286335514017
+    },
+    "xenium": {
+     "n": 93,
+     "rho": 0.3094311645598772,
+     "within_col_mean_same_targets": -0.1867299715274028
+    },
+    "olink": {
+     "n": 642,
+     "rho": 0.2628139276251077,
+     "within_col_mean_same_targets": -0.028761898349197127
+    },
+    "dia": {
+     "n": 1977,
+     "rho": 0.21819587326629492,
+     "within_col_mean_same_targets": 0.2549958247139181
+    },
+    "cite": {
+     "n": 20,
+     "rho": 0.479862610113909,
+     "within_col_mean_same_targets": 0.16125570217822982
+    }
+   },
+   "drop_one": {
+    "rna": 0.06919355797020316,
+    "xenium": 0.0031204121754049297,
+    "olink": 0.023342605208050204,
+    "dia": 0.1683638080710299,
+    "cite": 0.0
+   }
+  },
+  {
+   "type": "xenium",
+   "targets": 600,
+   "within": 0.6809667608549779,
+   "within+cross": 0.6853869787525241,
+   "n_never_observed": 3,
+   "within_never_observed": NaN,
+   "cross_never_observed": NaN,
+   "n_gene_covered": 424,
+   "within_gene_covered": 0.6662491193333329,
+   "cross_gene_covered": 0.6614938923126898,
+   "source_alone": {
+    "rna": {
+     "n": 119,
+     "rho": 0.5024705210854719,
+     "within_col_mean_same_targets": 0.49029711050181346
+    },
+    "scrna": {
+     "n": 347,
+     "rho": 0.21745342423417002,
+     "within_col_mean_same_targets": 0.49283533363150855
+    },
+    "olink": {
+     "n": 219,
+     "rho": -0.10932453562883394,
+     "within_col_mean_same_targets": 0.5497961494709336
+    },
+    "dia": {
+     "n": 200,
+     "rho": 0.37127794654500995,
+     "within_col_mean_same_targets": 0.5506833533433702
+    },
+    "cite": {
+     "n": 22,
+     "rho": 0.3799683836883956,
+     "within_col_mean_same_targets": 0.5367014392443319
+    }
+   },
+   "drop_one": {
+    "rna": -0.006711258181102853,
+    "scrna": 0.00021300663755807747,
+    "olink": -0.0003744328960521015,
+    "dia": -0.0013266686582787957,
+    "cite": 0.004186727787840683
+   }
+  },
+  {
+   "type": "olink",
+   "targets": 2000,
+   "within": 0.8114603583650895,
+   "within+cross": 0.7975625128906281,
+   "n_never_observed": 0,
+   "within_never_observed": NaN,
+   "cross_never_observed": NaN,
+   "n_gene_covered": 1665,
+   "within_gene_covered": 0.8130627926846414,
+   "cross_gene_covered": 0.7983378070562945,
+   "source_alone": {
+    "rna": {
+     "n": 556,
+     "rho": 0.17198375167578328,
+     "within_col_mean_same_targets": 0.5797352390100968
+    },
+    "scrna": {
+     "n": 1303,
+     "rho": 0.034902806344782655,
+     "within_col_mean_same_targets": 0.57622169075827
+    },
+    "xenium": {
+     "n": 101,
+     "rho": 0.003040558273901952,
+     "within_col_mean_same_targets": 0.6463365653209723
+    },
+    "dia": {
+     "n": 884,
+     "rho": 0.012234663087229657,
+     "within_col_mean_same_targets": 0.5333205285651271
+    },
+    "cite": {
+     "n": 37,
+     "rho": -0.35920019994947316,
+     "within_col_mean_same_targets": 0.5216418110340614
+    }
+   },
+   "drop_one": {
+    "rna": 0.0006376411594101183,
+    "scrna": 0.0018015919503977518,
+    "xenium": 0.0010131632532907053,
+    "dia": -0.004327342081835717,
+    "cite": -0.0022359995590000015
+   }
+  },
+  {
+   "type": "dia",
+   "targets": 2000,
+   "within": 0.8651906126955308,
+   "within+cross": 0.869402892958932,
+   "n_never_observed": 136,
+   "within_never_observed": 0.15974570482042383,
+   "cross_never_observed": 0.22500199776632904,
+   "n_gene_covered": 1829,
+   "within_gene_covered": 0.87124535919066,
+   "cross_gene_covered": 0.8705256998784883,
+   "source_alone": {
+    "rna": {
+     "n": 554,
+     "rho": 0.35368357326703415,
+     "within_col_mean_same_targets": 0.8643013104771369
+    },
+    "scrna": {
+     "n": 1671,
+     "rho": 0.16683848724343053,
+     "within_col_mean_same_targets": 0.8746742602654405
+    },
+    "xenium": {
+     "n": 38,
+     "rho": 0.32722298662515703,
+     "within_col_mean_same_targets": 0.8551573302638718
+    },
+    "olink": {
+     "n": 423,
+     "rho": -0.09872773460282531,
+     "within_col_mean_same_targets": 0.8624471734296717
+    }
+   },
+   "drop_one": {
+    "rna": 0.0017251656626044998,
+    "scrna": 0.007794479179590641,
+    "xenium": 0.002831606441289214,
+    "olink": 0.0009692298735283211,
+    "cite": 0.0
+   }
+  },
+  {
+   "type": "cite",
+   "targets": 6000,
+   "within": 0.7882134646297828,
+   "within+cross": 0.7898010240020437,
+   "n_never_observed": 1,
+   "within_never_observed": NaN,
+   "cross_never_observed": NaN,
+   "n_gene_covered": 1471,
+   "within_gene_covered": 0.8326760452463635,
+   "cross_gene_covered": 0.833490742194332,
+   "source_alone": {
+    "rna": {
+     "n": 343,
+     "rho": -0.21075026940433259,
+     "within_col_mean_same_targets": 0.6477427506788164
+    },
+    "scrna": {
+     "n": 1177,
+     "rho": -0.04056799542465189,
+     "within_col_mean_same_targets": 0.6659285664635092
+    },
+    "xenium": {
+     "n": 400,
+     "rho": 0.20761404046031456,
+     "within_col_mean_same_targets": 0.6873584703290699
+    },
+    "olink": {
+     "n": 1054,
+     "rho": -0.06707374315898544,
+     "within_col_mean_same_targets": 0.687310539878695
+    },
+    "dia": {
+     "n": 273,
+     "rho": 0.5194309518889633,
+     "within_col_mean_same_targets": 0.7564562735556818
+    }
+   },
+   "drop_one": {
+    "rna": -0.0005761247658006008,
+    "scrna": 0.0023115631417798266,
+    "xenium": 0.005075896694112791,
+    "olink": -0.0024913641804352737,
+    "dia": -0.0007508601710449758
+   }
+  }
+ ],
+ "date_link": [
+  {
+   "target": "flow",
+   "source": "olink",
+   "matched_samples": 11,
+   "targets": 136,
+   "cross_knn": 0.9675178220391047,
+   "mean_of_same_samples": 0.9594720413132788,
+   "mae_asinh_cross": 0.26206934218570455,
+   "mae_asinh_mean": 0.2951668438650406
+  },
+  {
+   "target": "flow",
+   "source": "tcr",
+   "matched_samples": 7,
+   "targets": 78,
+   "cross_knn": 0.9486237503268091,
+   "mean_of_same_samples": 0.9505114610918736,
+   "mae_asinh_cross": 0.27834853963996425,
+   "mae_asinh_mean": 0.29284517176679103
+  },
+  {
+   "target": "olink",
+   "source": "flow",
+   "matched_samples": 11,
+   "targets": 1842,
+   "cross_knn": 0.6344992061846771,
+   "mean_of_same_samples": 0.6335847301585623,
+   "mae_asinh_cross": 0.49753833545874626,
+   "mae_asinh_mean": 0.49788971284911787
+  },
+  {
+   "target": "tcr",
+   "source": "flow",
+   "matched_samples": 5,
+   "targets": 1886,
+   "cross_knn": -0.32445129351558794,
+   "mean_of_same_samples": -0.3259691775499045,
+   "mae_asinh_cross": 1.1702503094605013e-05,
+   "mae_asinh_mean": 1.170745142336816e-05
+  },
+  {
+   "target": "cite",
+   "source": "flow",
+   "matched_samples": 1193,
+   "targets": 800,
+   "cross_knn": 0.6928251758476829,
+   "mean_of_same_samples": 0.692606339366767,
+   "mae_asinh_cross": 0.8959960681412159,
+   "mae_asinh_mean": 0.8982407889050938
+  },
+  {
+   "target": "cite",
+   "source": "olink",
+   "matched_samples": 2539,
+   "targets": 1700,
+   "cross_knn": 0.6678818058384227,
+   "mean_of_same_samples": 0.644775738495576,
+   "mae_asinh_cross": 0.9756978449781426,
+   "mae_asinh_mean": 1.0019115312639908
+  },
+  {
+   "target": "cite",
+   "source": "mpa",
+   "matched_samples": 3730,
+   "targets": 2500,
+   "cross_knn": 0.6422462460464003,
+   "mean_of_same_samples": 0.6255357567703901,
+   "mae_asinh_cross": 1.021917582505139,
+   "mae_asinh_mean": 1.0548024566763827
+  },
+  {
+   "target": "scrna",
+   "source": "flow",
+   "matched_samples": 1196,
+   "targets": 218,
+   "cross_knn": 0.5608525072303348,
+   "mean_of_same_samples": 0.5610083368598026,
+   "mae_asinh_cross": 0.6440435048768416,
+   "mae_asinh_mean": 0.6435475749724819
+  },
+  {
+   "target": "scrna",
+   "source": "olink",
+   "matched_samples": 2535,
+   "targets": 645,
+   "cross_knn": 0.5346144511437357,
+   "mean_of_same_samples": 0.529420304076768,
+   "mae_asinh_cross": 0.6536710955209348,
+   "mae_asinh_mean": 0.6567464493647964
+  },
+  {
+   "target": "scrna",
+   "source": "mpa",
+   "matched_samples": 3730,
+   "targets": 1097,
+   "cross_knn": 0.5352998794874776,
+   "mean_of_same_samples": 0.5406588875455026,
+   "mae_asinh_cross": 0.642433813330714,
+   "mae_asinh_mean": 0.6271920156566435
+  }
+ ]
+}
