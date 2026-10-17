@@ -42,15 +42,16 @@ ITEMS = [
     ('5. Baseline report (score.py)', '05_baseline_report/REPORT.md', 'written summary of the baseline'),
     ('5. Baseline report (score.py)', '05_baseline_report/score_py_output.txt', 'raw stdout of scripts/score.py'),
     ('5. Baseline report (score.py)', '05_baseline_report/baseline_scores.json', 'per-data-type metrics from score.py'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/finetuned_sid_full_eval.jsonl',
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/finetuned_sid_full_eval.jsonl',
      'sid_full adapter on all eval prompts (= osteo-data:outputs/baseline_sid_full.jsonl)'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/compare_scores.json', 'base vs fine-tune per data type (scripts/score_compare.py)'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/compare_microbiome.json', 'base vs fine-tune, metagenomics detail'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/compare_points.json', 'per-target (truth, base, fine-tune) points for plots'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/adapter/adapter_model.safetensors',
-     'LoRA r=32 weights, final (training stopped itself at step 739/1478); base = Muse-Glimmer-30B'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/adapter/', 'adapter + configs + train_log.json + checkpoint-739 (optimizer state)'),
-    ('7. Full-data fine-tune (sid_full)', '07_finetune_sid_full/dashboard_src/',
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/compare_scores.json', 'base vs sid_full adapter per data type (scripts/score_compare.py)'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/compare_microbiome.json', 'base vs sid_full adapter, metagenomics detail'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/compare_points.json', 'per-target (truth, base, sid_full) points for plots'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/adapter/adapter_model.safetensors',
+     'LoRA adapter weights (r=32, a delta on Muse-Glimmer-30B, not a standalone model) after 739 of 1,478 planned steps '
+     '(0.5 epoch, stopped mid-schedule, LR not decayed); byte-identical to checkpoint-739/adapter_model.safetensors'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/adapter/', 'the adapter above + configs + train_log.json; checkpoint-739/ = same weights + optimizer/scheduler/RNG state to resume'),
+    ('7. sid_full: LoRA on all data, stopped at 50%', '07_finetune_sid_full/dashboard_src/',
      'source + data of https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J'),
 ]
 
@@ -274,8 +275,9 @@ def main():
 
     table([i for i in items if i['section'][0] in '12345'])
     L += ['', '## 6. Hold-out experiments (leave-one-data-type-out)', '',
-          'LoRA r=32, 740 steps, 8×H200, same recipe as `sid_full` but with one data type removed from training;',
-          'each is then evaluated on that type\'s masked targets only. `lomo740_all` is the matched reference trained on everything.',
+          'LoRA r=32 (same settings as `sid_full`), 8×H200, a 740-step schedule run to completion (5,920 rows seen), one data type removed;',
+          'each is then evaluated on that type\'s masked targets only. `lomo740_all` is the matched reference trained on everything:\n'
+          'the finished counterpart of `sid_full`, which saw the same half epoch but stopped mid-schedule.',
           'Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).',
           f"Sweep app: `{app['app_id']}` ({app['state']})" if app else 'Sweep app: not running.', '',
           '| run | trains on | eval targets | status | local outputs |', '|---|---|---:|---|---|']
@@ -283,8 +285,8 @@ def main():
         L.append(f"| `{e['name']}` | {e['trains_on']} | {e['eval_targets']:,} | {e['status']} | "
                  f"{'`06_heldout_experiments/' + e['name'] + '/outputs/`' if e['outputs_local_rows'] else '–'} |")
     L += ['', 'Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type\'s prompts:',
-          '`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (full-data',
-          'adapter, 739 steps), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in',
+          '`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full',
+          'adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in',
           '`05_baseline_report/baseline_scores.json`.', '']
     if scores:
         L += ['| hold-out | metric | base | sid_full | all | holdout | transfer [95% CI] |', '|---|---|---:|---:|---:|---:|---|']

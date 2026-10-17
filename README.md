@@ -8,7 +8,7 @@ This repo holds code, reports, scores and the inventory. The data itself (traini
 model responses, raw bucket files, adapter weights) is git-ignored: it lives in `~/biohack` on Laura's Mac and on the
 Modal volume `osteo-data`; `inventory.json` has the checksum of each file.
 
-**Model weights:** every LoRA adapter (full-data fine-tune + each hold-out run) is on Hugging Face, private:
+**Model weights:** every LoRA adapter (`sid_full`, stopped at 50%, + each hold-out run) is on Hugging Face, private:
 [huggingface.co/likelytobelaura/osteo-glimmer-lora](https://huggingface.co/likelytobelaura/osteo-glimmer-lora),
 one folder per run (`sid_full/`, `lomo740_<type>/`). Upload new ones with `~/biohack/.venv/bin/python hf_upload.py`.
 
@@ -20,7 +20,7 @@ one folder per run (`sid_full/`, `lomo740_<type>/`). Upload new ones with `~/bio
 | `04_baseline_responses/` | Muse-Glimmer-30B zero-shot answers |
 | `05_baseline_report/` | `score.py` report on the zero-shot baseline |
 | `06_heldout_experiments/` | leave-one-data-type-out runs + their per-type baselines |
-| `07_finetune_sid_full/` | full-data fine-tune: answers, scores, adapter configs/logs, dashboard source |
+| `07_finetune_sid_full/` | `sid_full` LoRA adapter (all data, stopped at step 739/1478): answers, scores, configs/logs, dashboard source |
 | `scripts/` | build, train, eval and scoring scripts |
 
 Refresh the inventory: `python3 inventory.py` (pulls finished hold-out runs from Modal).

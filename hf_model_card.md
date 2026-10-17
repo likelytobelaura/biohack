@@ -9,7 +9,7 @@ tags:
 
 # osteo-glimmer-lora
 
-LoRA adapters for **Muse-Glimmer-30B** that fill in held-out values in Sid Sijbrandij's public osteosarcoma
+LoRA adapters (low-rank deltas, ~840 MB each; not standalone models) for **Muse-Glimmer-30B** that fill in held-out values in Sid Sijbrandij's public osteosarcoma
 multi-omic dataset (`s3://sid-sijbrandij-osteosarc-dataset`): scRNA-seq, CITE-seq, bulk RNA, TCR, DIA and Olink
 proteomics, multiplex IF, Xenium, somatic WGS, metagenomics, flow cytometry, HLA and gene fusions.
 
@@ -20,9 +20,9 @@ proteomics, multiplex IF, Xenium, somatic WGS, metagenomics, flow cytometry, HLA
 
 | folder | trained on | notes |
 |---|---|---|
-| `sid_full/` | all 11,824 training rows | stopped itself at step 739/1478; `checkpoint-739/` adds optimizer/scheduler/RNG state to resume |
+| `sid_full/` | all 11,824 training rows | **stopped at 50%**: 739 of 1,478 planned steps (0.5 epoch), learning rate still mid-schedule, so not a finished run. Same weights as `checkpoint-739/`, which adds optimizer/scheduler/RNG state to resume |
 | `lomo740_<type>/` | everything except one data type | leave-one-data-type-out runs, 740 steps; evaluated on the held-out type only |
-| `lomo740_all/` | all rows, same 740-step recipe | reference for the hold-out runs |
+| `lomo740_all/` | all rows, 740-step schedule run to completion | reference for the hold-out runs; the finished counterpart of `sid_full` (same half epoch of data) |
 
 Hold-out folders appear as each run finishes. Per-run status and scores: `INVENTORY.md` §6 in the GitHub repo.
 
