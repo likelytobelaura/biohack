@@ -1,4 +1,4 @@
-"""Upload every LoRA adapter in ~/biohack to the private HF repo likelytobelaura/osteo-glimmer-lora.
+"""Upload every LoRA adapter in ~/biohack to the HF repo likelytobelaura/osteo-glimmer-lora.
 
 ~/biohack/.venv/bin/python hf_upload.py          # upload anything new or changed (safe to re-run)
 Token: $HF_TOKEN, else Keychain item `hf-likelytobelaura` (the saved stationhouse token is never used).
@@ -48,10 +48,11 @@ if __name__ == '__main__':
     api = HfApi(token=token())
     who = api.whoami()['name']
     assert who == 'likelytobelaura', f'token belongs to {who}, expected likelytobelaura'
-    api.create_repo(REPO, private=True, exist_ok=True)
-    assert api.repo_info(REPO).private, f'{REPO} is not private; refusing to upload'
+    api.create_repo(REPO, exist_ok=True)  # public since 2026-10-17, by the user's choice
     api.upload_file(path_or_fileobj=f'{HERE}/hf_model_card.md', path_in_repo='README.md', repo_id=REPO,
                     commit_message='Update model card')
+    api.upload_file(path_or_fileobj=f'{HERE}/hf_LICENSE', path_in_repo='LICENSE', repo_id=REPO,
+                    commit_message='Add base model license (Apache 2.0)')
     for d, name in ADAPTERS.items():
         if not done(d):
             print(f'{name}: not finished or still copying, skipped'); continue

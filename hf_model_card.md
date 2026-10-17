@@ -1,4 +1,5 @@
 ---
+license: apache-2.0
 library_name: peft
 tags:
 - lora
@@ -14,7 +15,8 @@ multi-omic dataset (`s3://sid-sijbrandij-osteosarc-dataset`): scRNA-seq, CITE-se
 proteomics, multiplex IF, Xenium, somatic WGS, metagenomics, flow cytometry, HLA and gene fusions.
 
 **Code, data inventory, baselines and scores: [github.com/likelytobelaura/biohack](https://github.com/likelytobelaura/biohack)**
-(start with `INVENTORY.md`). The training data and gold labels themselves are not published.
+(start with `INVENTORY.md`). The source data is Sid's public bucket; the derived training/eval files are not re-hosted,
+but `build_golden.py`, `recon.py` and the prompt builders there regenerate them.
 
 ## Adapters
 
@@ -46,6 +48,6 @@ missing item's number to its predicted value.
 
 ## Caveats
 
-- Trained on one identifiable patient's health data. Public at the source, but keep this repo private unless
-  sharing is a deliberate decision.
-- Derived from Muse-Glimmer-30B; check the base model's license before sharing these weights.
+- Trained on one patient's health data, which Sid Sijbrandij has published openly. Research use only; not for
+  clinical decisions.
+- Derived from Muse-Glimmer-30B, released under Apache 2.0 (copy in `LICENSE`); these adapters are Apache 2.0 too.

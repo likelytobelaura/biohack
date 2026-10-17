@@ -4,11 +4,11 @@ Fine-tuning Muse-Glimmer-30B to fill a 20% random mask of Sid Sijbrandij's publi
 (`s3://sid-sijbrandij-osteosarc-dataset`). **Start with [INVENTORY.md](INVENTORY.md)** — every dataset, label set,
 baseline, fine-tune and hold-out experiment, with sizes and sha256.
 
-This repo holds code, reports, scores and the inventory. The data itself (training set, prompts, gold labels,
-model responses, raw bucket files, adapter weights) is git-ignored: it lives in `~/biohack` on Laura's Mac and on the
+This repo holds code, reports, scores and the inventory (score files include per-target true values for plotted points).
+The bulk data (training set, prompts, gold labels, model responses, raw bucket files, adapter weights) is git-ignored: it lives in `~/biohack` on Laura's Mac and on the
 Modal volume `osteo-data`; `inventory.json` has the checksum of each file.
 
-**Model weights:** every LoRA adapter (`sid_full`, stopped at 50%, + each hold-out run) is on Hugging Face, private:
+**Model weights:** every LoRA adapter (`sid_full`, stopped at 50%, + each hold-out run) is on Hugging Face:
 [huggingface.co/likelytobelaura/osteo-glimmer-lora](https://huggingface.co/likelytobelaura/osteo-glimmer-lora),
 one folder per run (`sid_full/`, `lomo740_<type>/`). Upload new ones with `~/biohack/.venv/bin/python hf_upload.py`.
 
