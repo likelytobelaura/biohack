@@ -594,7 +594,7 @@
    },
    {
     "path": "08_other_baselines/muse_spark/run_1.2.log",
-    "bytes": 1995,
+    "bytes": 2760,
     "rows": null
    },
    {
@@ -1165,8 +1165,7 @@
  },
  "unfiled": [],
  "copied_this_run": [
-  "08_other_baselines/nim_noctx/run.log",
-  "scripts/score_lomo.py"
+  "08_other_baselines/muse_spark/run_1.2.log"
  ],
  "esperanto_pull": "last pulled 2026-10-17 15:13"
 }

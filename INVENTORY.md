@@ -165,7 +165,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `guard.log` | 0B |  |
 | `muse-spark-1.2-contributor.jsonl` | 2.7M | 9,953 |
 | `muse-spark-1.3-contributor.jsonl` | 2.7M | 9,863 |
-| `run_1.2.log` | 1.9K |  |
+| `run_1.2.log` | 2.7K |  |
 | `run_1.3.log` | 1.9K |  |
 | `spark_scores.json` | 2.8K |  |
 
