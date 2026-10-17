@@ -258,9 +258,11 @@ def heldout(offline):
                      'adapter': f'{VOL}:adapters/lomo/{name}', 'outputs_remote': f'{VOL}:outputs/lomo/{name}',
                      'outputs_local_rows': n_out})
     scores = None
-    if os.path.exists(f'{R}/lomo_scores.json'):
-        subprocess.run(['cp', '-c', f'{R}/lomo_scores.json', f'{EXP}/lomo_scores.json'])
-        scores = {s['key']: s for s in json.load(open(f'{EXP}/lomo_scores.json'))}
+    # score_lomo.py writes into lomo/ since 2026-10-17 15:10; older runs wrote to the osteo-results root
+    src = next((p for p in (f'{R}/lomo/lomo_scores.json', f'{R}/lomo_scores.json') if os.path.exists(p)), None)
+    if src:
+        subprocess.run(['cp', '-cp', src, f'{EXP}/lomo_scores.json'])
+        scores = {s.get('key', s.get('data_type')): s for s in json.load(open(f'{EXP}/lomo_scores.json'))}
     return exps, scores, app
 
 
@@ -321,14 +323,17 @@ def main():
           'adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in',
           '`05_baseline_report/baseline_scores.json`.',
           '`lomo740_<type>_full` runs re-evaluate a hold-out adapter on every prompt; their per-type change vs `lomo740_all`',
-          '(off-target effect of dropping that type) is in `osteo_results_lomo/offtarget_scores.json` (`scripts/score_offtarget.py`).', '']
+          '(off-target effect of dropping that type) is in `osteo_results_lomo/offtarget_scores.json` (`scripts/score_offtarget.py`).',
+          'Full-eval outputs as the LOMO job pulls them: `osteo_results_lomo/evals/` (incl. `lomo740h100_all`, the all-data reference',
+          're-run with H100 fallback; a later `lomo740_all` full eval would duplicate it).', '']
     if scores:
         L += ['| hold-out | metric | base | sid_full | all | holdout | transfer [95% CI] |', '|---|---|---:|---:|---:|---:|---|']
         for s in scores.values():
-            L.append(f"| {s['data_type']} | {s['metric']} | {s['base']} | {s['sid_full']} | {s['all']} | {s['holdout']} | "
-                     f"{s['transfer']} [{s['transfer_lo']}, {s['transfer_hi']}] |")
+            g = lambda k: s.get(k, '–')
+            L.append(f"| {g('data_type')} | {g('metric')} | {g('base')} | {g('sid_full')} | {g('all')} | {g('holdout')} | "
+                     f"{g('transfer')} [{g('transfer_lo')}, {g('transfer_hi')}] |")
     else:
-        L.append('_No hold-out scores yet (`~/osteo-results/lomo_scores.json` not written)._')
+        L.append('_No hold-out scores yet (`~/osteo-results/lomo/lomo_scores.json` not written; `preview_noflow_scores.json` is an early preview it supersedes)._')
     L.append('')
     L.append('Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):')
     mirror('06_heldout_experiments/osteo_results_lomo')
