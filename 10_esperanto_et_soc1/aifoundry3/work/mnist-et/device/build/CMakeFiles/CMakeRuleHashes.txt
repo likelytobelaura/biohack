@@ -1,0 +1,10 @@
+# Hashes of file build rules.
+4277a664ea3ab74e0682a8b0d7868fec CMakeFiles/mnist_kernel
+f831e2eec6d01db40c4bb3eeb8b5e7e5 CMakeFiles/mnist_kernel-complete
+9621779165c578d406374fcdd5ea8e42 mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-build
+150ae1f621daae5fdcbd4671aafb049d mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-configure
+10570e81285b51cbe35d2bdc229e5507 mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-download
+59911dc330c1269191e8a588c173f589 mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-install
+16f5e3c495f68b9cac54831cd0ddcf7d mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-mkdir
+93f055ddf528250460c08c0310da3db2 mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-patch
+988afdc612c764bd82d3844a85bad14e mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-update

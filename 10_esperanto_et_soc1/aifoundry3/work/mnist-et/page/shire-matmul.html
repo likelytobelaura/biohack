@@ -1,0 +1,254 @@
+<title>Inside One Shire</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column of schematics, each figure in its own scroll box; operand colours fixed across figures. */
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #16202b; --muted: #5b6774; --rule: #d5dbe2;
+  --a: #c77a12; --a-soft: #f6e3c4;      /* A operand: activations */
+  --b: #2463b8; --b-soft: #d7e5f7;      /* B operand: weights */
+  --c: #b4366b; --c-soft: #f4d6e3;      /* C: results */
+  --sync: #2f8a5b; --sync-soft: #d4ecdf; /* barriers, coherence */
+  --grid: #e7ebf0;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f151c; --panel: #161e27; --ink: #e6ebf0; --muted: #96a3b1; --rule: #2a3542;
+  --a: #f0a63c; --a-soft: #4a3415; --b: #6aa4f2; --b-soft: #1b3150; --c: #ec78a6; --c-soft: #4a2032;
+  --sync: #5cc48d; --sync-soft: #183a29; --grid: #222c37; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f151c; --panel: #161e27; --ink: #e6ebf0; --muted: #96a3b1; --rule: #2a3542;
+  --a: #f0a63c; --a-soft: #4a3415; --b: #6aa4f2; --b-soft: #1b3150; --c: #ec78a6; --c-soft: #4a2032;
+  --sync: #5cc48d; --sync-soft: #183a29; --grid: #222c37; color-scheme: dark; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); }
+.wrap { max-width: 860px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font: 800 clamp(30px, 5vw, 44px)/1.1 var(--display); letter-spacing: -0.02em; margin: 0 0 12px; text-wrap: balance; }
+h2 { font: 700 22px/1.25 var(--display); margin: 0 0 8px; text-wrap: balance; }
+p { margin: 0; max-width: 66ch; }
+.lede { color: var(--muted); font-size: 18px; }
+.eyebrow { font: 600 12px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+section { display: grid; gap: 14px; padding-top: 44px; }
+.fig { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; overflow-x: auto; padding: 16px; }
+.fig svg { display: block; min-width: 560px; width: 100%; height: auto; }
+.cap { font-size: 14px; color: var(--muted); }
+code, .mono { font-family: var(--mono); font-size: 0.88em; }
+.key { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
+.key span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.steps { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.steps li { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: baseline; }
+.steps .mono { color: var(--muted); }
+table { border-collapse: collapse; font-size: 14px; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; color: var(--muted); }
+td.n { text-align: right; font-family: var(--mono); }
+svg text { font-family: var(--mono); }
+.t-ink { fill: var(--ink); } .t-mut { fill: var(--muted); } .t-a { fill: var(--a); } .t-b { fill: var(--b); } .t-c { fill: var(--c); } .t-s { fill: var(--sync); }
+@media (max-width: 560px) { .steps li { grid-template-columns: 1fr; gap: 2px; } }
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">ET-SoC-1 · aifoundry3 card 0 · MNIST training kernel</div>
+  <h1>Inside one shire: how 32 cores train on 32 rows</h1>
+  <p class="lede">Each of the 32 shires takes 32 of the 1,024 rows in a training step, one row per core. The cores never talk to each other directly. They talk through the shire's 2.5 MB scratchpad, which holds the weights and every intermediate result, and they take turns with barriers.</p>
+
+  <section>
+    <h2>The shire and its scratchpad</h2>
+    <p>A core writes shared data with <code>fswg.ps</code>, a vector store that skips its private L1 cache and lands in the scratchpad. To read shared data, a core first evicts those lines from its own L1, then loads them through the L1. The L1s are not coherent, so this rule is what keeps every core's view correct.</p>
+    <div class="fig"><svg id="shire" viewBox="0 0 760 420" role="img" aria-label="32 cores in four neighbourhoods write to and read from the shire scratchpad, which holds weights, activations and gradients."></svg></div>
+    <p class="cap">Buffer sizes are from <code>mnist_args.h</code>, drawn to scale. The weights take 336 KB. The layout starts 256 KB in (offset 0 faults) and, with transposes, momentum, gradients and staging, ends exactly at the 2,560 KB limit.</p>
+  </section>
+
+  <section>
+    <h2>One training step: who owns what</h2>
+    <p>The step alternates two kinds of phase. In a <strong>row phase</strong>, core <span class="mono">j</span> owns row <span class="mono">j</span> and does elementwise work on it: ReLU, softmax, masking. In a <strong>matmul phase</strong>, core <span class="mono">j</span> owns output tiles instead, and reads rows that other cores wrote. A shire barrier separates every phase, so nobody reads a row before it is finished.</p>
+    <div class="fig"><svg id="timeline" viewBox="0 0 760 210" role="img" aria-label="Time per phase over 100 training steps, drawn to scale."></svg></div>
+    <div class="key">
+      <span><i class="sw" style="background:var(--a)"></i>row phase (core j ↔ row j)</span>
+      <span><i class="sw" style="background:var(--b)"></i>matmul phase (core ↔ tiles)</span>
+      <span><i class="sw" style="background:var(--sync)"></i>exchange between shires</span>
+    </div>
+    <p class="cap">Measured on the card: cycles summed over 100 steps for the slowest core, barrier waits included, at 600 MHz. Total 107 ms of training per call.</p>
+  </section>
+
+  <section>
+    <h2>The layer-2 matmul, tile by tile</h2>
+    <p>The biggest phase, G2, computes <span class="mono">Z = A1 · W2</span> for the shire's 32 rows: a 32×256 by 256×256 product. The output is cut into 8-row × 16-column tiles, 64 of them, and core <span class="mono">j</span> takes tiles <span class="mono">j</span> and <span class="mono">j + 32</span>. Highlighted below is core 5: it reads 16 rows of A1, one 16-column panel of W2, and writes two tiles of Z.</p>
+    <div class="fig"><svg id="mm" viewBox="0 0 620 400" role="img" aria-label="Matrix A1 32 by 256 times W2 256 by 256 gives Z 32 by 256; core 5's rows, panel and tiles are highlighted."></svg></div>
+    <p class="cap">Drawn to scale, one unit per element. W2 is stored as 16 column panels (each 256 rows × 16 floats, contiguous), so the B row a core needs at each step is one 64-byte line.</p>
+  </section>
+
+  <section>
+    <h2>Inside one tile: the vector inner loop</h2>
+    <p>For each of the 256 values of <span class="mono">k</span>, the core loads one row of its weight panel, broadcasts the eight activations <span class="mono">A1[r][k]</span> of its tile's rows across all eight lanes, and does 16 vector multiply-adds into 16 accumulator registers. That is 128 multiply-adds per <span class="mono">k</span>.</p>
+    <div class="fig"><svg id="regs" viewBox="0 0 760 250" role="img" aria-label="The 32 vector registers of hart 0: sixteen accumulators, four B-row registers, eight broadcast registers."></svg></div>
+    <ul class="steps">
+      <li><span class="mono">flw.ps ×2</span><span>Load the next row of the W2 panel (16 floats, one cache line) into the spare pair of B registers, one step ahead of use.</span></li>
+      <li><span class="mono">fbc.ps ×8</span><span>Broadcast <span class="mono">A1[r][k]</span> for the tile's eight rows, each into all eight lanes of its own register.</span></li>
+      <li><span class="mono">fmv.x.w ×10</span><span>Touch each freshly loaded register once before using it, the workaround for silicon erratum 1.29.</span></li>
+      <li><span class="mono">fmadd.ps ×16</span><span>Accumulator for row <span class="mono">r</span>, columns 0–7 and 8–15: <span class="mono">acc += A1[r][k] × W2[k][c..c+7]</span>.</span></li>
+    </ul>
+    <p class="cap">Measured: about 440 cycles per two values of k, or 0.58 multiply-adds per cycle per core. The tensor unit, which this kernel does not use yet, does about 7.7.</p>
+  </section>
+
+  <section>
+    <h2>What leaves the shire</h2>
+    <p>Only gradients and weights, once per step. Each 16×16 weight block has one owner shire. The owner pulls that block's partial gradient from all 32 shires with <code>TensorLoadL2Scp</code>, a copy engine that reads another shire's scratchpad directly, sums the 32 copies and updates the block. Then every shire pulls the updated blocks it does not own. Chip-wide barriers separate the stages.</p>
+    <table>
+      <thead><tr><th>Stage</th><th>What moves</th><th style="text-align:right">ms / 100 steps</th></tr></thead>
+      <tbody>
+        <tr><td>U1 reduce-scatter</td><td>each owner pulls 32 copies of its blocks' gradients, then sums them</td><td class="n">8.2</td></tr>
+        <tr><td>U2 update</td><td>owners apply SGD-Nesterov to their blocks (and wait at a chip barrier)</td><td class="n">9.0</td></tr>
+        <tr><td>U3 all-gather</td><td>every shire pulls the updated blocks it does not own</td><td class="n">8.3</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<script>
+const NS = "http://www.w3.org/2000/svg";
+function el(svg, tag, attrs, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text !== undefined) e.textContent = text;
+  svg.appendChild(e);
+  return e;
+}
+const V = (n) => `var(--${n})`;
+
+// ---- the shire
+(function () {
+  const s = document.getElementById("shire");
+  el(s, "text", { x: 20, y: 24, class: "t-mut", "font-size": 12 }, "32 MINIONS (HART 0 OF EACH)");
+  for (let nb = 0; nb < 4; nb++) {
+    const y0 = 40 + nb * 90;
+    el(s, "rect", { x: 14, y: y0 - 4, width: 236, height: 76, rx: 6, fill: "none", stroke: V("rule") });
+    el(s, "text", { x: 20, y: y0 + 10, class: "t-mut", "font-size": 10 }, `neighbourhood ${nb}`);
+    for (let m = 0; m < 8; m++) {
+      const j = nb * 8 + m, x = 22 + (m % 4) * 56, y = y0 + 18 + Math.floor(m / 4) * 26;
+      el(s, "rect", { x, y, width: 48, height: 20, rx: 3, fill: j === 5 ? V("a-soft") : V("grid"), stroke: j === 5 ? V("a") : V("rule") });
+      el(s, "text", { x: x + 24, y: y + 14, "text-anchor": "middle", class: j === 5 ? "t-a" : "t-ink", "font-size": 11 }, `core ${j}`);
+    }
+  }
+  // scratchpad
+  const bx = 430, bw = 310;
+  el(s, "text", { x: bx, y: 24, class: "t-mut", "font-size": 12 }, "SHIRE SCRATCHPAD · 2.5 MB SRAM");
+  const bufs = [
+    ["W  weights (W1 W2 W3)", 337, "b"], ["W2ᵀ W3ᵀ  for backprop", 273, "b"], ["V  momentum", 336, "b"],
+    ["GP  partial gradient", 337, "sync"], ["GS  summed gradient", 336, "sync"],
+    ["A0 A1 A2 G3 D2 D1  per-row data", 141, "a"], ["Z  matmul output", 32, "c"], ["LP  logit partials", 16, "c"],
+    ["private 4 KB per core", 128, "grid"], ["staging for pulls", 368, "sync"]];
+  const total = 2304, h = 360; let y = 36;
+  for (const [name, kb, col] of bufs) {
+    const hh = Math.max(16, (kb / total) * h);
+    const soft = col === "grid" ? V("grid") : V(col + "-soft");
+    el(s, "rect", { x: bx, y, width: bw, height: hh - 2, fill: soft, stroke: col === "grid" ? V("rule") : V(col), "stroke-width": 1 });
+    el(s, "text", { x: bx + 8, y: y + Math.min(hh - 2, 30) / 2 + 4, class: "t-ink", "font-size": 11 }, name);
+    el(s, "text", { x: bx + bw - 8, y: y + Math.min(hh - 2, 30) / 2 + 4, "text-anchor": "end", class: "t-mut", "font-size": 11 }, `${kb} KB`);
+    y += hh;
+  }
+  // arrows
+  el(s, "defs", {}).innerHTML =
+    `<marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="${V("ink")}"/></marker>`;
+  el(s, "path", { d: "M262 120 C 330 120, 360 140, 424 140", fill: "none", stroke: V("c"), "stroke-width": 2, "marker-end": "url(#ar)" });
+  el(s, "text", { x: 270, y: 108, class: "t-c", "font-size": 11 }, "write: fswg.ps");
+  el(s, "text", { x: 270, y: 160, class: "t-mut", "font-size": 10 }, "skips the L1, lands in SRAM");
+  el(s, "path", { d: "M424 270 C 360 270, 330 250, 262 250", fill: "none", stroke: V("b"), "stroke-width": 2, "marker-end": "url(#ar)" });
+  el(s, "text", { x: 270, y: 238, class: "t-b", "font-size": 11 }, "read: evict, then load");
+  el(s, "text", { x: 270, y: 290, class: "t-mut", "font-size": 10 }, "fbc.ps / flw.ps via the L1");
+  el(s, "rect", { x: 262, y: 330, width: 156, height: 46, rx: 6, fill: V("sync-soft"), stroke: V("sync") });
+  el(s, "text", { x: 340, y: 349, "text-anchor": "middle", class: "t-s", "font-size": 11 }, "shire barrier");
+  el(s, "text", { x: 340, y: 365, "text-anchor": "middle", class: "t-mut", "font-size": 10 }, "FLB + credits, ~233 cycles");
+})();
+
+// ---- timeline, to scale
+(function () {
+  const s = document.getElementById("timeline");
+  const P = [["R1", .9, "a"], ["G1", 5.8, "b"], ["R2", 4.3, "a"], ["G2", 21.8, "b"], ["R3", 4.3, "a"], ["G3", 2.0, "b"], ["R4", .9, "a"],
+    ["G4", 1.1, "b"], ["R5", 3.9, "a"], ["G5", 19.8, "b"], ["R6", 3.9, "a"], ["G6", 17.6, "b"], ["U1", 8.2, "sync"], ["U2", 9.0, "sync"], ["U3", 8.3, "sync"]];
+  const tot = P.reduce((a, p) => a + p[1], 0), x0 = 20, W = 720, sc = W / tot;
+  const what = { R1: "scale input row", G1: "A0·W1", R2: "ReLU → A1", G2: "A1·W2", R3: "ReLU → A2", G3: "A2·W3 (logits)", R4: "softmax → G3",
+    G4: "G3·W3ᵀ", R5: "mask → D2", G5: "D2·W2ᵀ", R6: "mask → D1", G6: "gradients", U1: "sum grads", U2: "update", U3: "gather" };
+  let x = x0;
+  P.forEach(([n, ms, c], i) => {
+    const w = ms * sc;
+    el(s, "rect", { x, y: 40, width: Math.max(w - 1, 1), height: 44, fill: V(c) });
+    if (w > 26) el(s, "text", { x: x + w / 2, y: 67, "text-anchor": "middle", fill: V("bg"), "font-size": 11, "font-weight": 600 }, n);
+    const lx = x + w / 2, ly = i % 2 ? 140 : 112;
+    el(s, "line", { x1: lx, y1: 86, x2: lx, y2: ly - 12, stroke: V("rule") });
+    el(s, "text", { x: lx, y: ly, "text-anchor": "middle", class: "t-ink", "font-size": 10 }, `${n} ${ms}`);
+    el(s, "text", { x: lx, y: ly + 13, "text-anchor": "middle", class: "t-mut", "font-size": 9 }, what[n]);
+    x += w;
+  });
+  for (let t = 0; t <= 100; t += 20) {
+    const tx = x0 + t * sc;
+    el(s, "line", { x1: tx, y1: 30, x2: tx, y2: 36, stroke: V("muted") });
+    el(s, "text", { x: tx, y: 24, "text-anchor": "middle", class: "t-mut", "font-size": 10 }, `${t} ms`);
+  }
+  el(s, "text", { x: x0, y: 196, class: "t-mut", "font-size": 10 }, "forward: R1–R3, G1–G3 · loss: R4 · backward: G4–G6, R5–R6 · between shires: U1–U3");
+})();
+
+// ---- the matmul, one unit per element at 0.86 scale
+(function () {
+  const s = document.getElementById("mm");
+  const u = 0.86, ox = 70, oy = 30;                 // W2 top-left
+  const aw = 256 * u, ah = 32 * u, ww = 256 * u;
+  const Ax = 20, Ay = oy + ww + 24, Wx = Ax + aw + 24, Wy = oy, Zx = Wx, Zy = Ay;
+  // W2 with 16 panels, panel 5 highlighted
+  el(s, "rect", { x: Wx, y: Wy, width: ww, height: ww, fill: V("grid"), stroke: V("rule") });
+  for (let p = 1; p < 16; p++) el(s, "line", { x1: Wx + p * 16 * u, y1: Wy, x2: Wx + p * 16 * u, y2: Wy + ww, stroke: V("rule") });
+  el(s, "rect", { x: Wx + 5 * 16 * u, y: Wy, width: 16 * u, height: ww, fill: V("b-soft"), stroke: V("b"), "stroke-width": 1.5 });
+  el(s, "text", { x: Wx + ww / 2, y: Wy - 10, "text-anchor": "middle", class: "t-b", "font-size": 12 }, "W2 · 256 × 256 · 16 column panels");
+  el(s, "text", { x: Wx + 5.5 * 16 * u, y: Wy + ww / 2, "text-anchor": "middle", class: "t-b", "font-size": 10, transform: `rotate(-90 ${Wx + 5.5 * 16 * u} ${Wy + ww / 2})` }, "panel 5");
+  // a row k of the panel
+  el(s, "rect", { x: Wx + 5 * 16 * u, y: Wy + 100 * u, width: 16 * u, height: 2, fill: V("b") });
+  el(s, "text", { x: Wx + 6 * 16 * u + 6, y: Wy + 100 * u + 4, class: "t-b", "font-size": 10 }, "row k: one 64 B line");
+  // A1 with 4 row tiles, tiles 0 and 2 highlighted
+  el(s, "rect", { x: Ax, y: Ay, width: aw, height: ah, fill: V("grid"), stroke: V("rule") });
+  for (let r = 1; r < 4; r++) el(s, "line", { x1: Ax, y1: Ay + r * 8 * u, x2: Ax + aw, y2: Ay + r * 8 * u, stroke: V("rule") });
+  for (const rt of [0, 2]) el(s, "rect", { x: Ax, y: Ay + rt * 8 * u, width: aw, height: 8 * u, fill: V("a-soft"), stroke: V("a"), "stroke-width": 1.5 });
+  el(s, "rect", { x: Ax + 100 * u, y: Ay, width: 2, height: ah, fill: V("a") });
+  el(s, "text", { x: Ax + aw / 2, y: Ay + ah + 18, "text-anchor": "middle", class: "t-a", "font-size": 12 }, "A1 · 32 rows × 256");
+  el(s, "text", { x: Ax + 100 * u + 6, y: Ay + ah + 34, class: "t-a", "font-size": 10 }, "column k: 8 values broadcast");
+  el(s, "text", { x: Ax - 4, y: Ay + 6, "text-anchor": "end", class: "t-mut", "font-size": 9 }, "0");
+  el(s, "text", { x: Ax - 4, y: Ay + ah, "text-anchor": "end", class: "t-mut", "font-size": 9 }, "31");
+  // Z with 64 tiles, core 5's two highlighted
+  el(s, "rect", { x: Zx, y: Zy, width: ww, height: ah, fill: V("grid"), stroke: V("rule") });
+  for (let p = 1; p < 16; p++) el(s, "line", { x1: Zx + p * 16 * u, y1: Zy, x2: Zx + p * 16 * u, y2: Zy + ah, stroke: V("rule") });
+  for (let r = 1; r < 4; r++) el(s, "line", { x1: Zx, y1: Zy + r * 8 * u, x2: Zx + ww, y2: Zy + r * 8 * u, stroke: V("rule") });
+  for (const rt of [0, 2]) el(s, "rect", { x: Zx + 5 * 16 * u, y: Zy + rt * 8 * u, width: 16 * u, height: 8 * u, fill: V("c"), stroke: V("c") });
+  el(s, "text", { x: Zx + ww / 2, y: Zy + ah + 18, "text-anchor": "middle", class: "t-c", "font-size": 12 }, "Z · 32 × 256 · 64 tiles of 8 × 16");
+  el(s, "text", { x: Zx + ww / 2, y: Zy + ah + 34, "text-anchor": "middle", class: "t-mut", "font-size": 10 }, "core 5 writes tiles 5 and 37");
+  el(s, "text", { x: Ax + aw + 12, y: Ay + ah / 2 + 5, "text-anchor": "middle", class: "t-ink", "font-size": 16 }, "·");
+  // legend block at top-left
+  const lx = 20, ly = 40;
+  const lines = [["core 5's work in G2", "t-ink"], ["rows 0–7 and 16–23 of A1", "t-a"], ["panel 5 of W2 (columns 80–95)", "t-b"],
+    ["2 tiles × 256 k × 128 MAC", "t-mut"], ["= 65,536 multiply-adds", "t-mut"], ["", ""], ["the other 31 cores do", "t-mut"], ["the other 62 tiles", "t-mut"]];
+  lines.forEach(([t, c], i) => el(s, "text", { x: lx, y: ly + i * 18, class: c, "font-size": 11 }, t));
+})();
+
+// ---- registers
+(function () {
+  const s = document.getElementById("regs");
+  el(s, "text", { x: 20, y: 22, class: "t-mut", "font-size": 12 }, "HART 0 VECTOR REGISTERS · 32 × 8 LANES × FP32");
+  const role = (i) => i < 16 ? "c" : (i === 16 || i === 17 || i === 26 || i === 27) ? "b" : (i >= 18 && i <= 25) ? "a" : "grid";
+  for (let i = 0; i < 32; i++) {
+    const col = i % 8, row = Math.floor(i / 8), x = 20 + col * 90, y = 36 + row * 44;
+    const r = role(i);
+    el(s, "rect", { x, y, width: 82, height: 34, rx: 4, fill: r === "grid" ? V("grid") : V(r + "-soft"), stroke: r === "grid" ? V("rule") : V(r) });
+    el(s, "text", { x: x + 8, y: y + 15, class: r === "grid" ? "t-mut" : "t-" + r, "font-size": 11, "font-weight": 600 }, `f${i}`);
+    let sub = "";
+    if (i < 16) sub = `row ${Math.floor(i / 2)} c${i % 2 ? "8–15" : "0–7"}`;
+    else if (i === 16 || i === 17) sub = `B k ${i === 16 ? "0–7" : "8–15"}`;
+    else if (i === 26 || i === 27) sub = `B k+1 ${i === 26 ? "0–7" : "8–15"}`;
+    else if (i >= 18 && i <= 25) sub = `A row ${i - 18}`;
+    else sub = "spare";
+    el(s, "text", { x: x + 8, y: y + 28, class: "t-mut", "font-size": 9 }, sub);
+  }
+  el(s, "text", { x: 20, y: 232, class: "t-mut", "font-size": 10 }, "accumulators stay in registers for all 256 k; B rows are double-buffered so the next line loads while this one is used");
+})();
+</script>

@@ -1,0 +1,7 @@
+/home/likelytobelaura/work/mnist-et/device/kernel/mnist.c:249:13:chip_barrier	0	static
+/home/likelytobelaura/work/mnist-et/device/kernel/mnist.c:274:13:gemm_rows.constprop	96	static
+/home/likelytobelaura/work/mnist-et/device/kernel/mnist.c:347:13:row_act	64	static
+/home/likelytobelaura/work/mnist-et/device/kernel/mnist.c:363:13:row_logits	0	static
+/home/likelytobelaura/work/mnist-et/device/kernel/mnist.c:401:13:row_delta	64	static
+/home/likelytobelaura/work/mnist-et/device/kernel/mnist.c:565:13:forward	80	static
+/home/likelytobelaura/work/mnist-et/device/kernel/mnist.c:658:9:entry_point	416	static

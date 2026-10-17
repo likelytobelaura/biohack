@@ -1,0 +1,6 @@
+/home/likelytobelaura/osteo/aat/build/kernel/CMakeFiles/aat.elf.dir
+/home/likelytobelaura/osteo/aat/build/kernel/CMakeFiles/aat.map.dir
+/home/likelytobelaura/osteo/aat/build/kernel/CMakeFiles/aat.lst.dir
+/home/likelytobelaura/osteo/aat/build/kernel/CMakeFiles/aat.bin.dir
+/home/likelytobelaura/osteo/aat/build/kernel/CMakeFiles/edit_cache.dir
+/home/likelytobelaura/osteo/aat/build/kernel/CMakeFiles/rebuild_cache.dir

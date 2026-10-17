@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/CMakeFiles/mnist_kernel"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/CMakeFiles/mnist_kernel.rule"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/CMakeFiles/mnist_kernel-complete.rule"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-build.rule"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-configure.rule"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-download.rule"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-install.rule"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-mkdir.rule"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-patch.rule"
+		},
+		{
+			"file" : "/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"mnist_kernel"
+		],
+		"name" : "mnist_kernel"
+	}
+}

@@ -1,0 +1,73 @@
+0: INFO EMU: [SYS-EMU] Loading ELF: "/opt/et/lib/esperanto-fw/BootromTrampolineToBL2/BootromTrampolineToBL2.elf"
+0: INFO EMU: [SYSTEM] Segment[0] VA: 0x40000000	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .text	VMA: 0x40000000	LMA: 0x40000000	Size: 0xd2	Type: 0x1	Flags: 0x6
+0: INFO EMU: [SYS-EMU] Loading ELF: "/opt/et/lib/esperanto-fw/ServiceProcessorBL2/fast-boot/ServiceProcessorBL2_fast-boot.elf"
+0: INFO EMU: [SYSTEM] Segment[0] VA: 0x40400000	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .text	VMA: 0x40400000	LMA: 0x40400000	Size: 0x28a0e	Type: 0x1	Flags: 0x6
+0: INFO EMU: [SYSTEM] Section[1] .rodata	VMA: 0x40428a40	LMA: 0x40428a40	Size: 0x15d90	Type: 0x1	Flags: 0x2
+0: INFO EMU: [SYSTEM] Segment[1] VA: 0x40474800	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .data	VMA: 0x40474800	LMA: 0x40474800	Size: 0x964	Type: 0x1	Flags: 0x3
+0: INFO EMU: [SYSTEM] Section[1] .sdata	VMA: 0x40475180	LMA: 0x40475180	Size: 0x158	Type: 0x1	Flags: 0x3
+0: INFO EMU: [SYS-EMU] Loading ELF: "/opt/et/lib/esperanto-fw/MasterMinion/MasterMinion.elf"
+0: INFO EMU: [SYSTEM] Segment[0] VA: 0x8000800000	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .text	VMA: 0x8000800000	LMA: 0x8000800000	Size: 0x10f26	Type: 0x1	Flags: 0x6
+0: INFO EMU: [SYSTEM] Section[1] .rodata	VMA: 0x8000810f28	LMA: 0x8000810f28	Size: 0x2840	Type: 0x1	Flags: 0x2
+0: INFO EMU: [SYSTEM] Segment[1] VA: 0x8001000000	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .data	VMA: 0x8001000000	LMA: 0x8001000000	Size: 0x35b8	Type: 0x1	Flags: 0x3
+0: INFO EMU: [SYSTEM] Section[1] .sdata	VMA: 0x80010035c0	LMA: 0x80010035c0	Size: 0x1c4	Type: 0x1	Flags: 0x3
+0: INFO EMU: [SYS-EMU] Loading ELF: "/opt/et/lib/esperanto-fw/MachineMinion/MachineMinion.elf"
+0: INFO EMU: [SYSTEM] Segment[0] VA: 0x8000000000	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .text	VMA: 0x8000000000	LMA: 0x8000000000	Size: 0x427e	Type: 0x1	Flags: 0x6
+0: INFO EMU: [SYSTEM] Section[1] .rodata	VMA: 0x8000004280	LMA: 0x8000004280	Size: 0x968	Type: 0x1	Flags: 0x2
+0: INFO EMU: [SYSTEM] Segment[1] VA: 0x8000200000	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .data	VMA: 0x8000200000	LMA: 0x8000200000	Size: 0x880	Type: 0x1	Flags: 0x3
+0: INFO EMU: [SYS-EMU] Loading ELF: "/opt/et/lib/esperanto-fw/WorkerMinion/WorkerMinion.elf"
+0: INFO EMU: [SYSTEM] Segment[0] VA: 0x8000c00000	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .text	VMA: 0x8000c00000	LMA: 0x8000c00000	Size: 0x8846	Type: 0x1	Flags: 0x6
+0: INFO EMU: [SYSTEM] Section[1] .rodata	VMA: 0x8000c08880	LMA: 0x8000c08880	Size: 0x9e4	Type: 0x1	Flags: 0x2
+0: INFO EMU: [SYSTEM] Segment[1] VA: 0x8001400000	Type: 0x1 (LOAD)
+0: INFO EMU: [SYSTEM] Section[0] .data	VMA: 0x8001400000	LMA: 0x8001400000	Size: 0x29e8	Type: 0x1	Flags: 0x3
+0: INFO EMU: [SYSTEM] Section[1] .sdata	VMA: 0x8001402a00	LMA: 0x8001402a00	Size: 0x188	Type: 0x1	Flags: 0x3
+0: INFO EMU: [SYS-EMU] Writing 32-bit value 0x0 to 0x7e80000010
+0: INFO EMU: [SYS-EMU] Writing 32-bit value 0x10 to 0x7e80000014
+0: INFO EMU: [SYS-EMU] Writing 32-bit value 0x0 to 0x7e80000018
+0: INFO EMU: [SYS-EMU] Writing 32-bit value 0x20 to 0x7e8000001c
+0: INFO EMU: [SYS-EMU] Starting emulation
+25464386: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25465046: INFO EMU: [SysEmuImp] Raise Host (Count: 1) Interrupt Bitmap: (0x4)
+25465469: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25465475: INFO EMU: [SysEmuImp] Raise Host (Count: 2) Interrupt Bitmap: (0x8)
+25466185: INFO EMU: [SysEmuImp] Raise Host (Count: 3) Interrupt Bitmap: (0x4)
+25466576: INFO EMU: [SysEmuImp] Raise Host (Count: 4) Interrupt Bitmap: (0x8)
+25466611: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25467104: INFO EMU: [SysEmuImp] Raise Host (Count: 5) Interrupt Bitmap: (0x4)
+25467380: INFO EMU: [SysEmuImp] Raise Host (Count: 6) Interrupt Bitmap: (0x8)
+25467440: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25467472: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25467517: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25467564: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25467680: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25468049: INFO EMU: [SysEmuImp] Raise Host (Count: 7) Interrupt Bitmap: (0x4)
+25468617: INFO EMU: [SysEmuImp] Raise Host (Count: 8) Interrupt Bitmap: (0x8)
+25469010: INFO EMU: [SysEmuImp] Raise Host (Count: 9) Interrupt Bitmap: (0x8)
+25469404: INFO EMU: [SysEmuImp] Raise Host (Count: 10) Interrupt Bitmap: (0x8)
+25469798: INFO EMU: [SysEmuImp] Raise Host (Count: 11) Interrupt Bitmap: (0x8)
+25470192: INFO EMU: [SysEmuImp] Raise Host (Count: 12) Interrupt Bitmap: (0x8)
+25470302: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25470811: INFO EMU: [SysEmuImp] Raise Host (Count: 13) Interrupt Bitmap: (0x4)
+25471335: INFO EMU: [SysEmuImp] Raise Host (Count: 14) Interrupt Bitmap: (0x8)
+25471444: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25471467: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25471486: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25472043: INFO EMU: [SysEmuImp] Raise Host (Count: 15) Interrupt Bitmap: (0x4)
+25472629: INFO EMU: [SysEmuImp] Raise Host (Count: 16) Interrupt Bitmap: (0x8)
+25472964: INFO EMU: [SysEmuImp] Raise Host (Count: 17) Interrupt Bitmap: (0x8)
+25473342: INFO EMU: [SysEmuImp] Raise Host (Count: 18) Interrupt Bitmap: (0x8)
+25473474: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25474013: INFO EMU: [SysEmuImp] Raise Host (Count: 19) Interrupt Bitmap: (0x4)
+25535158: INFO EMU: [SysEmuImp] Raise Host (Count: 20) Interrupt Bitmap: (0x8)
+25535210: INFO EMU: [SysEmuImp] raise_device_interrupt(type = PU)
+25535719: INFO EMU: [SysEmuImp] Raise Host (Count: 21) Interrupt Bitmap: (0x4)
+25536269: INFO EMU: [SysEmuImp] Raise Host (Count: 22) Interrupt Bitmap: (0x8)
+25536317: INFO EMU: [SYS-EMU] Emulation performance: 0.735863 cycles/sec (25536317 cycles / 34.702558 sec)
+25536317: INFO EMU: [SYS-EMU] Finishing emulation

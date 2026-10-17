@@ -1,0 +1,17 @@
+call 00 mnist     9476/10000 correct ( 5.24% error)   111.348 ms
+call 01 mnist     9550/10000 correct ( 4.50% error)   111.297 ms
+call 02 mnist     9537/10000 correct ( 4.63% error)   111.351 ms
+call 03 mnist     9546/10000 correct ( 4.54% error)   111.249 ms
+call 04 mnist     9571/10000 correct ( 4.29% error)   111.318 ms
+call 05 mnist     9536/10000 correct ( 4.64% error)   111.207 ms
+call 06 mnist     9545/10000 correct ( 4.55% error)   111.353 ms
+call 07 kmnist    9290/10000 correct ( 7.10% error)   111.345 ms
+call 08 mnist     9542/10000 correct ( 4.58% error)   111.337 ms
+call 09 kmnist    9242/10000 correct ( 7.58% error)   111.187 ms
+call 10 kmnist    9004/10000 correct ( 9.96% error)   111.208 ms
+call 11 mnist     9549/10000 correct ( 4.51% error)   111.176 ms
+call 12 kmnist    9202/10000 correct ( 7.98% error)   111.239 ms
+call 13 mnist     9526/10000 correct ( 4.74% error)   111.464 ms
+call 14 mnist     9522/10000 correct ( 4.78% error)   111.417 ms
+MNIST 95.36% (104,900/110,000); hold-out (kmnist) 91.84%; ms/call MNIST 111.320, hold-out 111.245; ranked 111.320 ms
+difficulty 1 (error <= 5.40%): PASS

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/hello_host.dir/main.cpp.o -o hello_host  -Wl,-rpath,/opt/et/lib /opt/et/lib/libetrt.so /opt/et/lib/libdeviceLayer.a /opt/et/lib/libsw-sysemu.a -llz4 -lglog /opt/et/lib/libdebug.a /opt/et/lib/liblogging.a /opt/et/lib/libg3log.so.2.6-0 -Wl,-rpath-link,/opt/et/lib 

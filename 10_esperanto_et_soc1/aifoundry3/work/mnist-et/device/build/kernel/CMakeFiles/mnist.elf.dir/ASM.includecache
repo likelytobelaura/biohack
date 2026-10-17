@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/likelytobelaura/work/mnist-et/device/kernel/crt.S
+etsoc/isa/syscall.h
+/home/likelytobelaura/work/mnist-et/device/kernel/etsoc/isa/syscall.h
+
+/opt/et/cm-umode/include/etsoc/isa/syscall.h
+stdint.h
+-
+

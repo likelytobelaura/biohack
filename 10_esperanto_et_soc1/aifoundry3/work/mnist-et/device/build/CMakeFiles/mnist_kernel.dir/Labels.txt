@@ -1,0 +1,13 @@
+# Target labels
+ mnist_kernel
+# Source files and their labels
+/home/likelytobelaura/work/mnist-et/device/build/CMakeFiles/mnist_kernel
+/home/likelytobelaura/work/mnist-et/device/build/CMakeFiles/mnist_kernel.rule
+/home/likelytobelaura/work/mnist-et/device/build/CMakeFiles/mnist_kernel-complete.rule
+/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-build.rule
+/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-configure.rule
+/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-download.rule
+/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-install.rule
+/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-mkdir.rule
+/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-patch.rule
+/home/likelytobelaura/work/mnist-et/device/build/mnist_kernel-prefix/src/mnist_kernel-stamp/mnist_kernel-update.rule

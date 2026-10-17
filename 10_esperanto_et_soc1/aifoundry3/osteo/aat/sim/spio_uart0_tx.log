@@ -1,0 +1,33 @@
+
+** SP BL2 STARTED **
+BL2 version: 0.22.0:
+GIT version: 353f20e98 (fast-boot)
+Partition 1 is not valid, skipping
+Starting RTOS...
+MAIN:[txt]PMIC FW version: 0.0.0
+MAIN:[txt]PMIC FW Hash: Manufacturer: 
+Serial Number: 
+ECID:
+  OTP row 36 = 0xffffffff
+  OTP row 37 = 0xffffffff
+  Lot ID       = ______ (0x0000000fffffffff)
+  Wafer ID     = 0x1f (31)
+  X Coordinate = 0xff (255)
+  Y Coordinate = 0xff (255)
+MAIN:[txt] efuse Active Shire Mask 3ffffffff
+MAIN:[txt]Initialize Minion Shire
+time: 4915
+MAIN:[txt]Configure NOC
+MAIN:[txt]MemShire Configure
+configure_memshire: ddr_config completed
+MAIN:[txt]Minion Shire PLL Enable
+Minion Shire PLL using Step Clock
+MAIN:[txt]launch_mm_sp_command_handler
+Master shire ID was not found in the OTP, using default value of 32!
+Waiting for host to enable memory space...
+done!
+Waiting for host to enable MSI...
+done!
+PCIe link up at Gen 4
+Watchdog timeout set to approx 11000 milliseconds
+MM heartbeat alive!

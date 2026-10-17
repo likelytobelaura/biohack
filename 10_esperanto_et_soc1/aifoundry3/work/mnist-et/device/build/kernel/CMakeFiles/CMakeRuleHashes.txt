@@ -1,0 +1,6 @@
+# Hashes of file build rules.
+f693cf2a3e512062402781e687bc2ca0 CMakeFiles/mnist.bin
+f693cf2a3e512062402781e687bc2ca0 CMakeFiles/mnist.lst
+f693cf2a3e512062402781e687bc2ca0 CMakeFiles/mnist.map
+667249fdea9d43347cd37c2fe813ac6b mnist.bin
+e41f0a2dbbaf684dbc18580311d6f2ac mnist.lst

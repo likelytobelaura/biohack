@@ -1,0 +1,21 @@
+CMakeFiles/mnist.elf.dir/mnist.c.obj: \
+ /home/likelytobelaura/work/mnist-et/device/kernel/mnist.c \
+ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include/stdbool.h \
+ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include/stdint.h \
+ /opt/et/riscv64-unknown-elf/include/stdint.h \
+ /opt/et/riscv64-unknown-elf/include/machine/_default_types.h \
+ /opt/et/riscv64-unknown-elf/include/sys/features.h \
+ /opt/et/riscv64-unknown-elf/include/_newlib_version.h \
+ /opt/et/riscv64-unknown-elf/include/sys/_intsup.h \
+ /opt/et/riscv64-unknown-elf/include/sys/_stdint.h \
+ /opt/et/cm-umode/include/etsoc/isa/esr_defines.h \
+ /opt/et/riscv64-unknown-elf/include/inttypes.h \
+ /opt/et/riscv64-unknown-elf/include/newlib-nano/newlib.h \
+ /opt/et/riscv64-unknown-elf/include/sys/config.h \
+ /opt/et/riscv64-unknown-elf/include/machine/ieeefp.h \
+ /opt/et/riscv64-unknown-elf/include/_ansi.h \
+ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include/stddef.h \
+ /opt/et/riscv64-unknown-elf/include/sys/_locale.h \
+ /opt/et/cm-umode/include/etsoc/isa/hart.h \
+ /home/likelytobelaura/work/mnist-et/device/kernel/../mnist_args.h \
+ /home/likelytobelaura/work/mnist-et/device/kernel/mk.inc

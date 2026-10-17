@@ -1,0 +1,323 @@
+[==========] Running 3 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 3 tests from TestCodeLoading
+[ RUN      ] TestCodeLoading.LoadKernel
+2026/10/16 13:12:52 624036	INFO [RuntimeFixture.h->operator():30]	ET [RUNTIME][TH:123790153014912]: Running tests with PCIE deviceLayer
+[32m2026/10/16 13:12:52 624404	DEBUG [DevicePcie.cpp->setupDeviceInfo:459]	ET [DEVICE_LAYER][TH:123790153014912]: 
+PCIe target:                                               /dev/et0_ops        
+DRAM base:                                                 549848092672         (0x8005801000)
+DRAM size (B):                                             34265366528          (0x7fa600000)
+DRAM alignment (bits):                                     64                  
+MM SQ count:                                               2                    (0x2)
+MM VQ Maximum message size (B):                            1056                 (0x420)
+P2P compatibility bitmap:                                  0                    (0x0)
+PCIBUS device name:                                        0000:02:00.0        
+Physical device ID:                                        0                    (0x0)
+Form Factor:                                               PCIE                 (0x0)
+TDP (W):                                                   65                  
+Minion boot frequency (MHz):                               600                 
+L3 size (KB):                                              32768                (0x8000)
+L2 size (KB):                                              16384                (0x4000)
+Scratch pad size (KB):                                     81920                (0x14000)
+Cache line size (B):                                       64                   (0x40)
+Number of L2 Banks:                                        4                   
+DDR Bandwidth (MB/s):                                      128000              
+Spare shire ID:                                            32                  
+Architecture revision:                                     ETSOC1               (0x0)
+CM active shire mask:                                      4294967295           (0xffffffff)
+Scratchpad base address in format 0:                       2147483648           (0x80000000)
+Scratchpad base address in format 1:                       3221225472           (0xc0000000)
+Scratchpad base address in format 2:                       18446744073709551615 (0xffffffffffffffff)
+Local DDR base address:                                    549848092672         (0x8005801000)
+Chiplet DDR base address:                                  549848092672         (0x8005801000)
+Interleaved DDR base address:                              18446744073709551615 (0xffffffffffffffff)
+Single chiplet DDR size:                                   34265366528         
+Address alignment bits:                                    64                  
+First shire bit in scratchpad address in format 0:         23                  
+Number of shire bits in scratchpad address in format 0:    7                   
+Local shire encoding in scratchpad address in format 0:    127                 
+First shire bit in scratchpad address in format 1:         6                   
+Number of shire bits in scratchpad address in format 1:    5                   
+First shire bit in scratchpad address in format 2:         255                 
+Number of shire bits in scratchpad address in format 2:    255                 
+First chiplet bit in scratchpad address in format 2:       255                 
+Number of chiplet bits in scratchpad address in format 2:  255                 
+First chiplet bit in chiplet DDR address:                  255                 
+Number of chiplet bits in chiplet DDR address:             255                 
+First chiplet bit in interleaved chiplet DDR address:      255                 
+Number of chiplet bits in interleaved chiplet DDR address: 255                 
+
+[m2026/10/16 13:12:52 624518	INFO [RuntimeImp.cpp->RuntimeImp:74]	ET [RUNTIME][TH:123790153014912]: Profiler enabled? False
+2026/10/16 13:12:52 624571	INFO [RuntimeImp.cpp->RuntimeImp:98]	ET [RUNTIME][TH:123790153014912]: Runtime initialization device 0: Dram base addr: 8005801000 Dram size: 7fa600000 Check memcpy operations: True
+2026/10/16 13:12:52 805817	INFO [RuntimeImp.cpp->RuntimeImp:144]	ET [RUNTIME][TH:123790153014912]: Initializing device: 0
+2026/10/16 13:12:52 805833	INFO [RuntimeImp.cpp->lockProcessingResponseErrors:576]	ET [RUNTIME][TH:123790153014912]: Abort phase begins. Tag id: 1
+2026/10/16 13:12:52 805902	INFO [RuntimeImp.cpp->unlockProcessingResponseErrors:584]	ET [RUNTIME][TH:123789807445696]: Abort phase finished. Tag id: 1
+2026/10/16 13:12:52 805977	INFO [RuntimeImp.cpp->lockProcessingResponseErrors:576]	ET [RUNTIME][TH:123790153014912]: Abort phase begins. Tag id: 3
+2026/10/16 13:12:52 806471	INFO [RuntimeImp.cpp->unlockProcessingResponseErrors:584]	ET [RUNTIME][TH:123789807445696]: Abort phase finished. Tag id: 3
+2026/10/16 13:12:52 806533	INFO [RuntimeImp.cpp->RuntimeImp:148]	ET [RUNTIME][TH:123790153014912]: Checking device api version for device: 0
+2026/10/16 13:12:52 807072	INFO [RuntimeImp.cpp->checkDeviceApi:799]	ET [RUNTIME][TH:123790153014912]: Device API version: 2.6.0
+2026/10/16 13:12:52 807075	INFO [RuntimeImp.cpp->RuntimeImp:152]	ET [RUNTIME][TH:123790153014912]: Device: 0 initialized.
+2026/10/16 13:12:52 809561	INFO [RuntimeImp.cpp->RuntimeImp:159]	ET [RUNTIME][TH:123790153014912]: Runtime initialized.
+2026/10/16 13:12:52 809570	INFO [RuntimeImp.cpp->setMemoryManagerDebugMode:761]	ET [RUNTIME][TH:123790153014912]: Setting memory manager debug mode: True
+[33m2026/10/16 13:12:52 809655	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m2026/10/16 13:12:52 810323	INFO [RuntimeImp.cpp->~RuntimeImp:51]	ET [RUNTIME][TH:123790153014912]: Destroying runtime
+2026/10/16 13:12:52 810325	INFO [RuntimeImp.cpp->setMemoryManagerDebugMode:761]	ET [RUNTIME][TH:123790153014912]: Setting memory manager debug mode: False
+2026/10/16 13:12:52 810328	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e44338
+2026/10/16 13:12:52 810412	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e3f480
+2026/10/16 13:12:52 810449	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e3ebe0
+2026/10/16 13:12:52 810599	INFO [ResponseReceiver.cpp->~ResponseReceiver:107]	ET [RUNTIME][TH:123790153014912]: Destroying response receiver
+2026/10/16 13:12:52 810768	INFO [ResponseReceiver.cpp->~ResponseReceiver:116]	ET [RUNTIME][TH:123790153014912]: Response receiver destroyed
+2026/10/16 13:12:52 810770	INFO [CommandSender.cpp->~CommandSender:103]	ET [RUNTIME][TH:123790153014912]: Destroying commandSender for device: 0 SQ: 1
+2026/10/16 13:12:52 810801	INFO [CommandSender.cpp->~CommandSender:103]	ET [RUNTIME][TH:123790153014912]: Destroying commandSender for device: 0 SQ: 0
+2026/10/16 13:12:52 811259	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e43f58
+2026/10/16 13:12:52 854316	INFO [Runner.cpp->~Runner:27]	ET [THREADPOOL][TH:123790153014912]: Destroying Runner.
+[       OK ] TestCodeLoading.LoadKernel (230 ms)
+[ RUN      ] TestCodeLoading.KernelWithBss
+2026/10/16 13:12:52 854759	INFO [RuntimeFixture.h->operator():30]	ET [RUNTIME][TH:123790153014912]: Running tests with PCIE deviceLayer
+[32m2026/10/16 13:12:52 855114	DEBUG [DevicePcie.cpp->setupDeviceInfo:459]	ET [DEVICE_LAYER][TH:123790153014912]: 
+PCIe target:                                               /dev/et0_ops        
+DRAM base:                                                 549848092672         (0x8005801000)
+DRAM size (B):                                             34265366528          (0x7fa600000)
+DRAM alignment (bits):                                     64                  
+MM SQ count:                                               2                    (0x2)
+MM VQ Maximum message size (B):                            1056                 (0x420)
+P2P compatibility bitmap:                                  0                    (0x0)
+PCIBUS device name:                                        0000:02:00.0        
+Physical device ID:                                        0                    (0x0)
+Form Factor:                                               PCIE                 (0x0)
+TDP (W):                                                   65                  
+Minion boot frequency (MHz):                               600                 
+L3 size (KB):                                              32768                (0x8000)
+L2 size (KB):                                              16384                (0x4000)
+Scratch pad size (KB):                                     81920                (0x14000)
+Cache line size (B):                                       64                   (0x40)
+Number of L2 Banks:                                        4                   
+DDR Bandwidth (MB/s):                                      128000              
+Spare shire ID:                                            32                  
+Architecture revision:                                     ETSOC1               (0x0)
+CM active shire mask:                                      4294967295           (0xffffffff)
+Scratchpad base address in format 0:                       2147483648           (0x80000000)
+Scratchpad base address in format 1:                       3221225472           (0xc0000000)
+Scratchpad base address in format 2:                       18446744073709551615 (0xffffffffffffffff)
+Local DDR base address:                                    549848092672         (0x8005801000)
+Chiplet DDR base address:                                  549848092672         (0x8005801000)
+Interleaved DDR base address:                              18446744073709551615 (0xffffffffffffffff)
+Single chiplet DDR size:                                   34265366528         
+Address alignment bits:                                    64                  
+First shire bit in scratchpad address in format 0:         23                  
+Number of shire bits in scratchpad address in format 0:    7                   
+Local shire encoding in scratchpad address in format 0:    127                 
+First shire bit in scratchpad address in format 1:         6                   
+Number of shire bits in scratchpad address in format 1:    5                   
+First shire bit in scratchpad address in format 2:         255                 
+Number of shire bits in scratchpad address in format 2:    255                 
+First chiplet bit in scratchpad address in format 2:       255                 
+Number of chiplet bits in scratchpad address in format 2:  255                 
+First chiplet bit in chiplet DDR address:                  255                 
+Number of chiplet bits in chiplet DDR address:             255                 
+First chiplet bit in interleaved chiplet DDR address:      255                 
+Number of chiplet bits in interleaved chiplet DDR address: 255                 
+
+[m2026/10/16 13:12:52 855221	INFO [RuntimeImp.cpp->RuntimeImp:74]	ET [RUNTIME][TH:123790153014912]: Profiler enabled? False
+2026/10/16 13:12:52 855268	INFO [RuntimeImp.cpp->RuntimeImp:98]	ET [RUNTIME][TH:123790153014912]: Runtime initialization device 0: Dram base addr: 8005801000 Dram size: 7fa600000 Check memcpy operations: True
+2026/10/16 13:12:53 033605	INFO [RuntimeImp.cpp->RuntimeImp:144]	ET [RUNTIME][TH:123790153014912]: Initializing device: 0
+2026/10/16 13:12:53 033614	INFO [RuntimeImp.cpp->lockProcessingResponseErrors:576]	ET [RUNTIME][TH:123790153014912]: Abort phase begins. Tag id: 1
+2026/10/16 13:12:53 033754	INFO [RuntimeImp.cpp->unlockProcessingResponseErrors:584]	ET [RUNTIME][TH:123789807445696]: Abort phase finished. Tag id: 1
+2026/10/16 13:12:53 033764	INFO [RuntimeImp.cpp->lockProcessingResponseErrors:576]	ET [RUNTIME][TH:123790153014912]: Abort phase begins. Tag id: 3
+2026/10/16 13:12:53 034315	INFO [RuntimeImp.cpp->unlockProcessingResponseErrors:584]	ET [RUNTIME][TH:123789807445696]: Abort phase finished. Tag id: 3
+2026/10/16 13:12:53 034359	INFO [RuntimeImp.cpp->RuntimeImp:148]	ET [RUNTIME][TH:123790153014912]: Checking device api version for device: 0
+2026/10/16 13:12:53 034912	INFO [RuntimeImp.cpp->checkDeviceApi:799]	ET [RUNTIME][TH:123790153014912]: Device API version: 2.6.0
+2026/10/16 13:12:53 034914	INFO [RuntimeImp.cpp->RuntimeImp:152]	ET [RUNTIME][TH:123790153014912]: Device: 0 initialized.
+2026/10/16 13:12:53 037052	INFO [RuntimeImp.cpp->RuntimeImp:159]	ET [RUNTIME][TH:123790153014912]: Runtime initialized.
+2026/10/16 13:12:53 037060	INFO [RuntimeImp.cpp->setMemoryManagerDebugMode:761]	ET [RUNTIME][TH:123790153014912]: Setting memory manager debug mode: True
+[33m2026/10/16 13:12:53 037120	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m2026/10/16 13:12:53 037997	INFO [RuntimeImp.cpp->onResponseReceived:681]	ET [RUNTIME][TH:123789807445696]: KernelLaunch Reponse Event: 26
+2026/10/16 13:12:53 038296	INFO [RuntimeImp.cpp->~RuntimeImp:51]	ET [RUNTIME][TH:123790153014912]: Destroying runtime
+2026/10/16 13:12:53 038299	INFO [RuntimeImp.cpp->setMemoryManagerDebugMode:761]	ET [RUNTIME][TH:123790153014912]: Setting memory manager debug mode: False
+2026/10/16 13:12:53 038300	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e45568
+2026/10/16 13:12:53 038368	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e412b0
+2026/10/16 13:12:53 038381	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e411e0
+2026/10/16 13:12:53 038460	INFO [ResponseReceiver.cpp->~ResponseReceiver:107]	ET [RUNTIME][TH:123790153014912]: Destroying response receiver
+2026/10/16 13:12:53 039422	INFO [ResponseReceiver.cpp->~ResponseReceiver:116]	ET [RUNTIME][TH:123790153014912]: Response receiver destroyed
+2026/10/16 13:12:53 039425	INFO [CommandSender.cpp->~CommandSender:103]	ET [RUNTIME][TH:123790153014912]: Destroying commandSender for device: 0 SQ: 1
+2026/10/16 13:12:53 039494	INFO [CommandSender.cpp->~CommandSender:103]	ET [RUNTIME][TH:123790153014912]: Destroying commandSender for device: 0 SQ: 0
+2026/10/16 13:12:53 039796	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e45188
+2026/10/16 13:12:53 083040	INFO [Runner.cpp->~Runner:27]	ET [THREADPOOL][TH:123790153014912]: Destroying Runner.
+[       OK ] TestCodeLoading.KernelWithBss (228 ms)
+[ RUN      ] TestCodeLoading.MultipleLoads
+2026/10/16 13:12:53 083436	INFO [RuntimeFixture.h->operator():30]	ET [RUNTIME][TH:123790153014912]: Running tests with PCIE deviceLayer
+[32m2026/10/16 13:12:53 083785	DEBUG [DevicePcie.cpp->setupDeviceInfo:459]	ET [DEVICE_LAYER][TH:123790153014912]: 
+PCIe target:                                               /dev/et0_ops        
+DRAM base:                                                 549848092672         (0x8005801000)
+DRAM size (B):                                             34265366528          (0x7fa600000)
+DRAM alignment (bits):                                     64                  
+MM SQ count:                                               2                    (0x2)
+MM VQ Maximum message size (B):                            1056                 (0x420)
+P2P compatibility bitmap:                                  0                    (0x0)
+PCIBUS device name:                                        0000:02:00.0        
+Physical device ID:                                        0                    (0x0)
+Form Factor:                                               PCIE                 (0x0)
+TDP (W):                                                   65                  
+Minion boot frequency (MHz):                               600                 
+L3 size (KB):                                              32768                (0x8000)
+L2 size (KB):                                              16384                (0x4000)
+Scratch pad size (KB):                                     81920                (0x14000)
+Cache line size (B):                                       64                   (0x40)
+Number of L2 Banks:                                        4                   
+DDR Bandwidth (MB/s):                                      128000              
+Spare shire ID:                                            32                  
+Architecture revision:                                     ETSOC1               (0x0)
+CM active shire mask:                                      4294967295           (0xffffffff)
+Scratchpad base address in format 0:                       2147483648           (0x80000000)
+Scratchpad base address in format 1:                       3221225472           (0xc0000000)
+Scratchpad base address in format 2:                       18446744073709551615 (0xffffffffffffffff)
+Local DDR base address:                                    549848092672         (0x8005801000)
+Chiplet DDR base address:                                  549848092672         (0x8005801000)
+Interleaved DDR base address:                              18446744073709551615 (0xffffffffffffffff)
+Single chiplet DDR size:                                   34265366528         
+Address alignment bits:                                    64                  
+First shire bit in scratchpad address in format 0:         23                  
+Number of shire bits in scratchpad address in format 0:    7                   
+Local shire encoding in scratchpad address in format 0:    127                 
+First shire bit in scratchpad address in format 1:         6                   
+Number of shire bits in scratchpad address in format 1:    5                   
+First shire bit in scratchpad address in format 2:         255                 
+Number of shire bits in scratchpad address in format 2:    255                 
+First chiplet bit in scratchpad address in format 2:       255                 
+Number of chiplet bits in scratchpad address in format 2:  255                 
+First chiplet bit in chiplet DDR address:                  255                 
+Number of chiplet bits in chiplet DDR address:             255                 
+First chiplet bit in interleaved chiplet DDR address:      255                 
+Number of chiplet bits in interleaved chiplet DDR address: 255                 
+
+[m2026/10/16 13:12:53 083897	INFO [RuntimeImp.cpp->RuntimeImp:74]	ET [RUNTIME][TH:123790153014912]: Profiler enabled? False
+2026/10/16 13:12:53 083943	INFO [RuntimeImp.cpp->RuntimeImp:98]	ET [RUNTIME][TH:123790153014912]: Runtime initialization device 0: Dram base addr: 8005801000 Dram size: 7fa600000 Check memcpy operations: True
+2026/10/16 13:12:53 262663	INFO [RuntimeImp.cpp->RuntimeImp:144]	ET [RUNTIME][TH:123790153014912]: Initializing device: 0
+2026/10/16 13:12:53 262674	INFO [RuntimeImp.cpp->lockProcessingResponseErrors:576]	ET [RUNTIME][TH:123790153014912]: Abort phase begins. Tag id: 1
+2026/10/16 13:12:53 262827	INFO [RuntimeImp.cpp->unlockProcessingResponseErrors:584]	ET [RUNTIME][TH:123789807445696]: Abort phase finished. Tag id: 1
+2026/10/16 13:12:53 262893	INFO [RuntimeImp.cpp->lockProcessingResponseErrors:576]	ET [RUNTIME][TH:123790153014912]: Abort phase begins. Tag id: 3
+2026/10/16 13:12:53 263387	INFO [RuntimeImp.cpp->unlockProcessingResponseErrors:584]	ET [RUNTIME][TH:123789807445696]: Abort phase finished. Tag id: 3
+2026/10/16 13:12:53 263429	INFO [RuntimeImp.cpp->RuntimeImp:148]	ET [RUNTIME][TH:123790153014912]: Checking device api version for device: 0
+2026/10/16 13:12:53 263984	INFO [RuntimeImp.cpp->checkDeviceApi:799]	ET [RUNTIME][TH:123790153014912]: Device API version: 2.6.0
+2026/10/16 13:12:53 263986	INFO [RuntimeImp.cpp->RuntimeImp:152]	ET [RUNTIME][TH:123790153014912]: Device: 0 initialized.
+2026/10/16 13:12:53 265844	INFO [RuntimeImp.cpp->RuntimeImp:159]	ET [RUNTIME][TH:123790153014912]: Runtime initialized.
+2026/10/16 13:12:53 265853	INFO [RuntimeImp.cpp->setMemoryManagerDebugMode:761]	ET [RUNTIME][TH:123790153014912]: Setting memory manager debug mode: True
+2026/10/16 13:12:53 265859	INFO [test_code_loading.cpp->TestBody:88]	ET [RUNTIME][TH:123790153014912]: Loading 100 kernels
+[33m2026/10/16 13:12:53 265942	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 266522	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 266744	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 266964	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 267183	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 267402	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 267554	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 267660	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 267770	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 267881	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 267993	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268103	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268219	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268325	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268435	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268546	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268659	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268768	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268879	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 268991	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269101	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269211	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269327	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269433	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269545	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269654	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269766	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269875	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 269988	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270096	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270207	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270318	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270428	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270540	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270650	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270760	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270870	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 270981	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 271091	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 271201	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 271767	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 271876	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 271991	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272101	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272209	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272320	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272431	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272541	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272651	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272763	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272873	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 272985	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 273095	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 273203	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 273316	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 273424	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 273535	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 273645	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 273757	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 273867	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274043	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274154	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274263	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274374	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274486	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274595	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274704	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274814	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 274937	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275037	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275148	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275257	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275367	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275479	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275589	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275699	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275811	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 275940	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 276138	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 276247	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 276356	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 276473	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 276581	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 276692	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 276806	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 276916	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277024	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277133	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277245	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277356	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277466	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277578	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277687	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277799	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 277911	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 278021	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 278130	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 278240	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 278350	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m[33m2026/10/16 13:12:53 278460	WARNING [RuntimeImp.cpp->doLoadCode:272]	ET [RUNTIME][TH:123790153014912]: Segment 1 is 0-sized; skipping it.
+[m2026/10/16 13:12:53 278524	INFO [test_code_loading.cpp->TestBody:97]	ET [RUNTIME][TH:123790153014912]: Unloading 100 kernels
+2026/10/16 13:12:53 280474	INFO [RuntimeImp.cpp->~RuntimeImp:51]	ET [RUNTIME][TH:123790153014912]: Destroying runtime
+2026/10/16 13:12:53 280476	INFO [RuntimeImp.cpp->setMemoryManagerDebugMode:761]	ET [RUNTIME][TH:123790153014912]: Setting memory manager debug mode: False
+2026/10/16 13:12:53 280478	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e45478
+2026/10/16 13:12:53 280542	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03eed4b0
+2026/10/16 13:12:53 280556	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e43910
+2026/10/16 13:12:53 280603	INFO [ResponseReceiver.cpp->~ResponseReceiver:107]	ET [RUNTIME][TH:123790153014912]: Destroying response receiver
+2026/10/16 13:12:53 281907	INFO [ResponseReceiver.cpp->~ResponseReceiver:116]	ET [RUNTIME][TH:123790153014912]: Response receiver destroyed
+2026/10/16 13:12:53 281910	INFO [CommandSender.cpp->~CommandSender:103]	ET [RUNTIME][TH:123790153014912]: Destroying commandSender for device: 0 SQ: 1
+2026/10/16 13:12:53 281930	INFO [CommandSender.cpp->~CommandSender:103]	ET [RUNTIME][TH:123790153014912]: Destroying commandSender for device: 0 SQ: 0
+2026/10/16 13:12:53 282244	INFO [ThreadPool.cpp->~ThreadPool:56]	ET [THREADPOOL][TH:123790153014912]: Destroying threadpool 0x5ede03e45098
+2026/10/16 13:12:53 327151	INFO [Runner.cpp->~Runner:27]	ET [THREADPOOL][TH:123790153014912]: Destroying Runner.
+[       OK ] TestCodeLoading.MultipleLoads (244 ms)
+[----------] 3 tests from TestCodeLoading (703 ms total)
+
+[----------] Global test environment tear-down
+[==========] 3 tests from 1 test suite ran. (703 ms total)
+[  PASSED  ] 3 tests.

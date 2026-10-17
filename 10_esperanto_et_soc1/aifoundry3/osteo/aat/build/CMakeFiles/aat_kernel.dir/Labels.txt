@@ -1,0 +1,13 @@
+# Target labels
+ aat_kernel
+# Source files and their labels
+/home/likelytobelaura/osteo/aat/build/CMakeFiles/aat_kernel
+/home/likelytobelaura/osteo/aat/build/CMakeFiles/aat_kernel.rule
+/home/likelytobelaura/osteo/aat/build/CMakeFiles/aat_kernel-complete.rule
+/home/likelytobelaura/osteo/aat/build/aat_kernel-prefix/src/aat_kernel-stamp/aat_kernel-build.rule
+/home/likelytobelaura/osteo/aat/build/aat_kernel-prefix/src/aat_kernel-stamp/aat_kernel-configure.rule
+/home/likelytobelaura/osteo/aat/build/aat_kernel-prefix/src/aat_kernel-stamp/aat_kernel-download.rule
+/home/likelytobelaura/osteo/aat/build/aat_kernel-prefix/src/aat_kernel-stamp/aat_kernel-install.rule
+/home/likelytobelaura/osteo/aat/build/aat_kernel-prefix/src/aat_kernel-stamp/aat_kernel-mkdir.rule
+/home/likelytobelaura/osteo/aat/build/aat_kernel-prefix/src/aat_kernel-stamp/aat_kernel-patch.rule
+/home/likelytobelaura/osteo/aat/build/aat_kernel-prefix/src/aat_kernel-stamp/aat_kernel-update.rule

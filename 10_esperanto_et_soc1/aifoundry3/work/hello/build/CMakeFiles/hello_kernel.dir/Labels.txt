@@ -1,0 +1,13 @@
+# Target labels
+ hello_kernel
+# Source files and their labels
+/home/likelytobelaura/work/hello/build/CMakeFiles/hello_kernel
+/home/likelytobelaura/work/hello/build/CMakeFiles/hello_kernel.rule
+/home/likelytobelaura/work/hello/build/CMakeFiles/hello_kernel-complete.rule
+/home/likelytobelaura/work/hello/build/hello_kernel-prefix/src/hello_kernel-stamp/hello_kernel-build.rule
+/home/likelytobelaura/work/hello/build/hello_kernel-prefix/src/hello_kernel-stamp/hello_kernel-configure.rule
+/home/likelytobelaura/work/hello/build/hello_kernel-prefix/src/hello_kernel-stamp/hello_kernel-download.rule
+/home/likelytobelaura/work/hello/build/hello_kernel-prefix/src/hello_kernel-stamp/hello_kernel-install.rule
+/home/likelytobelaura/work/hello/build/hello_kernel-prefix/src/hello_kernel-stamp/hello_kernel-mkdir.rule
+/home/likelytobelaura/work/hello/build/hello_kernel-prefix/src/hello_kernel-stamp/hello_kernel-patch.rule
+/home/likelytobelaura/work/hello/build/hello_kernel-prefix/src/hello_kernel-stamp/hello_kernel-update.rule

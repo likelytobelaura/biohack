@@ -1,0 +1,87 @@
+
+hello.elf:     file format elf64-littleriscv
+
+Sections:
+Idx Name          Size      VMA               LMA               File off  Algn
+  0 .text         000000d2  0000008005801000  0000008005801000  00001000  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000002  00000080058010d2  00000080058010d2  000010d2  2**0
+                  ALLOC
+  2 .sbss         00000000  00000080058010d4  00000080058010d4  000010d2  2**0
+                  CONTENTS
+  3 .comment      00000019  0000000000000000  0000000000000000  000010d2  2**0
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+0000008005801000 <_start>:
+  8005801000:	00001197          	auipc	gp,0x1
+  8005801004:	8d218193          	addi	gp,gp,-1838 # 80058018d2 <__global_pointer$>
+  8005801008:	00e000ef          	jal	8005801016 <entry_point>
+  800580100c:	4601                	li	a2,0
+  800580100e:	85aa                	mv	a1,a0
+  8005801010:	4521                	li	a0,8
+  8005801012:	00000073          	ecall
+
+0000008005801016 <entry_point>:
+  8005801016:	cd0027f3          	csrr	a5,hartid
+  800580101a:	477d                	li	a4,31
+  800580101c:	02079693          	slli	a3,a5,0x20
+  8005801020:	0067d61b          	srliw	a2,a5,0x6
+  8005801024:	9281                	srli	a3,a3,0x20
+  8005801026:	0ac76163          	bltu	a4,a2,80058010c8 <entry_point+0xb2>
+  800580102a:	6518                	ld	a4,8(a0)
+  800580102c:	0006031b          	sext.w	t1,a2
+  8005801030:	00c75733          	srl	a4,a4,a2
+  8005801034:	8b05                	andi	a4,a4,1
+  8005801036:	cb49                	beqz	a4,80058010c8 <entry_point+0xb2>
+  8005801038:	0016d593          	srli	a1,a3,0x1
+  800580103c:	0017fe13          	andi	t3,a5,1
+  8005801040:	89fd                	andi	a1,a1,31
+  8005801042:	0007861b          	sext.w	a2,a5
+  8005801046:	080e1363          	bnez	t3,80058010cc <entry_point+0xb6>
+  800580104a:	c03027f3          	csrr	a5,hpmcounter3
+  800580104e:	07f7f893          	andi	a7,a5,127
+  8005801052:	00b8b893          	sltiu	a7,a7,11
+  8005801056:	089e                	slli	a7,a7,0x7
+  8005801058:	98be                	add	a7,a7,a5
+  800580105a:	8736                	mv	a4,a3
+  800580105c:	3e800793          	li	a5,1000
+  8005801060:	0705                	addi	a4,a4,1
+  8005801062:	37fd                	addiw	a5,a5,-1
+  8005801064:	fff5                	bnez	a5,8005801060 <entry_point+0x4a>
+  8005801066:	c03027f3          	csrr	a5,hpmcounter3
+  800580106a:	07f7f813          	andi	a6,a5,127
+  800580106e:	00b83813          	sltiu	a6,a6,11
+  8005801072:	081e                	slli	a6,a6,0x7
+  8005801074:	983e                	add	a6,a6,a5
+  8005801076:	9f11                	subw	a4,a4,a2
+  8005801078:	4118083b          	subw	a6,a6,a7
+  800580107c:	00053883          	ld	a7,0(a0)
+  8005801080:	00669793          	slli	a5,a3,0x6
+  8005801084:	484556b7          	lui	a3,0x48455
+  8005801088:	97c6                	add	a5,a5,a7
+  800580108a:	c4f68693          	addi	a3,a3,-945 # 48454c4f <_start-0x7fbd3ac3b1>
+  800580108e:	c394                	sw	a3,0(a5)
+  8005801090:	c3d0                	sw	a2,4(a5)
+  8005801092:	0067a423          	sw	t1,8(a5)
+  8005801096:	c7cc                	sw	a1,12(a5)
+  8005801098:	01c7a823          	sw	t3,16(a5)
+  800580109c:	0035d59b          	srliw	a1,a1,0x3
+  80058010a0:	cbcc                	sw	a1,20(a5)
+  80058010a2:	4914                	lw	a3,16(a0)
+  80058010a4:	cf94                	sw	a3,24(a5)
+  80058010a6:	0107ae23          	sw	a6,28(a5)
+  80058010aa:	d398                	sw	a4,32(a5)
+  80058010ac:	0207a223          	sw	zero,36(a5)
+  80058010b0:	0207a423          	sw	zero,40(a5)
+  80058010b4:	0207a623          	sw	zero,44(a5)
+  80058010b8:	0207a823          	sw	zero,48(a5)
+  80058010bc:	0207aa23          	sw	zero,52(a5)
+  80058010c0:	0207ac23          	sw	zero,56(a5)
+  80058010c4:	0207ae23          	sw	zero,60(a5)
+  80058010c8:	4501                	li	a0,0
+  80058010ca:	8082                	ret
+  80058010cc:	4701                	li	a4,0
+  80058010ce:	4801                	li	a6,0
+  80058010d0:	b775                	j	800580107c <entry_point+0x66>

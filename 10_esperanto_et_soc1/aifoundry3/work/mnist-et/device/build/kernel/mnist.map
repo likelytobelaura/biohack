@@ -1,0 +1,152 @@
+Archive member included to satisfy reference by file (symbol)
+
+/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memset.o)
+                              /tmp/ccuNGR4S.ltrans0.ltrans.o (memset)
+/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memcpy-asm.o)
+                              /tmp/ccuNGR4S.ltrans0.ltrans.o (memcpy)
+/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+                              /tmp/ccuNGR4S.ltrans0.ltrans.o (__popcountdi2)
+
+Discarded input sections
+
+ .data          0x0000000000000000        0x0 /tmp/ccuNGR4S.ltrans0.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/ccuNGR4S.ltrans0.ltrans.o
+ .riscv.attributes
+                0x0000000000000000       0x46 /tmp/ccuNGR4S.ltrans0.ltrans.o
+ .data          0x0000000000000000        0x0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memset.o)
+ .bss           0x0000000000000000        0x0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memset.o)
+ .riscv.attributes
+                0x0000000000000000       0x42 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memset.o)
+ .data          0x0000000000000000        0x0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memcpy-asm.o)
+ .bss           0x0000000000000000        0x0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memcpy-asm.o)
+ .riscv.attributes
+                0x0000000000000000       0x42 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memcpy-asm.o)
+ .data          0x0000000000000000        0x0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+ .bss           0x0000000000000000        0x0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+ .riscv.attributes
+                0x0000000000000000       0x44 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+ .text          0x0000000000000000        0x0 CMakeFiles/mnist.elf.dir/crt.S.obj
+ .data          0x0000000000000000        0x0 CMakeFiles/mnist.elf.dir/crt.S.obj
+ .bss           0x0000000000000000        0x0 CMakeFiles/mnist.elf.dir/crt.S.obj
+ .riscv.attributes
+                0x0000000000000000       0x42 CMakeFiles/mnist.elf.dir/crt.S.obj
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD CMakeFiles/mnist.elf.dir/mnist.c.obj
+LOAD /tmp/ccuNGR4S.ltrans0.ltrans.o
+LOAD CMakeFiles/mnist.elf.dir/crt.S.obj
+LOAD /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a
+LOAD /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libm_nano.a
+LOAD /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a
+LOAD /opt/et/cm-umode/lib/libcm-umode.a
+                0x0000008005801000                KERNEL_UMODE_ENTRY = 0x8005801000
+                0x0000008005801000                . = KERNEL_UMODE_ENTRY
+
+.text           0x0000008005801000     0x404e
+ *(.text.init)
+ .text.init     0x0000008005801000       0x16 CMakeFiles/mnist.elf.dir/crt.S.obj
+                0x0000008005801000                _start
+ *(SORT_BY_ALIGNMENT(.text) SORT_BY_ALIGNMENT(.text.*) SORT_BY_ALIGNMENT(.gnu.linkonce.t.*))
+ .text          0x0000008005801016     0x3fb8 /tmp/ccuNGR4S.ltrans0.ltrans.o
+                0x0000008005802ad8                entry_point
+ .text          0x0000008005804fce       0x10 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memset.o)
+                0x0000008005804fce                memset
+ .text          0x0000008005804fde       0x16 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/libc_nano.a(libc_a-memcpy-asm.o)
+                0x0000008005804fde                memcpy
+ .text          0x0000008005804ff4       0x5a /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+                0x0000008005804ff4                __popcountdi2
+
+.rodata         0x0000008005805050       0x54
+ *(SORT_BY_ALIGNMENT(.rodata) SORT_BY_ALIGNMENT(.rodata.*) SORT_BY_ALIGNMENT(.gnu.linkonce.r.*))
+ .rodata        0x0000008005805050       0x54 /tmp/ccuNGR4S.ltrans0.ltrans.o
+
+.rodata1
+ *(SORT_BY_ALIGNMENT(.rodata1))
+
+.sdata2
+ *(SORT_BY_ALIGNMENT(.sdata2) SORT_BY_ALIGNMENT(.sdata2.*) SORT_BY_ALIGNMENT(.gnu.linkonce.s2.*))
+
+.sbss2
+ *(SORT_BY_ALIGNMENT(.sbss2) SORT_BY_ALIGNMENT(.sbss2.*) SORT_BY_ALIGNMENT(.gnu.linkonce.sb2.*))
+
+.data
+ *(.data .data.* .gnu.linkonce.d.*)
+
+.sdata          0x00000080058050a4       0x44
+                0x00000080058058a4                __global_pointer$ = (. + 0x800)
+ *(.srodata.cst16)
+ *(.srodata.cst8)
+ *(.srodata.cst4)
+ .srodata.cst4  0x00000080058050a4       0x44 /tmp/ccuNGR4S.ltrans0.ltrans.o
+ *(.srodata.cst2)
+ *(.srodata .srodata.*)
+ *(.sdata .sdata.* .gnu.linkonce.s.*)
+
+.rela.dyn       0x00000080058050e8        0x0
+ .rela.text.init
+                0x00000080058050e8        0x0 CMakeFiles/mnist.elf.dir/crt.S.obj
+
+.bss            0x00000080058050e8        0x0
+                0x00000080058050e8                . = ALIGN (0x4)
+                0x00000080058050e8                __bss_start = .
+ *(.bss .bss.* .gnu.linkonce.b.*)
+
+.sbss           0x00000080058050e8        0x0
+ *(.sbss .sbss.* .gnu.linkonce.sb.*)
+                0x00000080058050e8                . = ALIGN (0x4)
+                0x00000080058050e8                __bss_end = .
+
+/DISCARD/
+ *(.riscv.attributes)
+                0x0000000000000001                ASSERT ((__bss_start == __bss_end), bss not allowed in kernels)
+OUTPUT(mnist.elf elf64-littleriscv)
+
+.comment        0x0000000000000000       0x19
+ .comment       0x0000000000000000       0x19 /tmp/ccuNGR4S.ltrans0.ltrans.o
+                                         0x1a (size before relaxing)
+ .comment       0x0000000000000019        0x0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+                                         0x1a (size before relaxing)
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 /tmp/ccuNGR4S.ltrans0.ltrans.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+
+.debug_info     0x0000000000000000      0x10d
+ .debug_info    0x0000000000000000      0x10d /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+
+.debug_abbrev   0x0000000000000000       0x6e
+ .debug_abbrev  0x0000000000000000       0x6e /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+
+.debug_loclists
+                0x0000000000000000       0xd5
+ .debug_loclists
+                0x0000000000000000       0xd5 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+
+.debug_aranges  0x0000000000000000       0x30
+ .debug_aranges
+                0x0000000000000000       0x30 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+
+.debug_line     0x0000000000000000       0xcb
+ .debug_line    0x0000000000000000       0xcb /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+
+.debug_str      0x0000000000000000      0x182
+ .debug_str     0x0000000000000000      0x182 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+                                        0x1dd (size before relaxing)
+
+.debug_line_str
+                0x0000000000000000       0x90
+ .debug_line_str
+                0x0000000000000000       0x90 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)
+                                         0x9a (size before relaxing)
+
+.debug_frame    0x0000000000000000       0x28
+ .debug_frame   0x0000000000000000       0x28 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/libgcc.a(_popcountsi2.o)

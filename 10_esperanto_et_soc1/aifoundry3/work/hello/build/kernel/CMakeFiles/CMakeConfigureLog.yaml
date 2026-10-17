@@ -1,0 +1,567 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:228 (message)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      The target system is: Generic -  - riscv64
+      The host system is: Linux - 7.0.0-34-generic - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /opt/et/bin/riscv64-unknown-elf-gcc 
+      Build flags: --specs=nano.specs;-mcmodel=medany;-march=rv64imfc;-mabi=lp64f;-mno-strict-align;-mno-riscv-attribute;-fstack-usage;-Wall;-Wextra;-Wdouble-promotion;-Wformat;-Wnull-dereference;-Wswitch-enum;-Wshadow;-Wstack-protector;-Wpointer-arith;-Wundef;-Wbad-function-cast;-Wcast-qual;-Wcast-align;-Wconversion;-Wlogical-op;-Wstrict-prototypes;-Wmissing-prototypes;-Wmissing-declarations;-Wno-main
+      Id flags: -c;--target=riscv64-unknown-elf 
+      
+      The output was:
+      1
+      riscv64-unknown-elf-gcc: error: unrecognized command-line option '--target=riscv64-unknown-elf'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /opt/et/bin/riscv64-unknown-elf-gcc 
+      Build flags: --specs=nano.specs;-mcmodel=medany;-march=rv64imfc;-mabi=lp64f;-mno-strict-align;-mno-riscv-attribute;-fstack-usage;-Wall;-Wextra;-Wdouble-promotion;-Wformat;-Wnull-dereference;-Wswitch-enum;-Wshadow;-Wstack-protector;-Wpointer-arith;-Wundef;-Wbad-function-cast;-Wcast-qual;-Wcast-align;-Wconversion;-Wlogical-op;-Wstrict-prototypes;-Wmissing-prototypes;-Wmissing-declarations;-Wno-main
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a-CMakeCCompilerId.su"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification could not be found in:
+        /home/likelytobelaura/work/hello/build/kernel/CMakeFiles/3.28.3/CompilerIdC/a-CMakeCCompilerId.su
+      
+      The C compiler identification is GNU, found in:
+        /home/likelytobelaura/work/hello/build/kernel/CMakeFiles/3.28.3/CompilerIdC/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /opt/et/bin/riscv64-unknown-elf-g++ 
+      Build flags: --specs=nano.specs;-mcmodel=medany;-march=rv64imfc;-mabi=lp64f;-mno-strict-align;-mno-riscv-attribute;-fstack-usage;-Wall;-Wextra;-Wdouble-promotion;-Wformat;-Wnull-dereference;-Wswitch-enum;-Wshadow;-Wstack-protector;-Wpointer-arith;-Wundef;-Wcast-qual;-Wcast-align;-Wconversion;-Wlogical-op;-Wmissing-declarations;-Wno-main
+      Id flags: -c;--target=riscv64-unknown-elf 
+      
+      The output was:
+      1
+      riscv64-unknown-elf-g++: error: unrecognized command-line option '--target=riscv64-unknown-elf'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /opt/et/bin/riscv64-unknown-elf-g++ 
+      Build flags: --specs=nano.specs;-mcmodel=medany;-march=rv64imfc;-mabi=lp64f;-mno-strict-align;-mno-riscv-attribute;-fstack-usage;-Wall;-Wextra;-Wdouble-promotion;-Wformat;-Wnull-dereference;-Wswitch-enum;-Wshadow;-Wstack-protector;-Wpointer-arith;-Wundef;-Wcast-qual;-Wcast-align;-Wconversion;-Wlogical-op;-Wmissing-declarations;-Wno-main
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a-CMakeCXXCompilerId.su"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification could not be found in:
+        /home/likelytobelaura/work/hello/build/kernel/CMakeFiles/3.28.3/CompilerIdCXX/a-CMakeCXXCompilerId.su
+      
+      The CXX compiler identification is GNU, found in:
+        /home/likelytobelaura/work/hello/build/kernel/CMakeFiles/3.28.3/CompilerIdCXX/a.out
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerId.cmake:1131 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineASMCompiler.cmake:131 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      riscv64-unknown-elf-gcc (g1b306039a) 15.1.0
+      Copyright (C) 2025 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v"
+      binary: "/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "riscv64-unknown-elf"
+      CMAKE_C_COMPILER_TARGET: "riscv64-unknown-elf"
+      CMAKE_C_FLAGS: "--specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wno-main"
+      CMAKE_C_FLAGS_DEBUG: "-O0 -g3 -g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/opt/et/lib/cmake/cmake-modules"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9213a/fast
+        gmake[3]: Entering directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9213a.dir/build.make CMakeFiles/cmTC_9213a.dir/build
+        gmake[4]: Entering directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v'
+        Building C object CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj
+        /opt/et/bin/riscv64-unknown-elf-gcc   --specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wno-main    -v -o CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c
+        Using built-in specs.
+        Reading specs from /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/nano.specs
+        rename spec link to nano_link
+        rename spec link_gcc_c_sequence to nano_link_gcc_c_sequence
+        rename spec cpp to nano_cpp
+        COLLECT_GCC=/opt/et/bin/riscv64-unknown-elf-gcc
+        Target: riscv64-unknown-elf
+        Configured with: /usr/src/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/opt/et --disable-shared --disable-threads --enable-languages=c,c++ --with-pkgversion=g1b306039a --with-system-zlib --enable-tls --with-newlib --with-sysroot=/opt/et/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=.././gcc --disable-multilib --with-abi=lp64f --with-arch=rv64imfc --with-isa-spec=20191213 'CFLAGS_FOR_TARGET=-Os    -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os    -mcmodel=medany'
+        Thread model: single
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 15.1.0 (g1b306039a) 
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_9213a.dir/'
+         /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/cc1 -quiet -v -imultilib . -isystem =/include/newlib-nano /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_9213a.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute -misa-spec=20191213 -march=rv64imfc_zicsr_zmmul_zca -Wall -Wextra -Wdouble-promotion -Wformat=1 -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector -Wpointer-arith -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wlogical-op -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wno-main -version -fstack-usage -o /tmp/ccNHsAAU.s
+        GNU C23 (g1b306039a) version 15.1.0 (riscv64-unknown-elf)
+        	compiled by GNU C version 13.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/et/riscv64-unknown-elf/usr/local/include"
+        ignoring duplicate directory "/opt/et/riscv64-unknown-elf/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/et/riscv64-unknown-elf/include/newlib-nano
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include
+        End of search list.
+        Compiler executable checksum: db25830fda0ee76d6681bec2ae29c415
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_9213a.dir/'
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/as -v --traditional-format -march=rv64imfc -march=rv64imfc_zicsr_zmmul_zca -mabi=lp64f -misa-spec=20191213 -o CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj /tmp/ccNHsAAU.s
+        GNU assembler version 2.45 (riscv64-unknown-elf) using BFD version (GNU Binutils) 2.45
+        COMPILER_PATH=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/
+        LIBRARY_PATH=/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/:/opt/et/riscv64-unknown-elf/lib/
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_9213a
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9213a.dir/link.txt --verbose=1
+        /opt/et/bin/riscv64-unknown-elf-gcc --specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wno-main   -v CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj -o cmTC_9213a 
+        Using built-in specs.
+        Reading specs from /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/nano.specs
+        rename spec link to nano_link
+        rename spec link_gcc_c_sequence to nano_link_gcc_c_sequence
+        rename spec cpp to nano_cpp
+        COLLECT_GCC=/opt/et/bin/riscv64-unknown-elf-gcc
+        COLLECT_LTO_WRAPPER=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper
+        Target: riscv64-unknown-elf
+        Configured with: /usr/src/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/opt/et --disable-shared --disable-threads --enable-languages=c,c++ --with-pkgversion=g1b306039a --with-system-zlib --enable-tls --with-newlib --with-sysroot=/opt/et/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=.././gcc --disable-multilib --with-abi=lp64f --with-arch=rv64imfc --with-isa-spec=20191213 'CFLAGS_FOR_TARGET=-Os    -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os    -mcmodel=medany'
+        Thread model: single
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 15.1.0 (g1b306039a) 
+        COMPILER_PATH=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/
+        LIBRARY_PATH=/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/:/opt/et/riscv64-unknown-elf/lib/
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'cmTC_9213a' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'cmTC_9213a.'
+         /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/collect2 -plugin /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/liblto_plugin.so -plugin-opt=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwlkqJG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc_nano -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc_nano -plugin-opt=-pass-through=-lgloss_nano --sysroot=/opt/et/riscv64-unknown-elf -melf64lriscv -X -o cmTC_9213a /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o -L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0 -L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib -L/opt/et/riscv64-unknown-elf/lib CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj -lgcc -lc_nano -lgcc --start-group -lgcc -lc_nano -lgloss_nano --end-group /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'cmTC_9213a' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'cmTC_9213a.'
+        gmake[4]: Leaving directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v'
+        gmake[3]: Leaving directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/opt/et/riscv64-unknown-elf/include/newlib-nano]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include]
+        end of search list found
+        collapse include dir [/opt/et/riscv64-unknown-elf/include/newlib-nano] ==> [/opt/et/riscv64-unknown-elf/include/newlib-nano]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include] ==> [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed] ==> [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include] ==> [/opt/et/riscv64-unknown-elf/include]
+        implicit include dirs: [/opt/et/riscv64-unknown-elf/include/newlib-nano;/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include;/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed;/opt/et/riscv64-unknown-elf/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(riscv64-unknown-elf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9213a/fast]
+        ignore line: [gmake[3]: Entering directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v']
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_9213a.dir/build.make CMakeFiles/cmTC_9213a.dir/build]
+        ignore line: [gmake[4]: Entering directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-EW3U4v']
+        ignore line: [Building C object CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj]
+        ignore line: [/opt/et/bin/riscv64-unknown-elf-gcc   --specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wno-main    -v -o CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj -c /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c]
+        ignore line: [Using built-in specs.]
+        ignore line: [Reading specs from /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/nano.specs]
+        ignore line: [rename spec link to nano_link]
+        ignore line: [rename spec link_gcc_c_sequence to nano_link_gcc_c_sequence]
+        ignore line: [rename spec cpp to nano_cpp]
+        ignore line: [COLLECT_GCC=/opt/et/bin/riscv64-unknown-elf-gcc]
+        ignore line: [Target: riscv64-unknown-elf]
+        ignore line: [Configured with: /usr/src/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/opt/et --disable-shared --disable-threads --enable-languages=c c++ --with-pkgversion=g1b306039a --with-system-zlib --enable-tls --with-newlib --with-sysroot=/opt/et/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=.././gcc --disable-multilib --with-abi=lp64f --with-arch=rv64imfc --with-isa-spec=20191213 'CFLAGS_FOR_TARGET=-Os    -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os    -mcmodel=medany']
+        ignore line: [Thread model: single]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 15.1.0 (g1b306039a) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_9213a.dir/']
+        ignore line: [ /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/cc1 -quiet -v -imultilib . -isystem =/include/newlib-nano /usr/share/cmake-3.28/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_9213a.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute -misa-spec=20191213 -march=rv64imfc_zicsr_zmmul_zca -Wall -Wextra -Wdouble-promotion -Wformat=1 -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector -Wpointer-arith -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wlogical-op -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wno-main -version -fstack-usage -o /tmp/ccNHsAAU.s]
+        ignore line: [GNU C23 (g1b306039a) version 15.1.0 (riscv64-unknown-elf)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/opt/et/riscv64-unknown-elf/usr/local/include"]
+        ignore line: [ignoring duplicate directory "/opt/et/riscv64-unknown-elf/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /opt/et/riscv64-unknown-elf/include/newlib-nano]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: db25830fda0ee76d6681bec2ae29c415]
+        ignore line: [COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_9213a.dir/']
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/as -v --traditional-format -march=rv64imfc -march=rv64imfc_zicsr_zmmul_zca -mabi=lp64f -misa-spec=20191213 -o CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj /tmp/ccNHsAAU.s]
+        ignore line: [GNU assembler version 2.45 (riscv64-unknown-elf) using BFD version (GNU Binutils) 2.45]
+        ignore line: [COMPILER_PATH=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/]
+        ignore line: [LIBRARY_PATH=/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/:/opt/et/riscv64-unknown-elf/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_9213a]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9213a.dir/link.txt --verbose=1]
+        ignore line: [/opt/et/bin/riscv64-unknown-elf-gcc --specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wno-main   -v CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj -o cmTC_9213a ]
+        ignore line: [Using built-in specs.]
+        ignore line: [Reading specs from /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/nano.specs]
+        ignore line: [rename spec link to nano_link]
+        ignore line: [rename spec link_gcc_c_sequence to nano_link_gcc_c_sequence]
+        ignore line: [rename spec cpp to nano_cpp]
+        ignore line: [COLLECT_GCC=/opt/et/bin/riscv64-unknown-elf-gcc]
+        ignore line: [COLLECT_LTO_WRAPPER=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper]
+        ignore line: [Target: riscv64-unknown-elf]
+        ignore line: [Configured with: /usr/src/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/opt/et --disable-shared --disable-threads --enable-languages=c c++ --with-pkgversion=g1b306039a --with-system-zlib --enable-tls --with-newlib --with-sysroot=/opt/et/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=.././gcc --disable-multilib --with-abi=lp64f --with-arch=rv64imfc --with-isa-spec=20191213 'CFLAGS_FOR_TARGET=-Os    -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os    -mcmodel=medany']
+        ignore line: [Thread model: single]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 15.1.0 (g1b306039a) ]
+        ignore line: [COMPILER_PATH=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/]
+        ignore line: [LIBRARY_PATH=/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/:/opt/et/riscv64-unknown-elf/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wbad-function-cast' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wstrict-prototypes' '-Wmissing-prototypes' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'cmTC_9213a' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'cmTC_9213a.']
+        link line: [ /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/collect2 -plugin /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/liblto_plugin.so -plugin-opt=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccwlkqJG.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc_nano -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc_nano -plugin-opt=-pass-through=-lgloss_nano --sysroot=/opt/et/riscv64-unknown-elf -melf64lriscv -X -o cmTC_9213a /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o -L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0 -L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib -L/opt/et/riscv64-unknown-elf/lib CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj -lgcc -lc_nano -lgcc --start-group -lgcc -lc_nano -lgloss_nano --end-group /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o]
+          arg [/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccwlkqJG.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc_nano] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc_nano] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgloss_nano] ==> ignore
+          arg [--sysroot=/opt/et/riscv64-unknown-elf] ==> ignore
+          arg [-melf64lriscv] ==> ignore
+          arg [-X] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_9213a] ==> ignore
+          arg [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o] ==> obj [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o]
+          arg [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o] ==> obj [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o]
+          arg [-L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0] ==> dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0]
+          arg [-L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib] ==> dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib]
+          arg [-L/opt/et/riscv64-unknown-elf/lib] ==> dir [/opt/et/riscv64-unknown-elf/lib]
+          arg [CMakeFiles/cmTC_9213a.dir/CMakeCCompilerABI.c.obj] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc_nano] ==> lib [c_nano]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--start-group] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc_nano] ==> lib [c_nano]
+          arg [-lgloss_nano] ==> lib [gloss_nano]
+          arg [--end-group] ==> ignore
+          arg [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o] ==> obj [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o]
+        collapse obj [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o] ==> [/opt/et/riscv64-unknown-elf/lib/crt0.o]
+        collapse library dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0] ==> [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0]
+        collapse library dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib] ==> [/opt/et/riscv64-unknown-elf/lib]
+        collapse library dir [/opt/et/riscv64-unknown-elf/lib] ==> [/opt/et/riscv64-unknown-elf/lib]
+        implicit libs: [gcc;c_nano;gcc;gcc;c_nano;gloss_nano]
+        implicit objs: [/opt/et/riscv64-unknown-elf/lib/crt0.o;/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o;/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o]
+        implicit dirs: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0;/opt/et/riscv64-unknown-elf/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL"
+      binary: "/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL"
+    cmakeVariables:
+      CMAKE_CXX_COMPILER_TARGET: "riscv64-unknown-elf"
+      CMAKE_CXX_FLAGS: "--specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f  -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wmissing-declarations -Wno-main"
+      CMAKE_CXX_FLAGS_DEBUG: "-O0 -g3 -g"
+      CMAKE_C_COMPILER_TARGET: "riscv64-unknown-elf"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/opt/et/lib/cmake/cmake-modules"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e96a0/fast
+        gmake[3]: Entering directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL'
+        /usr/bin/gmake  -f CMakeFiles/cmTC_e96a0.dir/build.make CMakeFiles/cmTC_e96a0.dir/build
+        gmake[4]: Entering directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL'
+        Building CXX object CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj
+        /opt/et/bin/riscv64-unknown-elf-g++   --specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f  -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wmissing-declarations -Wno-main    -v -o CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        Reading specs from /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/nano.specs
+        rename spec link to nano_link
+        rename spec link_gcc_c_sequence to nano_link_gcc_c_sequence
+        rename spec cpp to nano_cpp
+        COLLECT_GCC=/opt/et/bin/riscv64-unknown-elf-g++
+        Target: riscv64-unknown-elf
+        Configured with: /usr/src/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/opt/et --disable-shared --disable-threads --enable-languages=c,c++ --with-pkgversion=g1b306039a --with-system-zlib --enable-tls --with-newlib --with-sysroot=/opt/et/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=.././gcc --disable-multilib --with-abi=lp64f --with-arch=rv64imfc --with-isa-spec=20191213 'CFLAGS_FOR_TARGET=-Os    -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os    -mcmodel=medany'
+        Thread model: single
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 15.1.0 (g1b306039a) 
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_e96a0.dir/'
+         /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/cc1plus -quiet -v -imultilib . -isystem =/include/newlib-nano /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_e96a0.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute -misa-spec=20191213 -march=rv64imfc_zicsr_zmmul_zca -Wall -Wextra -Wdouble-promotion -Wformat=1 -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector -Wpointer-arith -Wundef -Wcast-qual -Wcast-align -Wconversion -Wlogical-op -Wmissing-declarations -Wno-main -version -fstack-usage -o /tmp/ccX1Wu3U.s
+        GNU C++17 (g1b306039a) version 15.1.0 (riscv64-unknown-elf)
+        	compiled by GNU C version 13.3.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring nonexistent directory "/opt/et/riscv64-unknown-elf/usr/local/include"
+        ignoring duplicate directory "/opt/et/riscv64-unknown-elf/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /opt/et/riscv64-unknown-elf/include/newlib-nano
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0/riscv64-unknown-elf/.
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0/backward
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include
+        End of search list.
+        Compiler executable checksum: 56a6dcd3a152719bfcd55aa9e6a0cc66
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_e96a0.dir/'
+         /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/as -v --traditional-format -march=rv64imfc -march=rv64imfc_zicsr_zmmul_zca -mabi=lp64f -misa-spec=20191213 -o CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccX1Wu3U.s
+        GNU assembler version 2.45 (riscv64-unknown-elf) using BFD version (GNU Binutils) 2.45
+        COMPILER_PATH=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/
+        LIBRARY_PATH=/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/:/opt/et/riscv64-unknown-elf/lib/
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_e96a0
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e96a0.dir/link.txt --verbose=1
+        /opt/et/bin/riscv64-unknown-elf-g++ --specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f  -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wmissing-declarations -Wno-main   -v CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_e96a0 
+        Using built-in specs.
+        Reading specs from /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/nano.specs
+        rename spec link to nano_link
+        rename spec link_gcc_c_sequence to nano_link_gcc_c_sequence
+        rename spec cpp to nano_cpp
+        COLLECT_GCC=/opt/et/bin/riscv64-unknown-elf-g++
+        COLLECT_LTO_WRAPPER=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper
+        Target: riscv64-unknown-elf
+        Configured with: /usr/src/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/opt/et --disable-shared --disable-threads --enable-languages=c,c++ --with-pkgversion=g1b306039a --with-system-zlib --enable-tls --with-newlib --with-sysroot=/opt/et/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=.././gcc --disable-multilib --with-abi=lp64f --with-arch=rv64imfc --with-isa-spec=20191213 'CFLAGS_FOR_TARGET=-Os    -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os    -mcmodel=medany'
+        Thread model: single
+        Supported LTO compression algorithms: zlib zstd
+        gcc version 15.1.0 (g1b306039a) 
+        COMPILER_PATH=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/
+        LIBRARY_PATH=/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/:/opt/et/riscv64-unknown-elf/lib/
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'cmTC_e96a0' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'cmTC_e96a0.'
+         /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/collect2 -plugin /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/liblto_plugin.so -plugin-opt=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqb47t0.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc_nano -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc_nano -plugin-opt=-pass-through=-lgloss_nano --sysroot=/opt/et/riscv64-unknown-elf -melf64lriscv -X -o cmTC_e96a0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o -L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0 -L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib -L/opt/et/riscv64-unknown-elf/lib CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm_nano -lgcc -lc_nano -lgcc --start-group -lgcc -lc_nano -lgloss_nano --end-group /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o
+        COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'cmTC_e96a0' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'cmTC_e96a0.'
+        gmake[4]: Leaving directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL'
+        gmake[3]: Leaving directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/opt/et/riscv64-unknown-elf/include/newlib-nano]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0/riscv64-unknown-elf/.]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0/backward]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed]
+          add: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include]
+        end of search list found
+        collapse include dir [/opt/et/riscv64-unknown-elf/include/newlib-nano] ==> [/opt/et/riscv64-unknown-elf/include/newlib-nano]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0] ==> [/opt/et/riscv64-unknown-elf/include/c++/15.1.0]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0/riscv64-unknown-elf/.] ==> [/opt/et/riscv64-unknown-elf/include/c++/15.1.0/riscv64-unknown-elf]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0/backward] ==> [/opt/et/riscv64-unknown-elf/include/c++/15.1.0/backward]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include] ==> [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed] ==> [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed]
+        collapse include dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include] ==> [/opt/et/riscv64-unknown-elf/include]
+        implicit include dirs: [/opt/et/riscv64-unknown-elf/include/newlib-nano;/opt/et/riscv64-unknown-elf/include/c++/15.1.0;/opt/et/riscv64-unknown-elf/include/c++/15.1.0/riscv64-unknown-elf;/opt/et/riscv64-unknown-elf/include/c++/15.1.0/backward;/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include;/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed;/opt/et/riscv64-unknown-elf/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCompilerABI.cmake:159 (message)"
+      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(riscv64-unknown-elf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL']
+        ignore line: []
+        ignore line: [Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_e96a0/fast]
+        ignore line: [gmake[3]: Entering directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL']
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_e96a0.dir/build.make CMakeFiles/cmTC_e96a0.dir/build]
+        ignore line: [gmake[4]: Entering directory '/home/likelytobelaura/work/hello/build/kernel/CMakeFiles/CMakeScratch/TryCompile-DEqYDL']
+        ignore line: [Building CXX object CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj]
+        ignore line: [/opt/et/bin/riscv64-unknown-elf-g++   --specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f  -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wmissing-declarations -Wno-main    -v -o CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj -c /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [Reading specs from /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/nano.specs]
+        ignore line: [rename spec link to nano_link]
+        ignore line: [rename spec link_gcc_c_sequence to nano_link_gcc_c_sequence]
+        ignore line: [rename spec cpp to nano_cpp]
+        ignore line: [COLLECT_GCC=/opt/et/bin/riscv64-unknown-elf-g++]
+        ignore line: [Target: riscv64-unknown-elf]
+        ignore line: [Configured with: /usr/src/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/opt/et --disable-shared --disable-threads --enable-languages=c c++ --with-pkgversion=g1b306039a --with-system-zlib --enable-tls --with-newlib --with-sysroot=/opt/et/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=.././gcc --disable-multilib --with-abi=lp64f --with-arch=rv64imfc --with-isa-spec=20191213 'CFLAGS_FOR_TARGET=-Os    -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os    -mcmodel=medany']
+        ignore line: [Thread model: single]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 15.1.0 (g1b306039a) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_e96a0.dir/']
+        ignore line: [ /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/cc1plus -quiet -v -imultilib . -isystem =/include/newlib-nano /usr/share/cmake-3.28/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_e96a0.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mcmodel=medany -march=rv64imfc -mabi=lp64f -mno-strict-align -mno-riscv-attribute -misa-spec=20191213 -march=rv64imfc_zicsr_zmmul_zca -Wall -Wextra -Wdouble-promotion -Wformat=1 -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector -Wpointer-arith -Wundef -Wcast-qual -Wcast-align -Wconversion -Wlogical-op -Wmissing-declarations -Wno-main -version -fstack-usage -o /tmp/ccX1Wu3U.s]
+        ignore line: [GNU C++17 (g1b306039a) version 15.1.0 (riscv64-unknown-elf)]
+        ignore line: [	compiled by GNU C version 13.3.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring nonexistent directory "/opt/et/riscv64-unknown-elf/usr/local/include"]
+        ignore line: [ignoring duplicate directory "/opt/et/riscv64-unknown-elf/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /opt/et/riscv64-unknown-elf/include/newlib-nano]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0/riscv64-unknown-elf/.]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include/c++/15.1.0/backward]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/include-fixed]
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/include]
+        ignore line: [End of search list.]
+        ignore line: [Compiler executable checksum: 56a6dcd3a152719bfcd55aa9e6a0cc66]
+        ignore line: [COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_e96a0.dir/']
+        ignore line: [ /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/as -v --traditional-format -march=rv64imfc -march=rv64imfc_zicsr_zmmul_zca -mabi=lp64f -misa-spec=20191213 -o CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccX1Wu3U.s]
+        ignore line: [GNU assembler version 2.45 (riscv64-unknown-elf) using BFD version (GNU Binutils) 2.45]
+        ignore line: [COMPILER_PATH=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/]
+        ignore line: [LIBRARY_PATH=/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/:/opt/et/riscv64-unknown-elf/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_e96a0]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e96a0.dir/link.txt --verbose=1]
+        ignore line: [/opt/et/bin/riscv64-unknown-elf-g++ --specs=nano.specs -mcmodel=medany -march=rv64imfc -mabi=lp64f  -mno-strict-align -mno-riscv-attribute                         -fstack-usage -Wall -Wextra                         -Wdouble-promotion -Wformat -Wnull-dereference -Wswitch-enum -Wshadow -Wstack-protector                         -Wpointer-arith -Wundef -Wcast-qual -Wcast-align -Wconversion -Wlogical-op                         -Wmissing-declarations -Wno-main   -v CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj -o cmTC_e96a0 ]
+        ignore line: [Using built-in specs.]
+        ignore line: [Reading specs from /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/nano.specs]
+        ignore line: [rename spec link to nano_link]
+        ignore line: [rename spec link_gcc_c_sequence to nano_link_gcc_c_sequence]
+        ignore line: [rename spec cpp to nano_cpp]
+        ignore line: [COLLECT_GCC=/opt/et/bin/riscv64-unknown-elf-g++]
+        ignore line: [COLLECT_LTO_WRAPPER=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper]
+        ignore line: [Target: riscv64-unknown-elf]
+        ignore line: [Configured with: /usr/src/riscv-gnu-toolchain/gcc/configure --target=riscv64-unknown-elf --prefix=/opt/et --disable-shared --disable-threads --enable-languages=c c++ --with-pkgversion=g1b306039a --with-system-zlib --enable-tls --with-newlib --with-sysroot=/opt/et/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=.././gcc --disable-multilib --with-abi=lp64f --with-arch=rv64imfc --with-isa-spec=20191213 'CFLAGS_FOR_TARGET=-Os    -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os    -mcmodel=medany']
+        ignore line: [Thread model: single]
+        ignore line: [Supported LTO compression algorithms: zlib zstd]
+        ignore line: [gcc version 15.1.0 (g1b306039a) ]
+        ignore line: [COMPILER_PATH=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/libexec/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/bin/]
+        ignore line: [LIBRARY_PATH=/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/:/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/:/opt/et/riscv64-unknown-elf/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-specs=nano.specs' '-mcmodel=medany' '-march=rv64imfc' '-mabi=lp64f' '-mno-strict-align' '-mno-riscv-attribute' '-fstack-usage' '-Wall' '-Wextra' '-Wdouble-promotion' '-Wformat=1' '-Wnull-dereference' '-Wswitch-enum' '-Wshadow' '-Wstack-protector' '-Wpointer-arith' '-Wundef' '-Wcast-qual' '-Wcast-align' '-Wconversion' '-Wlogical-op' '-Wmissing-declarations' '-Wno-main' '-v' '-o' 'cmTC_e96a0' '-misa-spec=20191213' '-march=rv64imfc_zicsr_zmmul_zca' '-dumpdir' 'cmTC_e96a0.']
+        link line: [ /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/collect2 -plugin /opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/liblto_plugin.so -plugin-opt=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqb47t0.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc_nano -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc_nano -plugin-opt=-pass-through=-lgloss_nano --sysroot=/opt/et/riscv64-unknown-elf -melf64lriscv -X -o cmTC_e96a0 /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o -L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0 -L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib -L/opt/et/riscv64-unknown-elf/lib CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj -lstdc++ -lm_nano -lgcc -lc_nano -lgcc --start-group -lgcc -lc_nano -lgloss_nano --end-group /opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o]
+          arg [/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/opt/et/libexec/gcc/riscv64-unknown-elf/15.1.0/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccqb47t0.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc_nano] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc_nano] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgloss_nano] ==> ignore
+          arg [--sysroot=/opt/et/riscv64-unknown-elf] ==> ignore
+          arg [-melf64lriscv] ==> ignore
+          arg [-X] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_e96a0] ==> ignore
+          arg [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o] ==> obj [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o]
+          arg [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o] ==> obj [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o]
+          arg [-L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0] ==> dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0]
+          arg [-L/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib] ==> dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib]
+          arg [-L/opt/et/riscv64-unknown-elf/lib] ==> dir [/opt/et/riscv64-unknown-elf/lib]
+          arg [CMakeFiles/cmTC_e96a0.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm_nano] ==> lib [m_nano]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc_nano] ==> lib [c_nano]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--start-group] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc_nano] ==> lib [c_nano]
+          arg [-lgloss_nano] ==> lib [gloss_nano]
+          arg [--end-group] ==> ignore
+          arg [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o] ==> obj [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o]
+        collapse obj [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib/crt0.o] ==> [/opt/et/riscv64-unknown-elf/lib/crt0.o]
+        collapse library dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0] ==> [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0]
+        collapse library dir [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/../../../../riscv64-unknown-elf/lib] ==> [/opt/et/riscv64-unknown-elf/lib]
+        collapse library dir [/opt/et/riscv64-unknown-elf/lib] ==> [/opt/et/riscv64-unknown-elf/lib]
+        implicit libs: [stdc++;m_nano;gcc;c_nano;gcc;gcc;c_nano;gloss_nano]
+        implicit objs: [/opt/et/riscv64-unknown-elf/lib/crt0.o;/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtbegin.o;/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0/crtend.o]
+        implicit dirs: [/opt/et/lib/gcc/riscv64-unknown-elf/15.1.0;/opt/et/riscv64-unknown-elf/lib]
+        implicit fwks: []
+      
+      
+...

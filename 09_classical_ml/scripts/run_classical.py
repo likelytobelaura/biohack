@@ -193,25 +193,30 @@ def categorical_type(mod, tgts):
     return preds, {}
 
 
-by_mod = collections.defaultdict(list)
-for t in truth: by_mod[t["mod"]].append(t)
-all_preds = collections.defaultdict(dict); vsel = {}
-for mod in sorted(by_mod):
-    print(f"== {mod}: {len(by_mod[mod])} targets", flush=True)
-    preds, vs = (categorical_type if mod in CAT else numeric_type)(mod, by_mod[mod])
-    for name, arr in preds.items():
-        for t, p in zip(by_mod[mod], arr): all_preds[name][(t["prompt_id"], t["i"])] = p
-    vsel[mod] = max(vs, key=lambda k: -1 if np.isnan(vs[k]) else vs[k]) if vs else "knn_entity_vote"
-    print(f"  -> validation pick for {mod}: {vsel[mod]}", flush=True)
-    all_preds["best_by_val"].update({(t["prompt_id"], t["i"]): all_preds[vsel[mod]][(t["prompt_id"], t["i"])] for t in by_mod[mod]})
+def main():
+    by_mod = collections.defaultdict(list)
+    for t in truth: by_mod[t["mod"]].append(t)
+    all_preds = collections.defaultdict(dict); vsel = {}
+    for mod in sorted(by_mod):
+        print(f"== {mod}: {len(by_mod[mod])} targets", flush=True)
+        preds, vs = (categorical_type if mod in CAT else numeric_type)(mod, by_mod[mod])
+        for name, arr in preds.items():
+            for t, p in zip(by_mod[mod], arr): all_preds[name][(t["prompt_id"], t["i"])] = p
+        vsel[mod] = max(vs, key=lambda k: -1 if np.isnan(vs[k]) else vs[k]) if vs else "knn_entity_vote"
+        print(f"  -> validation pick for {mod}: {vsel[mod]}", flush=True)
+        all_preds["best_by_val"].update({(t["prompt_id"], t["i"]): all_preds[vsel[mod]][(t["prompt_id"], t["i"])] for t in by_mod[mod]})
 
-os.makedirs(f"{OUT}/preds", exist_ok=True)
-def as_jsonable(v):
-    return v if isinstance(v, str) else float(v)
-for name, pm in all_preds.items():
-    byp = collections.defaultdict(dict)
-    for (pid, i), v in pm.items(): byp[pid][str(i)] = as_jsonable(v)
-    with open(f"{OUT}/preds/{name}.jsonl", "w") as f:
-        for pid, d in byp.items(): f.write(json.dumps({"prompt_id": pid, "text": json.dumps(d)}) + "\n")
-json.dump(vsel, open(f"{OUT}/val_picks.json", "w"), indent=1)
-print("wrote", len(all_preds), "prediction files")
+    os.makedirs(f"{OUT}/preds", exist_ok=True)
+    def as_jsonable(v):
+        return v if isinstance(v, str) else float(v)
+    for name, pm in all_preds.items():
+        byp = collections.defaultdict(dict)
+        for (pid, i), v in pm.items(): byp[pid][str(i)] = as_jsonable(v)
+        with open(f"{OUT}/preds/{name}.jsonl", "w") as f:
+            for pid, d in byp.items(): f.write(json.dumps({"prompt_id": pid, "text": json.dumps(d)}) + "\n")
+    json.dump(vsel, open(f"{OUT}/val_picks.json", "w"), indent=1)
+    print("wrote", len(all_preds), "prediction files")
+
+
+if __name__ == "__main__":
+    main()

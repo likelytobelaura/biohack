@@ -1,0 +1,6 @@
+/home/likelytobelaura/work/hello/build/CMakeFiles/hello_kernel.dir
+/home/likelytobelaura/work/hello/build/CMakeFiles/edit_cache.dir
+/home/likelytobelaura/work/hello/build/CMakeFiles/rebuild_cache.dir
+/home/likelytobelaura/work/hello/build/host/CMakeFiles/hello_host.dir
+/home/likelytobelaura/work/hello/build/host/CMakeFiles/edit_cache.dir
+/home/likelytobelaura/work/hello/build/host/CMakeFiles/rebuild_cache.dir

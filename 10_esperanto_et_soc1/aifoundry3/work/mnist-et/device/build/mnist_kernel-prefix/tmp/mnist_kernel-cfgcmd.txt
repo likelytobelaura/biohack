@@ -1,0 +1,1 @@
+cmd='/usr/bin/cmake;-DCMAKE_TOOLCHAIN_FILE=/opt/et/lib/cmake/riscv64-ec-toolchain.cmake;-DCMAKE_PREFIX_PATH=/opt/et;-DCMAKE_MODULE_PATH=/opt/et/lib/cmake/cmake-modules;-DCMAKE_BUILD_TYPE=Release;-DCMAKE_INSTALL_LIBDIR=lib;-GUnix Makefiles;-S;<SOURCE_DIR><SOURCE_SUBDIR>;-B;<BINARY_DIR>'

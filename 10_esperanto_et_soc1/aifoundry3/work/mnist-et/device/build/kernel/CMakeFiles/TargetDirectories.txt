@@ -1,0 +1,6 @@
+/home/likelytobelaura/work/mnist-et/device/build/kernel/CMakeFiles/mnist.elf.dir
+/home/likelytobelaura/work/mnist-et/device/build/kernel/CMakeFiles/mnist.map.dir
+/home/likelytobelaura/work/mnist-et/device/build/kernel/CMakeFiles/mnist.lst.dir
+/home/likelytobelaura/work/mnist-et/device/build/kernel/CMakeFiles/mnist.bin.dir
+/home/likelytobelaura/work/mnist-et/device/build/kernel/CMakeFiles/edit_cache.dir
+/home/likelytobelaura/work/mnist-et/device/build/kernel/CMakeFiles/rebuild_cache.dir

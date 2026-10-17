@@ -1,0 +1,11 @@
+Card use on aifoundry3, Fri 16 Oct 13:16 to Fri 16 Oct 13:26 PDT (10 m 00 s).
+Logger: running since Wed 07 Oct 21:28; logging since Wed 30 Sep 20:54.
+Read only the newest 64 MB of the log (--max-read-mb): records before Mon 12 Oct 08:16 were not read.
+
+Card 0: held 1 s (0.2% of the window); a node open 1 s.
+  user  held  share  node open  runs  programs
+  ?      1 s   0.2%        1 s   600  ? x600
+  Now: free.
+  Driver messages submitted in the window: mgmt 1200, ops 0 (in 10 minute(s) with any).
+
+"?": a process that opened and closed a node between two scans (a few ms); its user is unknown.
