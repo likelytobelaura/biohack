@@ -59,7 +59,7 @@
   "id": "lomo",
   "name": "Leave-one-data-type-out LoRA (LOMO)",
   "family": "LLM fine-tuned (hold-out)",
-  "status": "flow, RNA, TCR, all-data done; Xenium eval running",
+  "status": "Done: flow, RNA, TCR, Xenium + all-data reference (single seed each)",
   "question": "How much of the fine-tune gain on a data type survives when that type is removed from training, and what does removing it do to the others?",
   "setup": "Same recipe as sid_full, fixed 740-step schedule run to completion (5,920 rows seen), one type's training rows removed; then evaluated on all 15,964 prompts. lomo740_all is the matched all-data reference.",
   "compute": "Modal 8\u00d7H200 (H100 fallback)",

@@ -175,7 +175,7 @@
 
   <!-- ============ HOLD-OUT ============ -->
   <section class="gx-page" id="holdout" hidden>
-    <p class="gx-lede">Two ways of asking whether a data type can be predicted without its own data. <b>Context-free:</b> the untrained model gets an entity with every observed value of that type removed (eval prompts never carry other types, so this is its prior alone). <b>Leave-one-type-out (LOMO):</b> a LoRA trained on every type except one, then asked about the held-out type with that entity's own values in the prompt, as usual. The "fine-tuned reference" is the matched all-data LoRA on the same finished 740-step schedule (sid_full where it is missing). The Xenium hold-out eval is still running.</p>
+    <p class="gx-lede">Two ways of asking whether a data type can be predicted without its own data. <b>Context-free:</b> the untrained model gets an entity with every observed value of that type removed (eval prompts never carry other types, so this is its prior alone). <b>Leave-one-type-out (LOMO):</b> a LoRA trained on every type except one, then asked about the held-out type with that entity's own values in the prompt, as usual. The "fine-tuned reference" is the matched all-data LoRA on the same finished 740-step schedule (sid_full where it is missing). Each hold-out is a single training seed, so differences under about 0.05 may be seed noise. For Xenium the run without Xenium training rows beats both the all-data LoRA and zero-shot, so the transfer ratio is left blank.</p>
     <section class="gx-tiles" id="ho-tiles">
       <div class="gx-card" data-fam="ft"><div class="gx-label">Bulk RNA fine-tune gain kept without RNA training data</div>
         <div class="gx-big dash-skeleton" data-source="holdout_headline" data-field="rna_transfer">—</div>
