@@ -5,8 +5,9 @@ An adapter is uploaded only when every one of its files exists locally with the 
 .safetensors are not truncated; afterwards each file on HF is checked against the local copy (sha256 for LFS files).
 PEFT's per-adapter README.md is not uploaded (the Hub rejects its local base_model path); it is in git instead.
 """
-import glob, hashlib, json, os, subprocess, sys
+import hashlib, json, os, subprocess, sys
 from huggingface_hub import HfApi
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # run with python -I, which drops the script dir
 from hf_upload import REPO, complete, token
 
 V = os.path.expanduser('~/osteo-data-volume')
