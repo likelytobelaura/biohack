@@ -18,3 +18,4 @@ __pycache__/
 **/tokenizer.json
 .venv/
 .claude/
+*.f32

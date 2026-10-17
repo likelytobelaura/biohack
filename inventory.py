@@ -61,12 +61,13 @@ H = os.path.expanduser('~')
 SYNC = [
     (f'{H}/osteo-results/lomo', '06_heldout_experiments/osteo_results_lomo', 'hold-out adapters/evals the LOMO job (6c5c300f) pulls locally'),
     (f'{H}/osteo-results/spark', '08_other_baselines/muse_spark', 'Muse Spark 1.2 / 1.3 (api.meta.ai, contributor) on golden.jsonl prompts; job 7d63451c'),
-    (f'{H}/osteo-nim', '08_other_baselines/nim_noctx', 'NVIDIA NIM, prompts with the known values stripped (826 prompts); job c76b4182'),
+    (f'{H}/osteo-nim', '08_other_baselines/nim_noctx', 'NVIDIA NIM, prompts with the known values stripped (826 prompts) + NIM hold-out baselines; job c76b4182'),
+    (f'{H}/osteo-classical', '09_classical_ml', 'classical imputation sweep (kNN etc.) + ET-SoC-1 card work (aifoundry3 card 0; card results copied back to card/from_aifoundry3/); job c76b4182'),
     (f'{H}/osteo-results/scripts', 'scripts', 'project scripts'),
 ]
-SKIP = ('.nvkey', '__pycache__', '.DS_Store', '.pyc')
+SKIP = ('.nvkey', '__pycache__', '.DS_Store', '.pyc', '/.venv/', '.scoring')
 # everything under these roots must be either mirrored or deliberately skipped; anything else is reported as unfiled
-WATCH = [f'{H}/osteo-results', f'{H}/osteo-nim', f'{H}/osteo-golden']
+WATCH = [f'{H}/osteo-results', f'{H}/osteo-nim', f'{H}/osteo-golden', f'{H}/osteo-classical']
 FILED_ELSEWHERE = {'eval_prompts.jsonl', 'baseline_truth.jsonl', 'validated_files.json', 'baseline_zeroshot.jsonl',
                    'baseline_zeroshot_retry.jsonl', 'baseline_zeroshot_merged.jsonl', 'baseline_scores.json',
                    'finetuned_sid_full_eval.jsonl', 'compare_scores.json', 'compare_microbiome.json', 'compare_points.json',
@@ -301,14 +302,14 @@ def main():
     L.append('Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):')
     mirror('06_heldout_experiments/osteo_results_lomo')
     table([i for i in items if i['section'][0] == '7'])
-    L.extend(['', '## 8. Other baselines', '',
+    L.extend(['', '## 8. Other baselines  ·  9. Classical ML + ET-SoC-1', '',
               'Mirrored from the jobs running them; partial files are re-copied on every refresh until the runs finish.'])
     for src, rel, d in SYNC:
-        if rel.startswith('08_'):
-            L.extend(['', f'**{rel.split("/")[1]}**: {d}. Source `{src.replace(H, "~")}` (API key file excluded).'])
+        if rel.startswith(('08_', '09_')):
+            L.extend(['', f'**{rel.split("/")[-1]}**: {d}. Source `{src.replace(H, "~")}` (API key and .venv excluded).'])
             mirror(rel)
     L.extend(['', '## Not yet filed', ''])
-    L.extend([f'- `{f}` (copied to `_incoming/`)' for f in loose] or ['_Nothing: every file under ~/osteo-results, ~/osteo-nim and ~/osteo-golden is mirrored here._'])
+    L.extend([f'- `{f}` (copied to `_incoming/`)' for f in loose] or ['_Nothing: every file under ' + ', '.join(w.replace(H, '~') for w in WATCH) + ' is mirrored here._'])
     L += ['', '## Links', '',
           '- Comparison dashboard: https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J (source in `07_finetune_sid_full/dashboard_src/`)',
           '- Working copies the original scripts still read: `~/.claude/jobs/6c5c300f/tmp/osteo/` (temporary; this folder is the durable copy).', '']
