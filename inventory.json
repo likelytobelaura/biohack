@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 15:34",
+ "generated": "2026-10-17 15:44",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -301,11 +301,11 @@
  ],
  "lomo_scores": null,
  "sweep_app": {
-  "app_id": "ap-AIzYiRcj5xsmQdDteujfMa",
+  "app_id": "ap-VXVQjV62nrIXeXODE7T3Vb",
   "description": "osteo-lomo",
   "state": "ephemeral (detached)",
-  "tasks": "5",
-  "created_at": "2026-10-17 13:23:18-07:00",
+  "tasks": "3",
+  "created_at": "2026-10-17 14:45:38-07:00",
   "stopped_at": null
  },
  "mirrors": {
@@ -699,13 +699,13 @@
    },
    {
     "path": "08_other_baselines/muse_spark/guard.log",
-    "bytes": 0,
+    "bytes": 42,
     "rows": null
    },
    {
     "path": "08_other_baselines/muse_spark/muse-spark-1.2-contributor.jsonl",
-    "bytes": 2882331,
-    "rows": 9953
+    "bytes": 4550099,
+    "rows": 15964
    },
    {
     "path": "08_other_baselines/muse_spark/muse-spark-1.3-contributor.jsonl",
@@ -714,7 +714,7 @@
    },
    {
     "path": "08_other_baselines/muse_spark/run_1.2.log",
-    "bytes": 2964,
+    "bytes": 3309,
     "rows": null
    },
    {
@@ -724,7 +724,7 @@
    },
    {
     "path": "08_other_baselines/muse_spark/spark_scores.json",
-    "bytes": 2870,
+    "bytes": 6682,
     "rows": null
    },
    {
@@ -751,13 +751,13 @@
    },
    {
     "path": "08_other_baselines/nim_noctx/baseline_lomo_xenium.jsonl",
-    "bytes": 14688355,
-    "rows": 15812
+    "bytes": 14700971,
+    "rows": 15964
    },
    {
     "path": "08_other_baselines/nim_noctx/out_noctx.jsonl",
-    "bytes": 646286,
-    "rows": 643
+    "bytes": 802160,
+    "rows": 831
    },
    {
     "path": "08_other_baselines/nim_noctx/out_noctx.jsonl.scoring",
@@ -766,7 +766,7 @@
    },
    {
     "path": "08_other_baselines/nim_noctx/out_noctx_scores.json",
-    "bytes": 1976,
+    "bytes": 1973,
     "rows": null
    },
    {
@@ -781,7 +781,7 @@
    },
    {
     "path": "08_other_baselines/nim_noctx/run.log",
-    "bytes": 228,
+    "bytes": 355,
     "rows": null
    },
    {
@@ -1290,17 +1290,18 @@
  },
  "unfiled": [],
  "copied_this_run": [
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/adapter_model.safetensors",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/tokenizer_config.json",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/tokenizer.json",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/README.md",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/training_args.bin",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/adapter_config.json",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/chat_template.jinja",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_xenium/train_log.json",
-  "08_other_baselines/muse_spark/run_1.3.log",
-  "08_other_baselines/muse_spark/spark_scores_1.3_preview.json",
-  "08_other_baselines/muse_spark/muse-spark-1.3-contributor.jsonl"
+  "08_other_baselines/muse_spark/run_1.2.log",
+  "08_other_baselines/muse_spark/spark_scores.json",
+  "08_other_baselines/muse_spark/guard.log",
+  "08_other_baselines/muse_spark/cost.txt",
+  "08_other_baselines/muse_spark/muse-spark-1.2-contributor.jsonl",
+  "08_other_baselines/nim_noctx/baseline_lomo_flow.jsonl",
+  "08_other_baselines/nim_noctx/baseline_lomo_tcr.jsonl",
+  "08_other_baselines/nim_noctx/run.log",
+  "08_other_baselines/nim_noctx/out_noctx.jsonl",
+  "08_other_baselines/nim_noctx/out_noctx_scores.json",
+  "08_other_baselines/nim_noctx/baseline_lomo_rna.jsonl",
+  "08_other_baselines/nim_noctx/baseline_lomo_xenium.jsonl"
  ],
- "esperanto_pull": "last pulled 2026-10-17 15:34"
+ "esperanto_pull": "last pulled 2026-10-17 15:44"
 }

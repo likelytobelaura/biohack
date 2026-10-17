@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 15:34 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
+Generated 2026-10-17 15:44 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -57,7 +57,7 @@ LoRA r=32 (same settings as `sid_full`), 8×H200, a 740-step schedule run to com
 each is then evaluated on that type's masked targets only. `lomo740_all` is the matched reference trained on everything:
 the finished counterpart of `sid_full`, which saw the same half epoch but stopped mid-schedule.
 Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).
-Sweep app: `ap-AIzYiRcj5xsmQdDteujfMa` (ephemeral (detached))
+Sweep app: `ap-VXVQjV62nrIXeXODE7T3Vb` (ephemeral (detached))
 
 | run | trains on | eval targets | status | local outputs |
 |---|---|---:|---|---|
@@ -186,12 +186,12 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | file | size | rows |
 |---|---:|---:|
 | `cost.txt` | 44B | 1 |
-| `guard.log` | 0B |  |
-| `muse-spark-1.2-contributor.jsonl` | 2.7M | 9,953 |
+| `guard.log` | 42B |  |
+| `muse-spark-1.2-contributor.jsonl` | 4.3M | 15,964 |
 | `muse-spark-1.3-contributor.jsonl` | 4.3M | 15,964 |
-| `run_1.2.log` | 2.9K |  |
+| `run_1.2.log` | 3.2K |  |
 | `run_1.3.log` | 3.2K |  |
-| `spark_scores.json` | 2.8K |  |
+| `spark_scores.json` | 6.5K |  |
 | `spark_scores_1.3_preview.json` | 4.7K |  |
 
 **nim_noctx**: NVIDIA NIM, prompts with the known values stripped (826 prompts) + NIM hold-out baselines; job c76b4182. Source `~/osteo-nim` (API key and .venv excluded).
@@ -203,13 +203,13 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `baseline_lomo_flow.jsonl` | 14.3M | 15,964 |
 | `baseline_lomo_rna.jsonl` | 14.2M | 15,964 |
 | `baseline_lomo_tcr.jsonl` | 14.2M | 15,964 |
-| `baseline_lomo_xenium.jsonl` | 14.0M | 15,812 |
-| `out_noctx.jsonl` | 631.1K | 643 |
+| `baseline_lomo_xenium.jsonl` | 14.0M | 15,964 |
+| `out_noctx.jsonl` | 783.4K | 831 |
 | `out_noctx.jsonl.scoring` | 80.4K |  |
 | `out_noctx_scores.json` | 1.9K |  |
 | `prompts_noctx.jsonl` | 640.6K | 826 |
 | `prompts_noctx_ordered.jsonl` | 640.6K | 826 |
-| `run.log` | 228B |  |
+| `run.log` | 355B |  |
 | `scripts/build_lomo_baselines.py` | 1.6K |  |
 | `scripts/build_prompts.py` | 1.3K |  |
 | `scripts/modal_noctx.py` | 1.9K |  |
@@ -320,7 +320,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 ## 10. Esperanto ET-SoC-1 (AI Foundry lab, aifoundry3 card 0)
 
-Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 15:34).
+Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 15:44).
 The account only reaches aifoundry3 (aifoundry1/2 refuse it), so this is all of it. Not copied: dotfiles
 (`~/.claude`, `.claude.json` hold the lab Claude's login) and `~/et-soc1-prototyping`, an unmodified clone of
 https://github.com/yaroslavvb/et-soc1-prototyping at `f0a40879800d8d21955d061b92ad974570455595`. `osteo/` is the osteo card job (also in section 9).

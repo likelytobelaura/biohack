@@ -6,7 +6,13 @@
   "targets": 6800,
   "glimmer_zeroshot_primary": 0.4525,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.6526
+  "glimmer_zeroshot_within_10pct": 0.6526,
+  "muse-spark-1.3-contributor_primary": 0.6029,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.6769,
+  "muse-spark-1.2-contributor_primary": 0.6165,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.6853
  },
  {
   "key": "cite",
@@ -15,7 +21,13 @@
   "targets": 6000,
   "glimmer_zeroshot_primary": 0.5632,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.2115
+  "glimmer_zeroshot_within_10pct": 0.2115,
+  "muse-spark-1.3-contributor_primary": 0.7673,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.249,
+  "muse-spark-1.2-contributor_primary": 0.785,
+  "muse-spark-1.2-contributor_answered": 0.9995,
+  "muse-spark-1.2-contributor_within_10pct": 0.2521
  },
  {
   "key": "rna",
@@ -24,7 +36,13 @@
   "targets": 2000,
   "glimmer_zeroshot_primary": 0.4871,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.499
+  "glimmer_zeroshot_within_10pct": 0.499,
+  "muse-spark-1.3-contributor_primary": 0.7162,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.4435,
+  "muse-spark-1.2-contributor_primary": 0.7414,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.46
  },
  {
   "key": "tcr",
@@ -33,7 +51,13 @@
   "targets": 2000,
   "glimmer_zeroshot_primary": 0.13,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.727
+  "glimmer_zeroshot_within_10pct": 0.727,
+  "muse-spark-1.3-contributor_primary": 0.2709,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.7175,
+  "muse-spark-1.2-contributor_primary": 0.2654,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.715
  },
  {
   "key": "dia",
@@ -42,7 +66,13 @@
   "targets": 2000,
   "glimmer_zeroshot_primary": 0.944,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.345
+  "glimmer_zeroshot_within_10pct": 0.345,
+  "muse-spark-1.3-contributor_primary": 0.8323,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.327,
+  "muse-spark-1.2-contributor_primary": 0.9444,
+  "muse-spark-1.2-contributor_answered": 0.996,
+  "muse-spark-1.2-contributor_within_10pct": 0.3434
  },
  {
   "key": "mif",
@@ -51,7 +81,13 @@
   "targets": 2000,
   "glimmer_zeroshot_primary": 0.9235,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.9235
+  "glimmer_zeroshot_within_10pct": 0.9235,
+  "muse-spark-1.3-contributor_primary": 0.916,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.916,
+  "muse-spark-1.2-contributor_primary": 0.916,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.916
  },
  {
   "key": "olink",
@@ -60,7 +96,13 @@
   "targets": 2000,
   "glimmer_zeroshot_primary": 0.5372,
   "glimmer_zeroshot_answered": 0.96,
-  "glimmer_zeroshot_within_10pct": 0.0839
+  "glimmer_zeroshot_within_10pct": 0.0839,
+  "muse-spark-1.3-contributor_primary": 0.5892,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.0975,
+  "muse-spark-1.2-contributor_primary": 0.5906,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.098
  },
  {
   "key": "xenium",
@@ -69,7 +111,13 @@
   "targets": 600,
   "glimmer_zeroshot_primary": 0.4718,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.6117
+  "glimmer_zeroshot_within_10pct": 0.6117,
+  "muse-spark-1.3-contributor_primary": 0.6283,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.6317,
+  "muse-spark-1.2-contributor_primary": 0.6277,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.6317
  },
  {
   "key": "somatic",
@@ -78,7 +126,13 @@
   "targets": 501,
   "glimmer_zeroshot_primary": 0.8129,
   "glimmer_zeroshot_answered": 0.9601,
-  "glimmer_zeroshot_within_10pct": 0.6965
+  "glimmer_zeroshot_within_10pct": 0.6965,
+  "muse-spark-1.3-contributor_primary": 0.9003,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.6886,
+  "muse-spark-1.2-contributor_primary": 0.8817,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.6826
  },
  {
   "key": "mpa",
@@ -87,7 +141,13 @@
   "targets": 364,
   "glimmer_zeroshot_primary": 0.146,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.0192
+  "glimmer_zeroshot_within_10pct": 0.0192,
+  "muse-spark-1.3-contributor_primary": 0.5769,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.0385,
+  "muse-spark-1.2-contributor_primary": 0.7147,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.0412
  },
  {
   "key": "flow",
@@ -96,7 +156,13 @@
   "targets": 221,
   "glimmer_zeroshot_primary": 0.9699,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.629
+  "glimmer_zeroshot_within_10pct": 0.629,
+  "muse-spark-1.3-contributor_primary": 0.9702,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.6516,
+  "muse-spark-1.2-contributor_primary": 0.9783,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.6697
  },
  {
   "key": "hla",
@@ -105,7 +171,13 @@
   "targets": 127,
   "glimmer_zeroshot_primary": 0.5354,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": null
+  "glimmer_zeroshot_within_10pct": null,
+  "muse-spark-1.3-contributor_primary": 0.6457,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": null,
+  "muse-spark-1.2-contributor_primary": 0.6457,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": null
  },
  {
   "key": "fusion",
@@ -114,6 +186,12 @@
   "targets": 21,
   "glimmer_zeroshot_primary": 0.5021,
   "glimmer_zeroshot_answered": 1.0,
-  "glimmer_zeroshot_within_10pct": 0.1905
+  "glimmer_zeroshot_within_10pct": 0.1905,
+  "muse-spark-1.3-contributor_primary": 0.5048,
+  "muse-spark-1.3-contributor_answered": 1.0,
+  "muse-spark-1.3-contributor_within_10pct": 0.2381,
+  "muse-spark-1.2-contributor_primary": 0.5714,
+  "muse-spark-1.2-contributor_answered": 1.0,
+  "muse-spark-1.2-contributor_within_10pct": 0.1429
  }
 ]
