@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 16:10",
+ "generated": "2026-10-17 16:14",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -243,7 +243,7 @@
    "trains_on": "everything except TCR beta clones",
    "eval_targets": 2000,
    "eval_prompts": 104,
-   "status": "trained, eval pending",
+   "status": "trained; evaluated in `lomo740_tcr_full` (all prompts)",
    "adapter": "osteo-data:adapters/lomo/lomo740_tcr",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_tcr",
    "outputs_local_rows": 0,
@@ -257,7 +257,7 @@
    "trains_on": "everything except Xenium",
    "eval_targets": 600,
    "eval_prompts": 600,
-   "status": "trained, eval pending",
+   "status": "trained; evaluated in `lomo740_xenium_full` (all prompts)",
    "adapter": "osteo-data:adapters/lomo/lomo740_xenium",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_xenium",
    "outputs_local_rows": 0,
@@ -304,6 +304,34 @@
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna_full",
    "outputs_local_rows": 15964,
    "outputs_path": "06_heldout_experiments/lomo740_rna_full/outputs"
+  },
+  {
+   "name": "lomo740_tcr_full",
+   "holdout": "tcr",
+   "off_target_eval": true,
+   "label": "TCR beta clones",
+   "trains_on": "everything except TCR beta clones (adapter of `lomo740_tcr`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "done",
+   "adapter": "osteo-data:adapters/lomo/lomo740_tcr_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_tcr_full",
+   "outputs_local_rows": 15964,
+   "outputs_path": "06_heldout_experiments/lomo740_tcr_full/outputs"
+  },
+  {
+   "name": "lomo740_xenium_full",
+   "holdout": "xenium",
+   "off_target_eval": true,
+   "label": "Xenium",
+   "trains_on": "everything except Xenium (adapter of `lomo740_xenium`; eval on ALL prompts, off-target)",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "done",
+   "adapter": "osteo-data:adapters/lomo/lomo740_xenium_full",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_xenium_full",
+   "outputs_local_rows": 15964,
+   "outputs_path": "06_heldout_experiments/lomo740_xenium_full/outputs"
   },
   {
    "name": "lomo740h100_all",
@@ -868,6 +896,86 @@
     "rows": 998
    },
    {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard0.jsonl",
+    "bytes": 116680,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard1.jsonl",
+    "bytes": 116118,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard10.jsonl",
+    "bytes": 115205,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard11.jsonl",
+    "bytes": 115972,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard12.jsonl",
+    "bytes": 115129,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard13.jsonl",
+    "bytes": 115747,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard14.jsonl",
+    "bytes": 115347,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard15.jsonl",
+    "bytes": 115759,
+    "rows": 997
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard2.jsonl",
+    "bytes": 116151,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard3.jsonl",
+    "bytes": 116321,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard4.jsonl",
+    "bytes": 116941,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard5.jsonl",
+    "bytes": 115825,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard6.jsonl",
+    "bytes": 130460,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard7.jsonl",
+    "bytes": 115788,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard8.jsonl",
+    "bytes": 114720,
+    "rows": 998
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard9.jsonl",
+    "bytes": 114861,
+    "rows": 998
+   },
+   {
     "path": "06_heldout_experiments/osteo_results_lomo/evals/lomo740h100_all/shard0.jsonl",
     "bytes": 116691,
     "rows": 998
@@ -958,8 +1066,33 @@
     "rows": 15964
    },
    {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/notcr_full.jsonl",
+    "bytes": 1849523,
+    "rows": 15964
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/noxenium_full.jsonl",
+    "bytes": 1867024,
+    "rows": 15964
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/lomo_matrix.json",
+    "bytes": 3172,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/lomo_matrix_full_metrics.json",
+    "bytes": 13122,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/lomo_points.json",
+    "bytes": 2440805,
+    "rows": null
+   },
+   {
     "path": "06_heldout_experiments/osteo_results_lomo/lomo_scores.json",
-    "bytes": 966,
+    "bytes": 1920,
     "rows": null
    },
    {
@@ -1904,6 +2037,166 @@
     "rows": 998
    },
    {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard0.jsonl",
+    "bytes": 116461,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard1.jsonl",
+    "bytes": 115895,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard10.jsonl",
+    "bytes": 115013,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard11.jsonl",
+    "bytes": 115731,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard12.jsonl",
+    "bytes": 114961,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard13.jsonl",
+    "bytes": 115575,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard14.jsonl",
+    "bytes": 115163,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard15.jsonl",
+    "bytes": 115567,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard2.jsonl",
+    "bytes": 115974,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard3.jsonl",
+    "bytes": 116085,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard4.jsonl",
+    "bytes": 116672,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard5.jsonl",
+    "bytes": 115676,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard6.jsonl",
+    "bytes": 116033,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard7.jsonl",
+    "bytes": 115479,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard8.jsonl",
+    "bytes": 114534,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard9.jsonl",
+    "bytes": 114704,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard0.jsonl",
+    "bytes": 116680,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard1.jsonl",
+    "bytes": 116118,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard10.jsonl",
+    "bytes": 115205,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard11.jsonl",
+    "bytes": 115972,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard12.jsonl",
+    "bytes": 115129,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard13.jsonl",
+    "bytes": 115747,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard14.jsonl",
+    "bytes": 115347,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard15.jsonl",
+    "bytes": 115759,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard2.jsonl",
+    "bytes": 116151,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard3.jsonl",
+    "bytes": 116321,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard4.jsonl",
+    "bytes": 116941,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard5.jsonl",
+    "bytes": 115825,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard6.jsonl",
+    "bytes": 130460,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard7.jsonl",
+    "bytes": 115788,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard8.jsonl",
+    "bytes": 114720,
+    "rows": 998
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard9.jsonl",
+    "bytes": 114861,
+    "rows": 998
+   },
+   {
     "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard0.jsonl",
     "bytes": 116691,
     "rows": 998
@@ -1936,6 +2229,11 @@
    {
     "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard14.jsonl",
     "bytes": 115276,
+    "rows": 997
+   },
+   {
+    "path": "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard15.jsonl",
+    "bytes": 115732,
     "rows": 997
    },
    {
@@ -2559,7 +2857,161 @@
  },
  "unfiled": [],
  "copied_this_run": [
-  "09_classical_ml/HOLDOUT.md"
+  "06_heldout_experiments/osteo_results_lomo/lomo_scores.json",
+  "06_heldout_experiments/osteo_results_lomo/evals/notcr_full.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/all_full.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard1.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard3.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard7.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard5.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard2.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard0.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard4.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard6.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard13.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard8.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard11.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard15.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard9.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard10.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard12.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_tcr_full/shard14.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/noflow_full.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard1.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard3.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard7.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard5.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard2.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard0.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard4.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard6.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard13.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard8.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard11.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard15.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard9.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard10.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard12.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_flow_full/shard14.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/norna_full.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard1.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard3.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard7.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard5.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard2.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard0.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard4.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard6.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard13.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard8.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard11.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard15.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard9.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard10.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard12.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_rna_full/shard14.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard1.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard3.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard7.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard5.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard2.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard0.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard4.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard6.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard13.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard8.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard11.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard15.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard9.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard10.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard12.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/lomo740_xenium_full/shard14.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/evals/noxenium_full.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/lomo_matrix_full_metrics.json",
+  "06_heldout_experiments/osteo_results_lomo/lomo_matrix.json",
+  "06_heldout_experiments/osteo_results_lomo/lomo_points.json",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow/shard0.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard1.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard3.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard7.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard5.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard2.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard0.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard4.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard6.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard13.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard8.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard11.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard15.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard9.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard10.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard12.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_tcr_full/shard14.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard1.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard3.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard7.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard5.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard2.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard0.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard4.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard6.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard13.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard8.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard11.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard15.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard9.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard10.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard12.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_flow_full/shard14.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard1.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard3.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard7.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard5.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard2.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard0.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard4.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard6.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard13.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard8.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard11.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard15.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard9.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard10.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard12.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_rna_full/shard14.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard1.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard3.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard7.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard5.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard2.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard0.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard4.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard6.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard13.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard8.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard11.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard15.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard9.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard10.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard12.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740h100_all/shard14.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard1.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard3.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard7.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard5.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard2.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard0.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard4.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard6.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard13.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard8.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard11.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard15.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard9.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard10.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard12.jsonl",
+  "11_modal_osteo_data/outputs/lomo/lomo740_xenium_full/shard14.jsonl",
+  "11_modal_osteo_data/outputs/lomo/smoke_fusion/shard0.jsonl"
  ],
- "esperanto_pull": "offline run: not pulled"
+ "esperanto_pull": "last pulled 2026-10-17 16:14"
 }
