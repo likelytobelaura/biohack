@@ -50,6 +50,8 @@ for h in ["all"] + HELD:
     p, n = shards(d)
     if h == "all" and n < 15900:
         p, n = shards(f"{R}/lomo/evals/lomo740h100_all")      # same all-data reference, re-run with H100 fallback
+    if n < 15900:                                             # pulled straight from the Modal volume by this dashboard
+        p, n = shards(f"{H}/osteo-dash-work/evals/" + os.path.basename(d))
     if p and n >= 15900:
         lab = "Glimmer LoRA all-data (740 steps)" if h == "all" else f"Glimmer LoRA minus {LABELS[h]}"
         RUNS.append((f"lomo740_{h}", lab, "LLM fine-tuned (hold-out)" if h != "all" else "LLM fine-tuned",

@@ -43,6 +43,12 @@
 .gx-exp .m { color: var(--color-fg-muted); }
 .gx-pill { display: inline-block; padding: 0 var(--cds-pad-sm); border-radius: 999px; border: 1px solid var(--color-border-line); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
 .gx-callout { border-left: 3px solid var(--color-border-line); padding-left: var(--cds-pad-md); margin: 0; max-width: 90ch; }
+.gx-toggles { display: flex; gap: var(--cds-gap-md); flex-wrap: wrap; align-items: center; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.gx-toggles label { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: 999px; color: var(--color-fg); cursor: pointer; }
+.gx-toggles input { margin: 0; accent-color: var(--color-fg); }
+.gx.hide-ft [data-fam~="ft"], .gx.hide-cl [data-fam~="cl"] { display: none !important; }
+.gx-off { display: none; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; }
+.gx.hide-ft .gx-off.ft, .gx.hide-cl .gx-off.cl { display: block; }
 [data-dash-source-state=empty] { color: transparent; }
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 .gx-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
@@ -52,7 +58,7 @@
 <div class="gx">
   <header class="gx-head" id="top">
     <h1>Glimmer osteosarc eval</h1>
-    <p id="takeaway" data-source="overview_summary" data-field="takeaway" class="dash-skeleton">—</p>
+    <p id="takeaway" data-source="overview_summary" data-field="takeaway" data-where="combo=both" class="dash-skeleton">—</p>
   </header>
 
   <nav class="gx-tabs" role="tablist" id="tabs">
@@ -62,21 +68,25 @@
     <button role="tab" id="tab-finetune" data-page="finetune" aria-selected="false">Base vs fine-tuned</button>
     <button role="tab" id="tab-runs" data-page="runs" aria-selected="false">All runs and methods</button>
   </nav>
+  <div class="gx-toggles" id="toggles"><span>Show in every chart and table:</span>
+    <label><input type="checkbox" id="tg-ft" checked> Fine-tuned LLMs (LoRA)</label>
+    <label><input type="checkbox" id="tg-cl" checked> Classical ML</label>
+    <span>Zero-shot LLMs are always shown.</span></div>
 
   <!-- ============ OVERVIEW ============ -->
   <section class="gx-page" id="overview">
     <section class="gx-tiles" id="ov-tiles">
-      <div class="gx-card"><div class="gx-label">Classical ML is best on</div>
-        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_classical">—</div>
-        <div class="gx-sub">data types, among the four methods compared</div></div>
-      <div class="gx-card"><div class="gx-label">Glimmer fine-tuned is best on</div>
-        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_ft">—</div>
+      <div class="gx-card" data-fam="cl"><div class="gx-label">Classical ML is best on</div>
+        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_classical" data-where="combo=both">—</div>
+        <div class="gx-sub">data types, among the methods shown</div></div>
+      <div class="gx-card" data-fam="ft"><div class="gx-label">Glimmer fine-tuned is best on</div>
+        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_ft" data-where="combo=both">—</div>
         <div class="gx-sub">data types</div></div>
       <div class="gx-card"><div class="gx-label">Muse Spark 1.3 zero-shot is best on</div>
-        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_spark">—</div>
+        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_spark" data-where="combo=both">—</div>
         <div class="gx-sub">data types</div></div>
       <div class="gx-card"><div class="gx-label">Glimmer zero-shot is best on</div>
-        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_base">—</div>
+        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_base" data-where="combo=both">—</div>
         <div class="gx-sub">data types</div></div>
     </section>
 
@@ -94,8 +104,8 @@
         <table data-source="types" data-row-key="key">
           <thead><tr>
             <th data-field="data_type">Data type</th><th data-field="targets">Targets</th><th data-field="train_rows">Training rows</th><th data-field="never_observed">Never observed</th>
-            <th data-field="glimmer_base">Glimmer zero-shot</th><th data-field="glimmer_sid_full">Glimmer sid_full</th><th data-field="lomo740_all">Glimmer all-data 740</th><th data-field="spark_1_3">Spark 1.3</th><th data-field="spark_1_2">Spark 1.2</th>
-            <th data-field="classical_pick">Classical (pick)</th><th data-field="classical_pick_method" class="l">Pick</th><th data-field="classical_oracle">Classical (oracle)</th><th data-field="winner" class="l">Best</th>
+            <th data-field="glimmer_base">Glimmer zero-shot</th><th data-field="glimmer_sid_full" data-fam="ft">Glimmer sid_full</th><th data-field="lomo740_all" data-fam="ft">Glimmer all-data 740</th><th data-field="spark_1_3">Spark 1.3</th><th data-field="spark_1_2">Spark 1.2</th>
+            <th data-field="classical_pick" data-fam="cl">Classical (pick)</th><th data-field="classical_pick_method" class="l" data-fam="cl">Pick</th><th data-field="classical_oracle" data-fam="cl">Classical (oracle)</th><th data-source="winners" data-field="both" class="l" id="ov-best-th">Best shown</th>
           </tr></thead>
           <tbody id="ov-tbody"></tbody>
         </table>
@@ -106,7 +116,8 @@
   <!-- ============ CROSS-TYPE ============ -->
   <section class="gx-page" id="cross" hidden>
     <p class="gx-lede">Can one data type be predicted from another? Two kinds of link were tested with classical models. A <b>gene link</b> joins types through the same gene or protein (bulk RNA, scRNA, Xenium, CITE-seq, DIA, Olink): each other type's level of that gene is added as a feature. A <b>date link</b> joins blood draws taken within three weeks of each other (flow, Olink, TCR, metagenomics, CITE-seq, scRNA). The LLM side of the question is on the Held-out data types tab.</p>
-    <section class="gx-tiles" id="cx-tiles">
+    <p class="gx-off cl">Classical ML is hidden, and every result on this tab is classical. Turn it back on above to see them.</p>
+    <section class="gx-tiles" id="cx-tiles" data-fam="cl">
       <div class="gx-card"><div class="gx-label">scRNA, genes also measured elsewhere</div>
         <div class="gx-big dash-skeleton" data-source="cross_headline" data-field="scrna_cov_text">—</div>
         <div class="gx-sub">Spearman ρ, within-scRNA only → with other types added</div></div>
@@ -121,7 +132,7 @@
         <div class="gx-sub" data-source="cross_headline" data-field="date_best_sub">—</div></div>
     </section>
 
-    <section class="gx-card" id="cx-heat-card">
+    <section class="gx-card" id="cx-heat-card" data-fam="cl">
       <div class="gx-row"><h2>Which data type predicts which (gene link)</h2>
         <label class="gx-label" for="cx-metric">Show <select id="cx-metric">
           <option value="source_alone_rho">Source alone: Spearman ρ</option>
@@ -131,7 +142,7 @@
       <div class="gx-chart" id="cx-heat" data-source="cross_gene"></div>
     </section>
 
-    <div class="gx-grid">
+    <div class="gx-grid" data-fam="cl">
       <section class="gx-card" id="cx-sum-card">
         <h2>Adding other types to a within-type model</h2>
         <p class="gx-note">GBM stack using the type's own visible values ("within") versus the same plus every other type's level of the gene. "Covered" targets have the gene measured in another type; "never observed" ones have the gene absent from this type's visible data entirely. Small never-observed groups are left blank.</p>
@@ -164,20 +175,20 @@
 
   <!-- ============ HOLD-OUT ============ -->
   <section class="gx-page" id="holdout" hidden>
-    <p class="gx-lede">Two ways of asking whether a data type can be predicted without its own data. <b>Context-free:</b> the untrained model gets an entity with every observed value of that type removed (eval prompts never carry other types, so this is its prior alone). <b>Leave-one-type-out (LOMO):</b> a LoRA trained on every type except one, then asked about the held-out type with that entity's own values in the prompt, as usual. The "fine-tuned reference" is the matched all-data LoRA on the same finished 740-step schedule (sid_full where it is missing). Hold-out adapters for TCR and Xenium are still running.</p>
+    <p class="gx-lede">Two ways of asking whether a data type can be predicted without its own data. <b>Context-free:</b> the untrained model gets an entity with every observed value of that type removed (eval prompts never carry other types, so this is its prior alone). <b>Leave-one-type-out (LOMO):</b> a LoRA trained on every type except one, then asked about the held-out type with that entity's own values in the prompt, as usual. The "fine-tuned reference" is the matched all-data LoRA on the same finished 740-step schedule (sid_full where it is missing). The Xenium hold-out eval is still running.</p>
     <section class="gx-tiles" id="ho-tiles">
-      <div class="gx-card"><div class="gx-label">Bulk RNA fine-tune gain kept without RNA training data</div>
+      <div class="gx-card" data-fam="ft"><div class="gx-label">Bulk RNA fine-tune gain kept without RNA training data</div>
         <div class="gx-big dash-skeleton" data-source="holdout_headline" data-field="rna_transfer">—</div>
         <div class="gx-sub" data-source="holdout_headline" data-field="rna_transfer_sub">—</div></div>
-      <div class="gx-card"><div class="gx-label">Flow cytometry, held out of training</div>
+      <div class="gx-card" data-fam="ft"><div class="gx-label">Flow cytometry, held out of training</div>
         <div class="gx-big dash-skeleton" data-source="transfer" data-field="holdout_adapter" data-where="key=flow">—</div>
         <div class="gx-sub" data-source="holdout_headline" data-field="flow_sub">—</div></div>
       <div class="gx-card"><div class="gx-label">Context-free types where every guess was 0</div>
         <div class="gx-big dash-skeleton" data-source="holdout_headline" data-field="const_text">—</div>
         <div class="gx-sub" data-source="holdout_headline" data-field="const_sub">—</div></div>
-      <div class="gx-card"><div class="gx-label">scRNA: dropping bulk RNA vs dropping flow</div>
+      <div class="gx-card" data-fam="ft"><div class="gx-label">scRNA: dropping bulk RNA vs dropping flow</div>
         <div class="gx-big dash-skeleton" data-source="holdout_headline" data-field="scrna_contrast">—</div>
-        <div class="gx-sub">Spearman ρ, both adapters on the same finished 740-step schedule</div></div>
+        <div class="gx-sub">Spearman ρ, same 740-step schedule; likely within run-to-run noise (see below)</div></div>
     </section>
 
     <section class="gx-card" id="ho-transfer-card">
@@ -189,29 +200,29 @@
         <table data-source="transfer" data-row-key="key">
           <thead><tr><th data-field="data_type">Held-out type</th><th data-field="targets">Targets</th>
             <th data-field="noctx_rho">Context-free ρ</th><th data-field="noctx_pred_zero">Context-free: predicted 0</th><th data-field="true_zero">Truly 0</th>
-            <th data-field="base_ctx">Zero-shot</th><th data-field="holdout_adapter">Hold-out LoRA</th><th data-field="sid_full">sid_full LoRA</th><th data-field="all_ref">All-data LoRA</th>
-            <th data-field="transfer_ratio">Transfer</th><th data-field="classical_pick">Classical (pick)</th><th data-field="classical_within_cross">Classical + cross</th>
-            <th data-field="classical_S1">Classical S1</th><th data-field="classical_S2">Classical S2</th><th data-field="classical_S3">Classical S3</th><th data-field="spark_1_3">Spark 1.3</th></tr></thead>
+            <th data-field="base_ctx">Zero-shot</th><th data-field="holdout_adapter" data-fam="ft">Hold-out LoRA</th><th data-field="sid_full" data-fam="ft">sid_full LoRA</th><th data-field="all_ref" data-fam="ft">All-data LoRA</th>
+            <th data-field="transfer_ratio" data-fam="ft">Transfer</th><th data-field="classical_pick" data-fam="cl">Classical (pick)</th><th data-field="classical_within_cross" data-fam="cl">Classical + cross</th>
+            <th data-field="classical_S1" data-fam="cl">Classical S1</th><th data-field="classical_S2" data-fam="cl">Classical S2</th><th data-field="classical_S3" data-fam="cl">Classical S3</th><th data-field="spark_1_3">Spark 1.3</th></tr></thead>
           <tbody id="ho-tbody"></tbody>
         </table>
       </div>
     </section>
 
-    <div class="gx-grid">
+    <div class="gx-grid" data-fam="ft">
       <section class="gx-card" id="ho-contrast-card">
         <h2>Dropping bulk RNA vs dropping flow, type by type</h2>
-        <p class="gx-note">Both hold-out adapters ran the same finished 740-step schedule, so their difference is cleaner than a comparison with sid_full. Bars left of zero: the type does worse when bulk RNA is removed than when flow is removed, which points to bulk RNA training rows helping it. Flow has far fewer training rows than bulk RNA, so this is mostly the effect of the RNA rows.</p>
+        <p class="gx-note">Both hold-out adapters ran the same finished 740-step schedule. Bars left of zero: the type does worse when bulk RNA is removed than when flow is removed. Read with care: removing TCR, which shares no genes with scRNA or Xenium, moves them just as much (see the off-target chart), so large swings on scRNA and Xenium are most likely run-to-run training noise, not transfer from bulk RNA.</p>
         <div class="gx-chart" id="ho-contrast" data-source="holdout_contrast"></div>
       </section>
       <section class="gx-card" id="ho-off-card">
         <div class="gx-row"><h2>Off-target effect of each hold-out</h2>
           <label class="gx-label" for="ho-off-sel">Held out <select id="ho-off-sel"></select></label></div>
-        <p class="gx-note" id="ho-off-note">Hold-out adapter minus the all-data LoRA trained on the same finished schedule, per type, with a paired 95% bootstrap interval over prompts. Coloured where the interval excludes zero. Left of zero: removing that data type from training hurt this type.</p>
+        <p class="gx-note" id="ho-off-note">Hold-out adapter minus the all-data LoRA trained on the same finished schedule, per type, with a paired 95% bootstrap interval over prompts. Coloured where the interval excludes zero. Left of zero: removing that data type from training hurt this type. The intervals cover eval sampling only, not run-to-run training variation: scRNA and Xenium swing by 0.1–0.2 whichever type is removed, so treat those swings as noise until repeat seeds exist.</p>
         <div class="gx-chart" id="ho-off" data-source="offtarget"></div>
       </section>
     </div>
 
-    <section class="gx-card" id="ch-card">
+    <section class="gx-card" id="ch-card" data-fam="cl">
       <h2>Classical methods with less of a type's own data</h2>
       <p class="gx-note">The classical counterparts of the Glimmer hold-outs, on every numeric type, best method per setting. <b>S1 type absent:</b> nothing of the type anywhere, other types only (matches context-free Glimmer); only gene-linked types can do better than a constant. <b>S2 new sample:</b> the type's other samples, none of this sample's own values. <b>S3 type unseen in training:</b> only this sample's own values, models trained on other types (matches the hold-out LoRA). "All visible" is the original classical pick. Like every run here, the eval is a random mask, not a time split.</p>
       <div class="gx-legend" id="ch-legend"></div>
@@ -231,7 +242,8 @@
 
   <!-- ============ BASE VS FINE-TUNED (original) ============ -->
   <section class="gx-page" id="finetune" hidden>
-    <section class="gx-tiles" id="tiles">
+    <p class="gx-off ft">Fine-tuned LLMs are hidden, so this tab shows the zero-shot base model only.</p>
+    <section class="gx-tiles" id="tiles" data-fam="ft">
       <div class="gx-card"><div class="gx-label">Data types improved</div>
         <div class="gx-big dash-skeleton" data-source="summary" data-field="improved_text">—</div>
         <div class="gx-sub">of 13, on each type's main metric</div></div>
@@ -245,12 +257,12 @@
         <div class="gx-big dash-skeleton" data-source="summary" data-field="ft_answered_text">—</div>
         <div class="gx-sub" data-source="summary" data-field="base_answered_text">—</div></div>
     </section>
-    <p class="gx-callout" data-source="summary" data-field="takeaway">—</p>
+    <p class="gx-callout" data-source="summary" data-field="takeaway" data-fam="ft">—</p>
 
     <section class="gx-card" id="by-type">
       <h2>Main metric by data type</h2>
       <p class="gx-note">Base Muse-Glimmer-30B zero-shot vs the sid_full LoRA (stopped at step 739 of 1,478). Spearman ρ; accuracy for multiplex IF and exact match for HLA. Higher is better.</p>
-      <div class="gx-legend"><span><i id="lg-base"></i>Base model</span><span><i id="lg-ft"></i>Fine-tuned (sid_full)</span></div>
+      <div class="gx-legend"><span><i id="lg-base"></i>Base model</span><span data-fam="ft"><i id="lg-ft"></i>Fine-tuned (sid_full)</span></div>
       <div class="gx-chart" id="dumbbell" data-source="scores"></div>
     </section>
 
@@ -261,9 +273,9 @@
         <table data-source="scores" data-row-key="key">
           <thead><tr>
             <th data-field="data_type">Data type</th><th data-field="metric" class="l">Metric</th><th data-field="targets">Targets</th>
-            <th data-field="base_primary">Base</th><th data-field="ft_primary">Fine-tuned</th><th data-field="delta">Change</th>
-            <th data-field="base_within_10pct">Base within 10%</th><th data-field="ft_within_10pct">FT within 10%</th>
-            <th data-field="base_answered">Base answered</th><th data-field="ft_answered">FT answered</th>
+            <th data-field="base_primary">Base</th><th data-field="ft_primary" data-fam="ft">Fine-tuned</th><th data-field="delta" data-fam="ft">Change</th>
+            <th data-field="base_within_10pct">Base within 10%</th><th data-field="ft_within_10pct" data-fam="ft">FT within 10%</th>
+            <th data-field="base_answered">Base answered</th><th data-field="ft_answered" data-fam="ft">FT answered</th>
           </tr></thead>
           <tbody id="tbody"></tbody>
         </table>
@@ -273,22 +285,22 @@
     <section class="gx-card" id="microbiome">
       <h2>Microbiome (MetaPhlAn) deep dive</h2>
       <p class="gx-note">Read counts per species-level genome bin in stool and saliva samples. Every true value is above zero, since only detected species are listed. Typical error is the median fold difference between predicted and true counts.</p>
-      <p id="mb-takeaway" class="dash-skeleton" data-source="micro_summary" data-field="takeaway">—</p>
-      <div class="gx-tiles gx-mb-tiles">
+      <p id="mb-takeaway" class="dash-skeleton" data-source="micro_summary" data-field="takeaway" data-fam="ft">—</p>
+      <div class="gx-tiles gx-mb-tiles" data-fam="ft">
         <div><div class="gx-label">Spearman ρ, all samples</div><div class="gx-big dash-skeleton" data-source="micro_summary" data-field="rho_text">—</div><div class="gx-sub">base → fine-tuned</div></div>
         <div><div class="gx-label">Typical error</div><div class="gx-big dash-skeleton" data-source="micro_summary" data-field="fold_text">—</div><div class="gx-sub">times off from the true count</div></div>
         <div><div class="gx-label">Predicted zero for a present species</div><div class="gx-big dash-skeleton" data-source="micro_summary" data-field="zero_text">—</div><div class="gx-sub">base → fine-tuned</div></div>
       </div>
-      <div class="gx-legend"><span><i class="lg-b"></i>Base model</span><span><i class="lg-f"></i>Fine-tuned</span></div>
+      <div class="gx-legend"><span><i class="lg-b"></i>Base model</span><span data-fam="ft"><i class="lg-f"></i>Fine-tuned</span></div>
       <div class="gx-mbchart" id="mb-chart" data-source="microbiome"></div>
       <div class="gx-tablebox">
         <table data-source="microbiome" data-row-key="scope">
           <thead><tr>
             <th data-field="scope">Samples</th><th data-field="targets">Targets</th>
-            <th data-field="base_spearman">Base ρ</th><th data-field="ft_spearman">FT ρ</th>
-            <th data-field="base_fold_off">Base typical error</th><th data-field="ft_fold_off">FT typical error</th>
-            <th data-field="base_within_10x">Base within 10×</th><th data-field="ft_within_10x">FT within 10×</th>
-            <th data-field="base_pred_zero">Base predicted 0</th><th data-field="ft_pred_zero">FT predicted 0</th>
+            <th data-field="base_spearman">Base ρ</th><th data-field="ft_spearman" data-fam="ft">FT ρ</th>
+            <th data-field="base_fold_off">Base typical error</th><th data-field="ft_fold_off" data-fam="ft">FT typical error</th>
+            <th data-field="base_within_10x">Base within 10×</th><th data-field="ft_within_10x" data-fam="ft">FT within 10×</th>
+            <th data-field="base_pred_zero">Base predicted 0</th><th data-field="ft_pred_zero" data-fam="ft">FT predicted 0</th>
           </tr></thead>
           <tbody id="mb-tbody"></tbody>
         </table>
@@ -339,22 +351,43 @@
 </div>
 
 <script>
-dash.calc('overview_summary', {
+dash.calc('winners', {
   inputs: ['types'],
-  title: 'Which method wins where',
-  description: 'Counts the data types each method scores best on, and names where an LLM beats classical ML.',
+  title: 'Best method per data type, by what is shown',
+  description: 'For each data type, the best of Glimmer zero-shot, Muse Spark 1.3, the better Glimmer LoRA and the classical pick, with fine-tuned and classical methods each included or left out.',
   fn: (types) => {
-    const c = k => types.filter(r => r.winner === k).length;
-    const llmWins = types.filter(r => r.winner && !r.winner.startsWith('Classical')).map(r => r.data_type);
-    const clWins = types.filter(r => r.winner && r.winner.startsWith('Classical')).map(r => r.data_type);
-    return [{
-      wins_classical: String(c('Classical (val pick)')), wins_ft: String(c('Glimmer fine-tuned')),
-      wins_spark: String(c('Muse Spark 1.3')), wins_base: String(c('Glimmer zero-shot')),
-      takeaway: `Classical matrix methods win where the masked feature has been seen in other samples (${clWins.join(', ')}). ` +
-        `LLMs win where it hasn't, or where prior knowledge of the feature's name helps (${llmWins.join(', ')}). ` +
-        `Across data types, gene-level links carry real signal mainly into scRNA, and a LoRA trained without bulk RNA keeps most of the RNA gain.`
-    }];
+    const pick = (r, ft, cl) => {
+      const c = [['Glimmer zero-shot', r.glimmer_base], ['Muse Spark 1.3', r.spark_1_3]];
+      if (ft) c.push(['Glimmer fine-tuned', r.glimmer_ft]);
+      if (cl) c.push(['Classical (val pick)', r.classical_pick]);
+      const ok = c.filter(([, v]) => v !== null && v !== undefined);
+      return ok.length ? ok.sort((a, b) => b[1] - a[1])[0][0] : '–';
+    };
+    return types.map(r => ({ key: r.key, data_type: r.data_type,
+      both: pick(r, true, true), no_cl: pick(r, true, false), no_ft: pick(r, false, true), neither: pick(r, false, false) }));
   }
+});
+
+dash.calc('overview_summary', {
+  inputs: ['winners'],
+  title: 'Which method wins where',
+  description: 'Counts the data types each method scores best on, for each combination of fine-tuned and classical methods shown.',
+  fn: (winners) => ['both', 'no_cl', 'no_ft', 'neither'].map(combo => {
+    const c = k => winners.filter(r => r[combo] === k).length;
+    const list = k => winners.filter(r => r[combo] === k).map(r => r.data_type);
+    const clWins = list('Classical (val pick)');
+    const llmWins = winners.filter(r => r[combo] !== '–' && r[combo] !== 'Classical (val pick)').map(r => r.data_type);
+    const named = ['Glimmer fine-tuned', 'Muse Spark 1.3', 'Glimmer zero-shot'].filter(k => c(k)).map(k => `${k} on ${list(k).join(', ')}`);
+    return {
+      combo, wins_classical: String(c('Classical (val pick)')), wins_ft: String(c('Glimmer fine-tuned')),
+      wins_spark: String(c('Muse Spark 1.3')), wins_base: String(c('Glimmer zero-shot')),
+      takeaway: combo === 'both'
+        ? `Classical matrix methods win where the masked feature has been seen in other samples (${clWins.join(', ')}). ` +
+          `LLMs win where it hasn't, or where prior knowledge of the feature's name helps (${llmWins.join(', ')}). ` +
+          `Across data types, gene-level links carry real signal mainly into scRNA, and a LoRA trained without bulk RNA keeps most of the RNA gain.`
+        : `Among the methods shown, the best per data type is ${named.join('; ')}` + (clWins.length ? `; classical ML on ${clWins.join(', ')}.` : '.')
+    };
+  })
 });
 
 dash.calc('cross_headline', {
@@ -494,9 +527,13 @@ dash.calc('micro_summary', {
     let w = 0; labels.forEach(l => { probe.text(l); w = Math.max(w, probe.node().getComputedTextLength()); });
     probe.remove(); return w;
   }
+  const vis = () => { const p = dash.params() || {}; return { ft: p.show_ft !== false, cl: p.show_cl !== false }; };
+  const famOf = f => !f ? null : f.startsWith('LLM fine-tuned') ? 'ft' : f.startsWith('Classical') ? 'cl' : null;
+  const shown = fam => !fam || vis()[fam];
+  const combo = () => { const v = vis(); return v.ft && v.cl ? 'both' : v.ft ? 'no_cl' : v.cl ? 'no_ft' : 'neither'; };
   function legend(el, series) {
     el.innerHTML = '';
-    series.forEach(s => { const sp = document.createElement('span'); const i = document.createElement('i'); i.style.background = s.color; sp.appendChild(i); sp.appendChild(document.createTextNode(s.label)); el.appendChild(sp); });
+    series.filter(s => shown(s.fam)).forEach(s => { const sp = document.createElement('span'); const i = document.createElement('i'); i.style.background = s.color; sp.appendChild(i); sp.appendChild(document.createTextNode(s.label)); el.appendChild(sp); });
   }
   function fillMarks(src) {
     const s = dash.data(src);
@@ -516,10 +553,12 @@ dash.calc('micro_summary', {
   }
   function rowsTable(tbodyId, rows, cells, cls, key) {
     const tb = document.getElementById(tbodyId); tb.innerHTML = '';
+    const fams = [...tb.closest('table').querySelectorAll('thead th')].map(th => th.dataset.fam);
     rows.forEach(r => {
       const tr = document.createElement('tr');
       if (key) tr.dataset.key = r[key];
-      cells(r).forEach((c, i) => { const td = document.createElement('td'); td.textContent = c; const k = cls && cls(r, i); if (k) td.className = k; tr.appendChild(td); });
+      cells(r).forEach((c, i) => { const td = document.createElement('td'); td.textContent = c; const k = cls && cls(r, i); if (k) td.className = k;
+        if (fams[i]) td.dataset.fam = fams[i]; tr.appendChild(td); });
       tb.appendChild(tr);
     });
   }
@@ -527,6 +566,7 @@ dash.calc('micro_summary', {
   /* generic dot plot: rows on y, several series on one x scale */
   function dotPlot(box, rows, series, opt) {
     box.innerHTML = '';
+    series = series.filter(s => shown(s.fam));
     const W = box.clientWidth || 600, rowH = opt.rowH || 30, m = { t: 22, r: 16, b: 8 };
     const svg = d3.select(box).append('svg').attr('width', '100%');
     m.l = labelWidth(svg, rows.map(opt.label)) + 14;
@@ -561,24 +601,28 @@ dash.calc('micro_summary', {
   /* ---------- overview ---------- */
   const OV = () => [
     { key: 'glimmer_base', label: 'Glimmer zero-shot', color: dash.colors[1] },
-    { key: 'glimmer_ft', label: 'Glimmer fine-tuned (best LoRA)', color: dash.colors[0] },
+    { key: 'glimmer_ft', label: 'Glimmer fine-tuned (best LoRA)', color: dash.colors[0], fam: 'ft' },
     { key: 'spark_1_3', label: 'Muse Spark 1.3', color: dash.colors[2] },
-    { key: 'classical_pick', label: 'Classical (pick)', color: dash.colors[3] }];
+    { key: 'classical_pick', label: 'Classical (pick)', color: dash.colors[3], fam: 'cl' }];
   function drawOverview() {
     fillMarks('overview_summary');
     legend(document.getElementById('ov-legend'), OV());
     const t = dash.data('types'), box = document.getElementById('ov-dots');
     if (t.status === 'ok') {
       const rows = t.data.slice().sort((a, b) => (a.never_observed ?? 0) - (b.never_observed ?? 0));
+      const cb = combo(), wd = dash.data('winners');
+      const win = Object.fromEntries((wd.status === 'ok' ? wd.data : []).map(w => [w.key, w]));
+      document.getElementById('ov-best-th').dataset.field = cb;
       dotPlot(box, rows, OV(), { label: r => r.data_type, right: r => isNum(r.never_observed) ? Math.round(r.never_observed * 100) + '%' : '–',
         rightHead: 'never seen', metric: r => r.metric,
         extra: r => [`Classical pick: ${r.classical_pick_method || 'none'}`, `Training rows: ${Number(r.train_rows).toLocaleString('en')}`] });
       rowsTable('ov-tbody', rows, r => [r.data_type, Number(r.targets).toLocaleString('en'), Number(r.train_rows).toLocaleString('en'), pct(r.never_observed),
-        fmt(r.glimmer_base), fmt(r.glimmer_sid_full), fmt(r.lomo740_all), fmt(r.spark_1_3), fmt(r.spark_1_2), fmt(r.classical_pick), r.classical_pick_method || '–', fmt(r.classical_oracle), r.winner || '–'],
+        fmt(r.glimmer_base), fmt(r.glimmer_sid_full), fmt(r.lomo740_all), fmt(r.spark_1_3), fmt(r.spark_1_2), fmt(r.classical_pick), r.classical_pick_method || '–', fmt(r.classical_oracle), (win[r.key] || {})[cb] || '–'],
         (r, i) => {
+          const w = (win[r.key] || {})[cb];
           const map = { 4: 'Glimmer zero-shot', 7: 'Muse Spark 1.3', 9: 'Classical (val pick)' };
-          const ftBest = r.winner === 'Glimmer fine-tuned' && ((i === 5 && r.glimmer_ft === r.glimmer_sid_full) || (i === 6 && r.glimmer_ft === r.lomo740_all));
-          return i === 10 || i === 12 ? 'l' : ((map[i] && map[i] === r.winner) || ftBest ? 'best' : '');
+          const ftBest = w === 'Glimmer fine-tuned' && ((i === 5 && r.glimmer_ft === r.glimmer_sid_full) || (i === 6 && r.glimmer_ft === r.lomo740_all));
+          return i === 10 || i === 12 ? 'l' : ((map[i] && map[i] === w) || ftBest ? 'best' : '');
         }, 'key');
     } else if (t.status === 'error') { fail(box); document.getElementById('ov-tbody').innerHTML = ''; }
     else { box.innerHTML = ''; document.getElementById('ov-tbody').innerHTML = ''; }
@@ -646,11 +690,11 @@ dash.calc('micro_summary', {
   const HO = () => [
     { key: 'noctx_rho', label: 'Context-free zero-shot', color: CRIT },
     { key: 'base_ctx', label: 'Zero-shot', color: dash.colors[1] },
-    { key: 'holdout_adapter', label: 'Hold-out LoRA', color: dash.colors[4] },
-    { key: 'ref', label: 'Fine-tuned reference', color: dash.colors[0] },
-    { key: 'classical_pick', label: 'Classical (pick)', color: dash.colors[3] },
-    { key: 'classical_S1', label: 'Classical, type absent (S1)', color: dash.colors[5] },
-    { key: 'classical_S3', label: 'Classical, own values only (S3)', color: dash.colors[6] },
+    { key: 'holdout_adapter', label: 'Hold-out LoRA', color: dash.colors[4], fam: 'ft' },
+    { key: 'ref', label: 'Fine-tuned reference', color: dash.colors[0], fam: 'ft' },
+    { key: 'classical_pick', label: 'Classical (pick)', color: dash.colors[3], fam: 'cl' },
+    { key: 'classical_S1', label: 'Classical, type absent (S1)', color: dash.colors[5], fam: 'cl' },
+    { key: 'classical_S3', label: 'Classical, own values only (S3)', color: dash.colors[6], fam: 'cl' },
     { key: 'spark_1_3', label: 'Muse Spark 1.3', color: dash.colors[2] }];
   const CH = () => [
     { key: 'S1', label: 'S1 type absent', color: dash.colors[5] },
@@ -773,7 +817,7 @@ dash.calc('micro_summary', {
     m.l = labelWidth(svg, rows.map(r => r.data_type)) + 14;
     const H = m.t + rows.length * rowH + m.b;
     svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H); box.style.minHeight = H + 'px';
-    const vals = rows.flatMap(r => [Number(r.base_primary), Number(r.ft_primary)]).filter(Number.isFinite);
+    const vals = rows.flatMap(r => [Number(r.base_primary), vis().ft ? Number(r.ft_primary) : NaN]).filter(Number.isFinite);
     const x = d3.scaleLinear([Math.min(0, d3.min(vals)), 1], [m.l, W - m.r]);
     const y = d3.scaleBand(rows.map(r => r.data_type), [m.t, H - m.b]).padding(0.3);
     const ticks = x.ticks(W < 450 ? 4 : 6);
@@ -784,7 +828,7 @@ dash.calc('micro_summary', {
     const tip = tipFor(box);
     const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', r => `translate(0,${y(r.data_type) + y.bandwidth() / 2})`);
     g.append('text').attr('x', m.l - 10).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(r => r.data_type);
-    const has = r => isNum(r.ft_primary);
+    const has = r => vis().ft && isNum(r.ft_primary);
     g.filter(has).append('line').attr('x1', r => x(Number(r.base_primary))).attr('x2', r => x(Number(r.ft_primary)))
       .attr('stroke', r => Number(r.ft_primary) >= Number(r.base_primary) ? C().ft : CRIT).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('opacity', .6);
     g.append('circle').attr('cx', r => x(Number(r.base_primary))).attr('r', 5).attr('fill', C().base);
@@ -794,8 +838,8 @@ dash.calc('micro_summary', {
       .on('mouseleave', () => tip.hide());
   }
   const SC = () => [
-    { model: 'Glimmer zero-shot', color: dash.colors[1] }, { model: 'Glimmer fine-tuned', color: dash.colors[0] },
-    { model: 'Muse Spark 1.3', color: dash.colors[2] }, { model: 'Classical (val pick)', color: dash.colors[3] }];
+    { model: 'Glimmer zero-shot', color: dash.colors[1] }, { model: 'Glimmer fine-tuned', color: dash.colors[0], fam: 'ft' },
+    { model: 'Muse Spark 1.3', color: dash.colors[2] }, { model: 'Classical (val pick)', color: dash.colors[3], fam: 'cl' }].filter(s => shown(s.fam));
   let selected = null, hiddenModels = new Set(['Muse Spark 1.3', 'Classical (val pick)']);
   function scatter(pts, types) {
     const sel = document.getElementById('gx-type');
@@ -813,7 +857,8 @@ dash.calc('micro_summary', {
       lg.appendChild(sp);
     });
     const box = document.getElementById('scatter'); box.innerHTML = '';
-    const data = pts.filter(p => p.data_type === selected && !hiddenModels.has(p.model))
+    const allowed = new Set(SC().map(s => s.model));
+    const data = pts.filter(p => p.data_type === selected && allowed.has(p.model) && !hiddenModels.has(p.model))
       .map(p => ({ m: p.model, t: Math.asinh(Number(p.truth)), p: Math.asinh(Number(p.pred)), rt: Number(p.truth), rp: Number(p.pred) }))
       .filter(d => Number.isFinite(d.t) && Number.isFinite(d.p));
     const W = box.clientWidth || 500, H = Math.min(420, Math.max(300, W * 0.7)), m = { t: 10, r: 14, b: 36, l: 48 };
@@ -858,7 +903,7 @@ dash.calc('micro_summary', {
       .attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(d => d3.format(',')(d) + '×');
     const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (r, i) => `translate(0,${m.t + i * rowH})`);
     g.append('text').attr('x', m.l - 10).attr('y', rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(r => r.scope);
-    [['base_fold_off', C().base, 8], ['ft_fold_off', C().ft, 26]].forEach(([k, col, y0]) => {
+    [['base_fold_off', C().base, 8], ['ft_fold_off', C().ft, 26]].filter(([k]) => k === 'base_fold_off' || vis().ft).forEach(([k, col, y0]) => {
       g.append('rect').attr('x', m.l).attr('y', y0).attr('height', 14).attr('rx', 4).attr('fill', col)
         .attr('width', r => Math.max(2, x(Math.max(1, Number(r[k]))) - m.l));
       g.append('text').attr('x', r => x(Math.max(1, Number(r[k]))) + 6).attr('y', y0 + 7).attr('dy', '0.35em').attr('font-size', 11)
@@ -898,7 +943,7 @@ dash.calc('micro_summary', {
     const e = dash.data('experiments'), eb = document.getElementById('exps');
     if (e.status === 'ok') {
       eb.innerHTML = '';
-      e.data.slice().sort((a, b) => a.order - b.order).forEach(x => {
+      e.data.filter(x => shown(famOf(x.family))).sort((a, b) => a.order - b.order).forEach(x => {
         const d = document.createElement('div'); d.className = 'gx-exp';
         const head = document.createElement('div'); head.className = 'gx-row';
         const t = document.createElement('b'); t.className = 't'; t.textContent = x.name;
@@ -917,7 +962,7 @@ dash.calc('micro_summary', {
       if (sel.options.length !== types.length) { sel.innerHTML = ''; types.forEach(t => sel.appendChild(new Option(t, t))); }
       if (!lbType || !types.includes(lbType)) lbType = types[0];
       sel.value = lbType;
-      const rows = lb.data.filter(r => r.data_type === lbType).sort((a, b) => (b.primary ?? -9) - (a.primary ?? -9));
+      const rows = lb.data.filter(r => r.data_type === lbType && shown(famOf(r.family))).sort((a, b) => (b.primary ?? -9) - (a.primary ?? -9));
       const tb = document.getElementById('lb-tbody'); tb.innerHTML = '';
       rows.forEach(r => {
         const tr = document.createElement('tr'); tr.dataset.key = `${encodeURIComponent(r.run_id)},${encodeURIComponent(r.key)}`;
@@ -927,7 +972,7 @@ dash.calc('micro_summary', {
       });
     } else document.getElementById('lb-tbody').innerHTML = '';
     const rn = dash.data('runs');
-    if (rn.status === 'ok') rowsTable('runs-tbody', rn.data, r => [r.run, r.family, isNum(r.prompts) ? Number(r.prompts).toLocaleString('en') : '–', r.note],
+    if (rn.status === 'ok') rowsTable('runs-tbody', rn.data.filter(r => shown(famOf(r.family))), r => [r.run, r.family, isNum(r.prompts) ? Number(r.prompts).toLocaleString('en') : '–', r.note],
       (r, i) => i === 1 ? 'l' : i === 3 ? 'wrap' : '', 'run_id');
     else document.getElementById('runs-tbody').innerHTML = '';
   }
@@ -951,7 +996,14 @@ dash.calc('micro_summary', {
   document.getElementById('lb-type').addEventListener('change', (ev) => { lbType = ev.target.value; drawRuns(); });
 
   let first = true;
+  const tgFt = document.getElementById('tg-ft'), tgCl = document.getElementById('tg-cl');
+  tgFt.addEventListener('change', () => dash.setParams({ show_ft: tgFt.checked }));
+  tgCl.addEventListener('change', () => dash.setParams({ show_cl: tgCl.checked }));
   dash.onData(() => {
+    const v = vis(), root = document.querySelector('.gx');
+    root.classList.toggle('hide-ft', !v.ft); root.classList.toggle('hide-cl', !v.cl);
+    tgFt.checked = v.ft; tgCl.checked = v.cl;
+    document.querySelectorAll('[data-source="overview_summary"]').forEach(el => { el.dataset.where = 'combo=' + combo(); });
     fillMarks('overview_summary');
     if (first) {
       first = false;
