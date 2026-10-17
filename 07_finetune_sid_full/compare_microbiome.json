@@ -1,0 +1,44 @@
+[
+ {
+  "scope": "All samples",
+  "targets": 364,
+  "base_spearman": 0.146,
+  "ft_spearman": 0.3265,
+  "base_fold_off": 246.189,
+  "ft_fold_off": 5.5216,
+  "base_within_2x": 0.1621,
+  "ft_within_2x": 0.2527,
+  "base_within_10x": 0.4176,
+  "ft_within_10x": 0.6264,
+  "base_pred_zero": 0.5247,
+  "ft_pred_zero": 0.0604
+ },
+ {
+  "scope": "Stool",
+  "targets": 242,
+  "base_spearman": 0.1171,
+  "ft_spearman": 0.2714,
+  "base_fold_off": 956.4967,
+  "ft_fold_off": 5.4336,
+  "base_within_2x": 0.1488,
+  "ft_within_2x": 0.2686,
+  "base_within_10x": 0.3719,
+  "ft_within_10x": 0.6322,
+  "base_pred_zero": 0.5537,
+  "ft_pred_zero": 0.0537
+ },
+ {
+  "scope": "Saliva",
+  "targets": 122,
+  "base_spearman": 0.2719,
+  "ft_spearman": 0.2408,
+  "base_fold_off": 9.4139,
+  "ft_fold_off": 6.3705,
+  "base_within_2x": 0.1885,
+  "ft_within_2x": 0.2213,
+  "base_within_10x": 0.5082,
+  "ft_within_10x": 0.6148,
+  "base_pred_zero": 0.4672,
+  "ft_pred_zero": 0.0738
+ }
+]

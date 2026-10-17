@@ -1,0 +1,17 @@
+# data stays local + on Modal (osteo-data); inventory.json records size + sha256 of every file
+*.jsonl
+*.csv
+*.pkl
+01_sid_full_dataset/source/h5/
+01_sid_full_dataset/source/src/
+01_sid_full_dataset/source/manifest.txt
+01_sid_full_dataset/source/keys.txt
+06_heldout_experiments/*/outputs/
+*.safetensors
+*.pt
+*.pth
+.hash_cache.json
+__pycache__/
+.DS_Store
+07_finetune_sid_full/adapter/**/tokenizer.json
+07_finetune_sid_full/adapter/tokenizer.json

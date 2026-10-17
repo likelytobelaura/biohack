@@ -1,0 +1,273 @@
+{
+ "generated": "2026-10-17 13:50",
+ "items": [
+  {
+   "section": "1. Sid's full dataset",
+   "desc": "SFT training set built from Sid's data minus the 20% mask; {prompt, completion}. Same file as osteo-data:train/sid_full.jsonl",
+   "path": "01_sid_full_dataset/sid_full.jsonl",
+   "bytes": 48162758,
+   "rows": 11824,
+   "sha256": "6e34ed7080654b8f88076982a6a943cb309291a5cb3168b25afe5d8dc7635a2d"
+  },
+  {
+   "section": "1. Sid's full dataset",
+   "desc": "every object URL in s3://sid-sijbrandij-osteosarc-dataset",
+   "path": "01_sid_full_dataset/source/manifest.txt",
+   "bytes": 60602043,
+   "rows": 397364,
+   "sha256": "6c9b89d030df26d02c999b936ec375b74dde47d7273fcd459e079936da21cf36"
+  },
+  {
+   "section": "1. Sid's full dataset",
+   "desc": "bucket keys listing used for reconstruction",
+   "path": "01_sid_full_dataset/source/keys.txt",
+   "bytes": 33581291,
+   "rows": 397364,
+   "sha256": "bdd4664f9a5a89a001499e523532855eb2d69c0a15ded770d884d0175ed77b94"
+  },
+  {
+   "section": "1. Sid's full dataset",
+   "desc": "keys of the 10x .h5 matrices downloaded",
+   "path": "01_sid_full_dataset/source/h5keys.txt",
+   "bytes": 3337,
+   "rows": 41,
+   "sha256": "6ce899cd89ee18d09966dfab44e89a2847541d489abb255487ed679f332025d1"
+  },
+  {
+   "section": "1. Sid's full dataset",
+   "desc": "non-h5 source tables downloaded from the bucket",
+   "path": "01_sid_full_dataset/source/src/",
+   "files": 47,
+   "bytes": 35415484
+  },
+  {
+   "section": "1. Sid's full dataset",
+   "desc": "10x feature-barcode matrices (scRNA / CITE-seq)",
+   "path": "01_sid_full_dataset/source/h5/",
+   "files": 117,
+   "bytes": 6251554969
+  },
+  {
+   "section": "2. Golden labels (masked data)",
+   "desc": "one row per eval prompt: messages, items, gold, completion",
+   "path": "02_golden_labels/golden.jsonl",
+   "bytes": 38058767,
+   "rows": 15964,
+   "sha256": "980e325e1d3a6d641c8fc6948d4073a629ace2e63bdc43a401638fe1eecbe7d2"
+  },
+  {
+   "section": "2. Golden labels (masked data)",
+   "desc": "flat: one row per (prompt_id, item number)",
+   "path": "02_golden_labels/labels.csv",
+   "bytes": 2109530,
+   "rows": 24635,
+   "sha256": "f39a05b02f6a57a7a3ebdb232c493abe599bdcf433a43187f311f4589dcbd855"
+  },
+  {
+   "section": "2. Golden labels (masked data)",
+   "desc": "one row per masked target (prompt_id, i, item, entity, mod, truth); scorers read this",
+   "path": "02_golden_labels/truth.jsonl",
+   "bytes": 3739587,
+   "rows": 24634,
+   "sha256": "b8e8f3cb5de545ca487c04a0d63fd58721921d7f92c46a81434312757257502f"
+  },
+  {
+   "section": "2. Golden labels (masked data)",
+   "desc": "which bucket file each entity's truth came from",
+   "path": "02_golden_labels/validated_files.json",
+   "bytes": 16265,
+   "rows": null,
+   "sha256": "0989dd55937a9a630351d901b3cea0342fe6cd3a461e7aeb1541653bc8eeb068"
+  },
+  {
+   "section": "2. Golden labels (masked data)",
+   "desc": "rebuilds golden.jsonl + labels.csv",
+   "path": "02_golden_labels/build_golden.py",
+   "bytes": 1688,
+   "rows": null,
+   "sha256": "9558d298d56521b747bfc6c9379f0c3262fdd0cfad501d968f40158fccdcafd8"
+  },
+  {
+   "section": "2. Golden labels (masked data)",
+   "desc": "how the gold labels were built + caveats",
+   "path": "02_golden_labels/README_golden.md",
+   "bytes": 1345,
+   "rows": null,
+   "sha256": "92461cb7c344595fed17f81fea93216dc788b9e1e72155a30f843283d6da0b18"
+  },
+  {
+   "section": "3. Baseline eval prompts",
+   "desc": "20% random mask as prompts; {prompt_id, messages}. = osteo-data:prompts/baseline.jsonl (= osteo-results/eval_prompts.jsonl, reformatted)",
+   "path": "03_baseline_prompts/baseline.jsonl",
+   "bytes": 33858117,
+   "rows": 15964,
+   "sha256": "f0fc30b111a25ec5db32009b49a6110d9f1964bd826553a0154123f9a970e06e"
+  },
+  {
+   "section": "4. Baseline eval responses",
+   "desc": "Muse-Glimmer-30B zero-shot, first pass",
+   "path": "04_baseline_responses/baseline_zeroshot.jsonl",
+   "bytes": 15658663,
+   "rows": 15964,
+   "sha256": "02277fd42c4309a5cb23ca02bced63d5740e2fbc1ec8db7c5222426317da342a"
+  },
+  {
+   "section": "4. Baseline eval responses",
+   "desc": "re-runs of the 54 prompts truncated (finish=length)",
+   "path": "04_baseline_responses/baseline_zeroshot_retry.jsonl",
+   "bytes": 310055,
+   "rows": 54,
+   "sha256": "9cb4640635215340253b19cd13bab4990d11106e621ea8cedd5f29d4c558809d"
+  },
+  {
+   "section": "4. Baseline eval responses",
+   "desc": "first pass with the 54 retries swapped in; USE THIS ONE",
+   "path": "04_baseline_responses/baseline_zeroshot_merged.jsonl",
+   "bytes": 15722538,
+   "rows": 15964,
+   "sha256": "d0809d06216885bdeb5a3170e0779da0f6d14f448955b42edc61935e06a6a0cc"
+  },
+  {
+   "section": "5. Baseline report (score.py)",
+   "desc": "written summary of the baseline",
+   "path": "05_baseline_report/REPORT.md",
+   "bytes": 2540,
+   "rows": null,
+   "sha256": "781c045112e426e2bc902aec8b14661a731c970cd240adfb0577243f9b03c418"
+  },
+  {
+   "section": "5. Baseline report (score.py)",
+   "desc": "raw stdout of scripts/score.py",
+   "path": "05_baseline_report/score_py_output.txt",
+   "bytes": 959,
+   "rows": 15,
+   "sha256": "6fb16899234dc7ee168dac2370a57b5d4d621dcfe8983e4c83ff40686d2b3801"
+  },
+  {
+   "section": "5. Baseline report (score.py)",
+   "desc": "per-data-type metrics from score.py",
+   "path": "05_baseline_report/baseline_scores.json",
+   "bytes": 3906,
+   "rows": null,
+   "sha256": "0fb760f34b833ee735a2386c690135650d26a34dc7d3aee0e9931971cc2a6f02"
+  },
+  {
+   "section": "7. Full-data fine-tune (sid_full)",
+   "desc": "sid_full adapter on all eval prompts (= osteo-data:outputs/baseline_sid_full.jsonl)",
+   "path": "07_finetune_sid_full/finetuned_sid_full_eval.jsonl",
+   "bytes": 2235159,
+   "rows": 15964,
+   "sha256": "27b093030ba7d3223c0e4d49cb2aa63ed52ff2a20077e87ac16c84485ea598bf"
+  },
+  {
+   "section": "7. Full-data fine-tune (sid_full)",
+   "desc": "base vs fine-tune per data type (scripts/score_compare.py)",
+   "path": "07_finetune_sid_full/compare_scores.json",
+   "bytes": 4573,
+   "rows": null,
+   "sha256": "6437f4f1e06b9ce7685fc2f8c2f5ffd034c34769b89caa6ac2574fa8d0903d33"
+  },
+  {
+   "section": "7. Full-data fine-tune (sid_full)",
+   "desc": "base vs fine-tune, metagenomics detail",
+   "path": "07_finetune_sid_full/compare_microbiome.json",
+   "bytes": 947,
+   "rows": null,
+   "sha256": "9ead825fa13874d21804a27ec0d2bf77073722adbe05f94ecf42422a9e15da40"
+  },
+  {
+   "section": "7. Full-data fine-tune (sid_full)",
+   "desc": "per-target (truth, base, fine-tune) points for plots",
+   "path": "07_finetune_sid_full/compare_points.json",
+   "bytes": 670175,
+   "rows": null,
+   "sha256": "1e24c7524248df620f5992ae08b516d95c0e4ae0069d969f8484cb8377df8a5b"
+  },
+  {
+   "section": "7. Full-data fine-tune (sid_full)",
+   "desc": "LoRA r=32 weights, final (training stopped itself at step 739/1478); base = Muse-Glimmer-30B",
+   "path": "07_finetune_sid_full/adapter/adapter_model.safetensors",
+   "bytes": 838461864,
+   "rows": null,
+   "sha256": "37a55aad7c84730a3a61d7df1c7b2158bf6ab0c186d539a2d30c15bbe9b3d17d"
+  },
+  {
+   "section": "7. Full-data fine-tune (sid_full)",
+   "desc": "adapter + configs + train_log.json + checkpoint-739 (optimizer state)",
+   "path": "07_finetune_sid_full/adapter/",
+   "files": 26,
+   "bytes": 3410987236
+  },
+  {
+   "section": "7. Full-data fine-tune (sid_full)",
+   "desc": "source + data of https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J",
+   "path": "07_finetune_sid_full/dashboard_src/",
+   "files": 5,
+   "bytes": 729239
+  }
+ ],
+ "heldout": [
+  {
+   "name": "lomo740_flow",
+   "holdout": "flow",
+   "label": "Flow cytometry",
+   "trains_on": "everything except Flow cytometry",
+   "eval_targets": 221,
+   "eval_prompts": 18,
+   "status": "unknown (offline)",
+   "adapter": "osteo-data:adapters/lomo/lomo740_flow",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_flow",
+   "outputs_local_rows": 0
+  },
+  {
+   "name": "lomo740_rna",
+   "holdout": "rna",
+   "label": "Bulk RNA-seq TPM",
+   "trains_on": "everything except Bulk RNA-seq TPM",
+   "eval_targets": 2000,
+   "eval_prompts": 104,
+   "status": "unknown (offline)",
+   "adapter": "osteo-data:adapters/lomo/lomo740_rna",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna",
+   "outputs_local_rows": 0
+  },
+  {
+   "name": "lomo740_tcr",
+   "holdout": "tcr",
+   "label": "TCR beta clones",
+   "trains_on": "everything except TCR beta clones",
+   "eval_targets": 2000,
+   "eval_prompts": 104,
+   "status": "unknown (offline)",
+   "adapter": "osteo-data:adapters/lomo/lomo740_tcr",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_tcr",
+   "outputs_local_rows": 0
+  },
+  {
+   "name": "lomo740_xenium",
+   "holdout": "xenium",
+   "label": "Xenium",
+   "trains_on": "everything except Xenium",
+   "eval_targets": 600,
+   "eval_prompts": 600,
+   "status": "unknown (offline)",
+   "adapter": "osteo-data:adapters/lomo/lomo740_xenium",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_xenium",
+   "outputs_local_rows": 0
+  },
+  {
+   "name": "lomo740_all",
+   "holdout": "all",
+   "label": "All data (reference)",
+   "trains_on": "all 11,824 rows",
+   "eval_targets": 24634,
+   "eval_prompts": 15964,
+   "status": "unknown (offline)",
+   "adapter": "osteo-data:adapters/lomo/lomo740_all",
+   "outputs_remote": "osteo-data:outputs/lomo/lomo740_all",
+   "outputs_local_rows": 0
+  }
+ ],
+ "lomo_scores": null,
+ "sweep_app": null
+}
