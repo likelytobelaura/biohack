@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 13:50 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
+Generated 2026-10-17 13:54 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -51,6 +51,43 @@ Eval = a 20% random mask: 24,634 targets in 15,964 prompts, 13 data types.
 | `05_baseline_report/score_py_output.txt` | 959B | 15 | 6fb16899234d | raw stdout of scripts/score.py |
 | `05_baseline_report/baseline_scores.json` | 3.8K |  | 0fb760f34b83 | per-data-type metrics from score.py |
 
+## 6. Hold-out experiments (leave-one-data-type-out)
+
+LoRA r=32, 740 steps, 8×H200, same recipe as `sid_full` but with one data type removed from training;
+each is then evaluated on that type's masked targets only. `lomo740_all` is the matched reference trained on everything.
+Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).
+Sweep app: `ap-AIzYiRcj5xsmQdDteujfMa` (ephemeral (detached))
+
+| run | trains on | eval targets | status | local outputs |
+|---|---|---:|---|---|
+| `lomo740_flow` | everything except Flow cytometry | 221 | trained, eval pending | – |
+| `lomo740_rna` | everything except Bulk RNA-seq TPM | 2,000 | queued | – |
+| `lomo740_tcr` | everything except TCR beta clones | 2,000 | queued | – |
+| `lomo740_xenium` | everything except Xenium | 600 | queued | – |
+| `lomo740_all` | all 11,824 rows | 24,634 | training | – |
+
+Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
+`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (full-data
+adapter, 739 steps), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in
+`05_baseline_report/baseline_scores.json`.
+
+_No hold-out scores yet (`~/osteo-results/lomo_scores.json` not written)._
+
+Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
+
+`06_heldout_experiments/osteo_results_lomo/`
+
+| file | size | rows |
+|---|---:|---:|
+| `adapters/lomo740_flow/README.md` | 5.1K |  |
+| `adapters/lomo740_flow/adapter_config.json` | 1.1K |  |
+| `adapters/lomo740_flow/adapter_model.safetensors` | 799.6M |  |
+| `adapters/lomo740_flow/chat_template.jinja` | 9.8K |  |
+| `adapters/lomo740_flow/tokenizer.json` | 26.8M |  |
+| `adapters/lomo740_flow/tokenizer_config.json` | 78.1K |  |
+| `adapters/lomo740_flow/train_log.json` | 35.6K |  |
+| `adapters/lomo740_flow/training_args.bin` | 5.6K |  |
+
 ## 7. Full-data fine-tune (sid_full)
 
 | file | size | rows | sha256 | what |
@@ -63,31 +100,42 @@ Eval = a 20% random mask: 24,634 targets in 15,964 prompts, 13 data types.
 | `07_finetune_sid_full/adapter/` | 3.2G (26 files) |  |  | adapter + configs + train_log.json + checkpoint-739 (optimizer state) |
 | `07_finetune_sid_full/dashboard_src/` | 712.1K (5 files) |  |  | source + data of https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J |
 
-## 6. Hold-out experiments (leave-one-data-type-out)
+## 8. Other baselines
 
-LoRA r=32, 740 steps, 8×H200, same recipe as `sid_full` but with one data type removed from training;
-each is then evaluated on that type's masked targets only. `lomo740_all` is the matched reference trained on everything.
-Script: `scripts/lomo_train.py`; scorer: `scripts/score_lomo.py`. transfer = (holdout − base) / (all − base).
-Sweep app: not running.
+Mirrored from the jobs running them; partial files are re-copied on every refresh until the runs finish.
 
-| run | trains on | eval targets | status | local outputs |
-|---|---|---:|---|---|
-| `lomo740_flow` | everything except Flow cytometry | 221 | unknown (offline) | – |
-| `lomo740_rna` | everything except Bulk RNA-seq TPM | 2,000 | unknown (offline) | – |
-| `lomo740_tcr` | everything except TCR beta clones | 2,000 | unknown (offline) | – |
-| `lomo740_xenium` | everything except Xenium | 600 | unknown (offline) | – |
-| `lomo740_all` | all 11,824 rows | 24,634 | unknown (offline) | – |
+**muse_spark**: Muse Spark 1.2 / 1.3 (api.meta.ai, contributor) on golden.jsonl prompts; job 7d63451c. Source `~/osteo-results/spark` (API key file excluded).
 
-Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
-`prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (full-data
-adapter, 739 steps), and `all_reference_<type>` once `lomo740_all` has finished. The train-median reference is in
-`05_baseline_report/baseline_scores.json`.
+`08_other_baselines/muse_spark/`
 
-_No hold-out scores yet (`~/osteo-results/lomo_scores.json` not written)._
+| file | size | rows |
+|---|---:|---:|
+| `muse-spark-1.2-contributor.jsonl` | 949.6K | 3,101 |
+| `muse-spark-1.3-contributor.jsonl` | 939.1K | 3,048 |
+| `run_1.2.log` | 645B |  |
+| `run_1.3.log` | 646B |  |
+| `spark_scores.json` | 2.8K |  |
 
-## Related runs (not in this inventory's numbered sets)
+**nim_noctx**: NVIDIA NIM, prompts with the known values stripped (826 prompts); job c76b4182. Source `~/osteo-nim` (API key file excluded).
 
-- `~/osteo-results/spark/` — Muse Spark 1.2 / 1.3 via api.meta.ai (in progress, job 7d63451c).
-- `~/osteo-nim/` — NVIDIA NIM no-context baseline, 826 prompts (in progress, job c76b4182).
+`08_other_baselines/nim_noctx/`
+
+| file | size | rows |
+|---|---:|---:|
+| `out_noctx.jsonl` | 14.6K | 13 |
+| `prompts_noctx.jsonl` | 640.6K | 826 |
+| `run.log` | 31B |  |
+| `scripts/build_prompts.py` | 1.3K |  |
+| `scripts/run_nim.py` | 2.6K |  |
+| `scripts/score_noctx.py` | 1.6K |  |
+| `smoke.jsonl` | 5.1K | 5 |
+| `smoke_out.jsonl` | 5.7K | 5 |
+
+## Not yet filed
+
+_Nothing: every file under ~/osteo-results, ~/osteo-nim and ~/osteo-golden is mirrored here._
+
+## Links
+
 - Comparison dashboard: https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J (source in `07_finetune_sid_full/dashboard_src/`)
 - Working copies the original scripts still read: `~/.claude/jobs/6c5c300f/tmp/osteo/` (temporary; this folder is the durable copy).

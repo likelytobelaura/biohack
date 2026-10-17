@@ -1,7 +1,8 @@
 """Leave-one-data-type-out LoRA SFT of Muse-Glimmer-30B on the osteosarc training set.
 
 modal run --detach lomo_train.py --holdout sweep          # all 14 runs: train then eval each
-modal run --detach lomo_train.py --holdout rna            # one run (train + eval)
+modal run --detach lomo_train.py --holdout rna            # one run (train + eval on its own type)
+modal run --detach lomo_train.py --holdout rna --skip-train --eval-all   # eval a trained hold-out on the whole eval set
 modal run --detach lomo_train.py --holdout all --max-steps 20 --tag smoke --train-only   # smoke test
 Holdout keys: all, scrna, cite, rna, dia, olink, mif, tcr, xenium, somatic, mpa, flow, hla, fusion
 """
@@ -108,27 +109,28 @@ def eval_shard(adapter: str, holdout: str, shard: int, nshards: int, out_dir: st
 
 
 @app.function(image=image, volumes={"/data": data}, timeout=12 * 3600)
-def pipeline(holdout: str, max_steps: int, tag: str, skip_train: bool = False, adapter: str = ""):
+def pipeline(holdout: str, max_steps: int, tag: str, skip_train: bool = False, adapter: str = "", eval_all: bool = False):
     import json
     adapter = adapter or f"/data/adapters/lomo/{tag}_{holdout}"
     if not skip_train:
         adapter = train.remote(holdout, max_steps, tag)
     rows = [json.loads(l) for l in open("/data/prompts/baseline.jsonl")]
-    n = len(rows) if holdout == "all" else sum(r["messages"][-1]["content"].startswith(PREFIX[holdout]) for r in rows)
+    scope = "all" if eval_all else holdout
+    n = len(rows) if scope == "all" else sum(r["messages"][-1]["content"].startswith(PREFIX[scope]) for r in rows)
     nshards = max(1, -(-n // EVAL_SHARD))
-    out_dir = f"/data/outputs/lomo/{tag}_{holdout}"
-    done = sum(eval_shard.starmap([(adapter, holdout, k, nshards, out_dir) for k in range(nshards)]))
+    out_dir = f"/data/outputs/lomo/{tag}_{holdout}" + ("_full" if eval_all and holdout != "all" else "")
+    done = sum(eval_shard.starmap([(adapter, scope, k, nshards, out_dir) for k in range(nshards)]))
     print(f"{holdout}: trained {adapter}, evaluated {done} prompts in {nshards} shards -> {out_dir}", flush=True)
     return holdout, done
 
 
 @app.local_entrypoint()
-def main(holdout: str = "all", max_steps: int = 740, tag: str = "lomo740", skip_train: bool = False, train_only: bool = False, adapter: str = ""):
+def main(holdout: str = "all", max_steps: int = 740, tag: str = "lomo740", skip_train: bool = False, train_only: bool = False, adapter: str = "", eval_all: bool = False):
     if train_only:
         assert holdout == "all" or holdout in PREFIX, holdout
         print(train.remote(holdout, max_steps, tag))
         return
     keys = ["all"] + list(PREFIX) if holdout == "sweep" else holdout.split(",")
     assert all(k == "all" or k in PREFIX for k in keys), keys
-    for h, n in pipeline.starmap([(k, max_steps, tag, skip_train, adapter) for k in keys]):
+    for h, n in pipeline.starmap([(k, max_steps, tag, skip_train, adapter, eval_all) for k in keys]):
         print("finished", h, n)

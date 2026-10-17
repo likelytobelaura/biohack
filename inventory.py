@@ -55,6 +55,61 @@ ITEMS = [
 ]
 
 
+# live sources other jobs write to -> durable copy here (re-copied whenever size/mtime changes)
+H = os.path.expanduser('~')
+SYNC = [
+    (f'{H}/osteo-results/lomo', '06_heldout_experiments/osteo_results_lomo', 'hold-out adapters/evals the LOMO job (6c5c300f) pulls locally'),
+    (f'{H}/osteo-results/spark', '08_other_baselines/muse_spark', 'Muse Spark 1.2 / 1.3 (api.meta.ai, contributor) on golden.jsonl prompts; job 7d63451c'),
+    (f'{H}/osteo-nim', '08_other_baselines/nim_noctx', 'NVIDIA NIM, prompts with the known values stripped (826 prompts); job c76b4182'),
+    (f'{H}/osteo-results/scripts', 'scripts', 'project scripts'),
+]
+SKIP = ('.nvkey', '__pycache__', '.DS_Store', '.pyc')
+# everything under these roots must be either mirrored or deliberately skipped; anything else is reported as unfiled
+WATCH = [f'{H}/osteo-results', f'{H}/osteo-nim', f'{H}/osteo-golden']
+FILED_ELSEWHERE = {'eval_prompts.jsonl', 'baseline_truth.jsonl', 'validated_files.json', 'baseline_zeroshot.jsonl',
+                   'baseline_zeroshot_retry.jsonl', 'baseline_zeroshot_merged.jsonl', 'baseline_scores.json',
+                   'finetuned_sid_full_eval.jsonl', 'compare_scores.json', 'compare_microbiome.json', 'compare_points.json',
+                   'golden.jsonl', 'labels.csv', 'build_golden.py', 'README.md', 'lomo_scores.json'}
+
+
+def sync():
+    copied = []
+    for src, rel, _ in SYNC:
+        for f in glob.glob(f'{src}/**', recursive=True):
+            if not os.path.isfile(f) or any(k in f for k in SKIP):
+                continue
+            dst = f'{B}/{rel}/{os.path.relpath(f, src)}'
+            a = os.stat(f)
+            if os.path.exists(dst) and os.path.getsize(dst) == a.st_size and int(os.stat(dst).st_mtime) >= int(a.st_mtime):
+                continue
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            subprocess.run(['cp', '-cp', f, dst], check=True)
+            copied.append(f'{rel}/{os.path.relpath(f, src)}')
+    for f in ('finetuned_sid_full_eval.jsonl', 'compare_scores.json', 'compare_microbiome.json', 'compare_points.json'):
+        if os.path.exists(f'{R}/{f}') and os.path.getmtime(f'{R}/{f}') > os.path.getmtime(f'{B}/07_finetune_sid_full/{f}'):
+            subprocess.run(['cp', '-cp', f'{R}/{f}', f'{B}/07_finetune_sid_full/{f}'], check=True); copied.append(f)
+    return copied
+
+
+def unfiled():
+    synced = [s for s, _, _ in SYNC] + [f'{R}/adapters']
+    out = []
+    for root in WATCH:
+        for f in glob.glob(f'{root}/**', recursive=True):
+            if (os.path.isfile(f) and not any(f.startswith(s + '/') for s in synced) and not any(k in f for k in SKIP)
+                    and os.path.basename(f) not in FILED_ELSEWHERE):
+                out.append(f.replace(H, '~'))
+    return out
+
+
+def tree(rel):
+    out = []
+    for f in sorted(glob.glob(f'{B}/{rel}/**', recursive=True)):
+        if os.path.isfile(f):
+            out.append({'path': os.path.relpath(f, B), 'bytes': os.path.getsize(f), 'rows': rows(f)})
+    return out
+
+
 def rows(p):
     if not p.endswith(('.jsonl', '.csv', '.txt')):
         return None
@@ -179,28 +234,45 @@ def heldout(offline):
 
 def main():
     offline = '--offline' in sys.argv
+    copied = sync()
     cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
     items = [dict(section=s, desc=d, **describe(p, cache)) for s, p, d in ITEMS]
     json.dump(cache, open(CACHE, 'w'))
     exps, scores, app = heldout(offline)
     now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-    json.dump({'generated': now, 'items': items, 'heldout': exps, 'lomo_scores': scores,
-               'sweep_app': app}, open(f'{B}/inventory.json', 'w'), indent=1)
+    mirrors = {rel: tree(rel) for _, rel, _ in SYNC if rel != 'scripts'}
+    loose = unfiled()
+    for f in loose:  # keep a copy of anything new until it gets a proper home
+        src = f.replace('~', H, 1); dst = f'{B}/_incoming/{os.path.relpath(src, H)}'
+        if not os.path.exists(dst) or os.path.getmtime(dst) < os.path.getmtime(src):
+            os.makedirs(os.path.dirname(dst), exist_ok=True); subprocess.run(['cp', '-cp', src, dst])
+    json.dump({'generated': now, 'items': items, 'heldout': exps, 'lomo_scores': scores, 'sweep_app': app,
+               'mirrors': mirrors, 'unfiled': loose, 'copied_this_run': copied}, open(f'{B}/inventory.json', 'w'), indent=1)
 
     L = [f'# Biohack data inventory (osteosarcoma imputation)', '',
          f'Generated {now} by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.', '',
          'Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij\'s public',
          'osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).',
          'Eval = a 20% random mask: 24,634 targets in 15,964 prompts, 13 data types.', '']
-    sec = None
-    for it in items:
+    def table(its):
+      sec = None
+      for it in its:
         if it['section'] != sec:
-            sec = it['section']; L += ['', f'## {sec}', '', '| file | size | rows | sha256 | what |', '|---|---:|---:|---|---|']
+            sec = it['section']; L.extend(['', f'## {sec}', '', '| file | size | rows | sha256 | what |', '|---|---:|---:|---|---|'])
         if it.get('missing'):
             L.append(f"| `{it['path']}` | **MISSING** | | | {it['desc']} |"); continue
         size = human(it['bytes']) + (f" ({it['files']} files)" if 'files' in it else '')
         rw = f"{it['rows']:,}" if it.get('rows') is not None else ''
         L.append(f"| `{it['path']}` | {size} | {rw} | {it.get('sha256', '')[:12]} | {it['desc']} |")
+
+    def mirror(rel):
+        fs = mirrors[rel]
+        if not fs:
+            L.append(f'_`{rel}/`: nothing yet._'); return
+        L.extend(['', f'`{rel}/`', '', '| file | size | rows |', '|---|---:|---:|'])
+        L.extend(f"| `{f['path'][len(rel) + 1:]}` | {human(f['bytes'])} | {'' if f['rows'] is None else format(f['rows'], ',')} |" for f in fs)
+
+    table([i for i in items if i['section'][0] in '12345'])
     L += ['', '## 6. Hold-out experiments (leave-one-data-type-out)', '',
           'LoRA r=32, 740 steps, 8×H200, same recipe as `sid_full` but with one data type removed from training;',
           'each is then evaluated on that type\'s masked targets only. `lomo740_all` is the matched reference trained on everything.',
@@ -221,9 +293,19 @@ def main():
                      f"{s['transfer']} [{s['transfer_lo']}, {s['transfer_hi']}] |")
     else:
         L.append('_No hold-out scores yet (`~/osteo-results/lomo_scores.json` not written)._')
-    L += ['', '## Related runs (not in this inventory\'s numbered sets)', '',
-          '- `~/osteo-results/spark/` — Muse Spark 1.2 / 1.3 via api.meta.ai (in progress, job 7d63451c).',
-          '- `~/osteo-nim/` — NVIDIA NIM no-context baseline, 826 prompts (in progress, job c76b4182).',
+    L.append('')
+    L.append('Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):')
+    mirror('06_heldout_experiments/osteo_results_lomo')
+    table([i for i in items if i['section'][0] == '7'])
+    L.extend(['', '## 8. Other baselines', '',
+              'Mirrored from the jobs running them; partial files are re-copied on every refresh until the runs finish.'])
+    for src, rel, d in SYNC:
+        if rel.startswith('08_'):
+            L.extend(['', f'**{rel.split("/")[1]}**: {d}. Source `{src.replace(H, "~")}` (API key file excluded).'])
+            mirror(rel)
+    L.extend(['', '## Not yet filed', ''])
+    L.extend([f'- `{f}` (copied to `_incoming/`)' for f in loose] or ['_Nothing: every file under ~/osteo-results, ~/osteo-nim and ~/osteo-golden is mirrored here._'])
+    L += ['', '## Links', '',
           '- Comparison dashboard: https://claude.ai/artifact/YTL434mENWCv3anqC5EE2J (source in `07_finetune_sid_full/dashboard_src/`)',
           '- Working copies the original scripts still read: `~/.claude/jobs/6c5c300f/tmp/osteo/` (temporary; this folder is the durable copy).', '']
     open(f'{B}/INVENTORY.md', 'w').write('\n'.join(L))
