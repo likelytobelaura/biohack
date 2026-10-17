@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 15:08 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
+Generated 2026-10-17 15:13 by `python3 ~/biohack/inventory.py`. Re-run it after each hold-out run finishes.
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -67,7 +67,7 @@ Sweep app: `ap-AIzYiRcj5xsmQdDteujfMa` (ephemeral (detached))
 | `lomo740_xenium` | everything except Xenium | 600 | training | – |
 | `lomo740_all` | all 11,824 rows | 24,634 | trained, eval pending | – |
 | `lomo740_flow_full` | everything except Flow cytometry (adapter of `lomo740_flow`; eval on ALL prompts, off-target) | 24,634 | done | `06_heldout_experiments/lomo740_flow_full/outputs/` |
-| `lomo740_rna_full` | everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target) | 24,634 | evaluating (9980/15964 prompts pulled) | `06_heldout_experiments/lomo740_rna_full/outputs/` |
+| `lomo740_rna_full` | everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target) | 24,634 | evaluating (12973/15964 prompts pulled) | `06_heldout_experiments/lomo740_rna_full/outputs/` |
 
 Baselines for each hold-out are in `06_heldout_experiments/lomo740_<type>/baselines/`, sliced to that type's prompts:
 `prompts_<type>`, `truth_<type>`, `base_zeroshot_<type>` (Glimmer zero-shot), `sid_full_finetune_<type>` (sid_full
@@ -75,8 +75,10 @@ adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all
 `05_baseline_report/baseline_scores.json`.
 `lomo740_<type>_full` runs re-evaluate a hold-out adapter on every prompt; their per-type change vs `lomo740_all`
 (off-target effect of dropping that type) is in `osteo_results_lomo/offtarget_scores.json` (`scripts/score_offtarget.py`).
+Full-eval outputs as the LOMO job pulls them: `osteo_results_lomo/evals/` (incl. `lomo740h100_all`, the all-data reference
+re-run with H100 fallback; a later `lomo740_all` full eval would duplicate it).
 
-_No hold-out scores yet (`~/osteo-results/lomo_scores.json` not written)._
+_No hold-out scores yet (`~/osteo-results/lomo/lomo_scores.json` not written; `preview_noflow_scores.json` is an early preview it supersedes)._
 
 Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 
@@ -133,7 +135,9 @@ Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 | `evals/lomo740_flow_full/shard8.jsonl` | 112.0K | 998 |
 | `evals/lomo740_flow_full/shard9.jsonl` | 126.1K | 998 |
 | `evals/lomo740_flow_own/shard0.jsonl` | 4.5K | 18 |
+| `evals/noflow_full.jsonl` | 1.9M | 15,964 |
 | `offtarget_scores.json` | 3.7K |  |
+| `preview_noflow_scores.json` | 6.3K |  |
 
 ## 7. sid_full: LoRA on all data, stopped at 50%
 
@@ -180,7 +184,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `out_noctx_scores.json` | 1.9K |  |
 | `prompts_noctx.jsonl` | 640.6K | 826 |
 | `prompts_noctx_ordered.jsonl` | 640.6K | 826 |
-| `run.log` | 89B |  |
+| `run.log` | 127B |  |
 | `scripts/build_lomo_baselines.py` | 1.6K |  |
 | `scripts/build_prompts.py` | 1.3K |  |
 | `scripts/modal_noctx.py` | 1.9K |  |
@@ -247,6 +251,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `card/from_aifoundry3/runs/card-full/sha256.txt` | 110B | 1 |
 | `card/from_aifoundry3/runs/card-full/when.txt` | 32B | 1 |
 | `compare_classical.json` | 20.6K |  |
+| `cross.log` | 4.2K |  |
 | `preds/additive.jsonl` | 1.4M | 15,955 |
 | `preds/als_2_1.0.jsonl` | 1.4M | 15,955 |
 | `preds/als_2_10.0.jsonl` | 1.4M | 15,955 |
@@ -271,6 +276,8 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 | `preds/knn_feature_5.jsonl` | 1.3M | 15,955 |
 | `preds/knn_feature_50.jsonl` | 1.3M | 15,955 |
 | `preds/row_mean.jsonl` | 1.3M | 15,955 |
+| `preds_cross/cite_within_plus_cross.jsonl` | 429.1K | 5,967 |
+| `preds_cross/dia_within_plus_cross.jsonl` | 62.9K | 247 |
 | `preds_cross/olink_within_plus_cross.jsonl` | 60.3K | 104 |
 | `preds_cross/rna_within_plus_cross.jsonl` | 60.0K | 104 |
 | `preds_cross/scrna_within_plus_cross.jsonl` | 487.2K | 6,766 |
@@ -288,7 +295,7 @@ Mirrored from the jobs running them; partial files are re-copied on every refres
 
 ## 10. Esperanto ET-SoC-1 (AI Foundry lab, aifoundry3 card 0)
 
-Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 15:08).
+Everything Laura's lab account `likelytobelaura@aifoundry3` holds, pulled with rsync on every refresh (last pulled 2026-10-17 15:13).
 The account only reaches aifoundry3 (aifoundry1/2 refuse it), so this is all of it. Not copied: dotfiles
 (`~/.claude`, `.claude.json` hold the lab Claude's login) and `~/et-soc1-prototyping`, an unmodified clone of
 https://github.com/yaroslavvb/et-soc1-prototyping at `f0a40879800d8d21955d061b92ad974570455595`. `osteo/` is the osteo card job (also in section 9).

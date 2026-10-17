@@ -73,4 +73,4 @@ if __name__ == '__main__':
         rows.append(row)
         print(f"{LABELS[h]:18s} base {row['base']}  holdout {row['holdout']} [{row['holdout_lo']},{row['holdout_hi']}]  "
               f"all {row['all']}  sid_full {row['sid_full']}  transfer {row['transfer']} [{row['transfer_lo']},{row['transfer_hi']}]")
-    json.dump(rows, open(f'{R}/lomo_scores.json', 'w'), indent=1)
+    json.dump(rows, open(f'{R}/lomo/lomo_scores.json', 'w'), indent=1)

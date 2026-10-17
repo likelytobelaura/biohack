@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 15:08",
+ "generated": "2026-10-17 15:13",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -293,10 +293,10 @@
    "trains_on": "everything except Bulk RNA-seq TPM (adapter of `lomo740_rna`; eval on ALL prompts, off-target)",
    "eval_targets": 24634,
    "eval_prompts": 15964,
-   "status": "evaluating (9980/15964 prompts pulled)",
+   "status": "evaluating (12973/15964 prompts pulled)",
    "adapter": "osteo-data:adapters/lomo/lomo740_rna_full",
    "outputs_remote": "osteo-data:outputs/lomo/lomo740_rna_full",
-   "outputs_local_rows": 9980
+   "outputs_local_rows": 12973
   }
  ],
  "lomo_scores": null,
@@ -556,8 +556,18 @@
     "rows": 18
    },
    {
+    "path": "06_heldout_experiments/osteo_results_lomo/evals/noflow_full.jsonl",
+    "bytes": 2008852,
+    "rows": 15964
+   },
+   {
     "path": "06_heldout_experiments/osteo_results_lomo/offtarget_scores.json",
     "bytes": 3765,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/preview_noflow_scores.json",
+    "bytes": 6473,
     "rows": null
    }
   ],
@@ -646,7 +656,7 @@
    },
    {
     "path": "08_other_baselines/nim_noctx/run.log",
-    "bytes": 89,
+    "bytes": 127,
     "rows": null
    },
    {
@@ -947,6 +957,11 @@
     "rows": null
    },
    {
+    "path": "09_classical_ml/cross.log",
+    "bytes": 4284,
+    "rows": null
+   },
+   {
     "path": "09_classical_ml/preds/additive.jsonl",
     "bytes": 1418739,
     "rows": 15955
@@ -1067,6 +1082,16 @@
     "rows": 15955
    },
    {
+    "path": "09_classical_ml/preds_cross/cite_within_plus_cross.jsonl",
+    "bytes": 439401,
+    "rows": 5967
+   },
+   {
+    "path": "09_classical_ml/preds_cross/dia_within_plus_cross.jsonl",
+    "bytes": 64455,
+    "rows": 247
+   },
+   {
     "path": "09_classical_ml/preds_cross/olink_within_plus_cross.jsonl",
     "bytes": 61733,
     "rows": 104
@@ -1140,24 +1165,8 @@
  },
  "unfiled": [],
  "copied_this_run": [
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/adapter_model.safetensors",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/tokenizer_config.json",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/tokenizer.json",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/README.md",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/training_args.bin",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/adapter_config.json",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/chat_template.jinja",
-  "06_heldout_experiments/osteo_results_lomo/adapters/lomo740_tcr/train_log.json",
   "08_other_baselines/nim_noctx/run.log",
-  "09_classical_ml/RESULTS.md",
-  "09_classical_ml/preds_cross/xenium_within_plus_cross.jsonl",
-  "09_classical_ml/preds_cross/rna_within_plus_cross.jsonl",
-  "09_classical_ml/preds_cross/olink_within_plus_cross.jsonl",
-  "09_classical_ml/preds_cross/scrna_within_plus_cross.jsonl",
-  "09_classical_ml/scripts/cross.py",
-  "09_classical_ml/scripts/run_classical.py",
-  "compare_scores.json",
-  "compare_points.json"
+  "scripts/score_lomo.py"
  ],
- "esperanto_pull": "last pulled 2026-10-17 15:08"
+ "esperanto_pull": "last pulled 2026-10-17 15:13"
 }
