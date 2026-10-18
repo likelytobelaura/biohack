@@ -1,0 +1,133 @@
+{
+ "train_file": "train/sid_full.jsonl (osteo-data volume) = 01_sid_full_dataset",
+ "train_rows": 11824,
+ "train_sha256": "6e34ed7080654b8f88076982a6a943cb309291a5cb3168b25afe5d8dc7635a2d",
+ "runs": {
+  "lomo740_all": {
+   "eligible_rows": 11824,
+   "seen_rows": 5920,
+   "unseen_rows": 5904,
+   "unseen_includes_heldout_type_rows": 0,
+   "unseen_by_type": {
+    "Single-cell RNA-seq (10x)": 1714,
+    "CITE-seq antibody tags (10x)": 1480,
+    "Olink plasma proteomics": 498,
+    "Bulk tumour RNA-seq, GTEx v11 pipeline": 496,
+    "T-cell receptor beta clones": 491,
+    "Multiplex immunofluorescence of the T0 tumour, one row per segmented cell": 487,
+    "DIA mass-spec proteomics of laser-captured 112 um regions of the T0 tumour": 486,
+    "Xenium in-situ transcriptomics (428-gene panel)": 128,
+    "Somatic tumour/normal WGS calls (DRAGEN)": 54,
+    "Shotgun metagenomics (MetaPhlAn)": 38,
+    "Spectral flow cytometry of PBMCs": 25,
+    "Germline HLA typing": 6,
+    "Gene fusions from long-read single-cell RNA (CTAT-LR)": 1
+   }
+  },
+  "lomo740_flow": {
+   "eligible_rows": 11770,
+   "seen_rows": 5920,
+   "unseen_rows": 5904,
+   "unseen_includes_heldout_type_rows": 54,
+   "unseen_by_type": {
+    "Single-cell RNA-seq (10x)": 1689,
+    "CITE-seq antibody tags (10x)": 1435,
+    "T-cell receptor beta clones": 527,
+    "Olink plasma proteomics": 510,
+    "Bulk tumour RNA-seq, GTEx v11 pipeline": 491,
+    "DIA mass-spec proteomics of laser-captured 112 um regions of the T0 tumour": 491,
+    "Multiplex immunofluorescence of the T0 tumour, one row per segmented cell": 469,
+    "Xenium in-situ transcriptomics (428-gene panel)": 125,
+    "Somatic tumour/normal WGS calls (DRAGEN)": 59,
+    "Spectral flow cytometry of PBMCs": 54,
+    "Shotgun metagenomics (MetaPhlAn)": 47,
+    "Germline HLA typing": 6,
+    "Gene fusions from long-read single-cell RNA (CTAT-LR)": 1
+   }
+  },
+  "lomo740_rna": {
+   "eligible_rows": 10824,
+   "seen_rows": 5920,
+   "unseen_rows": 5904,
+   "unseen_includes_heldout_type_rows": 1000,
+   "unseen_by_type": {
+    "Single-cell RNA-seq (10x)": 1547,
+    "CITE-seq antibody tags (10x)": 1256,
+    "Bulk tumour RNA-seq, GTEx v11 pipeline": 1000,
+    "Olink plasma proteomics": 494,
+    "Multiplex immunofluorescence of the T0 tumour, one row per segmented cell": 467,
+    "T-cell receptor beta clones": 464,
+    "DIA mass-spec proteomics of laser-captured 112 um regions of the T0 tumour": 431,
+    "Xenium in-situ transcriptomics (428-gene panel)": 108,
+    "Somatic tumour/normal WGS calls (DRAGEN)": 67,
+    "Shotgun metagenomics (MetaPhlAn)": 42,
+    "Spectral flow cytometry of PBMCs": 18,
+    "Germline HLA typing": 8,
+    "Gene fusions from long-read single-cell RNA (CTAT-LR)": 2
+   }
+  },
+  "lomo740_tcr": {
+   "eligible_rows": 10824,
+   "seen_rows": 5920,
+   "unseen_rows": 5904,
+   "unseen_includes_heldout_type_rows": 1000,
+   "unseen_by_type": {
+    "Single-cell RNA-seq (10x)": 1568,
+    "CITE-seq antibody tags (10x)": 1276,
+    "T-cell receptor beta clones": 1000,
+    "DIA mass-spec proteomics of laser-captured 112 um regions of the T0 tumour": 488,
+    "Multiplex immunofluorescence of the T0 tumour, one row per segmented cell": 464,
+    "Bulk tumour RNA-seq, GTEx v11 pipeline": 431,
+    "Olink plasma proteomics": 426,
+    "Xenium in-situ transcriptomics (428-gene panel)": 108,
+    "Somatic tumour/normal WGS calls (DRAGEN)": 64,
+    "Shotgun metagenomics (MetaPhlAn)": 45,
+    "Spectral flow cytometry of PBMCs": 23,
+    "Germline HLA typing": 8,
+    "Gene fusions from long-read single-cell RNA (CTAT-LR)": 3
+   }
+  },
+  "lomo740_xenium": {
+   "eligible_rows": 11572,
+   "seen_rows": 5920,
+   "unseen_rows": 5904,
+   "unseen_includes_heldout_type_rows": 252,
+   "unseen_by_type": {
+    "Single-cell RNA-seq (10x)": 1651,
+    "CITE-seq antibody tags (10x)": 1427,
+    "Bulk tumour RNA-seq, GTEx v11 pipeline": 514,
+    "T-cell receptor beta clones": 495,
+    "DIA mass-spec proteomics of laser-captured 112 um regions of the T0 tumour": 493,
+    "Multiplex immunofluorescence of the T0 tumour, one row per segmented cell": 481,
+    "Olink plasma proteomics": 470,
+    "Xenium in-situ transcriptomics (428-gene panel)": 252,
+    "Somatic tumour/normal WGS calls (DRAGEN)": 51,
+    "Shotgun metagenomics (MetaPhlAn)": 32,
+    "Spectral flow cytometry of PBMCs": 29,
+    "Germline HLA typing": 8,
+    "Gene fusions from long-read single-cell RNA (CTAT-LR)": 1
+   }
+  }
+ },
+ "never_trained_by_any_of": [
+  "lomo740_all",
+  "lomo740_flow",
+  "lomo740_rna",
+  "lomo740_tcr",
+  "lomo740_xenium"
+ ],
+ "never_trained_by_any_rows": 391,
+ "never_trained_by_any_by_type": {
+  "Single-cell RNA-seq (10x)": 80,
+  "CITE-seq antibody tags (10x)": 75,
+  "T-cell receptor beta clones": 64,
+  "Bulk tumour RNA-seq, GTEx v11 pipeline": 60,
+  "Xenium in-situ transcriptomics (428-gene panel)": 33,
+  "DIA mass-spec proteomics of laser-captured 112 um regions of the T0 tumour": 31,
+  "Olink plasma proteomics": 21,
+  "Multiplex immunofluorescence of the T0 tumour, one row per segmented cell": 18,
+  "Somatic tumour/normal WGS calls (DRAGEN)": 4,
+  "Shotgun metagenomics (MetaPhlAn)": 3,
+  "Spectral flow cytometry of PBMCs": 2
+ }
+}

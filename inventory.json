@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-17 16:21",
+ "generated": "2026-10-17 17:15",
  "items": [
   {
    "section": "1. Sid's full dataset",
@@ -1104,6 +1104,76 @@
     "path": "06_heldout_experiments/osteo_results_lomo/preview_noflow_scores.json",
     "bytes": 6473,
     "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/README.md",
+    "bytes": 3854,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_all_row_ids.json",
+    "bytes": 71778,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_all_unseen_rows.jsonl",
+    "bytes": 24104001,
+    "rows": 5904
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_flow_row_ids.json",
+    "bytes": 71778,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_flow_unseen_rows.jsonl",
+    "bytes": 24319841,
+    "rows": 5904
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_rna_row_ids.json",
+    "bytes": 71778,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_rna_unseen_rows.jsonl",
+    "bytes": 25806308,
+    "rows": 5904
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_tcr_row_ids.json",
+    "bytes": 71778,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_tcr_unseen_rows.jsonl",
+    "bytes": 24367271,
+    "rows": 5904
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_xenium_row_ids.json",
+    "bytes": 71778,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/lomo740_xenium_unseen_rows.jsonl",
+    "bytes": 24026452,
+    "rows": 5904
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/never_trained_by_any_lomo740.jsonl",
+    "bytes": 1706237,
+    "rows": 391
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/splits/splits_summary.json",
+    "bytes": 5170,
+    "rows": null
+   },
+   {
+    "path": "06_heldout_experiments/osteo_results_lomo/train_sid_full.jsonl",
+    "bytes": 48162758,
+    "rows": 11824
    }
   ],
   "08_other_baselines/muse_spark": [
@@ -2855,7 +2925,24 @@
    }
   ]
  },
- "unfiled": [],
- "copied_this_run": [],
+ "unfiled": [
+  "~/osteo-results/mpa_probe/examples.jsonl"
+ ],
+ "copied_this_run": [
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_flow_row_ids.json",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_flow_unseen_rows.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_tcr_unseen_rows.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_xenium_unseen_rows.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/splits/README.md",
+  "06_heldout_experiments/osteo_results_lomo/splits/never_trained_by_any_lomo740.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_all_unseen_rows.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_rna_unseen_rows.jsonl",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_all_row_ids.json",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_rna_row_ids.json",
+  "06_heldout_experiments/osteo_results_lomo/splits/splits_summary.json",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_xenium_row_ids.json",
+  "06_heldout_experiments/osteo_results_lomo/splits/lomo740_tcr_row_ids.json",
+  "scripts/tcr_neuron.py"
+ ],
  "esperanto_pull": "offline run: not pulled"
 }

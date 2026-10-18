@@ -1,6 +1,6 @@
 # Biohack data inventory (osteosarcoma imputation)
 
-Generated 2026-10-17 16:21 by `inventory.py` (a watcher re-runs it and pushes to GitHub every 10 min while runs are going).
+Generated 2026-10-17 17:15 by `inventory.py` (a watcher re-runs it and pushes to GitHub every 10 min while runs are going).
 
 Model: Muse-Glimmer-30B (Modal volume `hf-cache:/Muse-Glimmer-30B`). Data: Sid Sijbrandij's public
 osteosarcoma bucket `s3://sid-sijbrandij-osteosarc-dataset` (us-west-2, `--no-sign-request`).
@@ -88,6 +88,12 @@ adapter, stopped at step 739/1478), and `all_reference_<type>` once `lomo740_all
 (off-target effect of dropping that type) is in `osteo_results_lomo/offtarget_scores.json` (`scripts/score_offtarget.py`).
 Full-eval outputs as the LOMO job pulls them: `osteo_results_lomo/evals/` (incl. `lomo740h100_all`, the all-data reference
 re-run with H100 fallback; a later `lomo740_all` full eval would duplicate it).
+
+**Never-trained-on training rows:** each lomo740 run saw 5,920 of the 11,824 training rows (740 steps × 8 GPUs × batch 1).
+[`osteo_results_lomo/splits/`](06_heldout_experiments/osteo_results_lomo/splits/README.md) holds the 5,904 rows each run
+never saw (`lomo740_<run>_unseen_rows.jsonl`, with `row_id` = line in `train/sid_full.jsonl`), the 391 rows none of the
+five saw (`never_trained_by_any_lomo740.jsonl`), and the seen ids in exact per-rank training order (`<run>_row_ids.json`),
+rebuilt by `scripts/reconstruct_seen_rows.py` and verified against the first real batches. Not available for `sid_full`.
 
 | hold-out | metric | base | sid_full | all | holdout | transfer [95% CI] |
 |---|---|---:|---:|---:|---:|---|
@@ -234,6 +240,20 @@ Local mirror of `~/osteo-results/lomo/` (written by the LOMO job):
 | `lomo_scores.json` | 1.9K |  |
 | `offtarget_scores.json` | 3.7K |  |
 | `preview_noflow_scores.json` | 6.3K |  |
+| `splits/README.md` | 3.8K |  |
+| `splits/lomo740_all_row_ids.json` | 70.1K |  |
+| `splits/lomo740_all_unseen_rows.jsonl` | 23.0M | 5,904 |
+| `splits/lomo740_flow_row_ids.json` | 70.1K |  |
+| `splits/lomo740_flow_unseen_rows.jsonl` | 23.2M | 5,904 |
+| `splits/lomo740_rna_row_ids.json` | 70.1K |  |
+| `splits/lomo740_rna_unseen_rows.jsonl` | 24.6M | 5,904 |
+| `splits/lomo740_tcr_row_ids.json` | 70.1K |  |
+| `splits/lomo740_tcr_unseen_rows.jsonl` | 23.2M | 5,904 |
+| `splits/lomo740_xenium_row_ids.json` | 70.1K |  |
+| `splits/lomo740_xenium_unseen_rows.jsonl` | 22.9M | 5,904 |
+| `splits/never_trained_by_any_lomo740.jsonl` | 1.6M | 391 |
+| `splits/splits_summary.json` | 5.0K |  |
+| `train_sid_full.jsonl` | 45.9M | 11,824 |
 
 ## 7. sid_full: LoRA on all data, stopped at 50%
 
@@ -449,7 +469,7 @@ matches the volume's file sizes, then checks every file on HF against it).
 
 ## Not yet filed
 
-_Nothing: every file under ~/osteo-results, ~/osteo-nim, ~/osteo-golden, ~/osteo-classical is mirrored here._
+- `~/osteo-results/mpa_probe/examples.jsonl` (copied to `_incoming/`)
 
 ## Links
 
