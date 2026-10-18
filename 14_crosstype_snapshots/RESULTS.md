@@ -92,3 +92,9 @@ thousands of examples and still shows nothing, which suggests the objective (mos
 values copied from the prompt) gives no pressure to use the other modality. Next options: targets that can
 *only* be predicted from the other assay (e.g. mask a whole assay at a timepoint / all ADTs of a cell given its
 RNA), a data-only control (same rows, single-type format) to separate format from data, and a second seed.
+
+## Full report
+In-depth write-up with charts (standard eval vs base / sid_full / lomo740_all / Spark / classical / LOMO, snapshot
+eval, why TCR / DIA / Olink got worse): https://claude.ai/code/artifact/b5fab546-41aa-4c46-9642-dfbd8340cad7
+Numbers: `report_standard.json` (`scripts/report_standard.py`), `hint_copy.json` (`scripts/hint_copy.py`: how closely
+each model copies the prompt's "elsewhere" hint; TCR copy ρ −.113 → +.253, DIA .964 → .860).
