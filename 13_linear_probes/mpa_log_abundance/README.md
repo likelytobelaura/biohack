@@ -74,10 +74,72 @@ Known issues, to fix with `--probe-only` on the saved activations:
 6. **Flag uncertainty and odd data.** Large gaps between the probe and the written answer, or between the probe and
    the truth, flag answers to distrust and possibly odd taxa (contaminants, near-zero bins).
 
+## Neuron hunt through the probe (`scripts/mpa_neuron.py`, `results/neuron_results.json`)
+
+The probe was refit at residual index 39, tuned by holding out whole samples: CV R² 0.55 for base, 0.57 for the fine-tune.
+Each MLP neuron in layers 0–38 writes a_i · postnorm(W_down[:, i]) into the residual stream. The post-FFN RMSNorm is
+linear once the sample's rms is known (reconstruction error 0.2%), so each neuron's share of the probe readout's
+variance is exact along the direct path. Controls are answer positions from bulk RNA, DIA proteomics, Xenium, CITE
+and flow (959 values, unseen rows). The causal test greedy-decodes all 364 eval MetaPhlAn values with neurons
+mean-ablated, or with the residual steered by ±1 log10 unit along w.
+
+**Attribution.** All MLP neurons together carry 33% (base) and 29% (fine-tune) of the readout variance directly;
+the rest comes through attention.
+
+| | top 1 | top 5 | top 20 |
+|---|---|---|---|
+| base | L32 #8787 2.0% | 9% | 21% |
+| fine-tune | L37 #18399 5.1% | 17% | 34% |
+
+**Specificity.** The probe is not microbiome-specific. Trained only on MetaPhlAn, it still decodes log values
+elsewhere: r = 0.76 on DIA, 0.73 on bulk RNA and 0.43–0.56 on Xenium, CITE and flow (fine-tune). It is mostly a
+generic quantity axis.
+
+Mean activation at answer positions (sd ~0.1–1.6):
+
+| neuron (model) | MetaPhlAn | DIA | RNA | Xenium | CITE | flow | share of readout |
+|---|---|---|---|---|---|---|---|
+| **L36 #15557 (fine-tune)** | **2.09** | 0.37 | 0.20 | −0.52 | −0.29 | −0.30 | 3.4% (base 1.2%) |
+| L36 #15557 (base) | 0.98 | −0.04 | 0.17 | −0.28 | 0.03 | −0.47 | |
+| L37 #18399 (fine-tune) | 3.37 | 2.34 | 0.12 | 0.09 | 0.16 | 0.20 | 5.1% (base ~2%) |
+| L37 #18399 (base) | 2.29 | 1.68 | 0.07 | 0.16 | 0.14 | 0.16 | |
+
+- **L36 #15557 is the best "microbiome neuron" candidate.** It is the only top-attributed neuron that fires on MetaPhlAn
+  answers and stays near zero on all five other types, including DIA, whose values are just as large.
+  It exists in the base model, and fine-tuning roughly doubled its MetaPhlAn activation (0.98 → 2.09) and tripled its
+  readout share (1.2% → 3.4%). Within MetaPhlAn it is anti-correlated with abundance (r = −0.60), so it pushes
+  estimates down for low-abundance taxa.
+- **L37 #18399 is a "large raw count" neuron.** It fires on MetaPhlAn and DIA (both values around 10³–10⁶) and tracks the
+  value in both (r 0.58 / 0.75). The fine-tune amplified it, but it is not microbiome-specific.
+- **L32 #8787 tracks value with an opposite sign per data type** (+0.69 MetaPhlAn and DIA, −0.4 to −0.8 RNA, Xenium and CITE).
+
+**Causal test** (364 eval values, teacher-forced earlier answers; shift = mean change in written log10 value):
+
+| | base: Spearman / shift / zeros | fine-tune: Spearman / shift / zeros |
+|---|---|---|
+| clean | 0.49 / – / 33% | 0.63 / – / 15% |
+| ablate top 5 | 0.46 / −0.16 / 35% | 0.69 / −0.05 / 15% |
+| ablate top 20 | 0.46 / −0.08 / 34% | 0.67 / −0.17 / 15% |
+| ablate 20 random | 0.48 / 0.00 / 33% | 0.64 / 0.00 / 15% |
+| steer +1 | 0.56 / +0.26 / 27% | 0.67 / +0.04 / 15% |
+| steer −1 | 0.45 / −0.43 / 45% | 0.67 / −0.05 / 15% |
+
+- **The base model uses the probe direction.** Steering moves its written values and pushing up cuts zero answers.
+- **The fine-tune hardly responds to steering at layer 39.** Its output is driven elsewhere, most likely by copying the
+  other samples' values through attention.
+- **Ablations of the top neurons have small effects, with direction consistent with the attribution.** Random ablations do nothing.
+- **There is no single neuron whose removal breaks microbiome prediction.** The representation is distributed.
+
+Next: ablate L36 #15557 alone and measure the effect per data type. Patch fine-tune activations of #15557 and #18399
+into the base model. Check whether #15557 also fires on MetaPhlAn *prompt* tokens (taxon names), not just answers.
+
 ## Re-run
 
 ```
 python scripts/build_mpa_probe.py examples.jsonl
 modal volume put osteo-data examples.jsonl /mpa_probe/<tag>/examples.jsonl
 modal run --detach scripts/mpa_probe.py --tag <tag> [--probe-only]
+python scripts/build_control_examples.py <lomo740_all_unseen_rows.jsonl> control_examples.jsonl
+modal volume put osteo-data control_examples.jsonl /mpa_probe/<tag>/control_examples.jsonl
+modal run --detach scripts/mpa_neuron.py --tag <tag>     # ~40 min on one H200
 ```
