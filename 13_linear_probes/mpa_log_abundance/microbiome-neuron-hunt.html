@@ -1,0 +1,447 @@
+<title>Microbiome Neuron Hunt</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~68ch) with figures that may widen to 900px; lab-report treatment, no hero. */
+:root {
+  --bg: #fbfcfc;
+  --panel: #f1f4f5;
+  --ink: #12181b;
+  --ink-2: #4b5559;
+  --ink-3: #6f797d;
+  --rule: #d8dfe1;
+  --grid: #e6ebec;
+  --accent: #1f6f78;
+  --base: #2a78d6;
+  --ft: #eb6834;
+  --hl: #e4f1f2;
+  --f-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --f-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121618; --panel: #1b2124; --ink: #eef2f3; --ink-2: #b9c3c6; --ink-3: #8c979b;
+    --rule: #2f383b; --grid: #252d30; --accent: #6cc0c8; --base: #3987e5; --ft: #d95926; --hl: #1d3134;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121618; --panel: #1b2124; --ink: #eef2f3; --ink-2: #b9c3c6; --ink-3: #8c979b;
+  --rule: #2f383b; --grid: #252d30; --accent: #6cc0c8; --base: #3987e5; --ft: #d95926; --hl: #1d3134;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 72px; }
+main { max-width: 900px; margin: 0 auto; display: grid; gap: 56px; }
+.prose { max-width: 68ch; display: grid; gap: 14px; min-width: 0; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.1; }
+h2 { font-size: 1.65rem; line-height: 1.2; }
+h3 { font-size: 1.15rem; font-family: var(--f-body); font-weight: 600; letter-spacing: 0; }
+p, ul, ol { margin: 0; }
+ul, ol { padding-left: 1.2em; display: grid; gap: 6px; }
+.eyebrow { font: 500 0.75rem/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.lede { font-size: 1.15rem; color: var(--ink-2); }
+.meta { font: 400 0.8rem/1.5 var(--f-mono); color: var(--ink-3); }
+code, .mono { font-family: var(--f-mono); font-size: 0.88em; }
+.n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+section { display: grid; gap: 18px; }
+.verdict { background: var(--hl); border-left: 3px solid var(--accent); padding: 18px 20px; display: grid; gap: 10px; max-width: 68ch; }
+.verdict strong { font-weight: 600; }
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.finding { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 4px; min-width: 0; }
+.finding .big { font: 500 1.5rem/1.2 var(--f-mono); font-variant-numeric: tabular-nums; }
+.finding p { font-size: 0.9rem; color: var(--ink-2); }
+.neuron-id { font-family: var(--f-mono); font-weight: 500; background: var(--panel); padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
+.steps { counter-reset: s; list-style: none; padding: 0; gap: 12px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2em 1fr; gap: 8px; }
+.steps li::before { content: counter(s); font: 500 0.85rem/1.6 var(--f-mono); color: var(--accent); }
+figure { margin: 0; display: grid; gap: 10px; min-width: 0; }
+figcaption { font-size: 0.85rem; color: var(--ink-2); max-width: 68ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.85rem; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.sw.line { height: 2px; width: 16px; border-radius: 0; }
+.sw.dash { height: 0; width: 16px; border-top: 2px dashed var(--ink-3); border-radius: 0; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { fill: var(--ink-3); font: 400 11px var(--f-mono); }
+.chart .lbl { fill: var(--ink-2); font: 500 12px var(--f-body); }
+.duo { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 400 12px/1.45 var(--f-mono); padding: 6px 9px; border-radius: 4px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); z-index: 2; }
+.tablewrap { overflow-x: auto; min-width: 0; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font: 500 0.72rem/1.3 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+td.num, th.num { text-align: right; font-family: var(--f-mono); }
+tr.hl td { background: var(--hl); }
+.tag { font: 500 0.7rem/1 var(--f-mono); letter-spacing: 0.04em; padding: 3px 6px; border-radius: 3px; border: 1px solid var(--rule); color: var(--ink-2); white-space: nowrap; }
+.tag.yes { border-color: var(--accent); color: var(--accent); }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+.files { display: grid; gap: 6px; font-size: 0.9rem; }
+.files div { display: grid; grid-template-columns: minmax(0, 15em) 1fr; gap: 12px; }
+@media (max-width: 560px) { .files div { grid-template-columns: 1fr; gap: 0; } }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<main>
+  <header class="prose">
+    <p class="eyebrow">Osteosarc biohack · interpretability · 17 Oct 2026</p>
+    <h1>Microbiome Neuron Hunt</h1>
+    <p class="lede">We used a linear probe to look inside Muse-Glimmer-30B, before and after the osteosarcoma fine-tune, for the place where it represents how abundant a gut or mouth microbe is. Then we followed the probe down to individual neurons and tested whether they matter.</p>
+    <p class="meta">Models: base Muse-Glimmer-30B and the <code>lomo740_all</code> LoRA · data: Sid's MetaPhlAn shotgun metagenomics · compute: one H200 on Modal, about $8 in total</p>
+  </header>
+
+  <div class="verdict">
+    <p class="eyebrow">What we found</p>
+    <p><strong>There is a microbiome neuron, <span class="neuron-id">layer 36 · #15557</span>, but no single neuron carries the microbiome.</strong> It fires just before the model writes or reads a MetaPhlAn read count, never on taxon names, and stays silent on five other data types. Switching it off changes only microbiome answers, but by a small amount. Boosting it in the base model does not reproduce the fine-tune's gains.</p>
+    <p>The abundance signal as a whole is spread across many neurons and attention. The probe direction is mostly a general "how big is this number" axis that also reads protein and RNA values. The base model already holds most of the abundance information before fine-tuning; it just writes it out badly.</p>
+  </div>
+
+  <div class="findings" role="list">
+    <div class="finding" role="listitem"><span class="big">0.57</span><p>Probe R² for log abundance in the fine-tune (0.55 in base), against 0.29 for a lookup baseline.</p></div>
+    <div class="finding" role="listitem"><span class="big">5.1%</span><p>The largest share of the probe signal carried by any one neuron. The top 20 together carry 34%.</p></div>
+    <div class="finding" role="listitem"><span class="big">2.09 vs ≤0.37</span><p>Activation of layer 36 #15557 on microbiome answers vs every other data type (fine-tune).</p></div>
+    <div class="finding" role="listitem"><span class="big">±0.05</span><p>How far steering moved the fine-tune's written counts, in log10 units. The base model moved −0.43 to +0.26.</p></div>
+  </div>
+
+  <section class="prose">
+    <p class="eyebrow">The idea</p>
+    <h2>What a linear probe is, and why it helps find a neuron</h2>
+    <p>A model's "thoughts" at each layer are a long vector of numbers (6,656 per token in Glimmer). A <strong>linear probe</strong> is a single weighted sum of those numbers, fitted to predict a label. Here the label is the true log10 read count of a taxon. If a weighted sum predicts abundance on samples the probe never saw, the model is representing abundance in that layer, in a form that is easy to read off.</p>
+    <p>The probe also gives a <strong>direction</strong> in that space. Every neuron writes into the same space, so we can measure exactly how much of the probe's reading each neuron contributes. That turns "is there a microbiome neuron?" into a ranking we can test.</p>
+    <p>We had no microbiome-only adapter, so the comparison is the base model against the fine-tune, which saw microbiome data along with everything else.</p>
+  </section>
+
+  <section class="prose">
+    <p class="eyebrow">Setup</p>
+    <h2>Data and positions</h2>
+    <ul>
+      <li><span class="n">61</span> MetaPhlAn prompts from <span class="n">14</span> stool and saliva samples: 38 training rows the fine-tune never trained on, plus 23 eval prompts with gold answers.</li>
+      <li>We read the model at the <strong>answer position</strong>, the token just before it writes a missing taxon's count, with the earlier answers filled in (<span class="n">1,074</span> values). That is where the model commits to a number.</li>
+      <li>All scores hold out whole samples (7 folds), so no sample appears in both training and testing.</li>
+      <li>The <strong>baseline</strong> is what you can get without the model: the taxon's average in other samples plus its counts listed elsewhere in the same prompt. It reaches R² <span class="n">0.29</span>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="prose">
+      <p class="eyebrow">Experiment 1</p>
+      <h2>Where in the network abundance lives</h2>
+      <p>We fitted a separate probe at every layer of both models. Abundance becomes readable around layer 20 and peaks at layers 36–44. The fine-tune barely changes how well it can be read.</p>
+    </div>
+    <figure>
+      <div class="legend" aria-hidden="true">
+        <span><i class="sw line" style="background:var(--base)"></i>Base model</span>
+        <span><i class="sw line" style="background:var(--ft)"></i>Fine-tune (lomo740_all)</span>
+        <span><i class="sw dash"></i>Baseline without the model (0.29)</span>
+      </div>
+      <div class="chart" id="c-layers" role="img" aria-label="Probe R squared by layer. Both models rise from near zero before layer 17 to about 0.55 for base and 0.57 for the fine-tune at layers 36 to 44, above the 0.29 baseline."></div>
+      <figcaption>Held-out R² of a log10-abundance probe at each layer's output. Layer 0 (the embeddings) is left out: the answer token is identical everywhere, so there is nothing to fit. Hover for values.</figcaption>
+    </figure>
+    <div class="prose">
+      <p>The headline is the gap between knowing and saying. On the eval values the base model's written answers rank taxa with Spearman <span class="n">0.15</span> and answer zero 52% of the time. Yet its internal state at layer 39 ranks them at <span class="n">0.74</span>, close to the fine-tune's <span class="n">0.76</span>. Most of what the fine-tune fixed is the readout, not the knowledge.</p>
+      <p>The probe beats the baseline, but the margin is modest. The extra variance it explains beyond the baseline is about <span class="n">0.06</span>, so much of what it reads is the lookup information already in the prompt.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="prose">
+      <p class="eyebrow">Experiment 2</p>
+      <h2>Following the probe down to neurons</h2>
+      <p>Each MLP neuron in layers 0–38 adds its activation times a fixed output vector to the stream the probe reads. Glimmer passes that output through a normalization step, but per sample it is just a rescaling, so each neuron's contribution to the probe reading is exact (we checked: reconstruction error 0.2%). We ranked all 778,752 neurons by their share of the probe reading's variance.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Rank</th><th>Base model</th><th class="num">Share</th><th>Fine-tune</th><th class="num">Share</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td class="n">L32 #8787</td><td class="num">2.0%</td><td class="n">L37 #18399</td><td class="num">5.1%</td></tr>
+          <tr><td class="n">2</td><td class="n">L37 #4122</td><td class="num">1.9%</td><td class="n">L32 #8787</td><td class="num">3.7%</td></tr>
+          <tr class="hl"><td class="n">3</td><td class="n">L36 #13335</td><td class="num">1.8%</td><td class="n"><strong>L36 #15557</strong></td><td class="num">3.4%</td></tr>
+          <tr><td class="n">4</td><td class="n">L37 #18399</td><td class="num">1.7%</td><td class="n">L37 #4122</td><td class="num">3.0%</td></tr>
+          <tr><td class="n">5</td><td class="n">L38 #8282</td><td class="num">1.4%</td><td class="n">L38 #7847</td><td class="num">2.2%</td></tr>
+          <tr><td></td><td>Top 20 together</td><td class="num">21%</td><td>Top 20 together</td><td class="num">34%</td></tr>
+          <tr><td></td><td>All MLP neurons</td><td class="num">33%</td><td>All MLP neurons</td><td class="num">29%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>No neuron dominates. The fine-tune concentrates the signal somewhat (top 20: 21% → 34%), and the leaders sit in layers 32–38, just below the probe. Attention carries the remaining two-thirds, which fits the model copying values from other samples in the prompt.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="prose">
+      <p class="eyebrow">Experiment 3</p>
+      <h2>Is any of this specific to microbes?</h2>
+      <p>We ran 959 answer positions from five other numeric data types (bulk RNA, DIA proteomics, Xenium, CITE-seq and flow cytometry) through both models. We asked two questions: does the microbiome probe still read their values, and do the top neurons fire there?</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Probe trained on MetaPhlAn, applied to</th><th class="num">Base r</th><th class="num">Fine-tune r</th></tr></thead>
+        <tbody>
+          <tr><td>DIA mass-spec proteomics</td><td class="num">0.72</td><td class="num">0.76</td></tr>
+          <tr><td>Bulk tumour RNA-seq</td><td class="num">0.52</td><td class="num">0.73</td></tr>
+          <tr><td>Xenium in-situ transcriptomics</td><td class="num">0.50</td><td class="num">0.43</td></tr>
+          <tr><td>Spectral flow cytometry</td><td class="num">0.31</td><td class="num">0.56</td></tr>
+          <tr><td>CITE-seq antibody tags</td><td class="num">0.27</td><td class="num">0.47</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>The probe reads other data types almost as well, so the direction is not about microbes. It is a general quantity axis, and the fine-tune sharpened it everywhere. The neurons tell a more specific story:</p>
+    </div>
+    <figure>
+      <div class="legend" aria-hidden="true">
+        <span><i class="sw" style="background:var(--base)"></i>Base model</span>
+        <span><i class="sw" style="background:var(--ft)"></i>Fine-tune</span>
+      </div>
+      <div class="duo">
+        <div>
+          <h3><span class="neuron-id">L36 #15557</span> microbiome-selective</h3>
+          <div class="chart" id="c-n15557" role="img" aria-label="Mean activation of layer 36 neuron 15557 by data type. Fine-tune: MetaPhlAn 2.09, DIA 0.37, RNA 0.20, Xenium minus 0.52, CITE minus 0.29, flow minus 0.30. Base: MetaPhlAn 0.98, all others between minus 0.47 and 0.17."></div>
+        </div>
+        <div>
+          <h3><span class="neuron-id">L37 #18399</span> large-count neuron</h3>
+          <div class="chart" id="c-n18399" role="img" aria-label="Mean activation of layer 37 neuron 18399 by data type. Fine-tune: MetaPhlAn 3.37, DIA 2.34, all others about 0.1 to 0.2. Base: MetaPhlAn 2.29, DIA 1.68, others about 0.1."></div>
+        </div>
+      </div>
+      <figcaption>Mean activation at the answer position, per data type, on the same scale. #15557 fires on microbiome answers only, and fine-tuning doubled it. #18399 fires on both microbiome and DIA proteomics, whose values share the same 10³–10⁶ range, so it tracks big raw counts, not microbes.</figcaption>
+    </figure>
+    <div class="prose">
+      <p><span class="neuron-id">L36 #15557</span> is the best "microbiome neuron" we found. In the fine-tune its MetaPhlAn activation is <span class="n">2.09</span>, while every other type stays between <span class="n">−0.52</span> and <span class="n">0.37</span>, including DIA, whose numbers are just as large. Fine-tuning raised it from <span class="n">0.98</span> to <span class="n">2.09</span> and its share of the probe signal from 1.2% to 3.4%. Within microbiome answers it is <em>anti</em>-correlated with abundance (r = <span class="n">−0.60</span>), so it pushes estimates down for rare taxa.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="prose">
+      <p class="eyebrow">Experiment 4</p>
+      <h2>Do these neurons and the direction actually drive the answer?</h2>
+      <p>Correlation is not use. On the 364 eval values we had each model write every missing count, under seven conditions. Ablating a neuron means pinning it to its average value; steering means pushing the layer-39 state one log10 unit along the probe direction. Shift is the mean change in the written log10 count compared with no intervention.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th rowspan="2">Condition</th><th colspan="3">Base model</th><th colspan="3">Fine-tune</th></tr>
+          <tr><th class="num">Spearman</th><th class="num">Shift</th><th class="num">Zeros</th><th class="num">Spearman</th><th class="num">Shift</th><th class="num">Zeros</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>No intervention</td><td class="num">0.49</td><td class="num">–</td><td class="num">33%</td><td class="num">0.63</td><td class="num">–</td><td class="num">15%</td></tr>
+          <tr><td>Ablate top 1 neuron</td><td class="num">0.50</td><td class="num">−0.01</td><td class="num">34%</td><td class="num">0.66</td><td class="num">−0.03</td><td class="num">15%</td></tr>
+          <tr><td>Ablate top 5</td><td class="num">0.46</td><td class="num">−0.16</td><td class="num">35%</td><td class="num">0.69</td><td class="num">−0.05</td><td class="num">15%</td></tr>
+          <tr><td>Ablate top 20</td><td class="num">0.46</td><td class="num">−0.08</td><td class="num">34%</td><td class="num">0.67</td><td class="num">−0.17</td><td class="num">15%</td></tr>
+          <tr><td>Ablate 20 random (control)</td><td class="num">0.48</td><td class="num">0.00</td><td class="num">33%</td><td class="num">0.64</td><td class="num">0.00</td><td class="num">15%</td></tr>
+          <tr class="hl"><td>Steer +1 along the probe</td><td class="num">0.56</td><td class="num">+0.26</td><td class="num">27%</td><td class="num">0.67</td><td class="num">+0.04</td><td class="num">15%</td></tr>
+          <tr class="hl"><td>Steer −1 along the probe</td><td class="num">0.45</td><td class="num">−0.43</td><td class="num">45%</td><td class="num">0.67</td><td class="num">−0.05</td><td class="num">15%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <ul>
+        <li><strong>The base model uses the direction.</strong> Steering moves its written counts up and down, and pushing up cuts zero answers from 33% to 27% while improving ranking.</li>
+        <li><strong>The fine-tune hardly uses it.</strong> The same push moves its answers by only ±0.05. Its output is driven by another route, most likely attention copying the taxon's counts from other samples.</li>
+        <li><strong>Ablating the top neurons has small effects in the direction the attribution predicts, and random neurons do nothing.</strong> No single neuron's removal breaks microbiome prediction. Spearman values carry roughly ±0.03 of noise.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="prose">
+    <p class="eyebrow">Interpretation</p>
+    <h2>So what is the "microbiome neuron"?</h2>
+    <p>The model has no single switch for microbiome abundance. What it has:</p>
+    <ul>
+      <li><strong>A general quantity axis</strong> in layers 30–45 that encodes how large the upcoming number is, for microbes, proteins and transcripts alike. The fine-tune sharpened it across data types.</li>
+      <li><strong>A few data-type-aware neurons</strong> feeding that axis. <span class="neuron-id">L36 #15557</span> responds to "this is a microbiome count" and was strengthened by fine-tuning. <span class="neuron-id">L37 #18399</span> responds to "this is a large raw count", which covers both microbes and proteomics.</li>
+      <li><strong>A copying route through attention</strong> that the fine-tune relies on most. It explains why steering the axis barely moves the fine-tune.</li>
+    </ul>
+    <p>So #15557 is a real candidate with a clear signature. The follow-ups below test it on its own.</p>
+  </section>
+
+  <section>
+    <div class="prose">
+      <p class="eyebrow">Experiment 5 · follow-ups</p>
+      <h2>Testing <span class="neuron-id">L36 #15557</span> on its own</h2>
+      <p>Three targeted tests. Each compares against a random neuron from the same layer (L36 #9448) treated the same way.</p>
+      <h3>A. Switch it off in the fine-tune, across data types</h3>
+      <p>We set the neuron to zero while the fine-tune wrote every answer: 364 microbiome values and 959 values from five other data types.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Data type</th><th class="num">Answers changed</th><th class="num">Mean |shift| (log10)</th><th class="num">Random neuron off: changed / |shift|</th><th class="num">Spearman clean → off</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>MetaPhlAn (microbiome)</td><td class="num">8.8%</td><td class="num">0.047</td><td class="num">2.2% / 0.014</td><td class="num">0.64 → 0.68</td></tr>
+          <tr><td>DIA proteomics</td><td class="num">16.3%</td><td class="num">0.006</td><td class="num">11.7% / 0.006</td><td class="num">0.85 → 0.85</td></tr>
+          <tr><td>Flow cytometry</td><td class="num">8.4%</td><td class="num">0.003</td><td class="num">9.4% / 0.004</td><td class="num">0.97 → 0.97</td></tr>
+          <tr><td>Bulk RNA-seq</td><td class="num">3.7%</td><td class="num">0.002</td><td class="num">2.5% / 0.001</td><td class="num">0.74 → 0.74</td></tr>
+          <tr><td>CITE-seq</td><td class="num">3.6%</td><td class="num">0.003</td><td class="num">2.9% / 0.004</td><td class="num">0.61 → 0.61</td></tr>
+          <tr><td>Xenium</td><td class="num">0.7%</td><td class="num">0.000</td><td class="num">0.7% / 0.000</td><td class="num">0.67 → 0.67</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>The effect is <strong>microbiome-specific</strong>. On microbiome answers, switching #15557 off moves values about 3× more than switching off the random neuron (0.047 vs 0.014). On the other five types it does no more than the random neuron, because there is nothing for it to act on. On the other types, "changed" counts tiny last-digit flips. The effect is also <strong>small</strong>: under 9% of microbiome answers change. Ranking went up slightly (0.64 → 0.68), within about one noise width.</p>
+      <h3>B. Boost it in the base model to the fine-tune's level</h3>
+      <p>The fine-tune's mean activation is 2.13× the base model's, so we multiplied the base model's #15557 by 2.13 while it wrote the 364 microbiome answers.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Base model condition</th><th class="num">Spearman</th><th class="num">Mean abs. error (log10)</th><th class="num">Zeros</th><th class="num">Answers changed</th></tr></thead>
+        <tbody>
+          <tr><td>No intervention</td><td class="num">0.48</td><td class="num">2.01</td><td class="num">33%</td><td class="num">–</td></tr>
+          <tr class="hl"><td>#15557 × 2.13</td><td class="num">0.49</td><td class="num">2.04</td><td class="num">33%</td><td class="num">10.7%</td></tr>
+          <tr><td>Random L36 neuron × 2.13 (control)</td><td class="num">0.48</td><td class="num">2.04</td><td class="num">34%</td><td class="num">5.2%</td></tr>
+          <tr><td>#15557 × 2.13 and L37 #18399 × 1.47</td><td class="num">0.50</td><td class="num">2.08</td><td class="num">35%</td><td class="num">14.8%</td></tr>
+          <tr><td>Fine-tune, for reference</td><td class="num">0.63</td><td class="num">1.03</td><td class="num">15%</td><td class="num">–</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Boosting the neuron does not make the base model behave like the fine-tune. Zero answers stay at 33% and error does not fall. The fine-tune's gains come from elsewhere: attention and the many other small changes the LoRA makes.</p>
+      <h3>C. Where in the prompt it fires</h3>
+      <p>We recorded the neuron on every token of all 121 prompts (about 320,000 tokens) and grouped them.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Token group (fine-tune)</th><th class="num">Tokens</th><th class="num">Mean activation</th><th class="num">Share above 1.0</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>Microbiome · answer position</td><td class="num">1,074</td><td class="num">2.09</td><td class="num">71%</td></tr>
+          <tr><td>Microbiome · rest of the written answer</td><td class="num">8,532</td><td class="num">0.91</td><td class="num">36%</td></tr>
+          <tr><td>Microbiome · other prompt text (incl. sample dates)</td><td class="num">43,748</td><td class="num">0.47</td><td class="num">17%</td></tr>
+          <tr><td>Microbiome · numbers in the prompt</td><td class="num">58,566</td><td class="num">0.33</td><td class="num">12%</td></tr>
+          <tr><td>Microbiome · taxon names</td><td class="num">62,242</td><td class="num">0.03</td><td class="num">0.9%</td></tr>
+          <tr><td>Other data types · answer position</td><td class="num">959</td><td class="num">−0.04</td><td class="num">5%</td></tr>
+          <tr><td>Other data types · all other tokens</td><td class="num">139,358</td><td class="num">≈ 0</td><td class="num">≤ 5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>It never fires on taxon names. Its strongest tokens (activation 8–9) all sit just before a read count. These are the sample-date keys in the per-sample lines, as in <code>stool_2026-06-03=</code>, followed by a count. They are also the JSON slots, as in <code>"11": </code>, followed by a count. The base model shows the same pattern at half the strength.</p>
+      <p><strong>What it is:</strong> a "microbiome read count comes next" detector. It recognises the MetaPhlAn count-slot format, in the prompt and in the answer, and fine-tuning doubled its strength. It nudges the size of the number written there, but it is one small component, not the place where abundance is computed.</p>
+    </div>
+  </section>
+
+  <section class="prose">
+    <p class="eyebrow">Limits</p>
+    <h2>What to keep in mind</h2>
+    <ul>
+      <li>14 samples and one fine-tune seed. Neuron rankings can shift with another seed; confirm on <code>sid_full</code> or a repeat run.</li>
+      <li>The attribution counts each neuron's direct write into layer 39. Effects that pass through later attention are only captured by the ablations.</li>
+      <li>The specificity check covers answer positions only, not taxon names or other prompt tokens.</li>
+      <li>The model's written answers here are teacher-forced item by item, so absolute Spearman values differ from the free-generation scores on the dashboard.</li>
+    </ul>
+  </section>
+
+  <section class="prose">
+    <p class="eyebrow">Next</p>
+    <h2>Where to look next</h2>
+    <ol class="steps">
+      <li><span>Find where the fine-tune's gain actually lives. Patch the fine-tune's attention outputs (layers 30–45) into the base model and see whether its zero answers recover.</span></li>
+      <li><span>Find the attention heads that copy a taxon's counts from the per-sample lines, which is where #15557 also fires.</span></li>
+      <li><span>Repeat the ranking on a second fine-tune seed (<code>sid_full</code>) to check that #15557 is stable.</span></li>
+    </ol>
+    <p class="meta">Each is about $3–6 on one H200.</p>
+  </section>
+
+  <hr>
+
+  <section class="prose">
+    <p class="eyebrow">Where it lives</p>
+    <div class="files">
+      <div><span class="mono">GitHub</span><span><a href="https://github.com/likelytobelaura/biohack/pull/3">likelytobelaura/biohack PR #3</a>, folder <code>13_linear_probes/mpa_log_abundance/</code></span></div>
+      <div><span class="mono">build_mpa_probe.py</span><span>builds the probe examples</span></div>
+      <div><span class="mono">mpa_probe.py</span><span>extracts activations, fits the per-layer probes (Experiment 1)</span></div>
+      <div><span class="mono">mpa_neuron.py</span><span>attribution, specificity and causal tests (Experiments 2–4)</span></div>
+      <div><span class="mono">mpa_followup.py</span><span>single-neuron ablation, patching and prompt-token map (Experiment 5)</span></div>
+      <div><span class="mono">results/*.json</span><span>every number on this page</span></div>
+      <div><span class="mono">Modal volume</span><span><code>osteo-data:/outputs/mpa_probe/v1/</code>, about 20 GB of saved activations</span></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  const base = [null,0.044,0.04,0.034,0.041,0.025,0.026,0.007,-0.003,0.007,0.004,0.003,0.008,0.007,0.021,0.022,0.035,0.086,0.135,0.199,0.319,0.355,0.382,0.401,0.435,0.431,0.41,0.468,0.468,0.482,0.479,0.494,0.523,0.524,0.528,0.53,0.543,0.546,0.544,0.548,0.543,0.538,0.535,0.537,0.539,0.539,0.541,0.539,0.54,0.539,0.534,0.53,0.529];
+  const ft = [null,0.043,0.033,0.033,0.03,0.014,0.016,0.003,0.01,0.007,0.015,0.003,0.015,0.007,0.029,0.015,0.024,0.049,0.09,0.087,0.126,0.261,0.279,0.286,0.32,0.424,0.473,0.492,0.499,0.515,0.521,0.521,0.547,0.546,0.548,0.556,0.569,0.569,0.572,0.572,0.569,0.57,0.569,0.569,0.568,0.569,0.569,0.568,0.57,0.568,0.564,0.561,0.566];
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const tipFor = (host) => { const t = document.createElement("div"); t.className = "tip"; t.hidden = true; host.appendChild(t); return t; };
+  const place = (host, tip, svg, x, y, html) => {
+    const r = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal;
+    const px = x * r.width / vb.width, py = y * r.height / vb.height;
+    tip.innerHTML = html; tip.hidden = false;
+    const half = tip.offsetWidth / 2;
+    tip.style.left = Math.min(Math.max(px, half), r.width - half) + "px"; tip.style.top = py + "px";
+  };
+
+  // probe R² by layer
+  (function () {
+    const host = document.getElementById("c-layers");
+    const W = 860, H = 300, m = { l: 44, r: 16, t: 14, b: 34 };
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}` }, host);
+    const x = (i) => m.l + (i - 1) / 51 * (W - m.l - m.r);
+    const y = (v) => m.t + (1 - (v - (-0.1)) / 0.7) * (H - m.t - m.b);
+    for (const v of [0, 0.2, 0.4, 0.6]) {
+      el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: "var(--grid)", "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 8, y: y(v) + 4, "text-anchor": "end" }, svg).textContent = v.toFixed(1);
+    }
+    for (const L of [1, 10, 20, 30, 39, 52]) el("text", { x: x(L), y: H - m.b + 18, "text-anchor": "middle" }, svg).textContent = L;
+    el("text", { x: W - m.r, y: H - 4, "text-anchor": "end" }, svg).textContent = "layer";
+    el("line", { x1: m.l, x2: W - m.r, y1: y(0.29), y2: y(0.29), stroke: "var(--ink-3)", "stroke-width": 1.5, "stroke-dasharray": "5 4" }, svg);
+    const path = (d) => d.map((v, i) => v == null ? null : [x(i), y(v)]).filter(Boolean).map((p, j) => (j ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join("");
+    el("path", { d: path(base), fill: "none", stroke: "var(--base)", "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+    el("path", { d: path(ft), fill: "none", stroke: "var(--ft)", "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+    for (const [d, c] of [[base, "var(--base)"], [ft, "var(--ft)"]]) el("circle", { cx: x(39), cy: y(d[39]), r: 4.5, fill: c, stroke: "var(--bg)", "stroke-width": 2 }, svg);
+    el("text", { x: x(39), y: y(ft[39]) - 12, "text-anchor": "middle", class: "lbl" }, svg).textContent = "layer 39: 0.55 / 0.57";
+    const cross = el("line", { y1: m.t, y2: H - m.b, stroke: "var(--ink-3)", "stroke-width": 1, visibility: "hidden" }, svg);
+    const tip = tipFor(host);
+    const hit = el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, svg);
+    const move = (ev) => {
+      const r = svg.getBoundingClientRect();
+      const vx = (ev.clientX - r.left) * W / r.width;
+      const L = Math.min(52, Math.max(1, Math.round((vx - m.l) / (W - m.l - m.r) * 51 + 1)));
+      cross.setAttribute("x1", x(L)); cross.setAttribute("x2", x(L)); cross.setAttribute("visibility", "visible");
+      place(host, tip, svg, x(L), y(Math.max(base[L], ft[L])), `layer ${L}<br>base ${base[L].toFixed(3)}<br>fine-tune ${ft[L].toFixed(3)}`);
+    };
+    hit.addEventListener("pointermove", move);
+    hit.addEventListener("pointerleave", () => { tip.hidden = true; cross.setAttribute("visibility", "hidden"); });
+  })();
+
+  // neuron activation by data type
+  const types = ["MetaPhlAn", "DIA", "RNA", "Xenium", "CITE", "Flow"];
+  function bars(id, b, f) {
+    const host = document.getElementById(id);
+    const W = 420, H = 250, m = { l: 36, r: 8, t: 12, b: 30 };
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}` }, host);
+    const lo = -0.75, hi = 3.5;
+    const y = (v) => m.t + (hi - v) / (hi - lo) * (H - m.t - m.b);
+    for (const v of [-0.5, 0, 1, 2, 3]) {
+      el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: v === 0 ? "var(--ink-3)" : "var(--grid)", "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, svg).textContent = v;
+    }
+    const band = (W - m.l - m.r) / types.length, bw = Math.min(18, band / 2 - 4);
+    const tip = tipFor(host);
+    types.forEach((t, i) => {
+      const cx = m.l + band * (i + 0.5);
+      el("text", { x: cx, y: H - 10, "text-anchor": "middle", class: i === 0 ? "lbl" : "" }, svg).textContent = t;
+      [[b[i], "var(--base)", -1, "base"], [f[i], "var(--ft)", 1, "fine-tune"]].forEach(([v, c, s, name]) => {
+        const x0 = cx + (s < 0 ? -bw - 1 : 1), y0 = y(0), y1 = y(v), h = Math.abs(y1 - y0), rr = Math.min(4, h, bw / 2);
+        const top = Math.min(y0, y1);
+        let d;
+        if (v >= 0) d = `M${x0} ${y0}V${top + rr}Q${x0} ${top} ${x0 + rr} ${top}H${x0 + bw - rr}Q${x0 + bw} ${top} ${x0 + bw} ${top + rr}V${y0}Z`;
+        else d = `M${x0} ${y0}V${y1 - rr}Q${x0} ${y1} ${x0 + rr} ${y1}H${x0 + bw - rr}Q${x0 + bw} ${y1} ${x0 + bw} ${y1 - rr}V${y0}Z`;
+        el("path", { d, fill: c }, svg);
+        const hit = el("rect", { x: x0 - 2, y: m.t, width: bw + 4, height: H - m.t - m.b, fill: "transparent" }, svg);
+        hit.addEventListener("pointerenter", () => place(host, tip, svg, x0 + bw / 2, Math.min(y0, y1), `${t} · ${name}<br>mean activation ${v.toFixed(2)}`));
+        hit.addEventListener("pointerleave", () => { tip.hidden = true; });
+      });
+      if (i === 0) el("text", { x: cx + 1 + bw / 2, y: y(f[0]) - 6, "text-anchor": "middle", class: "lbl" }, svg).textContent = f[0].toFixed(2);
+    });
+  }
+  bars("c-n15557", [0.98, -0.04, 0.17, -0.28, 0.03, -0.47], [2.09, 0.37, 0.20, -0.52, -0.29, -0.30]);
+  bars("c-n18399", [2.29, 1.68, 0.07, 0.16, 0.14, 0.16], [3.37, 2.34, 0.12, 0.09, 0.16, 0.20]);
+})();
+</script>

@@ -1,0 +1,43 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/likelytobelaura/main/ap-rOslqJxoDxhAvMnFmbpMZu
+✓ Created objects.
+├── ✓ Uploaded /Users/laurabocek/osteo-results/scripts/mpa_probe.py
+├── ✓ Created Function probe.
+└── ✓ Created Function extract.
+52 layers, d=6656, 19968 MLP neurons
+1/61 prompts, 2796 tok, 4.9s/prompt, peak 57 GiB
+2/61 prompts, 3070 tok, 3.5s/prompt, peak 57 GiB
+10/61 prompts, 3410 tok, 2.2s/prompt, peak 57 GiB
+20/61 prompts, 3413 tok, 1.9s/prompt, peak 57 GiB
+30/61 prompts, 2792 tok, 1.7s/prompt, peak 57 GiB
+40/61 prompts, 2693 tok, 1.6s/prompt, peak 57 GiB
+50/61 prompts, 3375 tok, 1.6s/prompt, peak 57 GiB
+60/61 prompts, 3023 tok, 1.5s/prompt, peak 57 GiB
+61/61 prompts, 2283 tok, 1.5s/prompt, peak 57 GiB
+61 prompts -> /data/outputs/mpa_probe/v1
+answer {'n': 1074, 'y_sd': 1.020887407311428, 'r2': 0.28988110918938703, 'spearman': 0.5802215045839745}
+base/answer: best r2 nan @L0, best resid_r2 nan @L0, shuffled nan
+ft/answer: best r2 nan @L0, best resid_r2 nan @L0, shuffled nan
+known_name {'n': 3438, 'y_sd': 0.9956121551084737, 'r2': 0.4370372983662092, 'spearman': 0.6443832236838184}
+base/known_name: best r2 0.334 @L31, best resid_r2 -0.169 @L0, shuffled -0.001
+ft/known_name: best r2 0.325 @L49, best resid_r2 -0.169 @L0, shuffled -0.002
+known_value {'n': 3438, 'y_sd': 0.9956121551084737, 'r2': 0.4370372983662092, 'spearman': 0.6443832236838184}
+base/known_value: best r2 0.998 @L12, best resid_r2 0.299 @L0, shuffled -0.001
+ft/known_value: best r2 0.999 @L15, best resid_r2 0.299 @L0, shuffled -0.001
+sparse base/answer/L37: {'full_layer_resid_r2': -0.352, 'top1_resid_r2': 0.056, 'top2_resid_r2': 0.073, 'top4_resid_r2': 0.066, 'top8_resid_r2': 0.059, 'top16_resid_r2': 0.067, 'top64_resid_r2': 0.004, 'top256_resid_r2': -0.272}
+sparse base/answer/L32: {'full_layer_resid_r2': -0.272, 'top1_resid_r2': 0.062, 'top2_resid_r2': 0.079, 'top4_resid_r2': 0.067, 'top8_resid_r2': 0.069, 'top16_resid_r2': 0.036, 'top64_resid_r2': -0.044, 'top256_resid_r2': -0.262}
+sparse base/answer/L29: {'full_layer_resid_r2': -0.428, 'top1_resid_r2': 0.06, 'top2_resid_r2': 0.065, 'top4_resid_r2': 0.072, 'top8_resid_r2': 0.081, 'top16_resid_r2': 0.062, 'top64_resid_r2': -0.003, 'top256_resid_r2': -0.359}
+sparse ft/answer/L32: {'full_layer_resid_r2': -0.255, 'top1_resid_r2': 0.076, 'top2_resid_r2': 0.07, 'top4_resid_r2': 0.058, 'top8_resid_r2': 0.051, 'top16_resid_r2': 0.049, 'top64_resid_r2': 0.002, 'top256_resid_r2': -0.196}
+sparse ft/answer/L33: {'full_layer_resid_r2': -0.009, 'top1_resid_r2': 0.055, 'top2_resid_r2': 0.062, 'top4_resid_r2': 0.057, 'top8_resid_r2': 0.064, 'top16_resid_r2': 0.052, 'top64_resid_r2': -0.011, 'top256_resid_r2': -0.287}
+sparse ft/answer/L35: {'full_layer_resid_r2': -0.089, 'top1_resid_r2': 0.035, 'top2_resid_r2': 0.03, 'top4_resid_r2': 0.019, 'top8_resid_r2': 0.031, 'top16_resid_r2': 0.019, 'top64_resid_r2': -0.024, 'top256_resid_r2': -0.336}
+sparse base/known_name/L24: {'full_layer_resid_r2': -0.997, 'top1_resid_r2': -0.021, 'top2_resid_r2': -0.081, 'top4_resid_r2': -0.151, 'top8_resid_r2': -0.219, 'top16_resid_r2': -0.277, 'top64_resid_r2': -0.459, 'top256_resid_r2': -0.842}
+sparse base/known_name/L35: {'full_layer_resid_r2': -1.292, 'top1_resid_r2': -0.021, 'top2_resid_r2': -0.035, 'top4_resid_r2': -0.112, 'top8_resid_r2': -0.168, 'top16_resid_r2': -0.231, 'top64_resid_r2': -0.375, 'top256_resid_r2': -0.976}
+sparse base/known_name/L41: {'full_layer_resid_r2': -1.3, 'top1_resid_r2': -0.08, 'top2_resid_r2': -0.103, 'top4_resid_r2': -0.179, 'top8_resid_r2': -0.202, 'top16_resid_r2': -0.282, 'top64_resid_r2': -0.443, 'top256_resid_r2': -1.101}
+sparse ft/known_name/L40: {'full_layer_resid_r2': -1.079, 'top1_resid_r2': -0.023, 'top2_resid_r2': -0.057, 'top4_resid_r2': -0.075, 'top8_resid_r2': -0.183, 'top16_resid_r2': -0.255, 'top64_resid_r2': -0.411, 'top256_resid_r2': -1.011}
+sparse ft/known_name/L31: {'full_layer_resid_r2': -0.934, 'top1_resid_r2': -0.025, 'top2_resid_r2': -0.067, 'top4_resid_r2': -0.137, 'top8_resid_r2': -0.193, 'top16_resid_r2': -0.261, 'top64_resid_r2': -0.446, 'top256_resid_r2': -0.984}
+sparse ft/known_name/L28: {'full_layer_resid_r2': -1.011, 'top1_resid_r2': -0.07, 'top2_resid_r2': -0.108, 'top4_resid_r2': -0.141, 'top8_resid_r2': -0.197, 'top16_resid_r2': -0.284, 'top64_resid_r2': -0.377, 'top256_resid_r2': -0.737}
+probes -> /data/outputs/mpa_probe/v1/results.json
+[modal-client] 2026-10-17T17:28:02-0700 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/likelytobelaura/main/ap-rOslqJxoDxhAvMnFmbpMZu

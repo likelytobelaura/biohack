@@ -1,0 +1,66 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/likelytobelaura/main/ap-QRtN9FPjIkyosk6Q6TmDLq
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/laurabocek/biohack/.claude/worktrees/linear-probes/13_linear_probes/m
+│   pa_log_abundance/scripts/mpa_neuron.py
+└── ✓ Created Function run.
+probe base @ resid index 39: {'alpha_rel': 3.1622776601683795, 'cv_r2': 0.5487063930607061, 'train_r2': 0.6470320479950096}
+probe ft @ resid index 39: {'alpha_rel': 3.1622776601683795, 'cv_r2': 0.5707756020713302, 'train_r2': 0.6429161880178956}
+attr base: 34s, recon err 2.06e-03, all-MLP share 0.331, topk {1: 0.02027310604380065, 5: 0.08834579815834137, 20: 0.21045766734814533, 100: 0.40278427943370193, 1000: 0.8774156848319794}, top5 [(32, 8787, 0.0203), (37, 4122, 0.0187), (36, 13335, 0.018), (37, 18399, 0.0173), (38, 8282, 0.0141)]
+attr ft: 64s, recon err 2.08e-03, all-MLP share 0.288, topk {1: 0.050783084161807095, 5: 0.17353383972430309, 20: 0.3390131914395311, 100: 0.5636937608705536, 1000: 1.1364909227251199}, top5 [(37, 18399, 0.0508), (32, 8787, 0.0365), (36, 15557, 0.0338), (37, 4122, 0.0303), (38, 7847, 0.0222)]
+specificity base: probe r by type {'rna': 0.522, 'dia': 0.723, 'xenium': 0.501, 'cite': 0.266, 'flow': 0.314, 'mpa': nan}
+specificity ft: probe r by type {'rna': 0.734, 'dia': 0.76, 'xenium': 0.425, 'cite': 0.468, 'flow': 0.556, 'mpa': nan}
+causal base: prompt p409ac22ddac59d80 done, 16s
+causal base: prompt p0923639a1ab98917 done, 40s
+causal base: prompt p447bc234fa117d68 done, 78s
+causal base: prompt p4bad82800b1407e7 done, 115s
+causal base: prompt pa0abfd35c7409b33 done, 125s
+causal base: prompt p66df7103e40e5e19 done, 160s
+causal base: prompt pf96c38aac2818ccb done, 190s
+causal base: prompt p9ba2af36504c6164 done, 226s
+causal base: prompt pec626e9579101c0e done, 257s
+causal base: prompt p31ba1e771b874983 done, 292s
+causal base: prompt pa40fd3cdbdb656d6 done, 312s
+causal base: prompt peaafb48ee8534b71 done, 350s
+causal base: prompt p253abc13f789fdca done, 366s
+causal base: prompt p41a3f29ddfa2a114 done, 404s
+causal base: prompt p51e392ef1989757b done, 427s
+causal base: prompt pd05d7b1fe91475fe done, 462s
+causal base: prompt p4d12aa8a46ba0641 done, 492s
+causal base: prompt p49c90f16a950206c done, 526s
+causal base: prompt p4c61b1f0b05d95e4 done, 559s
+causal base: prompt pdb2c6b8be6bb2b88 done, 568s
+causal base: prompt pd3404ef0c448e64f done, 605s
+causal base: prompt p79cac18cc28a68c2 done, 640s
+causal base: prompt p4048ca17b973510d done, 660s
+causal base: {"clean": {"parsed": 364, "n": 364, "spearman_truth": 0.485, "mean_log10": 2.534, "zero_rate": 0.332, "mean_shift_vs_clean": 0.0, "frac_changed": 0.0}, "ablate_top1": {"parsed": 364, "n": 364, "spearman_truth": 0.499, "mean_log10": 2.524, "zero_rate": 0.338, "mean_shift_vs_clean": -0.009, "frac_changed": 0.082}, "ablate_top5": {"parsed": 364, "n": 364, "spearman_truth": 0.455, "mean_log10": 2.374, "zero_rate": 0.349, "mean_shift_vs_clean": -0.159, "frac_changed": 0.173}, "ablate_top20": {"parsed": 364, "n": 364, "spearman_truth": 0.463, "mean_log10": 2.455, "zero_rate": 0.343, "mean_shift_vs_clean": -0.078, "frac_changed": 0.201}, "ablate_random20": {"parsed": 364, "n": 364, "spearman_truth": 0.484, "mean_log10": 2.534, "zero_rate": 0.33, "mean_shift_vs_clean": 0.001, "frac_changed": 0.071}, "steer_plus1": {"parsed": 364, "n": 364, "spearman_truth": 0.558, "mean_log10": 2.789, "zero_rate": 0.272, "mean_shift_vs_clean": 0.255, "frac_changed": 0.28}, "steer_minus1": {"parsed": 364, "n": 364, "spearman_truth": 0.445, "mean_log10": 2.103, "zero_rate": 0.445, "mean_shift_vs_clean": -0.431, "frac_changed": 0.269}}
+causal ft: prompt p409ac22ddac59d80 done, 24s
+causal ft: prompt p0923639a1ab98917 done, 63s
+causal ft: prompt p447bc234fa117d68 done, 119s
+causal ft: prompt p4bad82800b1407e7 done, 176s
+causal ft: prompt pa0abfd35c7409b33 done, 190s
+causal ft: prompt p66df7103e40e5e19 done, 245s
+causal ft: prompt pf96c38aac2818ccb done, 292s
+causal ft: prompt p9ba2af36504c6164 done, 347s
+causal ft: prompt pec626e9579101c0e done, 402s
+causal ft: prompt p31ba1e771b874983 done, 461s
+causal ft: prompt pa40fd3cdbdb656d6 done, 489s
+causal ft: prompt peaafb48ee8534b71 done, 548s
+causal ft: prompt p253abc13f789fdca done, 574s
+causal ft: prompt p41a3f29ddfa2a114 done, 635s
+causal ft: prompt p51e392ef1989757b done, 672s
+causal ft: prompt pd05d7b1fe91475fe done, 732s
+causal ft: prompt p4d12aa8a46ba0641 done, 783s
+causal ft: prompt p49c90f16a950206c done, 843s
+causal ft: prompt p4c61b1f0b05d95e4 done, 900s
+causal ft: prompt pdb2c6b8be6bb2b88 done, 912s
+causal ft: prompt pd3404ef0c448e64f done, 972s
+causal ft: prompt p79cac18cc28a68c2 done, 1030s
+causal ft: prompt p4048ca17b973510d done, 1060s
+causal ft: {"clean": {"parsed": 364, "n": 364, "spearman_truth": 0.63, "mean_log10": 3.532, "zero_rate": 0.148, "mean_shift_vs_clean": 0.0, "frac_changed": 0.0}, "ablate_top1": {"parsed": 364, "n": 364, "spearman_truth": 0.659, "mean_log10": 3.507, "zero_rate": 0.151, "mean_shift_vs_clean": -0.025, "frac_changed": 0.096}, "ablate_top5": {"parsed": 364, "n": 364, "spearman_truth": 0.685, "mean_log10": 3.485, "zero_rate": 0.154, "mean_shift_vs_clean": -0.047, "frac_changed": 0.093}, "ablate_top20": {"parsed": 364, "n": 364, "spearman_truth": 0.67, "mean_log10": 3.359, "zero_rate": 0.146, "mean_shift_vs_clean": -0.173, "frac_changed": 0.228}, "ablate_random20": {"parsed": 364, "n": 364, "spearman_truth": 0.643, "mean_log10": 3.532, "zero_rate": 0.151, "mean_shift_vs_clean": -0.0, "frac_changed": 0.044}, "steer_plus1": {"parsed": 364, "n": 364, "spearman_truth": 0.669, "mean_log10": 3.569, "zero_rate": 0.146, "mean_shift_vs_clean": 0.037, "frac_changed": 0.091}, "steer_minus1": {"parsed": 364, "n": 364, "spearman_truth": 0.674, "mean_log10": 3.479, "zero_rate": 0.154, "mean_shift_vs_clean": -0.053, "frac_changed": 0.096}}
+-> /data/outputs/mpa_probe/v1/neuron_results.json
+Runner terminated.
+✓ App completed. View run at 
+https://modal.com/apps/likelytobelaura/main/ap-QRtN9FPjIkyosk6Q6TmDLq

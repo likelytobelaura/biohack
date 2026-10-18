@@ -1,0 +1,31 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/likelytobelaura/main/ap-19hLzDlP3E3YhCGwY0mtFc
+✓ Created objects.
+├── ✓ Uploaded 
+│   /Users/laurabocek/biohack/.claude/worktrees/linear-probes/13_linear_probes/m
+│   pa_log_abundance/scripts/mpa_followup.py
+└── ✓ Created Function run.
+patch factors {'L36#15557': 2.128039086723668, 'L36#9448': 1.466624087392337, 'L37#18399': 1.4743251778961213}
+decode ft: 10/83 prompts, 224s
+decode ft: 20/83 prompts, 429s
+decode ft: 30/83 prompts, 642s
+decode ft: 40/83 prompts, 877s
+decode ft: 50/83 prompts, 1098s
+decode ft: 60/83 prompts, 1228s
+decode ft: 70/83 prompts, 1355s
+decode ft: 80/83 prompts, 1517s
+decode ft: 83/83 prompts, 1579s
+A: {"cite": {"clean": 0.0, "neuron_off": 0.003, "random_off": 0.004}, "dia": {"clean": 0.0, "neuron_off": 0.006, "random_off": 0.006}, "flow": {"clean": 0.0, "neuron_off": 0.003, "random_off": 0.004}, "mpa": {"clean": 0.0, "neuron_off": 0.047, "random_off": 0.014}, "rna": {"clean": 0.0, "neuron_off": 0.002, "random_off": 0.001}, "xenium": {"clean": 0.0, "neuron_off": 0.0, "random_off": 0.0}}
+decode base: 10/23 prompts, 140s
+decode base: 20/23 prompts, 283s
+decode base: 23/23 prompts, 330s
+decode ft: 10/23 prompts, 63s
+decode ft: 20/23 prompts, 139s
+decode ft: 23/23 prompts, 162s
+B: {"clean": {"n": 364, "parsed": 364, "spearman_truth": 0.483, "mae_truth": 2.014, "zero_rate": 0.332, "mean_shift": 0.0, "mean_abs_shift": 0.0, "frac_changed": 0.0}, "neuron_x_ft": {"n": 364, "parsed": 364, "spearman_truth": 0.492, "mae_truth": 2.044, "zero_rate": 0.332, "mean_shift": -0.036, "mean_abs_shift": 0.084, "frac_changed": 0.107}, "random_x_same": {"n": 364, "parsed": 364, "spearman_truth": 0.479, "mae_truth": 2.042, "zero_rate": 0.335, "mean_shift": -0.031, "mean_abs_shift": 0.035, "frac_changed": 0.052}, "neuron_and_partner_x_ft": {"n": 364, "parsed": 364, "spearman_truth": 0.495, "mae_truth": 2.079, "zero_rate": 0.352, "mean_shift": -0.07, "mean_abs_shift": 0.119, "frac_changed": 0.148}}
+C base: {"mpa | answer position": 0.984, "mpa | name (taxon / feature)": -0.01, "mpa | number in prompt": 0.145, "mpa | other completion": 0.37, "mpa | other prompt text": 0.248, "mpa | system / template": 0.002, "other types | answer position": -0.105, "other types | name (taxon / feature)": 0.006, "other types | number in prompt": -0.014, "other types | other completion": 0.006, "other types | other prompt text": -0.041, "other types | system / template": 0.002}
+C ft: {"mpa | answer position": 2.093, "mpa | name (taxon / feature)": 0.033, "mpa | number in prompt": 0.327, "mpa | other completion": 0.914, "mpa | other prompt text": 0.47, "mpa | system / template": -0.002, "other types | answer position": -0.036, "other types | name (taxon / feature)": 0.024, "other types | number in prompt": 0.048, "other types | other completion": 0.143, "other types | other prompt text": -0.028, "other types | system / template": -0.002}
+-> /data/outputs/mpa_probe/v1/followup_results.json
+✓ App completed. View run at 
+https://modal.com/apps/likelytobelaura/main/ap-19hLzDlP3E3YhCGwY0mtFc
