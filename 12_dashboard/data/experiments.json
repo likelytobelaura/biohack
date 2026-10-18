@@ -1,0 +1,112 @@
+[
+ {
+  "order": 1,
+  "id": "truth",
+  "name": "Golden labels (truth reconstruction)",
+  "family": "Data",
+  "status": "Done",
+  "question": "What are the true values behind the 20% mask?",
+  "setup": "24,634 masked targets in 15,964 prompts across 13 data types, rebuilt from Sid Sijbrandij's public bucket (s3://sid-sijbrandij-osteosarc-dataset) and validated against training values.",
+  "compute": "Mac (recon.py, build_golden.py)",
+  "where": "GitHub biohack: 02_golden_labels/ (gold itself is not committed); ~/osteo-golden"
+ },
+ {
+  "order": 2,
+  "id": "glimmer_base",
+  "name": "Glimmer-30B zero-shot",
+  "family": "LLM zero-shot",
+  "status": "Done",
+  "question": "How well does an untrained 30B model fill in missing values from the entity's other values?",
+  "setup": "Muse-Glimmer-30B, greedy, one prompt per entity listing its observed values of that type and the items to predict; 54 truncated prompts re-run with a larger budget.",
+  "compute": "Modal (vLLM)",
+  "where": "GitHub biohack: 04_baseline_responses/baseline_zeroshot_merged.jsonl, 05_baseline_report/"
+ },
+ {
+  "order": 3,
+  "id": "sid_full",
+  "name": "Glimmer LoRA sid_full",
+  "family": "LLM fine-tuned",
+  "status": "Done (stopped early)",
+  "question": "Does supervised fine-tuning on the patient's own visible data help?",
+  "setup": "LoRA r32 \u03b164 on all 11,824 training rows, lr 1e-4 cosine, max length 6,144, completion-only loss. Stopped at step 739 of 1,478 (half an epoch, learning rate still mid-schedule).",
+  "compute": "Modal 8\u00d7H200",
+  "where": "HF likelytobelaura/osteo-glimmer-lora: sid_full/ (+ checkpoint-739); GitHub 07_finetune_sid_full/"
+ },
+ {
+  "order": 4,
+  "id": "spark",
+  "name": "Muse Spark 1.3 and 1.2 zero-shot",
+  "family": "LLM zero-shot",
+  "status": "Done",
+  "question": "Does a larger hosted model know more biology than Glimmer, without fine-tuning?",
+  "setup": "Same 15,964 prompts via the Meta Model API (contributor tier), temperature 0, reasoning effort low, cut-offs retried with 16k tokens. Unanswered prompts count as unanswered.",
+  "compute": "api.meta.ai, ~$8 so far",
+  "where": "GitHub biohack: 08_other_baselines/muse_spark/"
+ },
+ {
+  "order": 5,
+  "id": "noctx",
+  "name": "Context-free Glimmer (own type stripped)",
+  "family": "LLM zero-shot",
+  "status": "821 of 826 prompts (5 Xenium errors)",
+  "question": "If an entity has no observed values of a data type at all, can the model still predict it?",
+  "setup": "Prompts for flow, bulk RNA, TCR and Xenium with every observed value of that type removed. Eval prompts never carry other data types, so this is the model's prior alone.",
+  "compute": "NVIDIA-hosted meta/muse-glimmer-30b (free tier, ~2 min per request)",
+  "where": "GitHub biohack: 08_other_baselines/nim_noctx/"
+ },
+ {
+  "order": 6,
+  "id": "lomo",
+  "name": "Leave-one-data-type-out LoRA (LOMO)",
+  "family": "LLM fine-tuned (hold-out)",
+  "status": "Done: flow, RNA, TCR, Xenium + all-data reference (single seed each)",
+  "question": "How much of the fine-tune gain on a data type survives when that type is removed from training, and what does removing it do to the others?",
+  "setup": "Same recipe as sid_full, fixed 740-step schedule run to completion (5,920 rows seen), one type's training rows removed; then evaluated on all 15,964 prompts. lomo740_all is the matched all-data reference.",
+  "compute": "Modal 8\u00d7H200 (H100 fallback)",
+  "where": "HF osteo-glimmer-lora: lomo740_<type>/; GitHub 06_heldout_experiments/"
+ },
+ {
+  "order": 7,
+  "id": "classical",
+  "name": "Classical imputation (22 methods)",
+  "family": "Classical ML",
+  "status": "Done",
+  "question": "How far do simple data-only methods get, with no prior knowledge?",
+  "setup": "Feature/entity means and medians, additive effects, entity- and feature-kNN (k 5\u201350), biased ALS (rank 2/8/32, \u03bb 1/10) and a gradient-boosted stack, in asinh space, on visible values only. Per-type pick chosen on a 10% split of visible values, never on eval targets.",
+  "compute": "Mac (scripts/run_classical.py)",
+  "where": "GitHub biohack: 09_classical_ml/"
+ },
+ {
+  "order": 8,
+  "id": "cross",
+  "name": "Cross-data-type prediction",
+  "family": "Classical ML",
+  "status": "Done",
+  "question": "Which data types carry information about which others?",
+  "setup": "Gene link: each other type's level of the same gene (mean asinh + detection rate) added as features to the GBM stack, with drop-one and source-alone ablations; validation holds out whole features to mimic never-observed targets. Date link: cross-modal kNN between samples drawn within 21 days.",
+  "compute": "Mac (scripts/cross.py)",
+  "where": "GitHub biohack: 09_classical_ml/cross_results.json"
+ },
+ {
+  "order": 9,
+  "id": "card",
+  "name": "ET-SoC-1 accelerator run",
+  "family": "Classical ML",
+  "status": "Done",
+  "question": "Can the kNN similarity step run on the Esperanto ET-SoC-1 card?",
+  "setup": "CITE-seq entity-kNN similarity S = A\u00b7A\u1d40 (A = 8,656 \u00d7 400, 60 GFLOP) on aifoundry3 card 0: 373 ms per launch, 160 GFLOP/s, max abs error 4.2e-7; kNN predictions identical to CPU.",
+  "compute": "AI Foundry aifoundry3, card 0",
+  "where": "GitHub biohack: 09_classical_ml/card/, 10_esperanto_et_soc1/"
+ },
+ {
+  "order": 8.5,
+  "id": "classical_holdout",
+  "name": "Classical hold-out settings (S1/S2/S3)",
+  "family": "Classical ML",
+  "status": "Done",
+  "question": "Can classical methods predict a data type with none of it anywhere, with only other samples of it, or with only the sample's own values?",
+  "setup": "All 12 numeric types. S1 type absent: predict 0, other types' gene level, or a GBM trained on other types. S2 new sample: leave-sample-out feature mean/median, carry-forward from the previous draw, nearest draw, and a GBM with gene links. S3 type unseen in training: the sample's own mean/median, or a GBM trained on every other type. Same targets and scorer as all runs; random mask, not a time split.",
+  "compute": "Mac (scripts/holdout.py, ~1 min)",
+  "where": "GitHub biohack: 09_classical_ml/HOLDOUT.md, holdout_results.json, preds_holdout/, scripts/holdout.py"
+ }
+]

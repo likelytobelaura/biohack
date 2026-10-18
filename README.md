@@ -30,7 +30,29 @@ raw ET-SoC-1 simulator logs and the public MNIST datasets used on the card.
 | `09_classical_ml/` | classical imputation sweep (kNN etc.), its predictions, and the osteo ET-SoC-1 card job | yes (`*.f32` local) |
 | `10_esperanto_et_soc1/` | everything from the AI Foundry lab account (aifoundry3): osteo card job, MNIST on the card, first tests | yes, except raw sim logs and datasets |
 | `11_modal_osteo_data/` | full copy of the Modal volume `osteo-data`, same layout | all text; weights/optimizer/tokenizer on HF |
+| `12_dashboard/` | dashboard build: `build.py` scores every run with the shared scorer and writes `data/*.json`; `index.html` is the page | yes |
+| `13_linear_probes/` | MetaPhlAn log-abundance linear probe and microbiome-neuron hunt on Glimmer activations | yes (activations on Modal/HF) |
+| `14_crosstype_snapshots/` | cross-type "Sid at timepoint X" snapshot fine-tune: scores, hint-copy analysis, scripts | yes (weights on HF `xtype/`) |
 | `scripts/` | build, train, eval and scoring scripts | yes |
+
+## Experiments
+
+Every run is scored by `score_compare.py` on the same 24,634 targets of the **20% random mask** (not a time split).
+
+| experiment | question | write-up / data |
+|---|---|---|
+| Glimmer zero-shot | how well does an untrained 30B model fill gaps from the entity's other values? | `05_baseline_report/REPORT.md`, `04_baseline_responses/` |
+| `sid_full` LoRA | does fine-tuning on the visible data help? | `07_finetune_sid_full/` |
+| Leave-one-type-out LoRAs (`lomo740_<type>`, `lomo740_all`) | how much of the gain survives when a type is removed from training, and what does removing it do to the other types? | `06_heldout_experiments/` (INVENTORY §6) |
+| Context-free Glimmer | can the model predict a type with no observed values of it? | `08_other_baselines/nim_noctx/` |
+| Muse Spark 1.3 / 1.2 | does a larger hosted model know more, without fine-tuning? | `08_other_baselines/muse_spark/` |
+| Classical imputation | how far do data-only methods get? | [`09_classical_ml/RESULTS.md`](09_classical_ml/RESULTS.md), `preds/` |
+| Cross-data-type prediction | which data types carry information about which others (shared genes, blood draws)? | `09_classical_ml/RESULTS.md` (cross section), `cross_results.json`, `preds_cross/` |
+| Classical hold-out settings | can classical methods predict a type with none of it (S1), only other samples of it (S2), or only the sample's own values (S3)? | [`09_classical_ml/HOLDOUT.md`](09_classical_ml/HOLDOUT.md), `holdout_results.json`, `preds_holdout/`, `scripts/holdout.py` |
+| ET-SoC-1 card run | can the kNN similarity step run on the Esperanto card? | `09_classical_ml/card/`, `10_esperanto_et_soc1/` |
+
+All scores side by side: `12_dashboard/data/` (`types.json` best method per type, `leaderboard.json` every run on every
+type, `transfer.json` the held-out types, `offtarget.json` hold-out effects with bootstrap CIs, `classical_holdout*.json`).
 
 ## Keeping it current
 

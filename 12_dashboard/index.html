@@ -1,0 +1,1019 @@
+<style>
+.gx { display: flex; flex-direction: column; gap: var(--cds-gap-lg); font-family: var(--font-anthropic-sans); }
+.gx-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.gx-head p { margin: var(--cds-gap-xs) 0 0; color: var(--color-fg-muted); max-width: 80ch; }
+.gx-tabs { display: flex; gap: var(--cds-gap-xs); flex-wrap: wrap; border-bottom: 1px solid var(--color-border-line); }
+.gx-tabs button { font: inherit; font-size: var(--cds-font-size-body); background: none; border: 0; border-bottom: 2px solid transparent; padding: var(--cds-pad-sm) var(--cds-pad-md); color: var(--color-fg-muted); cursor: pointer; }
+.gx-tabs button[aria-selected=true] { color: var(--color-fg); border-bottom-color: var(--color-fg); }
+.gx-page { display: flex; flex-direction: column; gap: var(--cds-gap-lg); }
+.gx-page[hidden] { display: none; }
+.gx-lede { margin: 0; max-width: 80ch; }
+.gx-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--cds-gap-md); }
+.gx-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.gx-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.gx-card h3 { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-sm) 0 var(--cds-gap-xs); }
+.gx-note { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: var(--cds-gap-xs) 0 var(--cds-gap-md); max-width: 90ch; }
+.gx-label { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.gx-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; margin-top: var(--cds-gap-xs); }
+.gx-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-xs); }
+.gx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: var(--cds-gap-md); }
+.gx-chart { position: relative; min-height: 200px; }
+.gx-scatter { position: relative; min-height: 360px; }
+.gx-legend { display: flex; gap: var(--cds-gap-md); flex-wrap: wrap; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-sm); }
+.gx-legend span { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); }
+.gx-legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.gx-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+.gx-tip .k { color: var(--cds-text-secondary); }
+.gx-tablebox { overflow-x: auto; }
+.gx-tablebox.tall { max-height: 32rem; overflow: auto; }
+.gx table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-body); font-variant-numeric: tabular-nums; }
+.gx th, .gx td { text-align: right; padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.gx th:first-child, .gx td:first-child, .gx .l { text-align: left; }
+.gx th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-caption); position: sticky; top: 0; background: var(--color-panel); }
+.gx td.wrap { white-space: normal; min-width: 16rem; max-width: 40rem; text-align: left; }
+.gx .up { color: var(--color-ok); } .gx .down { color: var(--color-bad); } .gx .best { font-weight: var(--cds-font-weight-medium); text-decoration: underline; text-underline-offset: 3px; }
+.gx select { font: inherit; padding: var(--cds-pad-xs) var(--cds-pad-sm); border-radius: var(--cds-radius); border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); }
+.gx-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--cds-gap-sm); flex-wrap: wrap; }
+.gx-mb-tiles { margin: var(--cds-gap-md) 0; }
+.gx-mbchart { position: relative; min-height: 190px; margin-bottom: var(--cds-gap-md); }
+.gx-exps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.gx-exp { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md); display: flex; flex-direction: column; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-caption); }
+.gx-exp b.t { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+.gx-exp .q { font-style: italic; }
+.gx-exp .m { color: var(--color-fg-muted); }
+.gx-pill { display: inline-block; padding: 0 var(--cds-pad-sm); border-radius: 999px; border: 1px solid var(--color-border-line); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.gx-callout { border-left: 3px solid var(--color-border-line); padding-left: var(--cds-pad-md); margin: 0; max-width: 90ch; }
+.gx-toggles { display: flex; gap: var(--cds-gap-md); flex-wrap: wrap; align-items: center; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.gx-toggles label { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: 999px; color: var(--color-fg); cursor: pointer; }
+.gx-toggles input { margin: 0; accent-color: var(--color-fg); }
+.gx.hide-ft [data-fam~="ft"], .gx.hide-cl [data-fam~="cl"] { display: none !important; }
+.gx-off { display: none; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; }
+.gx.hide-ft .gx-off.ft, .gx.hide-cl .gx-off.cl { display: block; }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+.gx-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.gx-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+</style>
+
+<div class="gx">
+  <header class="gx-head" id="top">
+    <h1>Glimmer osteosarc eval</h1>
+    <p id="takeaway" data-source="overview_summary" data-field="takeaway" data-where="combo=both" class="dash-skeleton">—</p>
+  </header>
+
+  <nav class="gx-tabs" role="tablist" id="tabs">
+    <button role="tab" id="tab-overview" data-page="overview" aria-selected="true">Overview</button>
+    <button role="tab" id="tab-cross" data-page="cross" aria-selected="false">Cross-type prediction</button>
+    <button role="tab" id="tab-holdout" data-page="holdout" aria-selected="false">Held-out data types</button>
+    <button role="tab" id="tab-finetune" data-page="finetune" aria-selected="false">Base vs fine-tuned</button>
+    <button role="tab" id="tab-runs" data-page="runs" aria-selected="false">All runs and methods</button>
+  </nav>
+  <div class="gx-toggles" id="toggles"><span>Show in every chart and table:</span>
+    <label><input type="checkbox" id="tg-ft" checked> Fine-tuned LLMs (LoRA)</label>
+    <label><input type="checkbox" id="tg-cl" checked> Classical ML</label>
+    <span>Zero-shot LLMs are always shown.</span></div>
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="gx-page" id="overview">
+    <section class="gx-tiles" id="ov-tiles">
+      <div class="gx-card" data-fam="cl"><div class="gx-label">Classical ML is best on</div>
+        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_classical" data-where="combo=both">—</div>
+        <div class="gx-sub">data types, among the methods shown</div></div>
+      <div class="gx-card" data-fam="ft"><div class="gx-label">Glimmer fine-tuned is best on</div>
+        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_ft" data-where="combo=both">—</div>
+        <div class="gx-sub">data types</div></div>
+      <div class="gx-card"><div class="gx-label">Muse Spark 1.3 zero-shot is best on</div>
+        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_spark" data-where="combo=both">—</div>
+        <div class="gx-sub">data types</div></div>
+      <div class="gx-card"><div class="gx-label">Glimmer zero-shot is best on</div>
+        <div class="gx-big dash-skeleton" data-source="overview_summary" data-field="wins_base" data-where="combo=both">—</div>
+        <div class="gx-sub">data types</div></div>
+    </section>
+
+    <section class="gx-card" id="ov-chart-card">
+      <h2>Score by data type and method</h2>
+      <p class="gx-note">Spearman ρ between predicted and true values (accuracy for multiplex IF, exact allele match for HLA). Higher is better. Rows are ordered by the share of masked targets whose feature (gene, protein, species, allele) was never observed anywhere in the visible data, shown on the right: the more novel the target, the less any data-only method can do and the more a model's prior knowledge matters. Classical ML is the per-type method picked on a validation split; it does not predict HLA alleles.</p>
+      <div class="gx-legend" id="ov-legend"></div>
+      <div class="gx-chart" id="ov-dots" data-source="types"></div>
+    </section>
+
+    <section class="gx-card" id="ov-table-card">
+      <h2>Best method per data type</h2>
+      <p class="gx-note">"Classical (oracle)" is the best of the 22 classical methods on the eval targets themselves: an optimistic upper bound, not a fair pick. "Glimmer fine-tuned" in the chart and the Best column is the better of the two all-type LoRAs: sid_full (stopped halfway) and the all-data run on the finished 740-step schedule.</p>
+      <div class="gx-tablebox">
+        <table data-source="types" data-row-key="key">
+          <thead><tr>
+            <th data-field="data_type">Data type</th><th data-field="targets">Targets</th><th data-field="train_rows">Training rows</th><th data-field="never_observed">Never observed</th>
+            <th data-field="glimmer_base">Glimmer zero-shot</th><th data-field="glimmer_sid_full" data-fam="ft">Glimmer sid_full</th><th data-field="lomo740_all" data-fam="ft">Glimmer all-data 740</th><th data-field="spark_1_3">Spark 1.3</th><th data-field="spark_1_2">Spark 1.2</th>
+            <th data-field="classical_pick" data-fam="cl">Classical (pick)</th><th data-field="classical_pick_method" class="l" data-fam="cl">Pick</th><th data-field="classical_oracle" data-fam="cl">Classical (oracle)</th><th data-source="winners" data-field="both" class="l" id="ov-best-th">Best shown</th>
+          </tr></thead>
+          <tbody id="ov-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ CROSS-TYPE ============ -->
+  <section class="gx-page" id="cross" hidden>
+    <p class="gx-lede">Can one data type be predicted from another? Two kinds of link were tested with classical models. A <b>gene link</b> joins types through the same gene or protein (bulk RNA, scRNA, Xenium, CITE-seq, DIA, Olink): each other type's level of that gene is added as a feature. A <b>date link</b> joins blood draws taken within three weeks of each other (flow, Olink, TCR, metagenomics, CITE-seq, scRNA). The LLM side of the question is on the Held-out data types tab.</p>
+    <p class="gx-off cl">Classical ML is hidden, and every result on this tab is classical. Turn it back on above to see them.</p>
+    <section class="gx-tiles" id="cx-tiles" data-fam="cl">
+      <div class="gx-card"><div class="gx-label">scRNA, genes also measured elsewhere</div>
+        <div class="gx-big dash-skeleton" data-source="cross_headline" data-field="scrna_cov_text">—</div>
+        <div class="gx-sub">Spearman ρ, within-scRNA only → with other types added</div></div>
+      <div class="gx-card"><div class="gx-label">Bulk RNA alone predicting scRNA</div>
+        <div class="gx-big dash-skeleton" data-source="cross_gene" data-field="source_alone_rho" data-where="pair=rna->scrna">—</div>
+        <div class="gx-sub" data-source="cross_headline" data-field="rna_scrna_sub">—</div></div>
+      <div class="gx-card"><div class="gx-label">Largest single contributor to scRNA</div>
+        <div class="gx-big dash-skeleton" data-source="cross_headline" data-field="top_drop_text">—</div>
+        <div class="gx-sub" data-source="cross_headline" data-field="top_drop_sub">—</div></div>
+      <div class="gx-card"><div class="gx-label">Best blood-draw (date) link gain</div>
+        <div class="gx-big dash-skeleton" data-source="cross_headline" data-field="date_best_text">—</div>
+        <div class="gx-sub" data-source="cross_headline" data-field="date_best_sub">—</div></div>
+    </section>
+
+    <section class="gx-card" id="cx-heat-card" data-fam="cl">
+      <div class="gx-row"><h2>Which data type predicts which (gene link)</h2>
+        <label class="gx-label" for="cx-metric">Show <select id="cx-metric">
+          <option value="source_alone_rho">Source alone: Spearman ρ</option>
+          <option value="drop_one_delta">Drop-one: ρ lost without this source</option>
+        </select></label></div>
+      <p class="gx-note" id="cx-heat-note">Rows are the data type being predicted, columns the type supplying the gene's level. "Source alone" ranks the target's values using only the other type's level of the same gene, on the targets that gene covers (n in each cell); compare it with the within-type feature mean on the same targets in the tooltip. "Drop-one" is how much the combined model's ρ falls when that source is removed. Blue is positive, red negative, stronger colour is larger.</p>
+      <div class="gx-chart" id="cx-heat" data-source="cross_gene"></div>
+    </section>
+
+    <div class="gx-grid" data-fam="cl">
+      <section class="gx-card" id="cx-sum-card">
+        <h2>Adding other types to a within-type model</h2>
+        <p class="gx-note">GBM stack using the type's own visible values ("within") versus the same plus every other type's level of the gene. "Covered" targets have the gene measured in another type; "never observed" ones have the gene absent from this type's visible data entirely. Small never-observed groups are left blank.</p>
+        <div class="gx-legend"><span><i id="lg-within"></i>Within type</span><span><i id="lg-cross"></i>Within + other types</span></div>
+        <div class="gx-chart" id="cx-sum" data-source="cross_summary"></div>
+        <div class="gx-tablebox">
+          <table data-source="cross_summary" data-row-key="key">
+            <thead><tr><th data-field="data_type">Target</th><th data-field="targets">Targets</th><th data-field="within">Within</th><th data-field="within_cross">+ cross</th>
+              <th data-field="n_gene_covered">Covered n</th><th data-field="covered_within">Covered within</th><th data-field="covered_cross">Covered + cross</th>
+              <th data-field="n_never_observed">Never-obs n</th><th data-field="never_within">Never-obs within</th><th data-field="never_cross">Never-obs + cross</th></tr></thead>
+            <tbody id="cx-sum-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+      <section class="gx-card" id="cx-date-card">
+        <h2>Blood-draw links (date link)</h2>
+        <p class="gx-note">Cross-modal kNN between samples drawn within three weeks, versus a plain mean over the same samples. A dot right of the grey one means the other data type helped. At these sample sizes no link adds a meaningful gain.</p>
+        <div class="gx-legend"><span><i id="lg-dmean"></i>Plain mean</span><span><i id="lg-dknn"></i>Cross-type kNN</span></div>
+        <div class="gx-chart" id="cx-date" data-source="date_link"></div>
+        <div class="gx-tablebox">
+          <table data-source="date_link" data-row-key="pair">
+            <thead><tr><th data-field="pair">Source → target</th><th data-field="matched_samples">Matched samples</th><th data-field="targets">Targets</th>
+              <th data-field="mean_rho">Mean ρ</th><th data-field="cross_knn_rho">kNN ρ</th><th data-field="gain">Gain</th><th data-field="mae_mean">MAE mean</th><th data-field="mae_cross">MAE kNN</th></tr></thead>
+            <tbody id="cx-date-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <!-- ============ HOLD-OUT ============ -->
+  <section class="gx-page" id="holdout" hidden>
+    <p class="gx-lede">Two ways of asking whether a data type can be predicted without its own data. <b>Context-free:</b> the untrained model gets an entity with every observed value of that type removed (eval prompts never carry other types, so this is its prior alone). <b>Leave-one-type-out (LOMO):</b> a LoRA trained on every type except one, then asked about the held-out type with that entity's own values in the prompt, as usual. The "fine-tuned reference" is the matched all-data LoRA on the same finished 740-step schedule (sid_full where it is missing). Each hold-out is a single training seed, so differences under about 0.05 may be seed noise. For Xenium the run without Xenium training rows beats both the all-data LoRA and zero-shot, so the transfer ratio is left blank.</p>
+    <section class="gx-tiles" id="ho-tiles">
+      <div class="gx-card" data-fam="ft"><div class="gx-label">Bulk RNA fine-tune gain kept without RNA training data</div>
+        <div class="gx-big dash-skeleton" data-source="holdout_headline" data-field="rna_transfer">—</div>
+        <div class="gx-sub" data-source="holdout_headline" data-field="rna_transfer_sub">—</div></div>
+      <div class="gx-card" data-fam="ft"><div class="gx-label">Flow cytometry, held out of training</div>
+        <div class="gx-big dash-skeleton" data-source="transfer" data-field="holdout_adapter" data-where="key=flow">—</div>
+        <div class="gx-sub" data-source="holdout_headline" data-field="flow_sub">—</div></div>
+      <div class="gx-card"><div class="gx-label">Context-free types where every guess was 0</div>
+        <div class="gx-big dash-skeleton" data-source="holdout_headline" data-field="const_text">—</div>
+        <div class="gx-sub" data-source="holdout_headline" data-field="const_sub">—</div></div>
+      <div class="gx-card" data-fam="ft"><div class="gx-label">scRNA: dropping bulk RNA vs dropping flow</div>
+        <div class="gx-big dash-skeleton" data-source="holdout_headline" data-field="scrna_contrast">—</div>
+        <div class="gx-sub">Spearman ρ, same 740-step schedule; likely within run-to-run noise (see below)</div></div>
+    </section>
+
+    <section class="gx-card" id="ho-transfer-card">
+      <h2>Predicting a type with less of its own data</h2>
+      <p class="gx-note">Each row is one held-out type. Context-free with no ρ means the model returned one constant value (always 0) for every target, so it cannot rank anything. Transfer = (hold-out − zero-shot) / (fine-tuned reference − zero-shot): 1 means training on the other types gave the full fine-tune gain on this one; left blank where fine-tuning gained less than 0.05, as for flow, since the ratio is then meaningless.</p>
+      <div class="gx-legend" id="ho-legend"></div>
+      <div class="gx-chart" id="ho-dots" data-source="transfer"></div>
+      <div class="gx-tablebox">
+        <table data-source="transfer" data-row-key="key">
+          <thead><tr><th data-field="data_type">Held-out type</th><th data-field="targets">Targets</th>
+            <th data-field="noctx_rho">Context-free ρ</th><th data-field="noctx_pred_zero">Context-free: predicted 0</th><th data-field="true_zero">Truly 0</th>
+            <th data-field="base_ctx">Zero-shot</th><th data-field="holdout_adapter" data-fam="ft">Hold-out LoRA</th><th data-field="sid_full" data-fam="ft">sid_full LoRA</th><th data-field="all_ref" data-fam="ft">All-data LoRA</th>
+            <th data-field="transfer_ratio" data-fam="ft">Transfer</th><th data-field="classical_pick" data-fam="cl">Classical (pick)</th><th data-field="classical_within_cross" data-fam="cl">Classical + cross</th>
+            <th data-field="classical_S1" data-fam="cl">Classical S1</th><th data-field="classical_S2" data-fam="cl">Classical S2</th><th data-field="classical_S3" data-fam="cl">Classical S3</th><th data-field="spark_1_3">Spark 1.3</th></tr></thead>
+          <tbody id="ho-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="gx-grid" data-fam="ft">
+      <section class="gx-card" id="ho-contrast-card">
+        <h2>Dropping bulk RNA vs dropping flow, type by type</h2>
+        <p class="gx-note">Both hold-out adapters ran the same finished 740-step schedule. Bars left of zero: the type does worse when bulk RNA is removed than when flow is removed. Read with care: removing TCR, which shares no genes with scRNA or Xenium, moves them just as much (see the off-target chart), so large swings on scRNA and Xenium are most likely run-to-run training noise, not transfer from bulk RNA.</p>
+        <div class="gx-chart" id="ho-contrast" data-source="holdout_contrast"></div>
+      </section>
+      <section class="gx-card" id="ho-off-card">
+        <div class="gx-row"><h2>Off-target effect of each hold-out</h2>
+          <label class="gx-label" for="ho-off-sel">Held out <select id="ho-off-sel"></select></label></div>
+        <p class="gx-note" id="ho-off-note">Hold-out adapter minus the all-data LoRA trained on the same finished schedule, per type, with a paired 95% bootstrap interval over prompts. Coloured where the interval excludes zero. Left of zero: removing that data type from training hurt this type. The intervals cover eval sampling only, not run-to-run training variation: scRNA and Xenium swing by 0.1–0.2 whichever type is removed, so treat those swings as noise until repeat seeds exist.</p>
+        <div class="gx-chart" id="ho-off" data-source="offtarget"></div>
+      </section>
+    </div>
+
+    <section class="gx-card" id="ch-card" data-fam="cl">
+      <h2>Classical methods with less of a type's own data</h2>
+      <p class="gx-note">The classical counterparts of the Glimmer hold-outs, on every numeric type, best method per setting. <b>S1 type absent:</b> nothing of the type anywhere, other types only (matches context-free Glimmer); only gene-linked types can do better than a constant. <b>S2 new sample:</b> the type's other samples, none of this sample's own values. <b>S3 type unseen in training:</b> only this sample's own values, models trained on other types (matches the hold-out LoRA). "All visible" is the original classical pick. Like every run here, the eval is a random mask, not a time split.</p>
+      <div class="gx-legend" id="ch-legend"></div>
+      <div class="gx-chart" id="ch-dots" data-source="classical_holdout_best"></div>
+      <div class="gx-row"><h3>Every classical hold-out method on one type</h3>
+        <label class="gx-label" for="ch-type">Data type <select id="ch-type"></select></label></div>
+      <p class="gx-note">"Seen" targets have their feature observed in other samples of the type; "gene-covered" ones have the gene measured in another type. Within 10% is near 0 for gene-level scores because they only rank.</p>
+      <div class="gx-tablebox">
+        <table data-source="classical_holdout" data-row-key="id">
+          <thead><tr><th data-field="setting">Setting</th><th data-field="method" class="l">Method</th><th data-field="primary">Score</th><th data-field="rho_seen">ρ seen</th>
+            <th data-field="rho_never_seen">ρ never seen</th><th data-field="rho_gene_covered">ρ gene-covered</th><th data-field="within_10pct">Within 10%</th></tr></thead>
+          <tbody id="ch-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============ BASE VS FINE-TUNED (original) ============ -->
+  <section class="gx-page" id="finetune" hidden>
+    <p class="gx-off ft">Fine-tuned LLMs are hidden, so this tab shows the zero-shot base model only.</p>
+    <section class="gx-tiles" id="tiles" data-fam="ft">
+      <div class="gx-card"><div class="gx-label">Data types improved</div>
+        <div class="gx-big dash-skeleton" data-source="summary" data-field="improved_text">—</div>
+        <div class="gx-sub">of 13, on each type's main metric</div></div>
+      <div class="gx-card"><div class="gx-label">Mean change in main metric</div>
+        <div class="gx-big dash-skeleton" data-source="summary" data-field="mean_delta_text">—</div>
+        <div class="gx-sub">fine-tuned minus base, averaged over types</div></div>
+      <div class="gx-card"><div class="gx-label">Targets scored</div>
+        <div class="gx-big dash-skeleton" data-source="summary" data-field="targets_text">—</div>
+        <div class="gx-sub">held-out values with a recovered true value</div></div>
+      <div class="gx-card"><div class="gx-label">Answer rate, fine-tuned</div>
+        <div class="gx-big dash-skeleton" data-source="summary" data-field="ft_answered_text">—</div>
+        <div class="gx-sub" data-source="summary" data-field="base_answered_text">—</div></div>
+    </section>
+    <p class="gx-callout" data-source="summary" data-field="takeaway" data-fam="ft">—</p>
+
+    <section class="gx-card" id="by-type">
+      <h2>Main metric by data type</h2>
+      <p class="gx-note">Base Muse-Glimmer-30B zero-shot vs the sid_full LoRA (stopped at step 739 of 1,478). Spearman ρ; accuracy for multiplex IF and exact match for HLA. Higher is better.</p>
+      <div class="gx-legend"><span><i id="lg-base"></i>Base model</span><span data-fam="ft"><i id="lg-ft"></i>Fine-tuned (sid_full)</span></div>
+      <div class="gx-chart" id="dumbbell" data-source="scores"></div>
+    </section>
+
+    <section class="gx-card" id="table">
+      <h2>Scores table</h2>
+      <p class="gx-note">"Within 10%" counts predictions within 10% of the true value. Answered is the share of targets with a parseable prediction.</p>
+      <div class="gx-tablebox">
+        <table data-source="scores" data-row-key="key">
+          <thead><tr>
+            <th data-field="data_type">Data type</th><th data-field="metric" class="l">Metric</th><th data-field="targets">Targets</th>
+            <th data-field="base_primary">Base</th><th data-field="ft_primary" data-fam="ft">Fine-tuned</th><th data-field="delta" data-fam="ft">Change</th>
+            <th data-field="base_within_10pct">Base within 10%</th><th data-field="ft_within_10pct" data-fam="ft">FT within 10%</th>
+            <th data-field="base_answered">Base answered</th><th data-field="ft_answered" data-fam="ft">FT answered</th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="gx-card" id="microbiome">
+      <h2>Microbiome (MetaPhlAn) deep dive</h2>
+      <p class="gx-note">Read counts per species-level genome bin in stool and saliva samples. Every true value is above zero, since only detected species are listed. Typical error is the median fold difference between predicted and true counts.</p>
+      <p id="mb-takeaway" class="dash-skeleton" data-source="micro_summary" data-field="takeaway" data-fam="ft">—</p>
+      <div class="gx-tiles gx-mb-tiles" data-fam="ft">
+        <div><div class="gx-label">Spearman ρ, all samples</div><div class="gx-big dash-skeleton" data-source="micro_summary" data-field="rho_text">—</div><div class="gx-sub">base → fine-tuned</div></div>
+        <div><div class="gx-label">Typical error</div><div class="gx-big dash-skeleton" data-source="micro_summary" data-field="fold_text">—</div><div class="gx-sub">times off from the true count</div></div>
+        <div><div class="gx-label">Predicted zero for a present species</div><div class="gx-big dash-skeleton" data-source="micro_summary" data-field="zero_text">—</div><div class="gx-sub">base → fine-tuned</div></div>
+      </div>
+      <div class="gx-legend"><span><i class="lg-b"></i>Base model</span><span data-fam="ft"><i class="lg-f"></i>Fine-tuned</span></div>
+      <div class="gx-mbchart" id="mb-chart" data-source="microbiome"></div>
+      <div class="gx-tablebox">
+        <table data-source="microbiome" data-row-key="scope">
+          <thead><tr>
+            <th data-field="scope">Samples</th><th data-field="targets">Targets</th>
+            <th data-field="base_spearman">Base ρ</th><th data-field="ft_spearman" data-fam="ft">FT ρ</th>
+            <th data-field="base_fold_off">Base typical error</th><th data-field="ft_fold_off" data-fam="ft">FT typical error</th>
+            <th data-field="base_within_10x">Base within 10×</th><th data-field="ft_within_10x" data-fam="ft">FT within 10×</th>
+            <th data-field="base_pred_zero">Base predicted 0</th><th data-field="ft_pred_zero" data-fam="ft">FT predicted 0</th>
+          </tr></thead>
+          <tbody id="mb-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="gx-card" id="scatter-card">
+      <div class="gx-row"><h2>Predicted vs true</h2>
+        <label class="gx-label" for="gx-type">Data type <select id="gx-type"></select></label></div>
+      <p class="gx-note">Up to 300 sampled targets per method, on an asinh scale so zeros and large counts both fit. Points on the diagonal are exact. Click a legend entry to show or hide a method.</p>
+      <div class="gx-legend" id="sc-legend"></div>
+      <div class="gx-scatter" id="scatter" data-source="points"></div>
+    </section>
+  </section>
+
+  <!-- ============ ALL RUNS ============ -->
+  <section class="gx-page" id="runs" hidden>
+    <section class="gx-card" id="exp-card">
+      <h2>Experiments</h2>
+      <p class="gx-note">Every experiment behind this dashboard, what question it answers, how it was run and where its files are. Code and model answers are in the public GitHub repo likelytobelaura/biohack; LoRA weights are on Hugging Face at likelytobelaura/osteo-glimmer-lora.</p>
+      <div class="gx-exps" id="exps" data-source="experiments"></div>
+    </section>
+
+    <section class="gx-card" id="lb-card">
+      <div class="gx-row"><h2>Every run on one data type</h2>
+        <label class="gx-label" for="lb-type">Data type <select id="lb-type"></select></label></div>
+      <p class="gx-note">Every run scored with the same scorer on the same targets, best first. Hold-out LoRAs appear here on every type, including the ones they were trained on.</p>
+      <div class="gx-tablebox tall">
+        <table data-source="leaderboard" data-row-key="run_id,key" id="lb-table">
+          <thead><tr><th data-field="run">Run</th><th data-field="family" class="l">Family</th><th data-field="primary">Score</th><th data-field="answered">Answered</th>
+            <th data-field="within_10pct">Within 10%</th><th data-field="median_abs_err_asinh">Median error (asinh)</th></tr></thead>
+          <tbody id="lb-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="gx-card" id="runs-card">
+      <h2>Run details</h2>
+      <p class="gx-note">How each run was produced. Prompts is the number of answer rows in the run's file.</p>
+      <div class="gx-tablebox">
+        <table data-source="runs" data-row-key="run_id">
+          <thead><tr><th data-field="run">Run</th><th data-field="family" class="l">Family</th><th data-field="prompts">Prompts</th><th data-field="note" class="l">Notes</th></tr></thead>
+          <tbody id="runs-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+</div>
+
+<script>
+dash.calc('winners', {
+  inputs: ['types'],
+  title: 'Best method per data type, by what is shown',
+  description: 'For each data type, the best of Glimmer zero-shot, Muse Spark 1.3, the better Glimmer LoRA and the classical pick, with fine-tuned and classical methods each included or left out.',
+  fn: (types) => {
+    const pick = (r, ft, cl) => {
+      const c = [['Glimmer zero-shot', r.glimmer_base], ['Muse Spark 1.3', r.spark_1_3]];
+      if (ft) c.push(['Glimmer fine-tuned', r.glimmer_ft]);
+      if (cl) c.push(['Classical (val pick)', r.classical_pick]);
+      const ok = c.filter(([, v]) => v !== null && v !== undefined);
+      return ok.length ? ok.sort((a, b) => b[1] - a[1])[0][0] : '–';
+    };
+    return types.map(r => ({ key: r.key, data_type: r.data_type,
+      both: pick(r, true, true), no_cl: pick(r, true, false), no_ft: pick(r, false, true), neither: pick(r, false, false) }));
+  }
+});
+
+dash.calc('overview_summary', {
+  inputs: ['winners'],
+  title: 'Which method wins where',
+  description: 'Counts the data types each method scores best on, for each combination of fine-tuned and classical methods shown.',
+  fn: (winners) => ['both', 'no_cl', 'no_ft', 'neither'].map(combo => {
+    const c = k => winners.filter(r => r[combo] === k).length;
+    const list = k => winners.filter(r => r[combo] === k).map(r => r.data_type);
+    const clWins = list('Classical (val pick)');
+    const llmWins = winners.filter(r => r[combo] !== '–' && r[combo] !== 'Classical (val pick)').map(r => r.data_type);
+    const named = ['Glimmer fine-tuned', 'Muse Spark 1.3', 'Glimmer zero-shot'].filter(k => c(k)).map(k => `${k} on ${list(k).join(', ')}`);
+    return {
+      combo, wins_classical: String(c('Classical (val pick)')), wins_ft: String(c('Glimmer fine-tuned')),
+      wins_spark: String(c('Muse Spark 1.3')), wins_base: String(c('Glimmer zero-shot')),
+      takeaway: combo === 'both'
+        ? `Classical matrix methods win where the masked feature has been seen in other samples (${clWins.join(', ')}). ` +
+          `LLMs win where it hasn't, or where prior knowledge of the feature's name helps (${llmWins.join(', ')}). ` +
+          `Across data types, gene-level links carry real signal mainly into scRNA, and a LoRA trained without bulk RNA keeps most of the RNA gain.`
+        : `Among the methods shown, the best per data type is ${named.join('; ')}` + (clWins.length ? `; classical ML on ${clWins.join(', ')}.` : '.')
+    };
+  })
+});
+
+dash.calc('cross_headline', {
+  inputs: ['cross_summary', 'cross_gene', 'date_link'],
+  title: 'Cross-type headline figures',
+  description: 'scRNA before/after adding other types on gene-covered targets, its largest drop-one source, and the best date-link gain.',
+  fn: (cross_summary, cross_gene, date_link) => {
+    const s = cross_summary.find(r => r.key === 'scrna') || {};
+    const f = v => v === null || v === undefined ? '–' : Number(v).toFixed(2);
+    const toS = cross_gene.filter(r => r.target_key === 'scrna');
+    const top = toS.slice().sort((a, b) => b.drop_one_delta - a.drop_one_delta)[0] || {};
+    const rs = toS.find(r => r.source_key === 'rna') || {};
+    const best = date_link.slice().sort((a, b) => b.gain - a.gain)[0] || {};
+    return [{
+      scrna_cov_text: `${f(s.covered_within)} → ${f(s.covered_cross)}`,
+      rna_scrna_sub: `on ${Number(rs.n || 0).toLocaleString('en')} scRNA targets whose gene has bulk RNA; within-scRNA feature mean on the same: ${f(rs.within_feature_mean_rho)}`,
+      top_drop_text: `${top.source || '–'} (−${f(top.drop_one_delta)})`,
+      top_drop_sub: 'ρ lost when that source is removed from the combined model',
+      date_best_text: `+${f(best.gain)}`,
+      date_best_sub: `${best.pair || ''}: ρ ${f(best.mean_rho)} → ${f(best.cross_knn_rho)} on ${best.matched_samples || 0} matched samples`
+    }];
+  }
+});
+
+dash.calc('holdout_contrast', {
+  inputs: ['leaderboard'],
+  title: 'No-RNA vs no-flow adapters',
+  description: 'Per data type, the score of the LoRA trained without bulk RNA minus the LoRA trained without flow (both 740-step runs).',
+  fn: (leaderboard) => {
+    const get = (rid) => Object.fromEntries(leaderboard.filter(r => r.run_id === rid).map(r => [r.key, r]));
+    const a = get('lomo740_rna'), b = get('lomo740_flow');
+    return Object.keys(a).filter(k => b[k] && a[k].primary !== null && b[k].primary !== null).map(k => ({
+      key: k, data_type: a[k].data_type, targets: a[k].targets, no_rna: a[k].primary, no_flow: b[k].primary,
+      diff: Math.round((a[k].primary - b[k].primary) * 10000) / 10000
+    }));
+  }
+});
+
+dash.calc('holdout_headline', {
+  inputs: ['transfer', 'holdout_contrast'],
+  title: 'Hold-out headline figures',
+  description: 'Transfer ratio for bulk RNA, the flow hold-out compared with zero-shot, and how many context-free types got only constant guesses.',
+  fn: (transfer, holdout_contrast) => {
+    const f = v => v === null || v === undefined ? '–' : Number(v).toFixed(2);
+    const rna = transfer.find(r => r.key === 'rna') || {}, flow = transfer.find(r => r.key === 'flow') || {};
+    const done = transfer.filter(r => r.noctx_prompts_done > 0);
+    const constant = done.filter(r => r.noctx_distinct_preds === 1);
+    const sc = holdout_contrast.find(r => r.key === 'scrna');
+    return [{
+      rna_transfer: rna.transfer_ratio === null || rna.transfer_ratio === undefined ? '–' : Math.round(rna.transfer_ratio * 100) + '%',
+      rna_transfer_sub: `ρ ${f(rna.base_ctx)} zero-shot → ${f(rna.holdout_adapter)} without RNA rows → ${f(rna.all_ref ?? rna.sid_full)} with them (${rna.ref_used || ''})`,
+      flow_sub: `Spearman ρ; zero-shot ${f(flow.base_ctx)}, sid_full ${f(flow.sid_full)}, context-free ${f(flow.noctx_rho)}`,
+      const_text: `${constant.length} of ${done.length}`,
+      const_sub: constant.map(r => r.data_type).join(', ') + ': no observed values → the model answers 0 for every target',
+      scrna_contrast: sc ? `${f(sc.no_flow)} → ${f(sc.no_rna)}` : '–'
+    }];
+  }
+});
+
+dash.calc('summary', {
+  inputs: ['scores'],
+  title: 'Summary of the change',
+  description: 'Counts data types where the fine-tuned score beats the base score, and averages the change.',
+  fn: (scores) => {
+    const rows = scores.map(r => ({...r, base: Number(r.base_primary), ft: Number(r.ft_primary), n: Number(r.targets)}));
+    const both = rows.filter(r => Number.isFinite(r.base) && Number.isFinite(r.ft));
+    const improved = both.filter(r => r.ft > r.base).length;
+    const mean = both.length ? both.reduce((s, r) => s + (r.ft - r.base), 0) / both.length : 0;
+    const total = rows.reduce((s, r) => s + r.n, 0);
+    const wa = k => rows.reduce((s, r) => s + Number(r[k]) * r.n, 0) / total;
+    const f = x => (x >= 0 ? '+' : '−') + Math.abs(x).toFixed(2);
+    const best = both.slice().sort((a, b) => (b.ft - b.base) - (a.ft - a.base))[0];
+    const worst = both.slice().sort((a, b) => (a.ft - a.base) - (b.ft - b.base))[0];
+    return [{
+      improved_text: `${improved}`,
+      mean_delta_text: f(mean),
+      targets_text: total.toLocaleString('en'),
+      ft_answered_text: (wa('ft_answered') * 100).toFixed(1) + '%',
+      base_answered_text: `base ${(wa('base_answered') * 100).toFixed(1)}%`,
+      takeaway: `Fine-tuning improved ${improved} of ${both.length} data types, by ${f(mean)} on average. Largest gain: ${best.data_type} (${f(best.ft - best.base)}). ` +
+        (worst.ft < worst.base ? `Largest drop: ${worst.data_type} (${f(worst.ft - worst.base)}).` : 'No data type got worse.')
+    }];
+  }
+});
+
+dash.calc('micro_summary', {
+  inputs: ['microbiome'],
+  title: 'Microbiome summary',
+  description: 'Before/after figures for all microbiome samples, and which sample type gained most.',
+  fn: (microbiome) => {
+    const all = microbiome.find(r => r.scope === 'All samples');
+    if (!all) return [];
+    const n = k => Number(all[k]);
+    const x = v => v >= 100 ? Math.round(v) + '×' : v.toFixed(1) + '×';
+    const site = microbiome.filter(r => r.scope !== 'All samples')
+      .map(r => ({ scope: r.scope, gain: Number(r.ft_spearman) - Number(r.base_spearman), b: Number(r.base_fold_off), f: Number(r.ft_fold_off) }));
+    const best = site.slice().sort((a, b) => (b.b / b.f) - (a.b / a.f))[0];
+    return [{
+      rho_text: `${n('base_spearman').toFixed(2)} → ${n('ft_spearman').toFixed(2)}`,
+      fold_text: `${x(n('base_fold_off'))} → ${x(n('ft_fold_off'))}`,
+      zero_text: `${(n('base_pred_zero') * 100).toFixed(0)}% → ${(n('ft_pred_zero') * 100).toFixed(0)}%`,
+      takeaway: `Fine-tuning cut the typical count error from ${x(n('base_fold_off'))} to ${x(n('ft_fold_off'))} off, mostly by no longer predicting zero for species that were present (${(n('base_pred_zero') * 100).toFixed(0)}% of answers before, ${(n('ft_pred_zero') * 100).toFixed(0)}% after). ` +
+        `${best.scope} gained most (typical error ${x(best.b)} → ${x(best.f)}). ` +
+        site.filter(r => r.gain < 0).map(r => `${r.scope} ranking dipped slightly (ρ ${r.gain.toFixed(2)}).`).join(' ')
+    }];
+  }
+});
+
+(function () {
+  const isNum = x => !(x === null || x === undefined || x === '' || isNaN(Number(x)));
+  const fmt = (x, d = 3) => isNum(x) ? Number(x).toFixed(d) : '–';
+  const pct = x => isNum(x) ? (Number(x) * 100).toFixed(1) + '%' : '–';
+  const sgn = (x, d = 3) => isNum(x) ? (Number(x) >= 0 ? '+' : '−') + Math.abs(Number(x)).toFixed(d) : '–';
+  const fail = el => { el.innerHTML = ''; const d = document.createElement('div'); d.className = 'gx-fail'; d.textContent = 'Failed to load'; el.appendChild(d); };
+  const MUTED = 'var(--cds-chart-muted)', CRIT = 'var(--cds-chart-status-critical)';
+
+  function tipFor(box) {
+    const tip = d3.select(box).append('div').attr('class', 'gx-tip').style('display', 'none');
+    return {
+      show(ev, head, lines) {
+        const [px, py] = d3.pointer(ev, box);
+        tip.style('display', null).html('');
+        tip.append('div').attr('class', 'k').text(head);
+        lines.forEach(([c, t]) => {
+          const d = tip.append('div');
+          if (c) d.append('span').style('display', 'inline-block').style('width', '8px').style('height', '8px').style('border-radius', '50%').style('margin-right', '6px').style('background', c);
+          d.append('span').text(t);
+        });
+        const tw = tip.node().offsetWidth;
+        tip.style('left', Math.max(0, Math.min(px + 12, box.clientWidth - tw - 4)) + 'px').style('top', (py + 12) + 'px');
+      },
+      hide() { tip.style('display', 'none'); }
+    };
+  }
+  function labelWidth(svg, labels, size = 12) {
+    const probe = svg.append('text').attr('font-size', size);
+    let w = 0; labels.forEach(l => { probe.text(l); w = Math.max(w, probe.node().getComputedTextLength()); });
+    probe.remove(); return w;
+  }
+  const vis = () => { const p = dash.params() || {}; return { ft: p.show_ft !== false, cl: p.show_cl !== false }; };
+  const famOf = f => !f ? null : f.startsWith('LLM fine-tuned') ? 'ft' : f.startsWith('Classical') ? 'cl' : null;
+  const shown = fam => !fam || vis()[fam];
+  const combo = () => { const v = vis(); return v.ft && v.cl ? 'both' : v.ft ? 'no_cl' : v.cl ? 'no_ft' : 'neither'; };
+  function legend(el, series) {
+    el.innerHTML = '';
+    series.filter(s => shown(s.fam)).forEach(s => { const sp = document.createElement('span'); const i = document.createElement('i'); i.style.background = s.color; sp.appendChild(i); sp.appendChild(document.createTextNode(s.label)); el.appendChild(sp); });
+  }
+  function fillMarks(src) {
+    const s = dash.data(src);
+    document.querySelectorAll(`[data-source="${src}"][data-field]`).forEach(el => {
+      if (el.closest('table')) return;
+      if (s.status === 'ok' && s.data.length) {
+        let row = s.data[0];
+        if (el.dataset.where) {
+          const [k, v] = el.dataset.where.split('=').map(decodeURIComponent);
+          row = s.data.find(r => String(r[k]) === v);
+        }
+        const v = row ? row[el.dataset.field] : null;
+        el.textContent = typeof v === 'number' ? v.toFixed(2) : (v ?? '–');
+        el.classList.remove('dash-skeleton');
+      } else { el.textContent = '—'; if (s.status === 'error') el.classList.remove('dash-skeleton'); }
+    });
+  }
+  function rowsTable(tbodyId, rows, cells, cls, key) {
+    const tb = document.getElementById(tbodyId); tb.innerHTML = '';
+    const fams = [...tb.closest('table').querySelectorAll('thead th')].map(th => th.dataset.fam);
+    rows.forEach(r => {
+      const tr = document.createElement('tr');
+      if (key) tr.dataset.key = r[key];
+      cells(r).forEach((c, i) => { const td = document.createElement('td'); td.textContent = c; const k = cls && cls(r, i); if (k) td.className = k;
+        if (fams[i]) td.dataset.fam = fams[i]; tr.appendChild(td); });
+      tb.appendChild(tr);
+    });
+  }
+
+  /* generic dot plot: rows on y, several series on one x scale */
+  function dotPlot(box, rows, series, opt) {
+    box.innerHTML = '';
+    series = series.filter(s => shown(s.fam));
+    const W = box.clientWidth || 600, rowH = opt.rowH || 30, m = { t: 22, r: 16, b: 8 };
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    m.l = labelWidth(svg, rows.map(opt.label)) + 14;
+    if (opt.right) m.r = labelWidth(svg, rows.map(opt.right).concat([opt.rightHead || '']), 11) + 18;
+    const H = m.t + rows.length * rowH + m.b;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    box.style.minHeight = H + 'px';
+    const vals = rows.flatMap(r => series.map(s => r[s.key])).filter(isNum).map(Number);
+    const x = d3.scaleLinear([Math.min(0, d3.min(vals) ?? 0), opt.max ?? 1], [m.l, W - m.r]).nice();
+    const y = d3.scaleBand(rows.map(opt.label), [m.t, H - m.b]).padding(0.3);
+    const ticks = x.ticks(W < 450 ? 4 : 6);
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', d => x(d)).attr('x2', d => x(d)).attr('y1', m.t - 4).attr('y2', H - m.b)
+      .attr('stroke', d => d === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('x', d => x(d)).attr('y', m.t - 8).attr('text-anchor', 'middle')
+      .attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(d => d.toFixed(1));
+    if (opt.rightHead) svg.append('text').attr('x', W - 4).attr('y', m.t - 8).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(opt.rightHead);
+    const tip = tipFor(box);
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', r => `translate(0,${y(opt.label(r)) + y.bandwidth() / 2})`);
+    g.append('text').attr('x', m.l - 10).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(opt.label);
+    if (opt.right) g.append('text').attr('x', W - 4).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(opt.right);
+    g.append('line').attr('x1', r => { const v = series.map(s => r[s.key]).filter(isNum).map(Number); return v.length ? x(d3.min(v)) : 0; })
+      .attr('x2', r => { const v = series.map(s => r[s.key]).filter(isNum).map(Number); return v.length ? x(d3.max(v)) : 0; })
+      .attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 2);
+    series.forEach((s, i) => g.filter(r => isNum(r[s.key])).append('circle').attr('cx', r => x(Number(r[s.key]))).attr('r', s.r || 5)
+      .attr('fill', s.color).attr('stroke', 'var(--color-panel)').attr('stroke-width', 1).attr('opacity', .92));
+    g.append('rect').attr('x', 0).attr('y', -rowH / 2).attr('width', W).attr('height', rowH).attr('fill', 'transparent')
+      .on('mousemove', (ev, r) => tip.show(ev, opt.label(r) + (opt.metric ? ` · ${opt.metric(r)}` : ''),
+        series.map(s => [s.color, `${s.label}: ${fmt(r[s.key])}`]).concat(opt.extra ? opt.extra(r).map(t => [null, t]) : [])))
+      .on('mouseleave', () => tip.hide());
+  }
+
+  /* ---------- overview ---------- */
+  const OV = () => [
+    { key: 'glimmer_base', label: 'Glimmer zero-shot', color: dash.colors[1] },
+    { key: 'glimmer_ft', label: 'Glimmer fine-tuned (best LoRA)', color: dash.colors[0], fam: 'ft' },
+    { key: 'spark_1_3', label: 'Muse Spark 1.3', color: dash.colors[2] },
+    { key: 'classical_pick', label: 'Classical (pick)', color: dash.colors[3], fam: 'cl' }];
+  function drawOverview() {
+    fillMarks('overview_summary');
+    legend(document.getElementById('ov-legend'), OV());
+    const t = dash.data('types'), box = document.getElementById('ov-dots');
+    if (t.status === 'ok') {
+      const rows = t.data.slice().sort((a, b) => (a.never_observed ?? 0) - (b.never_observed ?? 0));
+      const cb = combo(), wd = dash.data('winners');
+      const win = Object.fromEntries((wd.status === 'ok' ? wd.data : []).map(w => [w.key, w]));
+      document.getElementById('ov-best-th').dataset.field = cb;
+      dotPlot(box, rows, OV(), { label: r => r.data_type, right: r => isNum(r.never_observed) ? Math.round(r.never_observed * 100) + '%' : '–',
+        rightHead: 'never seen', metric: r => r.metric,
+        extra: r => [`Classical pick: ${r.classical_pick_method || 'none'}`, `Training rows: ${Number(r.train_rows).toLocaleString('en')}`] });
+      rowsTable('ov-tbody', rows, r => [r.data_type, Number(r.targets).toLocaleString('en'), Number(r.train_rows).toLocaleString('en'), pct(r.never_observed),
+        fmt(r.glimmer_base), fmt(r.glimmer_sid_full), fmt(r.lomo740_all), fmt(r.spark_1_3), fmt(r.spark_1_2), fmt(r.classical_pick), r.classical_pick_method || '–', fmt(r.classical_oracle), (win[r.key] || {})[cb] || '–'],
+        (r, i) => {
+          const w = (win[r.key] || {})[cb];
+          const map = { 4: 'Glimmer zero-shot', 7: 'Muse Spark 1.3', 9: 'Classical (val pick)' };
+          const ftBest = w === 'Glimmer fine-tuned' && ((i === 5 && r.glimmer_ft === r.glimmer_sid_full) || (i === 6 && r.glimmer_ft === r.lomo740_all));
+          return i === 10 || i === 12 ? 'l' : ((map[i] && map[i] === w) || ftBest ? 'best' : '');
+        }, 'key');
+    } else if (t.status === 'error') { fail(box); document.getElementById('ov-tbody').innerHTML = ''; }
+    else { box.innerHTML = ''; document.getElementById('ov-tbody').innerHTML = ''; }
+  }
+
+  /* ---------- cross ---------- */
+  function heat(box, rows, field) {
+    box.innerHTML = '';
+    const targets = [...new Set(rows.map(r => r.target))], sources = [...new Set(rows.map(r => r.source))];
+    const W = box.clientWidth || 600;
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    const m = { t: 0, r: 8, b: 8, l: labelWidth(svg, targets) + 12 };
+    const colW = Math.max(56, (W - m.l - m.r) / sources.length);
+    const rot = colW < 90;
+    m.t = rot ? labelWidth(svg, sources, 11) * 0.75 + 16 : 24;
+    const cell = 40, H = m.t + targets.length * cell + m.b;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H); box.style.minHeight = H + 'px';
+    const x = d3.scaleBand(sources, [m.l, W - m.r]).padding(0.06), y = d3.scaleBand(targets, [m.t, H - m.b]).padding(0.06);
+    const maxAbs = d3.max(rows, r => Math.abs(Number(r[field]) || 0)) || 1;
+    svg.append('g').selectAll('text').data(sources).join('text')
+      .attr('transform', s => rot ? `translate(${x(s) + x.bandwidth() / 2},${m.t - 6}) rotate(-35)` : `translate(${x(s) + x.bandwidth() / 2},${m.t - 8})`)
+      .attr('text-anchor', rot ? 'start' : 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(s => s);
+    svg.append('g').selectAll('text').data(targets).join('text').attr('x', m.l - 8).attr('y', t => y(t) + y.bandwidth() / 2).attr('dy', '0.35em')
+      .attr('text-anchor', 'end').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(t => t);
+    const tip = tipFor(box);
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', r => `translate(${x(r.source)},${y(r.target)})`);
+    g.append('rect').attr('width', x.bandwidth()).attr('height', y.bandwidth()).attr('rx', 4).attr('fill', 'var(--cds-chart-grid)');
+    g.append('rect').attr('width', x.bandwidth()).attr('height', y.bandwidth()).attr('rx', 4)
+      .attr('fill', r => Number(r[field]) >= 0 ? dash.colors[0] : CRIT).attr('opacity', r => isNum(r[field]) ? 0.12 + 0.78 * Math.min(1, Math.abs(Number(r[field])) / maxAbs) : 0);
+    g.append('text').attr('x', x.bandwidth() / 2).attr('y', y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'middle').attr('font-size', 11)
+      .attr('fill', r => Math.abs(Number(r[field])) / maxAbs > 0.55 ? 'var(--color-bg)' : 'var(--color-fg)')
+      .text(r => field === 'drop_one_delta' ? sgn(r[field], 2) : fmt(r[field], 2));
+    g.on('mousemove', (ev, r) => tip.show(ev, `${r.source} → ${r.target}`, [
+      [null, `Source alone ρ: ${fmt(r.source_alone_rho)} on ${Number(r.n).toLocaleString('en')} targets`],
+      [null, `Within-type feature mean on the same targets: ${fmt(r.within_feature_mean_rho)}`],
+      [null, `Drop-one: ${sgn(r.drop_one_delta)} ρ`]])).on('mouseleave', () => tip.hide());
+  }
+  function drawCross() {
+    fillMarks('cross_headline'); fillMarks('cross_gene');
+    const cg = dash.data('cross_gene'), hb = document.getElementById('cx-heat');
+    if (cg.status === 'ok') heat(hb, cg.data, document.getElementById('cx-metric').value);
+    else if (cg.status === 'error') fail(hb); else hb.innerHTML = '';
+    const cs = dash.data('cross_summary'), sb = document.getElementById('cx-sum');
+    document.getElementById('lg-within').style.background = MUTED; document.getElementById('lg-cross').style.background = dash.colors[0];
+    if (cs.status === 'ok') {
+      const rows = cs.data.slice().sort((a, b) => b.within_cross - a.within_cross);
+      dotPlot(sb, rows, [{ key: 'within', label: 'Within type', color: MUTED }, { key: 'within_cross', label: 'Within + other types', color: dash.colors[0], r: 6 }],
+        { label: r => r.data_type, extra: r => [`Gene-covered (${r.n_gene_covered}): ${fmt(r.covered_within)} → ${fmt(r.covered_cross)}`,
+          `Never observed (${r.n_never_observed}): ${fmt(r.never_within)} → ${fmt(r.never_cross)}`] });
+      rowsTable('cx-sum-tbody', rows, r => [r.data_type, Number(r.targets).toLocaleString('en'), fmt(r.within), fmt(r.within_cross), Number(r.n_gene_covered).toLocaleString('en'),
+        fmt(r.covered_within), fmt(r.covered_cross), Number(r.n_never_observed).toLocaleString('en'), fmt(r.never_within), fmt(r.never_cross)],
+        (r, i) => i === 3 ? (r.within_cross - r.within > 0.005 ? 'up' : r.within_cross - r.within < -0.005 ? 'down' : '') : '', 'key');
+    } else if (cs.status === 'error') fail(sb); else sb.innerHTML = '';
+    const dl = dash.data('date_link'), db = document.getElementById('cx-date');
+    document.getElementById('lg-dmean').style.background = MUTED; document.getElementById('lg-dknn').style.background = dash.colors[2];
+    if (dl.status === 'ok') {
+      const rows = dl.data.slice().sort((a, b) => b.gain - a.gain);
+      dotPlot(db, rows, [{ key: 'mean_rho', label: 'Plain mean', color: MUTED }, { key: 'cross_knn_rho', label: 'Cross-type kNN', color: dash.colors[2], r: 6 }],
+        { label: r => r.pair.replace('->', ' → '), extra: r => [`Matched samples: ${r.matched_samples}, targets: ${r.targets}`, `Gain: ${sgn(r.gain)}`] });
+      rowsTable('cx-date-tbody', rows, r => [r.pair, Number(r.matched_samples).toLocaleString('en'), Number(r.targets).toLocaleString('en'), fmt(r.mean_rho), fmt(r.cross_knn_rho), sgn(r.gain), fmt(r.mae_mean), fmt(r.mae_cross)]);
+    } else if (dl.status === 'error') fail(db); else db.innerHTML = '';
+  }
+
+  /* ---------- hold-out ---------- */
+  const HO = () => [
+    { key: 'noctx_rho', label: 'Context-free zero-shot', color: CRIT },
+    { key: 'base_ctx', label: 'Zero-shot', color: dash.colors[1] },
+    { key: 'holdout_adapter', label: 'Hold-out LoRA', color: dash.colors[4], fam: 'ft' },
+    { key: 'ref', label: 'Fine-tuned reference', color: dash.colors[0], fam: 'ft' },
+    { key: 'classical_pick', label: 'Classical (pick)', color: dash.colors[3], fam: 'cl' },
+    { key: 'classical_S1', label: 'Classical, type absent (S1)', color: dash.colors[5], fam: 'cl' },
+    { key: 'classical_S3', label: 'Classical, own values only (S3)', color: dash.colors[6], fam: 'cl' },
+    { key: 'spark_1_3', label: 'Muse Spark 1.3', color: dash.colors[2] }];
+  const CH = () => [
+    { key: 'S1', label: 'S1 type absent', color: dash.colors[5] },
+    { key: 'S2', label: 'S2 new sample', color: dash.colors[4] },
+    { key: 'S3', label: 'S3 type unseen in training', color: dash.colors[6] },
+    { key: 'all_visible', label: 'All visible', color: dash.colors[3] }];
+  let offSel = null, chType = null;
+  function drawClassicalHoldout() {
+    legend(document.getElementById('ch-legend'), CH());
+    const b = dash.data('classical_holdout_best'), box = document.getElementById('ch-dots');
+    if (b.status === 'ok') {
+      const rows = b.data.slice().sort((x, y) => (y.S2 ?? -1) - (x.S2 ?? -1));
+      dotPlot(box, rows, CH(), { label: r => r.data_type,
+        extra: r => ['S1', 'S2', 'S3'].map(k => `${k} best: ${r[k + '_method'] || 'no prediction'}`) });
+    } else if (b.status === 'error') fail(box); else box.innerHTML = '';
+    const c = dash.data('classical_holdout'), sel = document.getElementById('ch-type');
+    if (c.status === 'ok') {
+      const types = [...new Set(c.data.map(r => r.data_type))];
+      if (sel.options.length !== types.length) { sel.innerHTML = ''; types.forEach(t => sel.appendChild(new Option(t, t))); }
+      if (!chType || !types.includes(chType)) chType = types.includes('Bulk RNA-seq TPM') ? 'Bulk RNA-seq TPM' : types[0];
+      sel.value = chType;
+      rowsTable('ch-tbody', c.data.filter(r => r.data_type === chType), r => [r.setting, r.method, fmt(r.primary), fmt(r.rho_seen), fmt(r.rho_never_seen),
+        fmt(r.rho_gene_covered), pct(r.within_10pct)], (r, i) => i === 1 ? 'l' : '', 'id');
+    } else document.getElementById('ch-tbody').innerHTML = '';
+  }
+  function forest(box, rows) {
+    box.innerHTML = '';
+    const W = box.clientWidth || 500, rowH = 26, m = { t: 22, r: 14, b: 8 };
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    m.l = labelWidth(svg, rows.map(r => r.data_type)) + 14;
+    const H = m.t + rows.length * rowH + m.b;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H); box.style.minHeight = H + 'px';
+    const ext = d3.extent(rows.flatMap(r => [r.ci_lo, r.ci_hi, r.delta]).filter(isNum).map(Number));
+    const lim = Math.max(Math.abs(ext[0] ?? 0.1), Math.abs(ext[1] ?? 0.1), 0.05);
+    const x = d3.scaleLinear([-lim, lim], [m.l, W - m.r]).nice();
+    const y = d3.scaleBand(rows.map(r => r.data_type), [m.t, H - m.b]).padding(0.3);
+    const ticks = x.ticks(W < 450 ? 4 : 6);
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', d => x(d)).attr('x2', d => x(d)).attr('y1', m.t - 4).attr('y2', H - m.b)
+      .attr('stroke', d => d === 0 ? 'var(--cds-chart-reference)' : 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('x', d => x(d)).attr('y', m.t - 8).attr('text-anchor', 'middle')
+      .attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(d => sgn(d, 2));
+    const tip = tipFor(box);
+    const col = r => !r.significant ? MUTED : (r.delta > 0 ? dash.colors[0] : CRIT);
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', r => `translate(0,${y(r.data_type) + y.bandwidth() / 2})`);
+    g.append('text').attr('x', m.l - 10).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 12)
+      .attr('fill', 'var(--color-fg)').attr('font-weight', r => r.is_holdout ? 600 : null).text(r => r.data_type + (r.is_holdout ? ' (held out)' : ''));
+    g.filter(r => isNum(r.ci_lo)).append('line').attr('x1', r => x(r.ci_lo)).attr('x2', r => x(r.ci_hi)).attr('stroke', col).attr('stroke-width', 2).attr('stroke-linecap', 'round');
+    g.filter(r => isNum(r.delta)).append('circle').attr('cx', r => x(r.delta)).attr('r', 4.5).attr('fill', col);
+    g.append('rect').attr('x', 0).attr('y', -rowH / 2).attr('width', W).attr('height', rowH).attr('fill', 'transparent')
+      .on('mousemove', (ev, r) => tip.show(ev, `${r.data_type} · without ${r.holdout_label}`, [
+        [null, `Hold-out ${fmt(r.holdout_score)} vs reference ${fmt(r.ref)} (${r.ref_run})`],
+        [null, `Δ ${sgn(r.delta)}  95% CI [${sgn(r.ci_lo)}, ${sgn(r.ci_hi)}]`],
+        [null, `${Number(r.prompts).toLocaleString('en')} prompts, ${Number(r.targets).toLocaleString('en')} targets`]]))
+      .on('mouseleave', () => tip.hide());
+  }
+  function diverging(box, rows) {
+    box.innerHTML = '';
+    const W = box.clientWidth || 500, rowH = 26, m = { t: 22, r: 50, b: 8 };
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    m.l = labelWidth(svg, rows.map(r => r.data_type)) + 14;
+    const H = m.t + rows.length * rowH + m.b;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H); box.style.minHeight = H + 'px';
+    const lim = Math.max(0.05, d3.max(rows, r => Math.abs(r.diff)) || 0.1);
+    const x = d3.scaleLinear([-lim, lim], [m.l, W - m.r]).nice();
+    const y = d3.scaleBand(rows.map(r => r.data_type), [m.t, H - m.b]).padding(0.25);
+    const ticks = x.ticks(W < 450 ? 4 : 6);
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', d => x(d)).attr('x2', d => x(d)).attr('y1', m.t - 4).attr('y2', H - m.b)
+      .attr('stroke', d => d === 0 ? 'var(--cds-chart-reference)' : 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('x', d => x(d)).attr('y', m.t - 8).attr('text-anchor', 'middle')
+      .attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(d => sgn(d, 2));
+    const tip = tipFor(box);
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', r => `translate(0,${y(r.data_type)})`);
+    g.append('text').attr('x', m.l - 10).attr('y', y.bandwidth() / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(r => r.data_type);
+    g.append('rect').attr('x', r => x(Math.min(0, r.diff))).attr('width', r => Math.max(1, Math.abs(x(r.diff) - x(0)))).attr('height', y.bandwidth()).attr('rx', 4)
+      .attr('fill', r => r.diff < 0 ? CRIT : dash.colors[0]);
+    g.append('text').attr('x', r => r.diff < 0 ? x(r.diff) - 4 : x(r.diff) + 4).attr('y', y.bandwidth() / 2).attr('dy', '0.35em')
+      .attr('text-anchor', r => r.diff < 0 ? 'end' : 'start').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(r => sgn(r.diff, 2));
+    g.append('rect').attr('x', 0).attr('width', W).attr('height', y.bandwidth()).attr('fill', 'transparent')
+      .on('mousemove', (ev, r) => tip.show(ev, r.data_type, [[null, `Without flow: ${fmt(r.no_flow)}`], [null, `Without bulk RNA: ${fmt(r.no_rna)}`], [null, `Difference: ${sgn(r.diff)}`]]))
+      .on('mouseleave', () => tip.hide());
+  }
+  function drawHoldout() {
+    fillMarks('holdout_headline'); fillMarks('transfer');
+    legend(document.getElementById('ho-legend'), HO());
+    const t = dash.data('transfer'), box = document.getElementById('ho-dots');
+    if (t.status === 'ok') {
+      const rows = t.data.map(r => ({ ...r, ref: r.all_ref ?? r.sid_full }));
+      dotPlot(box, rows, HO(), { label: r => r.data_type, rowH: 36,
+        extra: r => [`Context-free: ${r.noctx_prompts_done}/${r.noctx_prompts_total} prompts; ${r.noctx_distinct_preds} distinct value(s); predicted 0 for ${pct(r.noctx_pred_zero)} (truly 0: ${pct(r.true_zero)})`,
+          `Reference: ${r.ref_used}; transfer ${isNum(r.transfer_ratio) ? Math.round(r.transfer_ratio * 100) + '%' : '–'}`] });
+      rowsTable('ho-tbody', t.data, r => [r.data_type, Number(r.targets).toLocaleString('en'),
+        isNum(r.noctx_rho) ? fmt(r.noctx_rho) : (r.noctx_distinct_preds === 1 ? 'constant' : '–'), pct(r.noctx_pred_zero), pct(r.true_zero),
+        fmt(r.base_ctx), isNum(r.holdout_adapter) ? fmt(r.holdout_adapter) : 'running', fmt(r.sid_full), isNum(r.all_ref) ? fmt(r.all_ref) : 'running',
+        isNum(r.transfer_ratio) ? Math.round(r.transfer_ratio * 100) + '%' : '–', fmt(r.classical_pick), fmt(r.classical_within_cross), fmt(r.classical_S1), fmt(r.classical_S2), fmt(r.classical_S3), fmt(r.spark_1_3)], null, 'key');
+    } else if (t.status === 'error') { fail(box); document.getElementById('ho-tbody').innerHTML = ''; }
+    else { box.innerHTML = ''; document.getElementById('ho-tbody').innerHTML = ''; }
+    const hc = dash.data('holdout_contrast'), cb = document.getElementById('ho-contrast');
+    if (hc.status === 'ok') diverging(cb, hc.data.slice().sort((a, b) => a.diff - b.diff));
+    else if (hc.status === 'error') fail(cb); else cb.innerHTML = '';
+    const o = dash.data('offtarget'), ob = document.getElementById('ho-off'), sel = document.getElementById('ho-off-sel');
+    if (o.status === 'ok') {
+      const hs = [...new Set(o.data.map(r => r.holdout))];
+      if (sel.options.length !== hs.length) {
+        sel.innerHTML = '';
+        hs.forEach(h => { const r = o.data.find(d => d.holdout === h); sel.appendChild(new Option(r.holdout_label, h)); });
+      }
+      if (!offSel || !hs.includes(offSel)) offSel = hs.includes('rna') ? 'rna' : hs[0];
+      sel.value = offSel;
+      forest(ob, o.data.filter(r => r.holdout === offSel).sort((a, b) => (b.delta ?? 0) - (a.delta ?? 0)));
+    } else if (o.status === 'error') fail(ob); else ob.innerHTML = '';
+    drawClassicalHoldout();
+  }
+
+  /* ---------- base vs fine-tuned (original section) ---------- */
+  const C = () => ({ base: MUTED, ft: dash.colors[0] });
+  function dumbbell(rows) {
+    const box = document.getElementById('dumbbell'); box.innerHTML = '';
+    const W = box.clientWidth || 600, rowH = 30, m = { t: 22, r: 16, b: 8 };
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    m.l = labelWidth(svg, rows.map(r => r.data_type)) + 14;
+    const H = m.t + rows.length * rowH + m.b;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H); box.style.minHeight = H + 'px';
+    const vals = rows.flatMap(r => [Number(r.base_primary), vis().ft ? Number(r.ft_primary) : NaN]).filter(Number.isFinite);
+    const x = d3.scaleLinear([Math.min(0, d3.min(vals)), 1], [m.l, W - m.r]);
+    const y = d3.scaleBand(rows.map(r => r.data_type), [m.t, H - m.b]).padding(0.3);
+    const ticks = x.ticks(W < 450 ? 4 : 6);
+    svg.append('g').selectAll('line').data(ticks).join('line')
+      .attr('x1', d => x(d)).attr('x2', d => x(d)).attr('y1', m.t - 4).attr('y2', H - m.b).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(ticks).join('text')
+      .attr('x', d => x(d)).attr('y', m.t - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(d => d.toFixed(1));
+    const tip = tipFor(box);
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', r => `translate(0,${y(r.data_type) + y.bandwidth() / 2})`);
+    g.append('text').attr('x', m.l - 10).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(r => r.data_type);
+    const has = r => vis().ft && isNum(r.ft_primary);
+    g.filter(has).append('line').attr('x1', r => x(Number(r.base_primary))).attr('x2', r => x(Number(r.ft_primary)))
+      .attr('stroke', r => Number(r.ft_primary) >= Number(r.base_primary) ? C().ft : CRIT).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('opacity', .6);
+    g.append('circle').attr('cx', r => x(Number(r.base_primary))).attr('r', 5).attr('fill', C().base);
+    g.filter(has).append('circle').attr('cx', r => x(Number(r.ft_primary))).attr('r', 6).attr('fill', C().ft);
+    g.append('rect').attr('x', 0).attr('y', -rowH / 2).attr('width', W).attr('height', rowH).attr('fill', 'transparent')
+      .on('mousemove', (ev, r) => tip.show(ev, `${r.data_type} · ${r.metric}`, [[C().base, `Base ${fmt(r.base_primary)}`], [C().ft, `Fine-tuned ${fmt(r.ft_primary)}`], [null, `Change ${sgn(r.delta)}`]]))
+      .on('mouseleave', () => tip.hide());
+  }
+  const SC = () => [
+    { model: 'Glimmer zero-shot', color: dash.colors[1] }, { model: 'Glimmer fine-tuned', color: dash.colors[0], fam: 'ft' },
+    { model: 'Muse Spark 1.3', color: dash.colors[2] }, { model: 'Classical (val pick)', color: dash.colors[3], fam: 'cl' }].filter(s => shown(s.fam));
+  let selected = null, hiddenModels = new Set(['Muse Spark 1.3', 'Classical (val pick)']);
+  function scatter(pts, types) {
+    const sel = document.getElementById('gx-type');
+    if (sel.options.length !== types.length) {
+      sel.innerHTML = '';
+      types.forEach(t => sel.appendChild(new Option(t, t)));
+    }
+    if (!selected || !types.includes(selected)) selected = types.includes('Bulk RNA-seq TPM') ? 'Bulk RNA-seq TPM' : types[0];
+    sel.value = selected;
+    const lg = document.getElementById('sc-legend'); lg.innerHTML = '';
+    SC().forEach(s => {
+      const sp = document.createElement('span'); sp.style.cursor = 'pointer'; sp.style.opacity = hiddenModels.has(s.model) ? .4 : 1;
+      const i = document.createElement('i'); i.style.background = s.color; sp.appendChild(i); sp.appendChild(document.createTextNode(s.model));
+      sp.addEventListener('click', () => { hiddenModels.has(s.model) ? hiddenModels.delete(s.model) : hiddenModels.add(s.model); scatter(pts, types); });
+      lg.appendChild(sp);
+    });
+    const box = document.getElementById('scatter'); box.innerHTML = '';
+    const allowed = new Set(SC().map(s => s.model));
+    const data = pts.filter(p => p.data_type === selected && allowed.has(p.model) && !hiddenModels.has(p.model))
+      .map(p => ({ m: p.model, t: Math.asinh(Number(p.truth)), p: Math.asinh(Number(p.pred)), rt: Number(p.truth), rp: Number(p.pred) }))
+      .filter(d => Number.isFinite(d.t) && Number.isFinite(d.p));
+    const W = box.clientWidth || 500, H = Math.min(420, Math.max(300, W * 0.7)), m = { t: 10, r: 14, b: 36, l: 48 };
+    const svg = d3.select(box).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    const lo = d3.min(data, d => Math.min(d.t, d.p)) ?? 0, hi = d3.max(data, d => Math.max(d.t, d.p)) ?? 1;
+    const x = d3.scaleLinear([lo, hi], [m.l, W - m.r]).nice(), y = d3.scaleLinear([lo, hi], [H - m.b, m.t]).nice();
+    const fmtTick = v => { const r = Math.sinh(v); return Math.abs(r) >= 1000 ? d3.format('.2s')(r) : d3.format('.2~g')(r); };
+    const axis = (g) => g.attr('font-size', null).attr('font-family', null).call(g => g.selectAll('text').attr('fill', 'var(--color-fg-muted)').attr('font-size', 11))
+      .call(g => g.selectAll('line,path').attr('stroke', 'var(--cds-chart-axis)'));
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(W < 450 ? 4 : 6).tickFormat(fmtTick)).call(axis);
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(fmtTick)).call(axis);
+    svg.append('line').attr('x1', x(lo)).attr('y1', y(lo)).attr('x2', x(hi)).attr('y2', y(hi)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '4 4');
+    svg.append('text').attr('x', (m.l + W - m.r) / 2).attr('y', H - 4).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text('True value');
+    svg.append('text').attr('transform', `translate(12,${(m.t + H - m.b) / 2}) rotate(-90)`).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text('Predicted');
+    const colorOf = Object.fromEntries(SC().map(s => [s.model, s.color]));
+    svg.append('g').selectAll('circle').data(data).join('circle').attr('cx', d => x(d.t)).attr('cy', d => y(d.p)).attr('r', 2.6).attr('fill', d => colorOf[d.m]).attr('opacity', .6);
+    if (!data.length) return;
+    const tip = tipFor(box);
+    const del = d3.Delaunay.from(data, d => x(d.t), d => y(d.p));
+    svg.append('rect').attr('x', m.l).attr('y', m.t).attr('width', W - m.l - m.r).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+      .on('mousemove', ev => {
+        const [px, py] = d3.pointer(ev, svg.node()); const d = data[del.find(px, py)]; if (!d) return;
+        tip.show(ev, d.m, [[colorOf[d.m], `True ${d3.format('.4~g')(d.rt)}`], [null, `Predicted ${d3.format('.4~g')(d.rp)}`]]);
+      })
+      .on('mouseleave', () => tip.hide());
+  }
+  function microbiome(rows) {
+    const fx = v => { const n = Number(v); return n >= 100 ? Math.round(n) + '×' : n.toFixed(1) + '×'; };
+    rowsTable('mb-tbody', rows, r => [r.scope, Number(r.targets).toLocaleString('en'), fmt(r.base_spearman), fmt(r.ft_spearman), fx(r.base_fold_off), fx(r.ft_fold_off),
+      pct(r.base_within_10x), pct(r.ft_within_10x), pct(r.base_pred_zero), pct(r.ft_pred_zero)]);
+    const box = document.getElementById('mb-chart'); box.innerHTML = '';
+    const W = box.clientWidth || 500, rowH = 52, m = { t: 22, r: 56, b: 6 };
+    const svg = d3.select(box).append('svg').attr('width', '100%');
+    m.l = labelWidth(svg, rows.map(r => r.scope)) + 14;
+    const H = m.t + rows.length * rowH + m.b;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('height', H);
+    const maxv = d3.max(rows, r => Math.max(Number(r.base_fold_off), Number(r.ft_fold_off)));
+    const x = d3.scaleLog([1, Math.max(10, maxv * 1.2)], [m.l, W - m.r]);
+    const ticks = [1, 10, 100, 1000, 10000].filter(t => t <= x.domain()[1]);
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('x1', d => x(d)).attr('x2', d => x(d)).attr('y1', m.t - 4).attr('y2', H - m.b).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('x', d => x(d)).attr('y', m.t - 8).attr('text-anchor', 'middle')
+      .attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text(d => d3.format(',')(d) + '×');
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (r, i) => `translate(0,${m.t + i * rowH})`);
+    g.append('text').attr('x', m.l - 10).attr('y', rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(r => r.scope);
+    [['base_fold_off', C().base, 8], ['ft_fold_off', C().ft, 26]].filter(([k]) => k === 'base_fold_off' || vis().ft).forEach(([k, col, y0]) => {
+      g.append('rect').attr('x', m.l).attr('y', y0).attr('height', 14).attr('rx', 4).attr('fill', col)
+        .attr('width', r => Math.max(2, x(Math.max(1, Number(r[k]))) - m.l));
+      g.append('text').attr('x', r => x(Math.max(1, Number(r[k]))) + 6).attr('y', y0 + 7).attr('dy', '0.35em').attr('font-size', 11)
+        .attr('fill', 'var(--color-fg-muted)').text(r => fx(r[k]));
+    });
+  }
+  function drawFinetune() {
+    ['lg-base'].forEach(id => document.getElementById(id).style.background = C().base);
+    ['lg-ft'].forEach(id => document.getElementById(id).style.background = C().ft);
+    document.querySelectorAll('.lg-b').forEach(e => e.style.background = C().base);
+    document.querySelectorAll('.lg-f').forEach(e => e.style.background = C().ft);
+    fillMarks('summary'); fillMarks('micro_summary');
+    const s = dash.data('scores'), db = document.getElementById('dumbbell');
+    if (s.status === 'ok') {
+      const key = r => isNum(r.ft_primary) ? Number(r.ft_primary) : Number(r.base_primary);
+      const rows = s.data.slice().sort((a, b) => key(b) - key(a));
+      dumbbell(rows);
+      rowsTable('tbody', rows, r => [r.data_type, r.metric, Number(r.targets).toLocaleString('en'), fmt(r.base_primary), fmt(r.ft_primary), sgn(r.delta),
+        pct(r.base_within_10pct), pct(r.ft_within_10pct), pct(r.base_answered), pct(r.ft_answered)],
+        (r, i) => i === 1 ? 'l' : i === 5 && isNum(r.delta) ? (r.delta > 0.005 ? 'up' : r.delta < -0.005 ? 'down' : '') : '', 'key');
+    } else if (s.status === 'error') { fail(db); document.getElementById('tbody').innerHTML = ''; }
+    else { db.innerHTML = ''; document.getElementById('tbody').innerHTML = ''; }
+    const mb = dash.data('microbiome'), mbBox = document.getElementById('mb-chart');
+    if (mb.status === 'ok') microbiome(mb.data);
+    else if (mb.status === 'error') { fail(mbBox); document.getElementById('mb-tbody').innerHTML = ''; }
+    else { mbBox.innerHTML = ''; document.getElementById('mb-tbody').innerHTML = ''; }
+    const p = dash.data('points'), sc = document.getElementById('scatter');
+    if (p.status === 'ok') {
+      const types = s.status === 'ok' ? s.data.filter(r => r.key !== 'hla').map(r => r.data_type) : [...new Set(p.data.map(d => d.data_type))];
+      scatter(p.data, types);
+    } else if (p.status === 'error') fail(sc); else sc.innerHTML = '';
+  }
+
+  /* ---------- runs ---------- */
+  let lbType = null;
+  function drawRuns() {
+    const e = dash.data('experiments'), eb = document.getElementById('exps');
+    if (e.status === 'ok') {
+      eb.innerHTML = '';
+      e.data.filter(x => shown(famOf(x.family))).sort((a, b) => a.order - b.order).forEach(x => {
+        const d = document.createElement('div'); d.className = 'gx-exp';
+        const head = document.createElement('div'); head.className = 'gx-row';
+        const t = document.createElement('b'); t.className = 't'; t.textContent = x.name;
+        const s = document.createElement('span'); s.className = 'gx-pill'; s.textContent = x.status;
+        head.append(t, s); d.appendChild(head);
+        const q = document.createElement('div'); q.className = 'q'; q.textContent = x.question; d.appendChild(q);
+        const st = document.createElement('div'); st.textContent = x.setup; d.appendChild(st);
+        [['Family', x.family], ['Compute', x.compute], ['Files', x.where]].forEach(([k, v]) => {
+          const r = document.createElement('div'); r.className = 'm'; r.textContent = `${k}: ${v}`; d.appendChild(r); });
+        eb.appendChild(d);
+      });
+    } else if (e.status === 'error') fail(eb); else eb.innerHTML = '';
+    const lb = dash.data('leaderboard'), sel = document.getElementById('lb-type');
+    if (lb.status === 'ok') {
+      const types = [...new Set(lb.data.map(r => r.data_type))];
+      if (sel.options.length !== types.length) { sel.innerHTML = ''; types.forEach(t => sel.appendChild(new Option(t, t))); }
+      if (!lbType || !types.includes(lbType)) lbType = types[0];
+      sel.value = lbType;
+      const rows = lb.data.filter(r => r.data_type === lbType && shown(famOf(r.family))).sort((a, b) => (b.primary ?? -9) - (a.primary ?? -9));
+      const tb = document.getElementById('lb-tbody'); tb.innerHTML = '';
+      rows.forEach(r => {
+        const tr = document.createElement('tr'); tr.dataset.key = `${encodeURIComponent(r.run_id)},${encodeURIComponent(r.key)}`;
+        [r.run, r.family, fmt(r.primary), pct(r.answered), pct(r.within_10pct), fmt(r.median_abs_err_asinh)].forEach((c, i) => {
+          const td = document.createElement('td'); td.textContent = c; if (i === 1) td.className = 'l'; tr.appendChild(td); });
+        tb.appendChild(tr);
+      });
+    } else document.getElementById('lb-tbody').innerHTML = '';
+    const rn = dash.data('runs');
+    if (rn.status === 'ok') rowsTable('runs-tbody', rn.data.filter(r => shown(famOf(r.family))), r => [r.run, r.family, isNum(r.prompts) ? Number(r.prompts).toLocaleString('en') : '–', r.note],
+      (r, i) => i === 1 ? 'l' : i === 3 ? 'wrap' : '', 'run_id');
+    else document.getElementById('runs-tbody').innerHTML = '';
+  }
+
+  /* ---------- tabs ---------- */
+  const DRAW = { overview: drawOverview, cross: drawCross, holdout: drawHoldout, finetune: drawFinetune, runs: drawRuns };
+  let page = 'overview';
+  function show(p, link) {
+    if (!DRAW[p]) return;
+    page = p;
+    document.querySelectorAll('.gx-tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.page === p)));
+    document.querySelectorAll('.gx-page').forEach(s => { s.hidden = s.id !== p; });
+    if (link) dash.setLink(p);
+    DRAW[p]();
+  }
+  document.querySelectorAll('.gx-tabs button').forEach(b => b.addEventListener('click', () => show(b.dataset.page, true)));
+  document.getElementById('cx-metric').addEventListener('change', () => drawCross());
+  document.getElementById('ho-off-sel').addEventListener('change', (ev) => { offSel = ev.target.value; drawHoldout(); });
+  document.getElementById('gx-type').addEventListener('change', (ev) => { selected = ev.target.value; drawFinetune(); });
+  document.getElementById('ch-type').addEventListener('change', (ev) => { chType = ev.target.value; drawHoldout(); });
+  document.getElementById('lb-type').addEventListener('change', (ev) => { lbType = ev.target.value; drawRuns(); });
+
+  let first = true;
+  const tgFt = document.getElementById('tg-ft'), tgCl = document.getElementById('tg-cl');
+  tgFt.addEventListener('change', () => dash.setParams({ show_ft: tgFt.checked }));
+  tgCl.addEventListener('change', () => dash.setParams({ show_cl: tgCl.checked }));
+  dash.onData(() => {
+    const v = vis(), root = document.querySelector('.gx');
+    root.classList.toggle('hide-ft', !v.ft); root.classList.toggle('hide-cl', !v.cl);
+    tgFt.checked = v.ft; tgCl.checked = v.cl;
+    document.querySelectorAll('[data-source="overview_summary"]').forEach(el => { el.dataset.where = 'combo=' + combo(); });
+    fillMarks('overview_summary');
+    if (first) {
+      first = false;
+      const h = location.hash.slice(1);
+      if (DRAW[h]) { show(h, false); return; }
+      const el = h && document.getElementById(h);
+      const pg = el && el.closest('.gx-page');
+      if (pg) { show(pg.id, false); el.scrollIntoView(); return; }
+    }
+    DRAW[page]();
+  });
+})();
+</script>
