@@ -364,7 +364,12 @@ def main():
           '`lomo740_<type>_full` runs re-evaluate a hold-out adapter on every prompt; their per-type change vs `lomo740_all`',
           '(off-target effect of dropping that type) is in `osteo_results_lomo/offtarget_scores.json` (`scripts/score_offtarget.py`).',
           'Full-eval outputs as the LOMO job pulls them: `osteo_results_lomo/evals/` (incl. `lomo740h100_all`, the all-data reference',
-          're-run with H100 fallback; a later `lomo740_all` full eval would duplicate it).', '']
+          're-run with H100 fallback; a later `lomo740_all` full eval would duplicate it).', '',
+          '**Never-trained-on training rows:** each lomo740 run saw 5,920 of the 11,824 training rows (740 steps × 8 GPUs × batch 1).',
+          '[`osteo_results_lomo/splits/`](06_heldout_experiments/osteo_results_lomo/splits/README.md) holds the 5,904 rows each run',
+          'never saw (`lomo740_<run>_unseen_rows.jsonl`, with `row_id` = line in `train/sid_full.jsonl`), the 391 rows none of the',
+          'five saw (`never_trained_by_any_lomo740.jsonl`), and the seen ids in exact per-rank training order (`<run>_row_ids.json`),',
+          'rebuilt by `scripts/reconstruct_seen_rows.py` and verified against the first real batches. Not available for `sid_full`.', '']
     if scores:
         L += ['| hold-out | metric | base | sid_full | all | holdout | transfer [95% CI] |', '|---|---|---:|---:|---:|---:|---|']
         for s in scores.values():
