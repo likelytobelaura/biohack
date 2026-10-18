@@ -1,5 +1,7 @@
 # MetaPhlAn log-abundance linear probe (2026-10-17)
 
+Write-up page: `microbiome-neuron-hunt.html`, published at https://claude.ai/artifact/LsWtBTqzj641ws2Jcfvzdf (private).
+
 Does Muse-Glimmer-30B (base, and the `lomo740_all` LoRA) linearly encode the log10 read count of a microbiome taxon,
 and is there a "microbiome neuron"? Run `v1`, one H200 on Modal (app `osteo-mpa-probe`).
 
