@@ -18,6 +18,8 @@
 !06_heldout_experiments/*/baselines/prompts_*.jsonl
 !06_heldout_experiments/*/baselines/truth_*.jsonl
 !06_heldout_experiments/osteo_results_lomo/evals/**/*.jsonl
+# training rows each lomo740 run never saw (subsets of the public training set; Laura, 2026-10-17)
+!06_heldout_experiments/osteo_results_lomo/splits/*.jsonl
 !08_other_baselines/muse_spark/*.jsonl
 !08_other_baselines/nim_noctx/out_*.jsonl
 !08_other_baselines/nim_noctx/baseline_*.jsonl
@@ -41,3 +43,7 @@ __pycache__/
 *.scoring
 10_esperanto_et_soc1/aifoundry3/data/
 10_esperanto_et_soc1/aifoundry3/runs/mnist/*/run.log
+# cross-type timepoint snapshots (Laura, 2026-10-18): training snapshots (from the public training set), snapshot eval
+# prompts and model answers; the snapshot gold labels (eval_snap_labels.csv) stay local like 02_golden_labels
+!14_crosstype_snapshots/data/*.jsonl
+!14_crosstype_snapshots/outputs/**/*.jsonl

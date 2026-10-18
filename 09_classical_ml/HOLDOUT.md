@@ -33,9 +33,10 @@ masks only never-seen species, so nothing to carry).
 | **S2** GBM + links | **0.951** | 0.742 | **0.519** | 0.603 |
 | **S3** entity mean / median | −0.127 / −0.091 | 0.153 / 0.161 | 0.010 / 0.188 | 0.345 / 0.307 |
 | **S3** transfer GBM | −0.124 | 0.082 | −0.107 | 0.265 |
-| Glimmer LoRA, type held out of training | 0.949 | 0.664 | running | running |
+| Glimmer LoRA, type held out of training | 0.949 | 0.664 | 0.306 | 0.620 |
 | Glimmer zero-shot with own values | 0.970 | 0.487 | 0.130 | 0.472 |
-| Glimmer LoRA sid_full (all types) | 0.947 | 0.678 | 0.478 | 0.295 |
+| Glimmer LoRA all types, same 740-step schedule (matched reference) | 0.973 | 0.694 | 0.526 | 0.461 |
+| Glimmer LoRA sid_full (all types, stopped halfway) | 0.947 | 0.678 | 0.478 | 0.295 |
 | Classical, everything visible (val pick) | 0.971 | 0.749 | 0.416 | 0.680 |
 
 ## All types, best method per setting (Spearman ρ; accuracy for multiplex IF)
@@ -65,7 +66,16 @@ masks only never-seen species, so nothing to carry).
    reach 0.58 with a plain feature mean).
 2. **A sample's own values, without the type's other samples, are weak for classical methods** (S3: ρ 0.1–0.4, flow
    negative). The Glimmer LoRA trained without bulk RNA reaches 0.66 from the same information (the entity's own
-   values plus general training), and without flow reaches 0.95. So the LLM gets far more out of the entity's own
+   values plus general training; 86% of the all-data LoRA's gain over zero-shot), and without flow reaches 0.95.
+   TCR is different: without TCR training rows the LoRA reaches 0.31 against 0.53 with them (44% of the gain), so
+   clonotype tables need their own training data; classical S2 (0.52) matches the all-data LoRA there.
+   Xenium is the reverse: the LoRA trained without Xenium rows scores 0.62 on Xenium, above both the all-data LoRA
+   (0.46) and zero-shot (0.47); sid_full is 0.29. Training on the 252 Xenium rows appears to hurt Xenium prediction,
+   while what the model learns from the other types helps it; classical S2 (0.62) matches the hold-out LoRA.
+   Off-target effects on scRNA and Xenium are **not** interpretable yet: against the matched all-data LoRA, removing
+   bulk RNA moves scRNA −0.17, removing TCR (which shares no genes) −0.15, removing flow +0.09, and Xenium moves
+   ±0.12 the same way. That pattern looks like training run-to-run variance; the bootstrap intervals cover eval
+   sampling only. Repeat seeds are needed before reading any LoRA off-target effect as data-type transfer. So the LLM gets far more out of the entity's own
    values and the feature names than any classical model can.
 3. **With no data of the type at all, only gene-linked types can be predicted, and only as rankings:** bulk RNA from
    other types' gene levels ρ 0.53, Xenium 0.45, scRNA 0.42; Olink, DIA and CITE-seq barely (≤ 0.12). Untrained Glimmer
