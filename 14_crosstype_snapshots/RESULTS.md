@@ -91,8 +91,9 @@ Paired bootstrap over prompts (500); `standard_scores.json`, `scripts/score_stan
 ### Reading
 One pass over 5,904 snapshots raised own-only scores; no cross-assay use was detected, within the limits above. Within one
 patient there are only ~19 timepoints, so blood-level links have little to learn from; the same-cell link has
-thousands of examples and still shows nothing, which suggests the objective (mostly own-type targets, context
-values copied from the prompt) gives no pressure to use the other modality. Next options: targets that can
+thousands of training cells, but prompts rarely paired a protein with its own gene, so it was barely exercised in
+training or eval. A plausible further reason is the objective (mostly own-type targets, context values copyable from
+the prompt), which gives little pressure to use the other modality. Next options: prompts that always pair each masked protein with its own gene's mRNA, targets that can
 *only* be predicted from the other assay (e.g. mask a whole assay at a timepoint / all ADTs of a cell given its
 RNA), a data-only control (same rows, single-type format) to separate format from data, and a second seed.
 
