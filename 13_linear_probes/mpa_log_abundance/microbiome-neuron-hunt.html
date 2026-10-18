@@ -98,7 +98,7 @@ a { color: var(--accent); }
 
   <div class="verdict">
     <p class="eyebrow">What we found</p>
-    <p><strong>There is a candidate microbiome neuron, <span class="neuron-id">layer 36 · #15557</span>, but no single neuron carries the microbiome.</strong> This neuron fires on microbiome answers and stays near zero on five other data types. It already exists in the base model, and the fine-tune doubled its activation.</p>
+    <p><strong>There is a microbiome neuron, <span class="neuron-id">layer 36 · #15557</span>, but no single neuron carries the microbiome.</strong> It fires just before the model writes or reads a MetaPhlAn read count, never on taxon names, and stays silent on five other data types. Switching it off changes only microbiome answers, but by a small amount. Boosting it in the base model does not reproduce the fine-tune's gains.</p>
     <p>The abundance signal as a whole is spread across many neurons and attention. The probe direction is mostly a general "how big is this number" axis that also reads protein and RNA values. The base model already holds most of the abundance information before fine-tuning; it just writes it out badly.</p>
   </div>
 
@@ -258,7 +258,70 @@ a { color: var(--accent); }
       <li><strong>A few data-type-aware neurons</strong> feeding that axis. <span class="neuron-id">L36 #15557</span> responds to "this is a microbiome count" and was strengthened by fine-tuning. <span class="neuron-id">L37 #18399</span> responds to "this is a large raw count", which covers both microbes and proteomics.</li>
       <li><strong>A copying route through attention</strong> that the fine-tune relies on most. It explains why steering the axis barely moves the fine-tune.</li>
     </ul>
-    <p>So #15557 is a real candidate with a clear signature. It isn't proven causal on its own yet, because it was ablated only as part of the top-5 and top-20 sets.</p>
+    <p>So #15557 is a real candidate with a clear signature. The follow-ups below test it on its own.</p>
+  </section>
+
+  <section>
+    <div class="prose">
+      <p class="eyebrow">Experiment 5 · follow-ups</p>
+      <h2>Testing <span class="neuron-id">L36 #15557</span> on its own</h2>
+      <p>Three targeted tests. Each compares against a random neuron from the same layer (L36 #9448) treated the same way.</p>
+      <h3>A. Switch it off in the fine-tune, across data types</h3>
+      <p>We set the neuron to zero while the fine-tune wrote every answer: 364 microbiome values and 959 values from five other data types.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Data type</th><th class="num">Answers changed</th><th class="num">Mean |shift| (log10)</th><th class="num">Random neuron off: changed / |shift|</th><th class="num">Spearman clean → off</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>MetaPhlAn (microbiome)</td><td class="num">8.8%</td><td class="num">0.047</td><td class="num">2.2% / 0.014</td><td class="num">0.64 → 0.68</td></tr>
+          <tr><td>DIA proteomics</td><td class="num">16.3%</td><td class="num">0.006</td><td class="num">11.7% / 0.006</td><td class="num">0.85 → 0.85</td></tr>
+          <tr><td>Flow cytometry</td><td class="num">8.4%</td><td class="num">0.003</td><td class="num">9.4% / 0.004</td><td class="num">0.97 → 0.97</td></tr>
+          <tr><td>Bulk RNA-seq</td><td class="num">3.7%</td><td class="num">0.002</td><td class="num">2.5% / 0.001</td><td class="num">0.74 → 0.74</td></tr>
+          <tr><td>CITE-seq</td><td class="num">3.6%</td><td class="num">0.003</td><td class="num">2.9% / 0.004</td><td class="num">0.61 → 0.61</td></tr>
+          <tr><td>Xenium</td><td class="num">0.7%</td><td class="num">0.000</td><td class="num">0.7% / 0.000</td><td class="num">0.67 → 0.67</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>The effect is <strong>microbiome-specific</strong>. On microbiome answers, switching #15557 off moves values about 3× more than switching off the random neuron (0.047 vs 0.014). On the other five types it does no more than the random neuron, because there is nothing for it to act on. On the other types, "changed" counts tiny last-digit flips. The effect is also <strong>small</strong>: under 9% of microbiome answers change. Ranking went up slightly (0.64 → 0.68), within about one noise width.</p>
+      <h3>B. Boost it in the base model to the fine-tune's level</h3>
+      <p>The fine-tune's mean activation is 2.13× the base model's, so we multiplied the base model's #15557 by 2.13 while it wrote the 364 microbiome answers.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Base model condition</th><th class="num">Spearman</th><th class="num">Mean abs. error (log10)</th><th class="num">Zeros</th><th class="num">Answers changed</th></tr></thead>
+        <tbody>
+          <tr><td>No intervention</td><td class="num">0.48</td><td class="num">2.01</td><td class="num">33%</td><td class="num">–</td></tr>
+          <tr class="hl"><td>#15557 × 2.13</td><td class="num">0.49</td><td class="num">2.04</td><td class="num">33%</td><td class="num">10.7%</td></tr>
+          <tr><td>Random L36 neuron × 2.13 (control)</td><td class="num">0.48</td><td class="num">2.04</td><td class="num">34%</td><td class="num">5.2%</td></tr>
+          <tr><td>#15557 × 2.13 and L37 #18399 × 1.47</td><td class="num">0.50</td><td class="num">2.08</td><td class="num">35%</td><td class="num">14.8%</td></tr>
+          <tr><td>Fine-tune, for reference</td><td class="num">0.63</td><td class="num">1.03</td><td class="num">15%</td><td class="num">–</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Boosting the neuron does not make the base model behave like the fine-tune. Zero answers stay at 33% and error does not fall. The fine-tune's gains come from elsewhere: attention and the many other small changes the LoRA makes.</p>
+      <h3>C. Where in the prompt it fires</h3>
+      <p>We recorded the neuron on every token of all 121 prompts (about 320,000 tokens) and grouped them.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Token group (fine-tune)</th><th class="num">Tokens</th><th class="num">Mean activation</th><th class="num">Share above 1.0</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td>Microbiome · answer position</td><td class="num">1,074</td><td class="num">2.09</td><td class="num">71%</td></tr>
+          <tr><td>Microbiome · rest of the written answer</td><td class="num">8,532</td><td class="num">0.91</td><td class="num">36%</td></tr>
+          <tr><td>Microbiome · other prompt text (incl. sample dates)</td><td class="num">43,748</td><td class="num">0.47</td><td class="num">17%</td></tr>
+          <tr><td>Microbiome · numbers in the prompt</td><td class="num">58,566</td><td class="num">0.33</td><td class="num">12%</td></tr>
+          <tr><td>Microbiome · taxon names</td><td class="num">62,242</td><td class="num">0.03</td><td class="num">0.9%</td></tr>
+          <tr><td>Other data types · answer position</td><td class="num">959</td><td class="num">−0.04</td><td class="num">5%</td></tr>
+          <tr><td>Other data types · all other tokens</td><td class="num">139,358</td><td class="num">≈ 0</td><td class="num">≤ 5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>It never fires on taxon names. Its strongest tokens (activation 8–9) all sit just before a read count. These are the sample-date keys in the per-sample lines, as in <code>stool_2026-06-03=</code>, followed by a count. They are also the JSON slots, as in <code>"11": </code>, followed by a count. The base model shows the same pattern at half the strength.</p>
+      <p><strong>What it is:</strong> a "microbiome read count comes next" detector. It recognises the MetaPhlAn count-slot format, in the prompt and in the answer, and fine-tuning doubled its strength. It nudges the size of the number written there, but it is one small component, not the place where abundance is computed.</p>
+    </div>
   </section>
 
   <section class="prose">
@@ -274,13 +337,13 @@ a { color: var(--accent); }
 
   <section class="prose">
     <p class="eyebrow">Next</p>
-    <h2>Three experiments to settle it</h2>
+    <h2>Where to look next</h2>
     <ol class="steps">
-      <li><span>Ablate <span class="neuron-id">L36 #15557</span> on its own and measure the effect on microbiome values versus the other five data types. A microbiome-only drop would confirm it.</span></li>
-      <li><span>Patch the fine-tune's activation of #15557 (and #18399) into the base model and see whether the base model's zero answers recover.</span></li>
-      <li><span>Check whether #15557 fires on taxon names and other microbiome prompt tokens, not only at answers.</span></li>
+      <li><span>Find where the fine-tune's gain actually lives. Patch the fine-tune's attention outputs (layers 30–45) into the base model and see whether its zero answers recover.</span></li>
+      <li><span>Find the attention heads that copy a taxon's counts from the per-sample lines, which is where #15557 also fires.</span></li>
+      <li><span>Repeat the ranking on a second fine-tune seed (<code>sid_full</code>) to check that #15557 is stable.</span></li>
     </ol>
-    <p class="meta">Each is about $2–3 on one H200.</p>
+    <p class="meta">Each is about $3–6 on one H200.</p>
   </section>
 
   <hr>
@@ -292,6 +355,7 @@ a { color: var(--accent); }
       <div><span class="mono">build_mpa_probe.py</span><span>builds the probe examples</span></div>
       <div><span class="mono">mpa_probe.py</span><span>extracts activations, fits the per-layer probes (Experiment 1)</span></div>
       <div><span class="mono">mpa_neuron.py</span><span>attribution, specificity and causal tests (Experiments 2–4)</span></div>
+      <div><span class="mono">mpa_followup.py</span><span>single-neuron ablation, patching and prompt-token map (Experiment 5)</span></div>
       <div><span class="mono">results/*.json</span><span>every number on this page</span></div>
       <div><span class="mono">Modal volume</span><span><code>osteo-data:/outputs/mpa_probe/v1/</code>, about 20 GB of saved activations</span></div>
     </div>
