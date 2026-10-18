@@ -1,0 +1,12 @@
+600 targets; truth zero 0.61, <=1 0.80, 20 distinct
+hint library mean               rho 0.688  MAE 1.084  exact 0.000
+hint library mean x cell total  rho 0.742  MAE 176.531  exact 0.047
+hint detected %                 rho 0.690  MAE 13.440  exact 0.222
+hint round(library mean)        rho 0.552  MAE 1.083  exact 0.615
+hint all zero                   rho n/a  MAE 1.447  exact 0.607
+base       n=600 rho 0.472  MAE 1.000  exact 0.610  zeros 0.90  distinct 16  rho(answer, hint mean) 0.480  top [(0.0, 541), (1.0, 14), (2.0, 10)]
+sid_full   n=600 rho 0.295  MAE 1.328  exact 0.615  zeros 0.97  distinct 7  rho(answer, hint mean) 0.280  top [(0.0, 580), (1.0, 14), (10.0, 2)]
+all        n=600 rho 0.461  MAE 1.297  exact 0.617  zeros 0.92  distinct 8  rho(answer, hint mean) 0.457  top [(0.0, 551), (1.0, 43), (8.0, 1)]
+no_xenium  n=600 rho 0.620  MAE 1.242  exact 0.653  zeros 0.74  distinct 3  rho(answer, hint mean) 0.679  top [(0.0, 446), (1.0, 153), (10.0, 1)]
+no_rna     n=600 rho 0.342  MAE 1.335  exact 0.610  zeros 0.96  distinct 5  rho(answer, hint mean) 0.345  top [(0.0, 574), (1.0, 20), (7.0, 3)]
+no_tcr     n=600 rho 0.338  MAE 1.142  exact 0.612  zeros 0.95  distinct 9  rho(answer, hint mean) 0.342  top [(0.0, 573), (1.0, 18), (20.0, 2)]
