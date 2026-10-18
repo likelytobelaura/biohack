@@ -43,3 +43,7 @@ __pycache__/
 *.scoring
 10_esperanto_et_soc1/aifoundry3/data/
 10_esperanto_et_soc1/aifoundry3/runs/mnist/*/run.log
+# cross-type timepoint snapshots (Laura, 2026-10-18): training snapshots (from the public training set), snapshot eval
+# prompts and model answers; the snapshot gold labels (eval_snap_labels.csv) stay local like 02_golden_labels
+!14_crosstype_snapshots/data/*.jsonl
+!14_crosstype_snapshots/outputs/**/*.jsonl
