@@ -68,6 +68,10 @@ def pairs(ans, cond, t, pids=None):
 def metrics(pr, t):
     if t == 'hla':
         return {'n': len(pr), 'exact': sum(str(p).strip('"') == tr for _, p, tr in pr) / max(len(pr), 1)}
+    if t == 'mif':   # 0/1 marker positivity: accuracy, as in the standard eval
+        ok = [(num(p), num(tr)) for _, p, tr in pr]
+        ok = [(a, b) for a, b in ok if a is not None and b is not None]
+        return {'n': len(pr), 'answered': len(ok), 'rho': sum(round(a) == round(b) for a, b in ok) / max(len(ok), 1), 'metric': 'accuracy'}
     xs, ys, err = [], [], []
     for _, p, tr in pr:
         p, tr = num(p), num(tr)
