@@ -1,11 +1,14 @@
 # Results
 
-**Bottom line.** Continuing `lomo740_all` on cross-type snapshots made the model much better at the snapshot
-format (own-only ρ up .10–.46 on most types) but it still does **not use the other assays**: with the same
-timepoint's / same cell's other data added, no type improves meaningfully over the same prompt without it
-(largest: DIA +.017, TCR +.016, Olink +.010, all CIs touching 0), and the right timepoint is no better than a
-wrong one. What changed: other assays no longer *hurt* CITE (−.061 before → +.008 after). On the original
-prompts it gained on bulk RNA / CITE / scRNA and lost most of its TCR gain (−.25). Single seed, one pass.
+**Bottom line.** In this test, continuing `lomo740_all` on cross-type snapshots showed **no detectable use of other
+assays**: adding the same timepoint's / same cell's other data changed no type by more than about ±.03 ρ, roughly the
+test's own uncertainty (CI half-widths .003–.049, median .023), and the right timepoint scored about the same as a
+wrong one. This is a null with limited power, not proof that nothing cross-type was learned: the strongest link
+(same-cell mRNA ↔ protein) was barely tested, since only 13 of 1,004 CITE targets had their own gene's mRNA, nonzero, in
+the prompt (`scripts/mrna_test.py`, `limits.json`). Own-only scores on the snapshot format rose a lot (.07–.46 ρ on most
+types), but that mixes format learning with the extra training rows; no control run separates them. On the original
+prompts it gained on bulk RNA / CITE / scRNA and lost most of its TCR gain (−.25); the losses line up with changes in
+hint copying (correlational). Single seed, one pass.
 
 Snapshot eval: pooled Spearman ρ on the gold targets; full = own values + same-timepoint/same-cell context,
 own = context removed, swap = context from another timepoint/cell. 95% CIs = paired bootstrap over prompts.
@@ -77,7 +80,7 @@ Paired bootstrap over prompts (500); `standard_scores.json`, `scripts/score_stan
 | Xenium | 600 | .590 | .604 | .597 | −.014 [−.05, +.02] | −.007 [−.03, +.02] | .535 → .604 |
 | DIA | 2000 | .535 | .518 | .510 | +.017 [−.01, +.05] | +.025 [−.00, +.05] | .054 → .518 |
 
-- **Format learned, connections not.** Own-only scores jump (DIA .05 → .52, CITE .36 → .58, MetaPhlAn .13 → .47),
+- **Own-only gains; cross-assay effects not detected.** Own-only scores jump (DIA .05 → .52, CITE .36 → .58, MetaPhlAn .13 → .47),
   but adding the matching other assays adds ≤ .02 anywhere, and swapping in a wrong timepoint costs about the same
   (flow −.045 is the largest, CI touching 0).
 - Same-cell RNA ↔ antibody (the link with the most data, ~3,200 training cells) gives nothing either way: CITE
@@ -86,7 +89,7 @@ Paired bootstrap over prompts (500); `standard_scores.json`, `scripts/score_stan
 - 73 / 12,720 answers hit the 8k-token retry limit.
 
 ### Reading
-One pass over 5,904 snapshots teaches the format; it does not make the model read across assays. Within one
+One pass over 5,904 snapshots raised own-only scores; no cross-assay use was detected, within the limits above. Within one
 patient there are only ~19 timepoints, so blood-level links have little to learn from; the same-cell link has
 thousands of examples and still shows nothing, which suggests the objective (mostly own-type targets, context
 values copied from the prompt) gives no pressure to use the other modality. Next options: targets that can
